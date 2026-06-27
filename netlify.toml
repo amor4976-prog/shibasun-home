@@ -1,0 +1,16 @@
+# Netlify / 静的ホスティング設定
+[build]
+  publish = "."
+
+# 画像は長期キャッシュ（表示高速化）
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# セキュリティ・SEOヘッダー
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!--
+  ▼▼ 専務へ：相談会は「随時・予約制」なので日程の記入は不要です ▼▼
+  ・お知らせ欄の黄色マーカー（class="fillin"）を最新情報に更新してください（新着順に <li> を足す／古いものは消してOK）
+  ・キャンペーンや休業案内などもお知らせ欄に書けます
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個別無料相談会／お知らせ｜奈良の注文住宅・株式会社シバ・サンホーム</title>
+<meta name="description" content="奈良の工務店シバ・サンホームの個別無料相談会。土地さがし・資金計画・間取り・価格・性能など、家づくりの疑問を一つずつ個別にご相談いただけます。予約制・参加無料・来店もオンラインもOK。しつこい営業はいたしません。お子様連れ歓迎。奈良市・大和郡山市ほか。">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#1c1c1a">
+<link rel="canonical" href="https://www.shibasunhome.com/event.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="株式会社シバ・サンホーム">
+<meta property="og:title" content="個別無料相談会／お知らせ｜株式会社シバ・サンホーム">
+<meta property="og:description" content="土地・お金・間取り・性能…家づくりの疑問を個別に相談できる無料の会。予約制・来店もオンラインもOK。">
+<meta property="og:url" content="https://www.shibasunhome.com/event.html">
+<meta property="og:image" content="https://www.shibasunhome.com/img/og-image.jpg">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--pale:#f6f6f5;--linec:#e8e8e6;--gold:#1a1a1a}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.9;letter-spacing:.04em;padding-bottom:60px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.gothic{font-family:'Zen Kaku Gothic New',sans-serif}
+.en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px;transition:all .3s}
+.back:hover{background:var(--ink);color:#fff}
+
+.whead{padding:52px 24px 8px;text-align:center}
+.whead .en{font-size:11px;color:var(--gold);font-weight:500}
+.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,38px);font-weight:500;letter-spacing:.08em;margin:10px 0 16px}
+.whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:680px;margin:0 auto;line-height:2.1}
+.assure{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
+.assure span{font-size:12px;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold);color:#555555;padding:8px 16px;border-radius:30px;background:#f4f4f3}
+
+.wrap{max-width:900px;margin:0 auto;padding:20px 22px}
+.editnote{max-width:900px;margin:18px auto 0;padding:0 22px}
+.editnote div{background:#fff7e6;border:1px dashed var(--gold);color:#8a7340;font-size:11.5px;font-weight:300;line-height:1.8;padding:12px 16px;letter-spacing:.04em}
+.fillin{background:#fff7e6;border-bottom:1px dashed var(--gold);color:#8a7340;padding:0 6px;font-weight:500}
+
+.sec{margin-top:46px}
+.sec-h{text-align:center;margin-bottom:24px}
+.sec-h .en{font-size:11px;color:var(--gold);font-weight:500}
+.sec-h h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,25px);font-weight:500;letter-spacing:.07em;margin-top:8px}
+
+/* 相談会カード */
+.eventcard{border:1px solid var(--ink);overflow:hidden}
+.eventcard .ribbon{background:var(--ink);color:#fff;text-align:center;padding:10px;font-size:12px;letter-spacing:.16em;font-family:'Noto Sans JP',sans-serif}
+.eventcard .body{padding:26px 24px}
+.einfo{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--linec)}
+.einfo .row{display:grid;grid-template-columns:100px 1fr;gap:10px;padding:13px 4px;border-bottom:1px solid var(--linec);font-size:13.5px}
+.einfo .row .k{color:var(--gray);font-size:12px;letter-spacing:.1em;padding-top:2px}
+.einfo .row .v{font-weight:500}
+.ebtns{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:22px auto 0}
+.ebtn{display:flex;align-items:center;justify-content:center;padding:15px;font-size:13px;letter-spacing:.14em}
+.ebtn-fill{background:var(--gold);color:#fff}
+.ebtn-line{border:1px solid var(--ink)}
+.enote{font-size:11px;color:var(--gray);font-weight:300;text-align:center;margin-top:12px}
+
+/* できること */
+.benefits{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:680px){.benefits{grid-template-columns:1fr 1fr}}
+.bcard{border:1px solid var(--linec);padding:18px 20px}
+.bcard .bn{font-family:'Jost',sans-serif;font-size:12px;color:var(--gold);letter-spacing:.12em}
+.bcard h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;margin:6px 0 6px}
+.bcard p{font-size:12.5px;font-weight:300;color:#353533;line-height:1.95}
+
+/* 流れ */
+.steps3{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:680px){.steps3{grid-template-columns:repeat(3,1fr)}}
+.s3{border:1px solid var(--linec);padding:20px;text-align:center}
+.s3 .n{width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;margin:0 auto 10px}
+.s3 h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;margin-bottom:6px}
+.s3 p{font-size:12px;font-weight:300;color:#353533;line-height:1.9}
+
+/* お知らせ */
+.news{border-top:1px solid var(--linec)}
+.news li{list-style:none;display:grid;grid-template-columns:110px 1fr;gap:14px;padding:16px 4px;border-bottom:1px solid var(--linec);font-size:13.5px;font-weight:300;align-items:baseline}
+@media(max-width:560px){.news li{grid-template-columns:1fr;gap:3px}}
+.news .date{font-family:'Jost',sans-serif;color:var(--gray);font-size:12px;letter-spacing:.08em}
+.news .tag{display:inline-block;font-size:10px;color:#fff;background:var(--gold);padding:2px 8px;border-radius:2px;margin-right:8px;letter-spacing:.04em}
+
+.cta{text-align:center;padding:54px 24px 20px}
+.cta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:500;letter-spacing:.08em;margin-bottom:8px}
+.cta p{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:24px}
+.cbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
+.cbtn{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.16em}
+.cbtn-fill{background:var(--ink);color:#fff}.cbtn-gold{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+
+footer{background:#161614;color:#939391;padding:40px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:40px}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+footer a{color:#c2c2c0}footer a:hover{color:#fff}
+footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spacing:.18em;font-size:10px}
+
+.fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:200;display:grid;grid-template-columns:1fr 1fr;height:60px;border-top:1px solid rgba(255,255,255,.15)}
+.fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em}
+.fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}.fc-reserve{background:var(--ink);color:#fff}
+@media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="back en" href="index.html">← Home</a>
+</header>
+
+<div class="whead">
+  <div class="en">Free Consultation</div>
+  <h1>個別無料相談会</h1>
+  <p>家づくりの「？」を、一つずつ解消しませんか。土地さがし・お金のこと・間取り・性能まで、お一組ずつじっくり個別にご相談いただける、無料の相談会です。何から聞けばいいか分からない段階でも大丈夫。しつこい営業は一切いたしません。</p>
+  <div class="assure">
+    <span>参加無料</span>
+    <span>予約制（お一組ずつ）</span>
+    <span>来店・オンラインOK</span>
+    <span>お子様連れ歓迎</span>
+    <span>しつこい営業なし</span>
+  </div>
+</div>
+
+<div class="editnote"><div>※ このページは編集できます。相談会は「随時・予約制」なので日程の記入は不要です。<b>お知らせ欄の黄色マーカー</b>を最新情報（休業・キャンペーン等）に書き換えてください。</div></div>
+
+<div class="wrap">
+
+  <!-- 相談会について -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">About</div><h2>個別無料相談会について</h2></div>
+    <div class="eventcard">
+      <div class="ribbon">随時受付中・ご予約制</div>
+      <div class="body">
+        <div class="einfo">
+          <div class="row"><div class="k">参加費</div><div class="v">無料</div></div>
+          <div class="row"><div class="k">所要時間</div><div class="v">約60分（ご相談内容により前後します）</div></div>
+          <div class="row"><div class="k">方法</div><div class="v">ご来店、またはオンライン（Web）</div></div>
+          <div class="row"><div class="k">対象</div><div class="v">これから家づくりを考える方ならどなたでも（土地・予算が未定でもOK）</div></div>
+          <div class="row"><div class="k">ご予約</div><div class="v">下のボタン、またはお電話（0120-154-483）から</div></div>
+        </div>
+        <div class="ebtns">
+          <a class="ebtn ebtn-fill" href="reserve.html">相談会を予約する</a>
+          <a class="ebtn ebtn-line" href="tel:0120154483">電話で予約・相談（0120-154-483）</a>
+        </div>
+        <p class="enote">※ お一組ずつの個別対応です。周りを気にせず、ゆっくりご相談いただけます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 相談会でできること -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">Topics</div><h2>こんなこと、相談できます</h2></div>
+    <div class="benefits">
+      <div class="bcard"><div class="bn">01</div><h3>土地さがし</h3><p>土地をお持ちでなくても大丈夫。地元・奈良のネットワークで、ご希望に合う土地探しからお手伝いします。</p></div>
+      <div class="bcard"><div class="bn">02</div><h3>資金計画・予算</h3><p>「いくらの家が建てられる？」を、無理のない返済額から一緒に整理します。予算が未定でもOK。</p></div>
+      <div class="bcard"><div class="bn">03</div><h3>住宅ローン</h3><p>ローンの選び方や月々の目安など、お金まわりの不安を分かりやすくご説明します。</p></div>
+      <div class="bcard"><div class="bn">04</div><h3>間取り・プラン</h3><p>家事ラクの動線、収納、家族の暮らし方に合わせた間取りのご相談を承ります。</p></div>
+      <div class="bcard"><div class="bn">05</div><h3>価格・お見積り</h3><p>本体だけでなく、諸費用・外構まで含めた「総額」での考え方をご説明します。</p></div>
+      <div class="bcard"><div class="bn">06</div><h3>性能・仕様</h3><p>耐震・断熱・気密など、見えない部分の標準仕様についてもお気軽にどうぞ。</p></div>
+    </div>
+  </section>
+
+  <!-- 流れ -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">Flow</div><h2>ご利用の流れ</h2></div>
+    <div class="steps3">
+      <div class="s3"><div class="n">1</div><h3>ご予約</h3><p>予約フォームかお電話で、ご希望の日時をお知らせください。</p></div>
+      <div class="s3"><div class="n">2</div><h3>当日</h3><p>ご来店またはオンラインで、お一組ずつ個別にご相談。約60分。</p></div>
+      <div class="s3"><div class="n">3</div><h3>その後</h3><p>無理な営業はしません。ご自身のペースでじっくりご検討ください。</p></div>
+    </div>
+  </section>
+
+  <!-- お知らせ -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">News</div><h2>お知らせ</h2></div>
+    <ul class="news">
+      <li><span class="date"><span class="fillin">2026.○.○</span></span><span><span class="tag">相談会</span>個別無料相談会を随時受付中です。来店・オンラインともにご予約いただけます。</span></li>
+      <li><span class="date"><span class="fillin">2026.○.○</span></span><span><span class="tag">お知らせ</span><span class="fillin">（例）夏季休業のお知らせ：○月○日〜○月○日</span></span></li>
+      <li><span class="date"><span class="fillin">2026.○.○</span></span><span><span class="tag">実例</span>建築実例ページを公開しました。<a href="jisseki.html" style="border-bottom:1px solid var(--gold)">こちら</a></span></li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="cta">
+  <h2 class="gothic">まずは、話を聞くだけでも。</h2>
+  <p>個別無料相談会のご予約・ご相談はお気軽に。来店・オンラインどちらもOKです。</p>
+  <div class="cbtns">
+    <a class="cbtn cbtn-fill" href="reserve.html">相談会を予約する</a>
+    <a class="cbtn cbtn-gold" href="catalog.html">カタログ資料請求（無料）</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
+  <div style="margin-top:10px"><a href="index.html">トップへ戻る</a></div>
+  <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
+</footer>
+
+<nav class="fixed-cta">
+  <a class="fc-tel" href="tel:0120154483">電話で相談</a>
+  <a class="fc-reserve" href="reserve.html">相談会を予約</a>
+</nav>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"相談会は無料ですか？","acceptedAnswer":{"@type":"Answer","text":"はい、参加無料です。土地さがし・資金計画・間取り・価格・性能など、家づくりのご相談を予約制で個別に承ります。"}},
+{"@type":"Question","name":"オンラインでも相談できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ご来店のほか、オンライン（Web）でのご相談も可能です。ご都合に合わせてお選びいただけます。"}},
+{"@type":"Question","name":"土地や予算が決まっていなくても参加できますか？","acceptedAnswer":{"@type":"Answer","text":"もちろんです。土地さがしや資金計画など、いちばん最初の段階からご相談いただけます。しつこい営業はいたしません。"}}
+]}
+</script>
+<script src="site.js" defer></script>
+</body>
+</html>

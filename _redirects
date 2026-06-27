@@ -1,0 +1,39 @@
+# 旧サイト(.php)→新サイト 301転送マップ（Netlify用）
+# 公開後、Googleにインデックスされた旧URLを近い新ページへ転送し、SEO評価を引き継ぎます。
+# ※書式: 旧パス  新パス  ステータス
+
+# スタッフ → 私たち（代表・専務紹介）
+/staff/            /members.html   301
+/staff/*           /members.html   301
+
+# 会社案内・コンセプト・はじめまして
+/about_us/         /company.html   301
+/about_us          /company.html   301
+/concept/          /company.html   301
+/concept           /company.html   301
+/hajimemashite/    /flow.html      301
+/hajimemashite     /flow.html      301
+
+# 施工事例・お客様の声 → 建築実例
+/case/             /jisseki.html   301
+/case/*            /jisseki.html   301
+/voice/            /jisseki.html   301
+/voice/*           /jisseki.html   301
+
+# /blog のきれいなURL → ブログ一覧（rewrite：URLは /blog のまま中身を表示）
+/blog              /blog.html      200
+/blog/             /blog.html      200
+# /blog/〇〇 → blog-〇〇.html（記事のきれいなURL）
+/blog/:slug        /blog-:slug.html  200
+
+# 旧サイトのブログ → 新ブログ
+/blog_adviser/     /blog.html    301
+/blog_adviser/*    /blog.html    301
+
+# イベント → 無料相談会・お知らせ
+/event/            /event.html     301
+/event/*           /event.html     301
+
+# 問い合わせ → 来店予約
+/contact/          /reserve.html   301
+/contact/*         /reserve.html   301

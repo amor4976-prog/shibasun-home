@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>来店予約・無料相談｜奈良の注文住宅・株式会社シバ・サンホーム</title>
+<meta name="description" content="奈良の工務店シバ・サンホームの来店予約・無料相談ページ。空き状況を見てご希望の日時を選ぶだけ。資金計画・土地探し・間取りのご相談はすべて無料。しつこい営業はいたしません。オンライン相談も可能です。">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#1c1c1a">
+<link rel="canonical" href="https://www.shibasunhome.com/reserve.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="株式会社シバ・サンホーム">
+<meta property="og:title" content="来店予約・無料相談｜株式会社シバ・サンホーム">
+<meta property="og:description" content="空き状況を見て、ご希望の日時を選ぶだけ。奈良の工務店の無料相談予約。">
+<meta property="og:url" content="https://www.shibasunhome.com/reserve.html">
+<meta property="og:image" content="https://www.shibasunhome.com/img/og-image.jpg">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--pale:#f6f6f5;--linec:#e8e8e6;--gold:#1a1a1a;--line:#06c755}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.9;letter-spacing:.04em;padding-bottom:60px}
+a{text-decoration:none;color:inherit}
+.gothic{font-family:'Zen Kaku Gothic New',sans-serif}
+.en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px;transition:all .3s}
+.back:hover{background:var(--ink);color:#fff}
+.whead{padding:48px 24px 8px;text-align:center}
+.whead .en{font-size:11px;color:var(--gold);font-weight:500}
+.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
+.whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
+.rsv-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:var(--gray);margin-top:14px}
+.rsv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7da06f;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.wrap{max-width:640px;margin:0 auto;padding:24px 20px 50px}
+.reserve-box{border:1px solid var(--linec);padding:30px 20px}
+.rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
+.date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;border:1px solid var(--linec);background:#fff;transition:all .2s}
+.date-chip .d{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;line-height:1.3}
+.date-chip .w{font-size:10px;color:var(--gray);letter-spacing:.1em}
+.date-chip.on{background:var(--ink);border-color:var(--ink)}
+.date-chip.on .d,.date-chip.on .w{color:#fff}
+.slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+@media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
+.slot-btn{padding:13px 6px;text-align:center;border:1px solid var(--linec);background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
+.slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slot-btn.on small{color:#d8c49a}
+.rsv-field{margin-top:22px}
+.rsv-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
+.rsv-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
+.rsv-field input,.rsv-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
+.rsv-field input:focus,.rsv-field textarea:focus{outline:none;border-color:var(--ink)}
+.topic-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tchip{border:1px solid var(--linec);background:#fff;color:#454543;font-family:inherit;font-size:12.5px;letter-spacing:.04em;padding:9px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.tchip:hover{border-color:var(--gold)}
+.tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rsv-submit{width:100%;margin-top:28px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.rsv-submit:disabled{opacity:.4;cursor:default}
+.rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
+.rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
+.rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
+.rsv-done{text-align:center;padding:36px 10px}
+.rsv-done .mark{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
+.rsv-done h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin-bottom:14px}
+.rsv-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
+.altbox{max-width:640px;margin:0 auto;padding:0 20px 60px;text-align:center}
+.altbox .div{height:1px;background:var(--linec);margin:0 0 30px}
+.altbox p{font-size:12px;color:var(--gray);font-weight:300;margin-bottom:16px;letter-spacing:.06em}
+.altbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
+.abtn{display:flex;align-items:center;justify-content:center;padding:15px;font-size:13px;letter-spacing:.16em;border:1px solid var(--ink)}
+.abtn-tel{background:var(--ink);color:#fff}
+.abtn-cat{background:#fff;color:var(--ink)}
+footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+footer a{color:#c2c2c0}footer a:hover{color:#fff}
+footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spacing:.2em;font-size:10px}
+.fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:200;display:grid;grid-template-columns:1fr 1fr;height:60px;border-top:1px solid rgba(255,255,255,.15)}
+.fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em}
+.fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}
+.fc-cat{background:var(--ink);color:#fff}
+@media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="back en" href="index.html">← Home</a>
+</header>
+
+<div class="whead">
+  <div class="en">Reserve</div>
+  <h1>来店予約・無料相談</h1>
+  <p>資金計画・土地探し・間取りのご相談はすべて無料。<br>しつこい営業は一切いたしません。オンライン相談も可能です。</p>
+  <div class="rsv-live">空き状況はリアルタイムで更新されています</div>
+</div>
+
+<div class="wrap">
+  <div class="reserve-box">
+    <div id="rsv-app"><div class="rsv-msg">空き状況を確認しています…</div></div>
+    <div class="rsv-note">所要時間は約60分・お子様連れ歓迎・オンライン相談も可能です</div>
+  </div>
+</div>
+
+<div class="altbox">
+  <div class="div"></div>
+  <p>お電話でのご予約・ご相談もお気軽にどうぞ（9:00-18:00／水曜定休）</p>
+  <div class="altbtns">
+    <a class="abtn abtn-tel" href="tel:0120154483">📞 電話で相談する（0120-154-483）</a>
+    <a class="abtn abtn-cat" href="catalog.html">まずは資料請求する</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
+  <div style="margin-top:10px"><a href="index.html">トップへ戻る</a></div>
+  <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
+</footer>
+
+<nav class="fixed-cta">
+  <a class="fc-tel" href="tel:0120154483">電話で相談</a>
+  <a class="fc-cat" href="catalog.html">資料請求する</a>
+</nav>
+
+<script>
+const SHIBAGRAM_API='https://shibagram.onrender.com';
+const rsvApp=document.getElementById('rsv-app');
+let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
+function rsvFallback(){rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
+function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
+function rsvRender(){
+  const dates=[...new Set(rsvSlots.map(s=>s.date))];
+  if(!dates.length){rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
+  if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates[0];
+  const daySlots=rsvSlots.filter(s=>s.date===rsvDate);
+  if(rsvSlot&&!daySlots.some(s=>s.id===rsvSlot))rsvSlot=null;
+  rsvApp.innerHTML=`
+    <div class="rsv-step-label">1. 日付を選ぶ</div>
+    <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}</div></button>`}).join('')}</div>
+    <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
+    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.id===rsvSlot?' on':''}" data-slot="${s.id}">${s.startTime}<small>残り${s.availableCount}枠</small></button>`).join('')}</div>
+    <form id="rsv-form">
+      <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
+      <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
+      <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
+      <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
+      <div class="rsv-field"><label>ご相談方法</label>
+        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選択OK</span></label>
+        <div class="topic-chips">${['OB様邸の見学','土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
+      <button class="rsv-submit" type="submit">この日時で予約する</button>
+    </form>`;
+  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
+  rsvApp.querySelectorAll('.tchip:not(.mchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+  document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
+}
+async function rsvSubmit(e){
+  e.preventDefault();const f=e.target;
+  if(!rsvSlot){alert('ご希望の時間を選択してください');return}
+  const btn=f.querySelector('.rsv-submit');btn.disabled=true;btn.textContent='送信中…';
+  const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip)')].map(c=>c.dataset.t);
+  const methodEl=rsvApp.querySelector('.mchip.on');
+  const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
+  const msg=[`【相談方法】${methodLabel}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  try{
+    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,message:msg})});
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(data.error||'予約に失敗しました');
+    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===rsvSlot);const fd=fmtDate(sel.date);
+    rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
+  }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
+}
+function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.email.value||f.message.value);}
+async function rsvLoad(){
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
+  catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
+}
+rsvLoad();setInterval(rsvLoad,60000);
+</script>
+<script src="site.js" defer></script>
+</body>
+</html>
