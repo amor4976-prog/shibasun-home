@@ -24,6 +24,21 @@
 .aimg{margin:26px 0}
 .aimg img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border:1px solid var(--linec)}
 .aimg figcaption{font-size:11px;color:var(--gray);font-weight:300;margin-top:8px;letter-spacing:.04em}
+/* 編集タイポ図解 */
+.fig{border:1px solid var(--linec);padding:26px 22px;margin:28px 0}
+.fig .fh{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:#a3a3a1;text-transform:uppercase;margin-bottom:16px}
+.budget-rows{border-top:1px solid var(--linec)}
+.budget-rows div{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid #f0f0ee;font-size:13.5px}
+.budget-rows div b{font-weight:500}
+.budget-rows div small{font-size:11px;color:var(--gray);font-weight:300}
+.budget-total{display:flex;justify-content:space-between;align-items:baseline;padding:14px 2px 2px;font-size:14px}
+.budget-total b{font-family:'Zen Kaku Gothic New',sans-serif;font-size:18px;font-weight:500}
+.steps-fig{display:grid;gap:0}
+.steps-fig .st{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:baseline;padding:14px 2px;border-bottom:1px solid #f0f0ee}
+.steps-fig .st:last-child{border-bottom:none}
+.steps-fig .no{font-family:'Jost',sans-serif;font-size:20px;font-weight:300;color:var(--ink)}
+.steps-fig .st b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14.5px;font-weight:500}
+.steps-fig .st small{display:block;font-size:11.5px;color:var(--gray);font-weight:300;margin-top:3px;line-height:1.8}
 </style>
 <script type="application/ld+json">
 {
@@ -65,8 +80,6 @@
 
   <p class="lead">皆さんこんにちは〜。柴部です。＾＾<br>今回は「家づくりで後悔しないために、最初に知っておきたい6つのこと」をお話しします。30〜50代のご夫婦が安心して家づくりを進めるための、入門編です。</p>
 
-  <figure class="aimg"><img src="img/work-ldk.jpg" alt="木の天井に包まれる開放的なLDK（シバ・サンホーム施工）" loading="lazy"><figcaption>シバ・サンホームの施工事例より</figcaption></figure>
-
   <p>家づくりは、人生の中でも大きな決断のひとつです。「土地はどう選べばいいのか」「住宅会社は何を基準に決めるのか」「予算はいくらまで大丈夫なのか」など、考えることが多く、不安になる方も少なくありません。</p>
   <p>特に30〜50代のご夫婦にとっては、子育て、仕事、老後、親の介護、自分たちの健康など、これからの暮らし方まで見据えた家づくりが大切になります。</p>
   <p>この記事では、家づくりで後悔しないために、最初に押さえておきたいポイントを「資金計画」「土地探し」「住宅会社選び」「間取り」「性能」「将来の暮らし方」の6つに分けて、わかりやすく解説します。</p>
@@ -75,6 +88,18 @@
   <p>家づくりで最初に考えるべきことは、建物の価格だけではありません。土地を購入する場合は、土地代、建物代、外構工事費、登記費用、火災保険、住宅ローン諸費用、引っ越し費用、家具・家電代なども必要になります。</p>
   <p>たとえば「建物が2,500万円」と聞くと、それだけで家が完成するように感じるかもしれません。しかし実際には、庭や駐車場を整える外構工事、地盤改良工事、照明、カーテン、エアコンなどが別途必要になることがあります。</p>
   <p>大切なのは、最初から「家づくり全体でいくらかかるのか」を確認することです。（ここ、ほんまに大事です）</p>
+  <div class="fig">
+    <div class="fh">Total Budget ／ 「総予算」の中身</div>
+    <div class="budget-rows">
+      <div><b>建物本体</b><small>いちばん目立つ数字。でも一部</small></div>
+      <div><b>外構工事</b><small>庭・駐車場・フェンスなど</small></div>
+      <div><b>諸費用</b><small>登記・ローン手数料・火災保険など</small></div>
+      <div><b>土地代</b><small>土地から購入する場合</small></div>
+      <div><b>家具・家電・引っ越し</b><small>意外とかかる部分</small></div>
+      <div><b>予備費</b><small>残しておくと安心</small></div>
+    </div>
+    <div class="budget-total"><span>ぜんぶ合わせて</span><b>総予算</b></div>
+  </div>
   <h3>チェックポイント</h3>
   <ul>
     <li>月々の返済額は無理がないか</li>
@@ -107,7 +132,6 @@
   <p>特に大切なのは、「契約前にどこまで具体的に説明してくれるか」です。契約後に追加費用が増えると、家づくりの満足度は大きく下がってしまいます。</p>
 
   <h2>4. 間取りは「今」だけでなく「10年後・20年後」も考える</h2>
-  <figure class="aimg"><img src="img/work-open.jpg" alt="視線が抜ける開放的な間取り（シバ・サンホーム施工）" loading="lazy"><figcaption>視線が抜ける、開放的な間取りの実例</figcaption></figure>
   <p>間取りを考えるときは、現在の暮らしだけでなく、将来の変化も想像することが大切です。</p>
   <p>子どもが小さい時期は、リビング横の和室やスタディスペースが便利です。一方で、子どもが独立したあとは、部屋が余ることもあります。また、50代以降の家づくりでは、老後の暮らしやすさも重要になります。</p>
   <p>たとえば、1階に寝室を作れるか、トイレまでの距離は遠くないか、段差は少ないか、洗濯動線は楽かなどを考えておくと、長く暮らしやすい住まいになります。</p>
@@ -123,7 +147,6 @@
   <p>おしゃれな間取りも大切ですが、毎日の暮らしが楽になる間取りこそ、満足度の高い家になります。</p>
 
   <h2>5. 住宅性能は「見えない部分」ほど大切</h2>
-  <figure class="aimg"><img src="img/performance.jpg" alt="高断熱・高気密の住まいの室内（シバ・サンホーム施工）" loading="lazy"><figcaption>快適さを支えるのは、見えない性能</figcaption></figure>
   <p>家づくりでは、キッチンや床材、外観デザインなど、目に見える部分に注目しがちです。しかし、住み始めてからの快適さを左右するのは、断熱性、気密性、耐震性、換気、耐久性といった「見えない性能」です。</p>
   <p>断熱性とは、外の暑さや寒さを家の中に伝えにくくする性能です。気密性とは、家のすき間を少なくし、冷暖房の効きやすさを高める性能です。耐震性とは、地震に対する建物の強さのことです。</p>
   <p>これらの性能が低いと、冬は寒く、夏は暑く、光熱費も高くなりやすくなります。逆に、性能の良い家は、冷暖房効率が良く、体への負担も少なく、長く快適に暮らしやすくなります。</p>
@@ -138,6 +161,15 @@
   <h2>まとめ：家づくりは「順番」を間違えないことが大切</h2>
   <p>家づくりで後悔しないためには、いきなり展示場に行ったり、土地を決めたりする前に、まず全体像を整理することが大切です。</p>
   <p>最初に資金計画を立て、次に暮らし方を考え、そのうえで土地や住宅会社を選ぶ。この順番を意識するだけで、家づくりの失敗は大きく減らせます。</p>
+  <div class="fig">
+    <div class="fh">Order ／ 後悔しない家づくりの順番</div>
+    <div class="steps-fig">
+      <div class="st"><span class="no">1</span><span><b>資金計画</b><small>総予算と「無理なく返せる額」を決める</small></span></div>
+      <div class="st"><span class="no">2</span><span><b>暮らし方を考える</b><small>その家でどんな毎日を過ごしたいか、夫婦で話す</small></span></div>
+      <div class="st"><span class="no">3</span><span><b>土地・住宅会社を選ぶ</b><small>1と2が決まっているから、迷わず選べる</small></span></div>
+      <div class="st"><span class="no">4</span><span><b>間取り・性能を詰める</b><small>今と10年後の暮らしに合わせて</small></span></div>
+    </div>
+  </div>
   <p>焦らず、ひとつずつ確認しながら進めていけば、家づくりは不安なものではなく、家族の未来を考える前向きな時間になります。o(^▽^)o</p>
   <div class="point"><b>ミニ要約</b>：家づくりで後悔しないためには、建物価格だけでなく総予算を把握し、土地・住宅会社・間取り・性能・将来の暮らし方をバランスよく考えることが大切です。特に、資金計画と住宅会社選びは早い段階で慎重に確認しましょう。家は「買うもの」ではなく、これからの暮らしをつくるものです。</div>
 
