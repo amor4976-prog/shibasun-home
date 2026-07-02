@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1a1a1a;--gray:#767674;--pale:#f6f6f5;--linec:#e8e8e6;--gold:#1a1a1a}
+:root{--ink:#1c1c1a;--gray:#6f6c66;--pale:#f4f2ee;--linec:#e3e0da;--gold:#a08a5f}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.9;letter-spacing:.04em;padding-bottom:60px}
@@ -77,14 +77,14 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .jvlabel{font-size:11px;color:var(--gold);font-weight:500;letter-spacing:.04em}
 .jvtext{font-size:15px;font-weight:500;line-height:1.85;margin:6px 0 4px}
 .jvwho{font-size:11px;color:var(--gray);font-weight:300}
-.jstory{font-size:13.5px;font-weight:300;line-height:2.05;color:#353533}
+.jstory{font-size:13.5px;font-weight:300;line-height:2.05;color:#3a3833}
 .jside{position:relative}
 @media(min-width:820px){.jside{position:sticky;top:88px}}
 .jplan{background:#fbfaf8;border:1px solid var(--linec);padding:18px 20px}
 .jplan-h{display:flex;flex-direction:column;margin-bottom:10px}
 .jplan-h .en{font-size:10px;color:var(--gold)}
 .jplan-h span:last-child{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em;margin-top:3px}
-.jplan p{font-size:12.5px;font-weight:300;line-height:1.95;color:#353533}
+.jplan p{font-size:12.5px;font-weight:300;line-height:1.95;color:#3a3833}
 .jnote{font-size:10.5px;color:var(--gold);font-weight:300;line-height:1.7;margin-top:10px;padding-top:10px;border-top:1px dashed var(--linec)}
 
 .jsub{display:flex;align-items:baseline;gap:12px;margin:26px 0 12px}
@@ -118,14 +118,14 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .cta p{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:24px}
 .cbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
 .cbtn{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.16em}
-.cbtn-fill{background:var(--ink);color:#fff}.cbtn-gold{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.cbtn-fill{background:var(--ink);color:#fff}.cbtn-gold{background:var(--gold);color:#fff}
 .morebar{max-width:1040px;margin:8px auto 0;padding:0 22px}
 .morebar a{display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid var(--ink);padding:15px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em}
 .morebar a:hover{background:var(--ink);color:#fff}
 
-footer{background:#161614;color:#939391;padding:40px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:40px}
+footer{background:#161614;color:#9b978f;padding:40px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:40px}
 footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
-footer a{color:#c2c2c0}footer a:hover{color:#fff}
+footer a{color:#cfc8be}footer a:hover{color:#fff}
 footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spacing:.18em;font-size:10px}
 
 .lb{position:fixed;inset:0;z-index:300;background:rgba(15,14,13,.95);display:none;align-items:center;justify-content:center}
@@ -173,11 +173,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 01</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">収納充実</span><span class="jtag">家事ラク</span></div>
       </div>
       <h2 class="jtitle">シンプルなのに上質。洗練されたホテル空間で過ごす毎日</h2>
       <div class="jmeta">
         <span>奈良県北葛城郡</span>
+        <span>ご夫婦＋お子さま1人</span>
         <span><b>33.0</b> 坪</span>
         <span>本体価格 <b>2,000</b> 万円<small>（税別）</small></span>
         <span>坪単価 60.5 万円</span>
@@ -216,11 +217,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 02</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">こだわり外観</span><span class="jtag">家事ラク</span></div>
       </div>
       <h2 class="jtitle">ライトアメリカンスタイル。スタイリッシュな家</h2>
       <div class="jmeta">
         <span>奈良県橿原市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>32.8</b> 坪</span>
         <span>本体価格 <b>1,950</b> 万円<small>（税別）</small></span>
         <span>坪単価 59.5 万円</span>
@@ -259,11 +261,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 03</div>
-        <div class="jtags"><span class="jtag">平屋</span></div>
+        <div class="jtags"><span class="jtag">平屋</span><span class="jtag">ナチュラル</span><span class="jtag">家事ラク</span></div>
       </div>
       <h2 class="jtitle">無垢材をふんだんに使用した、自然と繋がる平屋の住まい</h2>
       <div class="jmeta">
         <span>奈良県宇陀市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>31.0</b> 坪</span>
         <span>本体価格 <b>1,900</b> 万円<small>（税別）</small></span>
         <span>坪単価 62.0 万円</span>
@@ -302,11 +305,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 04</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">スカイデッキ</span><span class="jtag">リゾート風</span></div>
       </div>
       <h2 class="jtitle">スカイデッキとワークスペース。空と暮らす南国風ヴィラ</h2>
       <div class="jmeta">
         <span>奈良県北葛城郡</span>
+        <span>ご夫婦</span>
         <span><b>32.0</b> 坪</span>
         <span>本体価格 <b>2,080</b> 万円<small>（税別）</small></span>
         <span>坪単価 64.9 万円</span>
@@ -345,11 +349,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 05</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">耐震</span><span class="jtag">吹き抜け</span></div>
       </div>
       <h2 class="jtitle">機能性とデザイン性を両立。建築家と叶える、理想の暮らし</h2>
       <div class="jmeta">
         <span>奈良県大和郡山市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>32.0</b> 坪</span>
         <span>本体価格 <b>2,000</b> 万円<small>（税別）</small></span>
         <span>坪単価 62.4 万円</span>
@@ -388,11 +393,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 06</div>
-        <div class="jtags"><span class="jtag">平屋</span></div>
+        <div class="jtags"><span class="jtag">平屋</span><span class="jtag">大開口</span></div>
       </div>
       <h2 class="jtitle">大きな窓の明るい住まい。家族団欒できる平屋プラン</h2>
       <div class="jmeta">
         <span>奈良県生駒市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>42.0</b> 坪</span>
         <span>本体価格 <b>2,950</b> 万円<small>（税別）</small></span>
         <span>坪単価 70.1 万円</span>
@@ -431,11 +437,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 07</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">吹き抜け</span><span class="jtag">通風・採光</span></div>
       </div>
       <h2 class="jtitle">南国リゾート風の大きな吹き抜け。陽光が降り注ぐ、一年中明るい家</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま1人</span>
         <span><b>33.0</b> 坪</span>
         <span>本体価格 <b>2,000</b> 万円<small>（税別）</small></span>
         <span>坪単価 60.3 万円</span>
@@ -474,11 +481,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 08</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">アウトドアリビング</span><span class="jtag">カリフォルニア</span></div>
       </div>
       <h2 class="jtitle">アウトドアリビング。カリフォルニアスタイルの開放的な住まい</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま3人</span>
         <span><b>34.0</b> 坪</span>
         <span>本体価格 <b>1,800</b> 万円<small>（税別）</small></span>
         <span>坪単価 52.9 万円</span>
@@ -517,11 +525,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 09</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">自然光</span><span class="jtag">ヴィンテージ</span></div>
       </div>
       <h2 class="jtitle">ナチュラルな明るさに、趣のある味わいを愉しむ家</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>34.0</b> 坪</span>
         <span>本体価格 <b>2,000</b> 万円<small>（税別）</small></span>
         <span>坪単価 58.1 万円</span>
@@ -560,11 +569,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 10</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">眺望</span><span class="jtag">通風・採光</span></div>
       </div>
       <h2 class="jtitle">絶景を望む、高台の立地を活かした開放的な家</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま1人</span>
         <span><b>35.0</b> 坪</span>
         <span>本体価格 <b>2,099</b> 万円<small>（税別）</small></span>
         <span>坪単価 60.6 万円</span>
@@ -603,11 +613,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 11</div>
-        <div class="jtags"></div>
+        <div class="jtags"><span class="jtag">高気密・高断熱</span><span class="jtag">ナチュラル</span></div>
       </div>
       <h2 class="jtitle">ライトオークとグレーの色合いが心地よい家</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま1人</span>
         <span><b>35.0</b> 坪</span>
         <span>本体価格 <b>2,100</b> 万円<small>（税別）</small></span>
         <span>坪単価 58.1 万円</span>
@@ -651,6 +662,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <h2 class="jtitle">2階リビングとロフト。家事動線も抜群、景色に癒される住まい</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>37.0</b> 坪</span>
         <span>本体価格 <b>2,100</b> 万円<small>（税別）</small></span>
         <span>坪単価 58.7 万円</span>
@@ -689,11 +701,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div class="jcard">
       <div class="jhead">
         <div class="jno"><span class="en">Case</span> 13</div>
-        <div class="jtags"><span class="jtag">平屋</span></div>
+        <div class="jtags"><span class="jtag">平屋</span><span class="jtag">カフェ風</span></div>
       </div>
       <h2 class="jtitle">子どもたちの笑顔溢れる、広々リビング＆庭が特徴の住まい</h2>
       <div class="jmeta">
         <span>奈良県奈良市</span>
+        <span>ご夫婦＋お子さま2人</span>
         <span><b>28.1</b> 坪</span>
         <span>本体価格 <b>2,000</b> 万円<small>（税別）</small></span>
         <span>坪単価 71.2 万円</span>
