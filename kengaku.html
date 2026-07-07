@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <!--
-  ▼▼ 専務へ：OB様邸見学は「随時・予約制」。日程はOB様とこちらで調整する前提なので、固定日程の記入は不要です ▼▼
-  ・ご協力いただけるOB様が増えたら「見学できる家」欄（黄色マーカー）を増やせます
-  ・実際のOB様邸の写真をもらえれば img/ に置いて差し替え可能（今はギャラリーの竣工写真を使用）
+  ▼▼ 専務へ：OB様邸見学ページ（第1段階）▼▼
+  ・今は「見学できます → こんないいこと → 応募フォーム」の入口ページ（特定の家は出さない）
+  ・応募は reserve.html（来店予約・無料相談）に集約。フォームで「OB様邸の見学」を選べます
+  ・OB様邸の写真が集まったら、この下に「見学できるお家」の紹介カードを追加できます（写真は img/ に）
 -->
 <head>
 <meta charset="UTF-8">
@@ -55,8 +56,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .wrap{max-width:900px;margin:0 auto;padding:20px 22px}
 .lead{max-width:720px;margin:40px auto 0;padding:0 22px;text-align:center;font-size:14px;font-weight:300;color:#353533;line-height:2.2}
 .editnote{max-width:900px;margin:26px auto 0;padding:0 22px}
-.editnote div{background:#fff7e6;border:1px dashed var(--gold);color:#8a7340;font-size:11.5px;font-weight:300;line-height:1.8;padding:12px 16px;letter-spacing:.04em}
-.fillin{background:#fff7e6;border-bottom:1px dashed var(--gold);color:#8a7340;padding:0 6px;font-weight:500}
+.editnote div{background:var(--pale);border:1px dashed var(--linec);color:var(--gray);font-size:11.5px;font-weight:300;line-height:1.8;padding:12px 16px;letter-spacing:.04em}
 
 .sec{margin-top:52px}
 .sec-h{text-align:center;margin-bottom:26px}
@@ -146,7 +146,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .cta p{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:24px}
 .cbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
 .cbtn{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.16em}
-.cbtn-fill{background:var(--ink);color:#fff}.cbtn-gold{background:var(--gold);color:#fff}
+.cbtn-fill{background:var(--ink);color:#fff}.cbtn-gold{border:1px solid var(--ink);color:var(--ink)}
 
 footer{background:#161614;color:#939391;padding:40px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:40px}
 footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
@@ -171,8 +171,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <div class="ov"></div>
   <div class="ct">
     <div class="en">Owner's House Tour</div>
-    <h1>OB様の、暮らしを<br>見にいく。</h1>
-    <div class="sub">モデルハウスではなく、実際にお客様が暮らしているお宅へ。住んでいるからこそ分かる「本当のこと」を、見て、聞ける見学会です。</div>
+    <h1>OB様のお宅を、<br>見学できます。</h1>
+    <div class="sub">モデルハウスではなく、実際にお客様が暮らしているお宅へ。住んでいるからこそ分かる「本当のこと」を、見て、聞ける見学会です。ご希望の方を、随時ご案内しています。</div>
   </div>
 </div>
 
@@ -184,9 +184,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <span>お子様連れ歓迎</span>
 </div>
 
-<p class="lead">きれいに整えられた展示場の家ではなく、家族が日々を過ごす“等身大の家”。収納の使いかた、夏と冬の体感、住んでみての本音まで——カタログでは分からないことが、そこにあります。ご見学いただけるお宅を、ご予約に合わせてご案内します。</p>
+<p class="lead">きれいに整えられた展示場の家ではなく、家族が日々を過ごす“等身大の家”。収納の使いかた、夏と冬の体感、住んでみての本音まで——カタログでは分からないことが、そこにあります。ご見学をご希望の方は、下のフォームからお気軽にご応募ください。</p>
 
-<div class="editnote"><div>※ このページは編集できます。見学は「随時・予約制」「まず無料相談→その後ご見学」の流れです。<b>「どのお家を、見てみたい？」の3枚のカード</b>（黄色マーカー部分＝家名・地域・特徴・写真）を、実際にご協力いただくOB様邸に差し替えてください。お宅が増えればカードも増やせます。実写真は img/ に置けば差し替え可能です。</div></div>
+<div class="editnote"><div>※【専務メモ】まずは「OB様邸を見学できます／応募はこちら」の入口ページにしています。実際のOB様邸の写真が集まったら、「見学できるお家」の紹介カードを後から追加できます（写真は img/ に置いて差し替え）。今は写真ゼロでも成立する構成です。</div></div>
 
 <div class="wrap">
 
@@ -203,7 +203,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
   <!-- 見学でわかること -->
   <section class="sec">
-    <div class="sec-h"><div class="en">Check</div><h2>見学で、わかること</h2></div>
+    <div class="sec-h"><div class="en">Good</div><h2>見学すると、こんないいこと。</h2><p>暮らしている家だからこそ、見て・聞いて・体感できることがあります。</p></div>
     <div class="benefits">
       <div class="bcard"><div class="bn">01</div><h3>収納と片づけやすさ</h3><p>どこに何をしまうか。実際の生活道具が入った状態の収納は、いちばん参考になります。</p></div>
       <div class="bcard"><div class="bn">02</div><h3>家事ラクな動線</h3><p>キッチン・洗面・物干しのつながり。毎日の動きやすさを体で確かめられます。</p></div>
@@ -212,56 +212,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <div class="bcard"><div class="bn">05</div><h3>素材の経年変化</h3><p>無垢材や塗り壁が、時間とともにどう味わいを増すか。実物でご確認いただけます。</p></div>
       <div class="bcard"><div class="bn">06</div><h3>建てた人の感想</h3><p>シバ・サンホームで建てて、実際どうだったか。第三者の率直な声がいちばんの判断材料です。</p></div>
     </div>
-  </section>
-
-  <!-- どのお家を見たい？（OB邸ピッカー） -->
-  <section class="sec">
-    <div class="sec-h"><div class="en">Houses</div><h2>どのお家を、見てみたい？</h2><p>ご協力いただける数組のOB様邸から、見たいお宅をお選びいただけます。<br>※ 下記は掲載例です。実際のお宅・特徴は専務が差し替えます。</p></div>
-    <div class="ohouses">
-      <div class="ohouse">
-        <div class="ph"><img src="img/work-exterior.jpg" alt="OB様邸の外観（掲載例）" loading="lazy"></div>
-        <div class="ob">
-          <div class="tag">House 01</div>
-          <h3 class="fillin">木に包まれた、2階建ての家</h3>
-          <div class="meta fillin">北葛城郡・33坪・4人家族</div>
-          <ul>
-            <li class="fillin">大容量の土間収納で玄関すっきり</li>
-            <li class="fillin">吹き抜けLDKに光が満ちる</li>
-            <li class="fillin">「冬あたたかい」を実感できる断熱</li>
-          </ul>
-          <a class="hbtn" href="reserve.html">このお家を見学したい →</a>
-        </div>
-      </div>
-      <div class="ohouse">
-        <div class="ph"><img src="img/work-ldk.jpg" alt="OB様邸のLDK（掲載例）" loading="lazy"></div>
-        <div class="ob">
-          <div class="tag">House 02</div>
-          <h3 class="fillin">回遊動線の、平屋暮らし</h3>
-          <div class="meta fillin">橿原市・31坪・夫婦＋お子さま</div>
-          <ul>
-            <li class="fillin">家事がぐるっと回る回遊間取り</li>
-            <li class="fillin">夏でもひんやり、すずしい平屋</li>
-            <li class="fillin">将来も安心のワンフロア生活</li>
-          </ul>
-          <a class="hbtn" href="reserve.html">このお家を見学したい →</a>
-        </div>
-      </div>
-      <div class="ohouse">
-        <div class="ph"><img src="img/work-kitchen.jpg" alt="OB様邸のキッチン（掲載例）" loading="lazy"></div>
-        <div class="ob">
-          <div class="tag">House 03</div>
-          <h3 class="fillin">家事ラク動線の、共働きの家</h3>
-          <div class="meta fillin">奈良市・32坪・共働きご夫婦</div>
-          <ul>
-            <li class="fillin">洗う→干す→しまうが一直線</li>
-            <li class="fillin">パントリーと造作収納たっぷり</li>
-            <li class="fillin">在宅ワークの小上がりスペース</li>
-          </ul>
-          <a class="hbtn" href="reserve.html">このお家を見学したい →</a>
-        </div>
-      </div>
-    </div>
-    <p class="pickhint">気になるお宅が複数あってもOK。ご相談のときに、ご希望のエリア・間取りに近いお宅をご一緒に選びます。</p>
   </section>
 
   <!-- まずはご相談から（理由） -->
@@ -274,32 +224,32 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <section class="sec">
     <div class="sec-h"><div class="en">Flow</div><h2>ご見学までの流れ</h2></div>
     <div class="steps4">
-      <div class="s3"><div class="n">1</div><h3>無料相談</h3><p>まずは来店またはオンラインで、ご希望や暮らし方をうかがいます（無料）。</p></div>
-      <div class="s3"><div class="n">2</div><h3>お家を選ぶ</h3><p>ご希望に近いOB様邸を、一緒に選びます。「この家が見たい」もOK。</p></div>
-      <div class="s3"><div class="n">3</div><h3>日程調整</h3><p>ご協力いただくOB様のご都合に合わせ、見学日を調整します。</p></div>
+      <div class="s3"><div class="n">1</div><h3>ご応募</h3><p>下の応募フォーム・お電話・LINEから「見学希望」とお知らせください（無料）。</p></div>
+      <div class="s3"><div class="n">2</div><h3>無料相談</h3><p>来店またはオンラインで、ご希望や暮らし方を一度うかがいます。</p></div>
+      <div class="s3"><div class="n">3</div><h3>日程調整</h3><p>ご希望に近いお宅を選び、ご協力いただくOB様のご都合に合わせて見学日を調整します。</p></div>
       <div class="s3"><div class="n">4</div><h3>ご見学</h3><p>大工社長が同行し、お宅をご案内。気になることは何でもどうぞ。</p></div>
     </div>
   </section>
 
-  <!-- 予約ボックス -->
+  <!-- 応募フォーム -->
   <section class="sec">
-    <div class="sec-h"><div class="en">Reserve</div><h2>見学のご予約</h2></div>
+    <div class="sec-h"><div class="en">Apply</div><h2>見学に、応募する</h2><p>「OB様のお宅を見てみたい」——その気持ちだけで大丈夫です。まずはお気軽にご応募ください。</p></div>
     <div class="book">
-      <div class="ribbon">随時受付中・ご予約制</div>
+      <div class="ribbon">随時受付中・参加無料</div>
       <div class="body">
         <div class="einfo">
           <div class="row"><div class="k">参加費</div><div class="v">無料</div></div>
-          <div class="row"><div class="k">開催</div><div class="v">随時（まず無料相談 → その後にご見学）</div></div>
+          <div class="row"><div class="k">受付</div><div class="v">随時（ご応募 → 無料相談 → その後にご見学）</div></div>
           <div class="row"><div class="k">日程</div><div class="v">OB様のご都合に合わせて調整します。ご希望日に添えない場合もございます。</div></div>
           <div class="row"><div class="k">所要時間</div><div class="v">約60〜90分（移動・ご質問の時間を含みます）</div></div>
           <div class="row"><div class="k">同行</div><div class="v">大工社長または担当者がご案内します</div></div>
-          <div class="row"><div class="k">ご予約</div><div class="v">予約フォームで「OB様邸の見学」を選択、またはお電話（0120-154-483）から</div></div>
+          <div class="row"><div class="k">ご応募</div><div class="v">下の応募フォーム、またはお電話（0120-154-483）・LINEから「OB様邸の見学希望」とお知らせください</div></div>
         </div>
         <div class="ebtns">
-          <a class="ebtn ebtn-fill" href="reserve.html">見学を予約する</a>
-          <a class="ebtn ebtn-line" href="tel:0120154483">電話で予約・相談（0120-154-483）</a>
+          <a class="ebtn ebtn-fill" href="reserve.html">応募フォームへ進む</a>
+          <a class="ebtn ebtn-line" href="tel:0120154483">電話で応募・相談（0120-154-483）</a>
         </div>
-        <p class="enote">※ ご見学いただけるお宅は、ご協力いただけるOB様のご厚意で実現しています。<br>ご希望のエリア・タイプに近いお宅をご案内できるよう調整します。</p>
+        <p class="enote">※ ご見学いただけるお宅は、ご協力いただけるOB様のご厚意で実現しています。<br>ご応募いただいたあと、ご希望のエリア・タイプに近いお宅をご案内できるよう調整します。</p>
       </div>
     </div>
   </section>
@@ -324,9 +274,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <div class="cta">
   <h2 class="gothic">百聞は、一見にしかず。</h2>
-  <p>暮らしている家を見れば、家づくりのイメージが一気に近づきます。まずはお気軽にご予約ください。</p>
+  <p>暮らしている家を見れば、家づくりのイメージが一気に近づきます。まずはお気軽にご応募ください。</p>
   <div class="cbtns">
-    <a class="cbtn cbtn-fill" href="reserve.html">OB様邸の見学を予約する</a>
+    <a class="cbtn cbtn-fill" href="reserve.html">OB様邸の見学に応募する</a>
     <a class="cbtn cbtn-gold" href="jisseki.html">建築実例・お客様の声を見る</a>
   </div>
 </div>
@@ -340,7 +290,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <nav class="fixed-cta">
   <a class="fc-tel" href="tel:0120154483">電話で相談</a>
-  <a class="fc-reserve" href="reserve.html">見学を予約</a>
+  <a class="fc-reserve" href="reserve.html">見学に応募</a>
 </nav>
 
 <script type="application/ld+json">
@@ -349,7 +299,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 {"@type":"Question","name":"モデルハウスとは違うのですか？","acceptedAnswer":{"@type":"Answer","text":"はい。展示用のモデルハウスではなく、実際にお客様が日々暮らしているお宅です。収納の使い方や住み心地、光熱費など、住んでいるからこそ分かる本当のことを見て・聞いていただけます。"}},
 {"@type":"Question","name":"いつ見学できますか？希望日に行けますか？","acceptedAnswer":{"@type":"Answer","text":"随時開催・予約制です。実際に暮らしているOB様のお宅のため、ご都合に合わせて日程を調整します。ご希望の日に必ず添えるとは限りませんので、あらかじめご了承ください。"}},
 {"@type":"Question","name":"はじめてでもOB様邸を見学できますか？","acceptedAnswer":{"@type":"Answer","text":"はじめての方は、まず一度（来店またはオンラインの無料相談）お会いしてご希望をうかがってから、ぴったりのお宅をご案内しています。大切なお住まいをお借りするため、また、あなたにとっても有意義な見学にするための進め方です。"}},
-{"@type":"Question","name":"どの家を見るか選べますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ご協力いただける数組のOB様邸から、ご希望のエリア・間取り・暮らし方に近いお宅を一緒にお選びいただけます。"}},
+{"@type":"Question","name":"見たいお家のタイプを希望できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ご希望のエリア・間取り・暮らし方をうかがい、それに近いOB様邸をご案内できるよう調整します。ご協力いただけるお宅の状況により、ご希望に添えない場合もございます。"}},
 {"@type":"Question","name":"しつこい営業はありませんか？","acceptedAnswer":{"@type":"Answer","text":"いたしません。見学後はご自身のペースでご検討いただけます。大工社長が同行し、気になることに何でもお答えします。"}}
 ]}
 </script>
