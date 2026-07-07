@@ -105,8 +105,8 @@ const NAV = [
     const lf = document.createElement('a');
     lf.className = 'line-fab';
     lf.href = LINE_URL; lf.target = '_blank'; lf.rel = 'noopener';
-    lf.setAttribute('aria-label', 'LINEで相談');
-    lf.innerHTML = '<span class="lw">LINE</span>で相談';
+    lf.setAttribute('aria-label', 'LINEで聞く');
+    lf.innerHTML = '<span class="lw">LINE</span>で聞く';
     lf.addEventListener('click', () => { if (window.gtag) window.gtag('event', 'line_click'); });
     document.body.appendChild(lf);
     // アフターページ等の「LINEで相談」ボタンも有効化
