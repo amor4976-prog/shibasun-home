@@ -45,8 +45,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 
 .member{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--linec);margin-top:30px;overflow:hidden}
 @media(min-width:760px){.member{grid-template-columns:0.85fr 1.15fr}.member.rev .mphoto{order:2}}
-.mphoto{position:relative;background:var(--pale);aspect-ratio:4/5;overflow:hidden}
-@media(min-width:760px){.mphoto{aspect-ratio:auto;min-height:420px}}
+.mphoto{position:relative;background:var(--pale);aspect-ratio:1/1;overflow:hidden}
+@media(min-width:760px){.mphoto{aspect-ratio:auto;min-height:360px}}
 .mphoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .4s}
 .mphoto.ok img{opacity:1}
 .mphoto::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#b3ab9c;font-size:12px;font-weight:300;letter-spacing:.1em;background:repeating-linear-gradient(45deg,#f4f2ee,#f4f2ee 12px,#efece6 12px,#efece6 24px)}
@@ -105,7 +105,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <!-- 代表 -->
   <article class="member">
     <div class="mphoto" data-label="写真　準備中">
-      <img src="img/member-shacho.jpg" alt="株式会社シバ・サンホーム 代表取締役 柴部崇" loading="lazy" style="object-position:57% 30%" onload="this.parentNode.classList.add('ok')">
+      <img src="img/member-shacho.jpg" alt="株式会社シバ・サンホーム 代表取締役 柴部崇" loading="lazy" style="object-position:64% 32%" onload="this.parentNode.classList.add('ok')">
     </div>
     <div class="mbody">
       <div class="mrole">代表取締役 / 大工棟梁</div>
@@ -126,7 +126,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <!-- 専務 -->
   <article class="member rev">
     <div class="mphoto" data-label="写真　準備中">
-      <img src="img/member-senmu.jpg" alt="株式会社シバ・サンホーム 専務取締役 柴部文嘉" loading="lazy" style="object-position:80% 22%" onload="this.parentNode.classList.add('ok')">
+      <img src="img/member-senmu.jpg" alt="株式会社シバ・サンホーム 専務取締役 柴部文嘉" loading="lazy" style="object-position:83% 34%" onload="this.parentNode.classList.add('ok')">
     </div>
     <div class="mbody">
       <div class="mrole">専務取締役</div>
