@@ -122,6 +122,15 @@ const NAV = [
     if (t && window.gtag) window.gtag('event', 'tel_click');
   });
 
+  // ---- フッターにプライバシーポリシーをひっそり追加（全ページ共通）----
+  document.querySelectorAll('footer').forEach(f => {
+    if (f.querySelector('a[href="privacy.html"]')) return;
+    const d = document.createElement('div');
+    d.style.cssText = 'margin-top:12px;font-size:10px;letter-spacing:.1em;opacity:.55';
+    d.innerHTML = '<a href="privacy.html" style="color:inherit">プライバシーポリシー</a>';
+    f.appendChild(d);
+  });
+
   // ---- GA4 アクセス解析（GA_ID 設定 かつ 本番ドメイン shibasun.jp のときだけ有効）----
   // ローカル・プレビュー・他ドメインでは計測しない（テストのニセ数字でデータを汚さないため）
   if (GA_ID && /(^|\.)shibasun\.jp$/i.test(location.hostname)) {
