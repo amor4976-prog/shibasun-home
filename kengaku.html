@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <!--
-  ▼▼ 専務へ：OB様邸見学ページ（第1段階）▼▼
+  ▼▼ メモ：OB様邸見学ページ（第1段階）▼▼
   ・今は「見学できます → こんないいこと → 応募フォーム」の入口ページ（特定の家は出さない）
   ・応募は reserve.html（来店予約・無料相談）に集約。フォームで「OB様邸の見学」を選べます
   ・OB様邸の写真が集まったら、この下に「見学できるお家」の紹介カードを追加できます（写真は img/ に）
@@ -86,6 +86,27 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .bcard .bn{font-family:'Jost',sans-serif;font-size:12px;color:var(--gold);letter-spacing:.12em}
 .bcard h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;margin:6px 0 6px}
 .bcard p{font-size:12.5px;font-weight:300;color:#353533;line-height:1.95}
+.bcard .bico{width:26px;height:26px;object-fit:contain;opacity:.72;margin-bottom:10px;display:block}
+
+/* 気になるポイント選択 */
+.picker{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:660px;margin:0 auto}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--linec);background:#fff;padding:11px 17px;font-size:13px;letter-spacing:.03em;color:#353533;cursor:pointer;border-radius:30px;transition:all .2s;font-family:inherit;line-height:1}
+.chip .cico{width:18px;height:18px;object-fit:contain;opacity:.7}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.on .cico{opacity:1;filter:invert(1) brightness(2)}
+.picknote{text-align:center;font-size:11.5px;color:var(--gray);font-weight:300;margin-top:16px;line-height:1.9}
+
+/* 動画（ルームツアー）ちらつかせ */
+.mvrow{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:680px){.mvrow{grid-template-columns:repeat(3,1fr)}}
+.mvcard{display:flex;flex-direction:column}
+.mvth{position:relative;display:block;aspect-ratio:16/9;background:#000;overflow:hidden}
+.mvth img{width:100%;height:100%;object-fit:cover;opacity:.94;transition:opacity .3s,transform .6s ease}
+.mvcard:hover .mvth img{opacity:1;transform:scale(1.05)}
+.mvplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(26,26,26,.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;padding-left:2px;transition:background .2s}
+.mvcard:hover .mvplay{background:var(--ink)}
+.mvt{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.5;margin-top:11px;color:var(--ink)}
 
 /* 流れ */
 .steps3{display:grid;grid-template-columns:1fr;gap:12px}
@@ -179,14 +200,14 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="assure">
   <span>参加無料</span>
   <span>随時開催・予約制</span>
-  <span>大工社長が同行</span>
+  <span>1組ずつご案内</span>
   <span>しつこい営業なし</span>
   <span>お子様連れ歓迎</span>
 </div>
 
 <p class="lead">きれいに整えられた展示場の家ではなく、家族が日々を過ごす“等身大の家”。収納の使いかた、夏と冬の体感、住んでみての本音まで——カタログでは分からないことが、そこにあります。ご見学をご希望の方は、下のフォームからお気軽にご応募ください。</p>
 
-<div class="editnote"><div>※【専務メモ】まずは「OB様邸を見学できます／応募はこちら」の入口ページにしています。実際のOB様邸の写真が集まったら、「見学できるお家」の紹介カードを後から追加できます（写真は img/ に置いて差し替え）。今は写真ゼロでも成立する構成です。</div></div>
+<!-- メモ：まずは「見学できます／応募はこちら」の入口ページ（特定の家は出さない）。OB様邸の写真が集まったら「見学できるお家」の紹介カードを後から追加できる（写真は img/ に）。今は写真ゼロでも成立する構成。 -->
 
 <div class="wrap">
 
@@ -205,13 +226,24 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <section class="sec">
     <div class="sec-h"><div class="en">Good</div><h2>見学すると、こんないいこと。</h2><p>暮らしている家だからこそ、見て・聞いて・体感できることがあります。</p></div>
     <div class="benefits">
-      <div class="bcard"><div class="bn">01</div><h3>収納と片づけやすさ</h3><p>どこに何をしまうか。実際の生活道具が入った状態の収納は、いちばん参考になります。</p></div>
-      <div class="bcard"><div class="bn">02</div><h3>家事ラクな動線</h3><p>キッチン・洗面・物干しのつながり。毎日の動きやすさを体で確かめられます。</p></div>
-      <div class="bcard"><div class="bn">03</div><h3>光熱費・住み心地</h3><p>「電気代はどれくらい？」「結露は？」など、暮らしのリアルな数字や感想を聞けます。</p></div>
-      <div class="bcard"><div class="bn">04</div><h3>間取りの工夫</h3><p>視線の抜け、家族の距離感、コンセントの位置まで。住んで気づいた工夫が満載です。</p></div>
-      <div class="bcard"><div class="bn">05</div><h3>素材の経年変化</h3><p>無垢材や塗り壁が、時間とともにどう味わいを増すか。実物でご確認いただけます。</p></div>
-      <div class="bcard"><div class="bn">06</div><h3>建てた人の感想</h3><p>シバ・サンホームで建てて、実際どうだったか。第三者の率直な声がいちばんの判断材料です。</p></div>
+      <div class="bcard"><img class="bico" src="img/icons/good-shuno.svg" alt="" onerror="this.style.display='none'"><div class="bn">01</div><h3>収納と片づけやすさ</h3><p>どこに何をしまうか。実際の生活道具が入った状態の収納は、いちばん参考になります。</p></div>
+      <div class="bcard"><img class="bico" src="img/icons/good-dousen.svg" alt="" onerror="this.style.display='none'"><div class="bn">02</div><h3>家事ラクな動線</h3><p>キッチン・洗面・物干しのつながり。毎日の動きやすさを体で確かめられます。</p></div>
+      <div class="bcard"><img class="bico" src="img/icons/good-ene.svg" alt="" onerror="this.style.display='none'"><div class="bn">03</div><h3>光熱費・住み心地</h3><p>「電気代はどれくらい？」「結露は？」など、暮らしのリアルな数字や感想を聞けます。</p></div>
+      <div class="bcard"><img class="bico" src="img/icons/good-madori.svg" alt="" onerror="this.style.display='none'"><div class="bn">04</div><h3>間取りの工夫</h3><p>視線の抜け、家族の距離感、コンセントの位置まで。住んで気づいた工夫が満載です。</p></div>
+      <div class="bcard"><img class="bico" src="img/icons/good-mokume.svg" alt="" onerror="this.style.display='none'"><div class="bn">05</div><h3>素材の経年変化</h3><p>無垢材や塗り壁が、時間とともにどう味わいを増すか。実物でご確認いただけます。</p></div>
+      <div class="bcard"><img class="bico" src="img/icons/good-koe.svg" alt="" onerror="this.style.display='none'"><div class="bn">06</div><h3>建てた人の感想</h3><p>シバ・サンホームで建てて、実際どうだったか。第三者の率直な声がいちばんの判断材料です。</p></div>
     </div>
+  </section>
+
+  <!-- 動画で雰囲気を（ルームツアー） -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">Movie</div><h2>動画でも、暮らしの雰囲気を</h2><p>シバ・サンホームで建てたお住まいのルームツアー。見学のイメージづくりに、まず動画でどうぞ。</p></div>
+    <div class="mvrow">
+      <a class="mvcard" href="lessons.html#roomtour"><span class="mvth"><img src="https://i.ytimg.com/vi/EAxBg3ObK7E/hqdefault.jpg" alt="ホテルのような39坪の家 ルームツアー" loading="lazy"><span class="mvplay" aria-hidden="true">▶</span></span><span class="mvt">ホテルのような、39坪の家</span></a>
+      <a class="mvcard" href="lessons.html#roomtour"><span class="mvth"><img src="https://i.ytimg.com/vi/NOtf7NI7-LM/hqdefault.jpg" alt="33坪で4LDK＋吹抜け＋大収納の家 ルームツアー" loading="lazy"><span class="mvplay" aria-hidden="true">▶</span></span><span class="mvt">33坪で叶えた、4LDK＋吹抜け＋大収納</span></a>
+      <a class="mvcard" href="lessons.html#roomtour"><span class="mvth"><img src="https://i.ytimg.com/vi/ONBrA6_WyZI/hqdefault.jpg" alt="34坪の家をプロが解説 ルームツアー" loading="lazy"><span class="mvplay" aria-hidden="true">▶</span></span><span class="mvt">見どころ満載、34坪の家</span></a>
+    </div>
+    <p class="picknote" style="margin-top:18px">※ 動画は施工事例のルームツアーです。ご見学いただくお宅とは異なります。もっと見る場合は<a href="lessons.html" style="color:var(--ink);border-bottom:1px solid var(--linec)">動画ページ</a>へ。</p>
   </section>
 
   <!-- まずはご相談から（理由） -->
@@ -227,8 +259,21 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <div class="s3"><div class="n">1</div><h3>ご応募</h3><p>下の応募フォーム・お電話・LINEから「見学希望」とお知らせください（無料）。</p></div>
       <div class="s3"><div class="n">2</div><h3>無料相談</h3><p>来店またはオンラインで、ご希望や暮らし方を一度うかがいます。</p></div>
       <div class="s3"><div class="n">3</div><h3>日程調整</h3><p>ご希望に近いお宅を選び、ご協力いただくOB様のご都合に合わせて見学日を調整します。</p></div>
-      <div class="s3"><div class="n">4</div><h3>ご見学</h3><p>大工社長が同行し、お宅をご案内。気になることは何でもどうぞ。</p></div>
+      <div class="s3"><div class="n">4</div><h3>ご見学</h3><p>担当がお宅をご案内します。気になることは何でもどうぞ。</p></div>
     </div>
+  </section>
+
+  <!-- 気になるポイント（任意・選択式） -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">Point</div><h2>見学で、気になるポイントは？</h2><p>選んでおくと、当日その視点でご案内しやすくなります（任意・複数OK）。<br>どのお宅でも見られる“暮らしの中身”です。</p></div>
+    <div class="picker" id="pref">
+      <button type="button" class="chip" data-v="収納・片づけ"><img class="cico" src="img/icons/good-shuno.svg" alt="" onerror="this.style.display='none'">収納・片づけ</button>
+      <button type="button" class="chip" data-v="家事ラクな動線"><img class="cico" src="img/icons/good-dousen.svg" alt="" onerror="this.style.display='none'">家事ラクな動線</button>
+      <button type="button" class="chip" data-v="光熱費・あたたかさ"><img class="cico" src="img/icons/good-ene.svg" alt="" onerror="this.style.display='none'">光熱費・あたたかさ</button>
+      <button type="button" class="chip" data-v="間取りの考え方"><img class="cico" src="img/icons/good-madori.svg" alt="" onerror="this.style.display='none'">間取りの考え方</button>
+      <button type="button" class="chip" data-v="建てた人の本音"><img class="cico" src="img/icons/good-koe.svg" alt="" onerror="this.style.display='none'">建てた人の本音</button>
+    </div>
+    <p class="picknote">※ 選んだ内容は、ご応募のあとの無料相談で参考にします。ご希望として承るもので、その通りのお宅をお約束するものではありません。</p>
   </section>
 
   <!-- 応募フォーム -->
@@ -242,14 +287,14 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
           <div class="row"><div class="k">受付</div><div class="v">随時（ご応募 → 無料相談 → その後にご見学）</div></div>
           <div class="row"><div class="k">日程</div><div class="v">OB様のご都合に合わせて調整します。ご希望日に添えない場合もございます。</div></div>
           <div class="row"><div class="k">所要時間</div><div class="v">約60〜90分（移動・ご質問の時間を含みます）</div></div>
-          <div class="row"><div class="k">同行</div><div class="v">大工社長または担当者がご案内します</div></div>
+          <div class="row"><div class="k">ご案内</div><div class="v">担当が最初から最後までご案内します</div></div>
           <div class="row"><div class="k">ご応募</div><div class="v">下の応募フォーム、またはお電話（0120-154-483）・LINEから「OB様邸の見学希望」とお知らせください</div></div>
         </div>
         <div class="ebtns">
-          <a class="ebtn ebtn-fill" href="reserve.html">応募フォームへ進む</a>
+          <a class="ebtn ebtn-fill" href="reserve.html" data-reserve>応募フォームへ進む</a>
           <a class="ebtn ebtn-line" href="tel:0120154483">電話で応募・相談（0120-154-483）</a>
         </div>
-        <p class="enote">※ ご見学いただけるお宅は、ご協力いただけるOB様のご厚意で実現しています。<br>ご応募いただいたあと、ご希望のエリア・タイプに近いお宅をご案内できるよう調整します。</p>
+        <p class="enote">※ ご見学いただけるお宅は、ご協力いただけるOB様のご厚意で実現しています。<br>ご応募のあと、無料相談でご希望をうかがい、ご案内できるお宅を調整します。</p>
       </div>
     </div>
   </section>
@@ -276,7 +321,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <h2 class="gothic">百聞は、一見にしかず。</h2>
   <p>暮らしている家を見れば、家づくりのイメージが一気に近づきます。まずはお気軽にご応募ください。</p>
   <div class="cbtns">
-    <a class="cbtn cbtn-fill" href="reserve.html">OB様邸の見学に応募する</a>
+    <a class="cbtn cbtn-fill" href="reserve.html" data-reserve>OB様邸の見学に応募する</a>
     <a class="cbtn cbtn-gold" href="jisseki.html">建築実例・お客様の声を見る</a>
   </div>
 </div>
@@ -290,7 +335,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <nav class="fixed-cta">
   <a class="fc-tel" href="tel:0120154483">電話で相談</a>
-  <a class="fc-reserve" href="reserve.html">見学に応募</a>
+  <a class="fc-reserve" href="reserve.html" data-reserve>見学に応募</a>
 </nav>
 
 <script type="application/ld+json">
@@ -299,9 +344,26 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 {"@type":"Question","name":"モデルハウスとは違うのですか？","acceptedAnswer":{"@type":"Answer","text":"はい。展示用のモデルハウスではなく、実際にお客様が日々暮らしているお宅です。収納の使い方や住み心地、光熱費など、住んでいるからこそ分かる本当のことを見て・聞いていただけます。"}},
 {"@type":"Question","name":"いつ見学できますか？希望日に行けますか？","acceptedAnswer":{"@type":"Answer","text":"随時開催・予約制です。実際に暮らしているOB様のお宅のため、ご都合に合わせて日程を調整します。ご希望の日に必ず添えるとは限りませんので、あらかじめご了承ください。"}},
 {"@type":"Question","name":"はじめてでもOB様邸を見学できますか？","acceptedAnswer":{"@type":"Answer","text":"はじめての方は、まず一度（来店またはオンラインの無料相談）お会いしてご希望をうかがってから、ぴったりのお宅をご案内しています。大切なお住まいをお借りするため、また、あなたにとっても有意義な見学にするための進め方です。"}},
-{"@type":"Question","name":"見たいお家のタイプを希望できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ご希望のエリア・間取り・暮らし方をうかがい、それに近いOB様邸をご案内できるよう調整します。ご協力いただけるお宅の状況により、ご希望に添えない場合もございます。"}},
-{"@type":"Question","name":"しつこい営業はありませんか？","acceptedAnswer":{"@type":"Answer","text":"いたしません。見学後はご自身のペースでご検討いただけます。大工社長が同行し、気になることに何でもお答えします。"}}
+{"@type":"Question","name":"見学で気になるポイントを伝えられますか？","acceptedAnswer":{"@type":"Answer","text":"はい。収納・家事動線・光熱費・間取りの工夫など、特に見たい・聞きたいポイントを応募時にお選びいただけます。無料相談でご希望をうかがい、その視点でご案内します。ご協力いただけるお宅の状況により、ご希望に添えない場合もございます。"}},
+{"@type":"Question","name":"しつこい営業はありませんか？","acceptedAnswer":{"@type":"Answer","text":"いたしません。見学後はご自身のペースでご検討いただけます。担当がご案内し、気になることに何でもお答えします。"}}
 ]}
+</script>
+<script>
+/* 気になるポイント：選択を応募リンク（reserve.html）へ ?pref= で引き継ぐ */
+(function(){
+  var picks=[];
+  function sync(){
+    var q=picks.length?('?pref='+encodeURIComponent(picks.join('／'))):'';
+    document.querySelectorAll('a[data-reserve]').forEach(function(a){a.setAttribute('href','reserve.html'+q);});
+  }
+  document.querySelectorAll('#pref .chip').forEach(function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-v'),i=picks.indexOf(v);
+      if(i>=0){picks.splice(i,1);b.classList.remove('on');}else{picks.push(v);b.classList.add('on');}
+      sync();
+    });
+  });
+})();
 </script>
 <script src="site.js" defer></script>
 </body>

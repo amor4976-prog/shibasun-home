@@ -24,6 +24,7 @@ const NAV = [
   { href: 'flow.html',     label: '家づくりの進め方', en: 'How We Build' },
   { href: 'company.html',  label: '会社案内',   en: 'Company' },
   { href: 'members.html',  label: '私たち（代表紹介）', en: 'Members' },
+  { href: 'lessons.html',  label: '後悔しない家づくり', en: 'Movie' },
   { href: 'after.html',    label: 'アフター・保証', en: 'After Service' },
   { href: 'blog.html',   label: 'ブログ',   en: 'Blog' },
   { href: 'reserve.html',  label: '来店予約',   en: 'Reserve' },

@@ -372,6 +372,15 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .yt p{font-size:13px;font-weight:300;line-height:2.3;color:#c4c4c2;margin-bottom:26px}
 .yt-btn{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.6);padding:13px 26px;font-size:11px;letter-spacing:.24em;transition:all .3s}
 .yt-btn:hover{background:#fff;color:var(--ink)}
+.yt-sub{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.1em;color:#939391;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:color .3s}
+.yt-sub:hover{color:#fff}
+.yt-thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.yt-thumb{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;cursor:pointer;border:none;padding:0;margin:0;display:block}
+.yt-thumb img{width:100%;height:100%;object-fit:cover;opacity:.9;transition:opacity .3s,transform .6s ease}
+.yt-thumb:hover img{opacity:1;transform:scale(1.05)}
+.yt-thumb .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.88);color:#161614;display:flex;align-items:center;justify-content:center;font-size:13px;padding-left:2px;transition:background .2s,transform .2s}
+.yt-thumb:hover .play{background:#fff;transform:translate(-50%,-50%) scale(1.08)}
+.yt-thumb iframe,.yt-grid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
 /* ===== Reserve ===== */
 .reserve{background:#fff}
@@ -865,13 +874,17 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   <div class="inner">
     <div class="label"><span class="en">YouTube</span><small>社長のチャンネル</small></div>
     <div class="yt-grid">
-      <div class="frame fade">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=UU4XwoZ806Ga4STcg5WoO3zg" title="大工社長しばさんの家づくりチャンネル" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="yt-thumbs fade">
+        <button class="yt-thumb" type="button" data-vid="PXi34b0cv7k" aria-label="付けて後悔しやすい設備10選 を再生"><img src="https://i.ytimg.com/vi/PXi34b0cv7k/hqdefault.jpg" alt="付けて後悔しやすい設備10選" loading="lazy"><span class="play" aria-hidden="true">▶</span></button>
+        <button class="yt-thumb" type="button" data-vid="6xAEVpT7_ao" aria-label="泥棒に狙われやすい家と防犯対策 を再生"><img src="https://i.ytimg.com/vi/6xAEVpT7_ao/hqdefault.jpg" alt="泥棒に狙われやすい家と防犯対策" loading="lazy"><span class="play" aria-hidden="true">▶</span></button>
+        <button class="yt-thumb" type="button" data-vid="jxvu2eEbHqs" aria-label="その床掃除、家を傷めているかも を再生"><img src="https://i.ytimg.com/vi/jxvu2eEbHqs/hqdefault.jpg" alt="その床掃除、家を傷めているかも" loading="lazy"><span class="play" aria-hidden="true">▶</span></button>
+        <button class="yt-thumb" type="button" data-vid="EAxBg3ObK7E" aria-label="ホテルのような39坪の家 ルームツアー を再生"><img src="https://i.ytimg.com/vi/EAxBg3ObK7E/hqdefault.jpg" alt="ホテルのような39坪の家 ルームツアー" loading="lazy"><span class="play" aria-hidden="true">▶</span></button>
       </div>
       <div class="fade">
         <h2>失敗しない家づくりを、<br>大工社長が本音で語る。</h2>
         <p>建築歴43年の大工社長が、家づくりで後悔しないための知識を発信しています。会社の雰囲気も、私たちの考え方も、まずは動画でご覧ください。</p>
-        <a class="yt-btn en" href="https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg" target="_blank" rel="noopener">Watch Channel</a>
+        <a class="yt-btn" href="lessons.html">動画をもっと見る →</a>
+        <a class="yt-sub" href="https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg" target="_blank" rel="noopener">YouTubeチャンネルへ →</a>
       </div>
     </div>
   </div>
@@ -1273,6 +1286,16 @@ window.__initRev=function(){
   }catch(e){ renderReviews(SAMPLE_REVIEWS,null,null,true); }
 };
 loadGoogleReviews();
+</script>
+<script>
+/* YouTubeサムネ → クリックで埋め込み再生 */
+document.querySelectorAll('.yt-thumb').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var img=btn.querySelector('img'), alt=img?img.alt:'', id=btn.getAttribute('data-vid');
+    btn.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" title="'+alt+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    btn.style.cursor='default';
+  },{once:true});
+});
 </script>
 <script src="site.js" defer></script>
 </body>
