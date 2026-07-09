@@ -13,22 +13,30 @@ const TEL_DISP = '0120-154-483';
 const LINE_URL = 'https://lin.ee/ueeBddk';   // お客様用「友だち追加」リンク（LINE公式 lin.ee 短縮リンク）
 const GA_ID = 'G-REFN8K7K95';  // 現行shibasun.jpと同じGA4プロパティ（データ継続）。本番shibasun.jpでのみ計測（下のガード参照）
 
+// 主要導線（大きく表示）— 引き算：8項目に厳選
 const NAV = [
   { href: 'index.html',    label: 'ホーム',     en: 'Home' },
-  { href: 'event.html',    label: '無料相談会・お知らせ', en: 'Free Consultation' },
+  { href: 'jisseki.html',  label: '建築実例',   en: 'Works' },
   { href: 'kengaku.html',  label: 'OB様邸見学',  en: "Owner's House" },
-  { href: 'jisseki.html',  label: '建築実例',   en: 'Owners Voice' },
-  { href: 'works.html',    label: '施工写真',   en: 'Gallery' },
   { href: 'products.html', label: '商品・価格', en: 'Products' },
   { href: 'spec.html',     label: '性能・標準仕様', en: 'Spec' },
   { href: 'flow.html',     label: '家づくりの進め方', en: 'How We Build' },
   { href: 'company.html',  label: '会社案内',   en: 'Company' },
-  { href: 'members.html',  label: '私たち（代表紹介）', en: 'Members' },
-  { href: 'lessons.html',  label: '後悔しない家づくり', en: 'Movie' },
-  { href: 'after.html',    label: 'アフター・保証', en: 'After Service' },
-  { href: 'blog.html',   label: 'ブログ',   en: 'Blog' },
-  { href: 'reserve.html',  label: '来店予約',   en: 'Reserve' },
-  { href: 'catalog.html',  label: '資料請求',   en: 'Catalog' },
+  { href: 'blog.html',     label: 'ブログ',     en: 'Blog' },
+];
+// そのほか（控えめに・小さく）— 消さずにたたむ
+const NAV_SUB = [
+  { href: 'works.html',    label: '施工写真ギャラリー' },
+  { href: 'lessons.html',  label: '後悔しない家づくり（動画）' },
+  { href: 'members.html',  label: '私たち（代表紹介）' },
+  { href: 'after.html',    label: 'アフター・保証' },
+  { href: 'reform.html',   label: 'リフォーム' },
+  { href: 'event.html',    label: '個別無料相談会' },
+];
+// 予約・資料（ボタン扱い）
+const NAV_CV = [
+  { href: 'reserve.html',  label: '来店予約' },
+  { href: 'catalog.html',  label: '資料請求' },
 ];
 
 (function () {
@@ -53,7 +61,14 @@ const NAV = [
   .nav-overlay a.cur{color:#fff}
   .nav-overlay a.cur .ne{color:#fff}
   .nav-overlay a:hover{color:#fff}
-  .nav-tel{margin-top:22px;flex-direction:column!important;align-items:flex-start!important;gap:3px!important;font-family:'Jost',sans-serif!important;font-size:18px!important;letter-spacing:.06em!important;border-bottom:none!important;color:#fff!important}
+  .nav-cv{display:flex;gap:10px;margin-top:24px}
+  .nav-cv a{flex:1;justify-content:center!important;padding:13px 0!important;border:1px solid rgba(255,255,255,.55)!important;border-radius:2px;font-size:14px!important;letter-spacing:.08em!important;color:#fff!important;transform:none!important;opacity:1!important}
+  .nav-cv a:first-child{background:#fff!important;color:#161614!important;border-color:#fff!important}
+  .nav-sub-h{margin-top:26px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.28em;color:#82817e;text-transform:uppercase}
+  .nav-sub{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:12px}
+  .nav-sub a{display:inline-block!important;padding:5px 0!important;border-bottom:none!important;font-size:13px!important;letter-spacing:.04em!important;font-weight:400!important;color:#b7b5b1!important;transform:none!important;opacity:1!important}
+  .nav-sub a.cur{color:#fff!important}
+  .nav-tel{margin-top:24px;flex-direction:column!important;align-items:flex-start!important;gap:3px!important;font-family:'Jost',sans-serif!important;font-size:18px!important;letter-spacing:.06em!important;border-bottom:none!important;color:#fff!important}
   .nav-tel small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:10px;letter-spacing:.16em;color:#9b978f;margin-top:4px}
   .logo-img{height:30px;width:auto;display:block}
   .line-fab{position:fixed;right:16px;bottom:74px;z-index:150;display:inline-flex;align-items:center;gap:6px;height:46px;padding:0 17px;border-radius:24px;background:#06c755;box-shadow:0 4px 14px rgba(0,0,0,.22);color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:12.5px;letter-spacing:.04em;font-weight:500;text-decoration:none;white-space:nowrap}
@@ -91,8 +106,12 @@ const NAV = [
   const ov = document.createElement('nav');
   ov.className = 'nav-overlay';
   ov.setAttribute('aria-label', 'メインメニュー');
+  const cur = h => h === here ? 'cur' : '';
   ov.innerHTML = '<div class="nav-inner">' +
-    NAV.map(p => `<a href="${p.href}" class="${p.href === here ? 'cur' : ''}"><span class="ne">${p.en}</span>${p.label}</a>`).join('') +
+    NAV.map(p => `<a href="${p.href}" class="${cur(p.href)}"><span class="ne">${p.en}</span>${p.label}</a>`).join('') +
+    `<div class="nav-cv">` + NAV_CV.map(p => `<a href="${p.href}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
+    `<div class="nav-sub-h">そのほか</div>` +
+    `<div class="nav-sub">` + NAV_SUB.map(p => `<a href="${p.href}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
     `<a class="nav-tel" href="tel:${TEL}">${TEL_DISP}<small>受付 9:00-18:00（水曜定休）</small></a></div>`;
   document.body.appendChild(ov);
 
