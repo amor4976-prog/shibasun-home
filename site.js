@@ -26,6 +26,7 @@ const NAV = [
 ];
 // そのほか（控えめに・小さく）— 消さずにたたむ
 const NAV_SUB = [
+  { href: 'hajimete.html', label: 'はじめての方へ' },
   { href: 'works.html',    label: '施工写真ギャラリー' },
   { href: 'lessons.html',  label: '後悔しない家づくり（動画）' },
   { href: 'members.html',  label: '私たち（代表紹介）' },
