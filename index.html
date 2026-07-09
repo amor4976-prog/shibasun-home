@@ -164,6 +164,20 @@ section{padding:110px 24px}
 .perf h2{font-size:clamp(22px,5vw,34px);font-weight:500;letter-spacing:.16em;line-height:1.9}
 .perf p{margin-top:16px;font-size:13px;font-weight:300;letter-spacing:.1em;max-width:480px;opacity:.92}
 
+/* 全幅フォトバンド（セクションの区切り＝余白の呼吸。写真は差し替え可） */
+.photoband{position:relative;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden}
+@media(min-width:760px){.photoband{aspect-ratio:2/1;max-height:600px}}
+.photoband::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,18,.42),rgba(20,20,18,0) 46%)}
+.photoband .pbcap{position:absolute;left:22px;right:22px;bottom:24px;z-index:2;color:#fff}
+.photoband .pbcap .en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;opacity:.92}
+.photoband .pbcap .t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.4vw,32px);font-weight:500;letter-spacing:.08em;line-height:1.55;margin-top:9px;text-wrap:balance}
+.photoband .pbcap .t span{white-space:nowrap}
+@media(min-width:760px){.photoband .pbcap{left:6vw;bottom:40px}}
+.photoband.ph{background:#e9e9e7}
+.photoband.ph::after{display:none}
+.photoband.ph .pbcap{position:static;color:#a0a09e;text-align:center;padding:0 20px}
+.photoband.ph .ph-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#a8a8a6;font-size:12px;letter-spacing:.2em}
+
 /* ===== Works ===== */
 .works .label{margin-bottom:54px}
 .works-grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
@@ -677,6 +691,11 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </section>
 
+<!-- ▼専務へ：全幅フォトバンド①。写真は差し替え可（img/●●.jpg を変えるだけ） -->
+<div class="photoband" style="background-image:url('img/work-living.jpg')">
+  <div class="pbcap"><div class="en">Life</div><div class="t"><span>暮らしを、</span><span>ちょうどよく。</span></div></div>
+</div>
+
 <div class="pillars">
   <div class="label inner"><span class="en">Quality</span><small>シバ・サンホームの家づくり</small></div>
   <div class="pillar-grid">
@@ -847,6 +866,11 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <div class="spec-note">※ 価格は仕様・敷地条件により変動します。詳しい仕様書と資金計画はご来店時にご案内します。</div>
   </div>
 </section>
+
+<!-- ▼専務へ：全幅フォトバンド②（つくり手・現場）。写真は差し替え可 -->
+<div class="photoband" style="background-image:url('img/spec/spec-kouzo.jpg')">
+  <div class="pbcap"><div class="en">Craft</div><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div></div>
+</div>
 
 <section class="message" id="message">
   <div class="inner">
@@ -1027,6 +1051,11 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <p class="consult-note">オンラインでもOK／しつこい営業はいたしません</p>
   </div>
 </section>
+
+<!-- ▼専務へ：全幅フォトバンド③（締めの1枚）。写真は差し替え可 -->
+<div class="photoband" style="background-image:url('img/work-open.jpg')">
+  <div class="pbcap"><div class="en">Nara</div><div class="t"><span>奈良で、</span><span>正直に。</span></div></div>
+</div>
 
 <section class="reserve" id="reserve">
   <div class="inner">
