@@ -180,28 +180,37 @@ section{padding:110px 24px}
 
 /* ===== Works ===== */
 .works .label{margin-bottom:54px}
-.works-grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
-@media(min-width:820px){.works-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+/* 施工写真：スマホ=縦にバーっと／PC=横スクロール＋ホバーで文字が出る */
+.works-scroll{display:flex;flex-direction:column;gap:12px}
 .work{position:relative;overflow:hidden;background:#ddd}
-.work img{height:100%;width:100%;object-fit:cover;aspect-ratio:4/5;transition:transform .6s ease}
-.work:hover img{transform:scale(1.05)}
-.work:nth-child(1){grid-column:span 2}
-.work:nth-child(1) img{aspect-ratio:16/10}
-@media(min-width:820px){
-  .work:nth-child(1){grid-column:span 2;grid-row:span 1}
-}
+.work img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .7s ease}
 .work .cap{
-  position:absolute;left:0;right:0;bottom:0;padding:14px 16px 12px;
-  background:linear-gradient(to top, rgba(15,15,14,.65), transparent);
-  color:#fff;
+  position:absolute;left:0;right:0;bottom:0;padding:16px 16px 15px;
+  background:linear-gradient(to top, rgba(15,15,14,.72), rgba(15,15,14,0));
+  color:#fff;transition:opacity .45s ease,transform .45s ease;
 }
 .work .cap .area{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.3em;opacity:.85}
-.work .cap h3{font-size:12.5px;font-weight:400;letter-spacing:.1em;margin-top:2px;line-height:1.7}
+.work .cap h3{font-size:13.5px;font-weight:400;letter-spacing:.08em;margin-top:3px;line-height:1.6}
+.work .plus{position:absolute;top:14px;right:14px;width:30px;height:30px;border:1px solid rgba(255,255,255,.6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Jost',sans-serif;font-size:15px;opacity:0;transition:opacity .45s ease}
+@media(min-width:820px){
+  .works-scroll{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px;scrollbar-width:none;cursor:grab}
+  .works-scroll::-webkit-scrollbar{display:none}
+  .works-scroll.dragging{cursor:grabbing}
+  .works-scroll.dragging .work img{transition:none}
+  .work{flex:0 0 320px;scroll-snap-align:start}
+  .work img{aspect-ratio:3/4}
+  .work:hover img{transform:scale(1.06)}
+  .work::after{content:"";position:absolute;inset:0;background:rgba(15,15,14,.24);opacity:0;transition:opacity .45s ease;pointer-events:none}
+  .work:hover::after{opacity:1}
+  .work .cap{opacity:0;transform:translateY(10px)}
+  .work:hover .cap{opacity:1;transform:none}
+  .work:hover .plus{opacity:1}
+}
 .works-more{
   display:flex;align-items:center;gap:14px;margin-top:24px;width:fit-content;
   font-family:'Zen Kaku Gothic New','Jost',sans-serif;font-size:13px;letter-spacing:.1em;font-weight:500;
 }
-.works-grid + .works-more{margin-top:40px}
+.works-scroll + .works-more{margin-top:34px}
 .works-more::after{content:"";width:46px;height:1px;background:var(--ink);transition:width .3s}
 .works-more:hover::after{width:70px}
 
@@ -732,7 +741,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 <section class="works" id="works">
   <div class="inner">
     <div class="label"><span class="en">Works</span><small>建築実例・お客様の声</small></div>
-    <div class="works-grid">
+    <div class="works-scroll" id="worksScroll">
       <a class="work fade" href="jisseki.html">
         <img src="img/work-exterior.jpg" alt="施工実例 外観" loading="lazy">
         <div class="cap"><div class="area en">Nara</div><h3>シンプルモダンな外観の家</h3></div>
@@ -774,6 +783,32 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <a class="works-more" href="works.html" style="margin-top:14px">施工写真ギャラリーを見る</a>
   </div>
 </section>
+<script>
+(function(){
+  var s=document.getElementById('worksScroll');
+  if(!s)return;
+  // 各カードに「＋」を付与
+  s.querySelectorAll('.work').forEach(function(w){
+    if(w.querySelector('.plus'))return;
+    var p=document.createElement('span');p.className='plus';p.textContent='+';p.setAttribute('aria-hidden','true');
+    w.appendChild(p);
+  });
+  // 横スクロール可能なとき（＝PC横並び）だけ有効。スマホ縦積みでは何もしない
+  function horiz(){return s.scrollWidth-s.clientWidth>4;}
+  // 縦ホイール→横スクロール（PC）
+  s.addEventListener('wheel',function(e){
+    if(!horiz())return;
+    if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){s.scrollLeft+=e.deltaY;e.preventDefault();}
+  },{passive:false});
+  // ドラッグでスクロール（PC）
+  var down=false,moved=false,sx=0,sl=0;
+  s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch'||!horiz())return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');});
+  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
+  window.addEventListener('pointerup',function(){down=false;s.classList.remove('dragging');});
+  // ドラッグ後のクリック抑止（誤遷移防止）
+  s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
+})();
+</script>
 
 <section class="spec" id="spec">
   <div class="inner">
