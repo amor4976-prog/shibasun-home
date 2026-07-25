@@ -16,6 +16,7 @@ const GA_ID = 'G-REFN8K7K95';  // 現行shibasun.jpと同じGA4プロパティ�
 // 主要導線（大きく表示）— 引き算：8項目に厳選
 const NAV = [
   { href: 'index.html',    label: 'ホーム',     en: 'Home' },
+  { href: 'iezukuri.html', label: '私たちの家づくり', en: 'Our Home Building' },
   { href: 'jisseki.html',  label: '建築実例',   en: 'Works' },
   { href: 'kengaku.html',  label: 'OB様邸見学',  en: "Owner's House" },
   { href: 'products.html', label: '商品・価格', en: 'Products' },
@@ -150,6 +151,28 @@ const NAV_CV = [
     d.innerHTML = '<a href="privacy.html" style="color:inherit">プライバシーポリシー</a>';
     f.appendChild(d);
   });
+
+  // ---- スマホの改行崩れ番人（全ページ共通・2026-07-22 専務指示）----
+  // センター寄せの文章が2行以上に折り返す場合だけ、自動で左揃えに切り替える。
+  // 1行に収まる短いキャッチはセンターのまま。意図的な短い行（brで整えた詩的な行）も触らない。
+  // 熟語の行またぎ（「職↵人」「ではあ↵りません」）が"AI感"を出すのを防ぐのが目的。
+  function fixCenteredText() {
+    if (window.innerWidth >= 600) return;
+    document.querySelectorAll('p,li,dd,figcaption').forEach(el => {
+      if (el.dataset.keepCenter !== undefined) return;           // data-keep-center で除外可
+      const t = (el.innerText || '').trim();
+      if (t.replace(/\n/g, '').length < 24) return;              // 短文はそのまま
+      const cs = getComputedStyle(el);
+      if (cs.textAlign !== 'center' || cs.display === 'none') return;
+      const frs = el.innerHTML.split(/<br[^>]*>/i).map(s => s.replace(/<[^>]+>/g, '').trim());
+      if (frs.length > 1 && frs.every(f => f.length <= 22)) return; // brで整えた短い行は意図的
+      const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.8;
+      if (el.getBoundingClientRect().height > lh * 1.5) el.style.textAlign = 'left';
+    });
+  }
+  fixCenteredText();
+  window.addEventListener('load', fixCenteredText);              // Webフォント適用後にもう一度
+  let fcTimer; window.addEventListener('resize', () => { clearTimeout(fcTimer); fcTimer = setTimeout(fixCenteredText, 200); });
 
   // ---- GA4 アクセス解析（GA_ID 設定 かつ 本番ドメイン shibasun.jp のときだけ有効）----
   // ローカル・プレビュー・他ドメインでは計測しない（テストのニセ数字でデータを汚さないため）
