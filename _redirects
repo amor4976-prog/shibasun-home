@@ -37,3 +37,7 @@
 # 問い合わせ → 来店予約
 /contact/          /reserve.html   301
 /contact/*         /reserve.html   301
+
+# 施工写真は建築実例に一本化（2026-07-25）
+/works.html  /jisseki.html  301
+/works       /jisseki.html  301
