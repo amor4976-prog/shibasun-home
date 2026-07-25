@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>施工写真ギャラリー｜奈良の注文住宅・株式会社シバ・サンホーム</title>
-<meta name="description" content="奈良で3代続く工務店シバ・サンホームの施工写真ギャラリー。大工歴43年の社長と専属職人がつくる、ちょうどいい注文住宅。外観・LDK・キッチン・吹き抜けなどの竣工写真を集めました。各邸の間取り・価格・お客様の声は『建築実例』ページでご覧いただけます。奈良市・大和郡山市・天理市ほか。">
+<meta name="description" content="奈良で3代続く工務店シバ・サンホームの施工写真ギャラリー。大工歴43年の社長と専属職人がつくる、ちょうどいい注文住宅。外観・LDK・キッチン・吹き抜けなどの竣工写真を集めました。邸ごとの写真は『建築実例』ページでご覧いただけます。奈良市・大和郡山市・天理市ほか。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#1c1c1a">
 <link rel="canonical" href="https://www.shibasunhome.com/works.html">
@@ -97,12 +97,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="whead">
   <div class="en">Gallery</div>
   <h1>施工写真ギャラリー</h1>
-  <p>専属の職人がつくり上げた「ちょうどいい」住まいの竣工写真を集めました。写真をタップすると拡大できます。<br><a href="jisseki.html" style="color:var(--ink);border-bottom:1px solid var(--gold)">各邸の間取り・価格・お客様の声は「建築実例」ページへ →</a></p>
+  <p>専属の職人がつくり上げた「ちょうどいい」住まいの竣工写真を集めました。写真をタップすると拡大できます。<br><a href="jisseki.html" style="color:var(--ink);border-bottom:1px solid var(--gold)">邸ごとの写真は「建築実例」ページへ →</a></p>
 </div>
 
 <div class="gctl">
   <button type="button" class="gctl-shuffle" id="shuffleBtn">🔀 別の写真を見る</button>
-  <button type="button" id="allBtn">すべて見る（28枚）</button>
+  <button type="button" id="allBtn">すべて見る（22枚）</button>
 </div>
 <div class="gallery" id="gallery"></div>
 
@@ -137,12 +137,15 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </nav>
 
 <script>
-const CAPS={ // 任意のキャプション（部屋・特徴ラベル。地名は入れない）
-  '01':'外観｜シンプルモダンな家','02':'外観｜ファサード','04':'リビング','06':'LDK',
-  '10':'吹き抜けのある家','16':'造作キッチン','21':'アイランドキッチン','25':'土間スペース',
-  '20':'吹き抜けと階段'
+const CAPS={ // 任意のキャプション（部屋・特徴ラベル。地名・お名前は入れない）
+  '01':'外観','02':'ダイニングと階段','03':'リビング','04':'キッチンと階段',
+  '05':'造作キッチン','06':'玄関土間','07':'廊下からキッチンへ','08':'ダイニング',
+  '09':'階段','10':'リビングダイニング','11':'陽ざしの入るリビング','12':'ダイニング',
+  '13':'リビング','14':'明るい部屋','15':'造作洗面','16':'造作カウンター',
+  '17':'吹き抜けと階段','18':'ダイニングと玄関','19':'対面キッチン','20':'階段のある住まい',
+  '21':'アクセントウォール','22':'玄関まわり'
 };
-const TOTAL=28, PICK=10;
+const TOTAL=22, PICK=10;
 const allImgs=[];
 for(let i=1;i<=TOTAL;i++){allImgs.push('img/works/g'+String(i).padStart(2,'0')+'.jpg');}
 const g=document.getElementById('gallery');
@@ -153,7 +156,7 @@ function capFor(src){const m=src.match(/g(\d+)\.jpg/);return m&&CAPS[m[1]]?`<div
 function render(){
   g.innerHTML=shown.map((src,idx)=>`<div class="gitem" data-i="${idx}"><img src="${src}" alt="シバ・サンホーム 施工写真" loading="lazy">${capFor(src)}</div>`).join('');
 }
-function showRandom(){showingAll=false;shown=shuffle(allImgs).slice(0,PICK);render();allBtn.textContent='すべて見る（28枚）';}
+function showRandom(){showingAll=false;shown=shuffle(allImgs).slice(0,PICK);render();allBtn.textContent='すべて見る（'+TOTAL+'枚）';}
 function showAll(){showingAll=true;shown=allImgs.slice();render();allBtn.textContent='ランダム10枚に戻る';}
 showRandom();
 shuffleBtn.addEventListener('click',showRandom);
