@@ -6,7 +6,7 @@
 <title>施工写真ギャラリー｜奈良の注文住宅・株式会社シバ・サンホーム</title>
 <meta name="description" content="奈良で3代続く工務店シバ・サンホームの施工写真ギャラリー。大工歴43年の社長と専属職人がつくる、ちょうどいい注文住宅。外観・LDK・キッチン・吹き抜けなどの竣工写真を集めました。邸ごとの写真は『建築実例』ページでご覧いただけます。奈良市・大和郡山市・天理市ほか。">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#1c1c1a">
+<meta name="theme-color" content="#f2f1e9">
 <link rel="canonical" href="https://www.shibasunhome.com/works.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社シバ・サンホーム">
@@ -20,45 +20,63 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1a1a1a;--gray:#767674;--pale:#f6f6f5;--linec:#e8e8e6;--gold:#1a1a1a}
+:root{--ink:#1a1a1a;--gray:#767674;--pale:#f6f6f5;--linec:#e3e1d6;--gold:#1a1a1a;--kinari:#f2f1e9;--bh:360px}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.9;letter-spacing:.04em;padding-bottom:60px}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--kinari);line-height:1.9;letter-spacing:.04em;padding-bottom:60px}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 .gothic{font-family:'Zen Kaku Gothic New',sans-serif}
 .en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
 
-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(242,241,233,.96);border-bottom:1px solid var(--linec)}
 .logo{display:flex;flex-direction:column;line-height:1.25}
 .logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
 .logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
 .back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px;transition:all .3s}
 .back:hover{background:var(--ink);color:#fff}
 
-.whead{padding:54px 24px 30px;text-align:center}
-.whead .en{font-size:11px;color:var(--gold);font-weight:500}
-.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(26px,7vw,40px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
-.whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
+/* 見出し（写真をすぐ見せたいので上は詰める） */
+.whead{max-width:1240px;margin:0 auto;padding:20px 24px 0}
+.wtop{display:flex;align-items:baseline;gap:14px}
+.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(20px,5.4vw,28px);font-weight:400;letter-spacing:.12em}
+.whead p{font-size:11.5px;font-weight:300;color:var(--gray);line-height:1.9;margin-top:4px}
+.nb{display:inline-block}   /* 熟語や語尾が行をまたがないよう塊で折り返す */
 
-.gallery{columns:2;blog-gap:8px;padding:8px 8px 60px;max-width:1100px;margin:0 auto}
-@media(min-width:760px){.gallery{columns:3;blog-gap:12px;padding:16px}}
-.gitem{break-inside:avoid;margin-bottom:8px;position:relative;cursor:pointer;overflow:hidden;background:#eee}
-@media(min-width:760px){.gitem{margin-bottom:12px}}
-.gitem img{width:100%;transition:transform .5s ease;display:block}
-.gitem:hover img{transform:scale(1.04)}
-.gitem .cap{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 10px;background:linear-gradient(to top,rgba(15,15,14,.6),transparent);color:#fff;font-size:11px;letter-spacing:.08em;opacity:0;transition:opacity .3s}
-.gitem:hover .cap{opacity:1}
+/* タグ（横並び・｜区切り・1行で横に流す） */
+.tags{max-width:1240px;margin:0 auto;padding:10px 24px 0;display:flex;align-items:baseline;gap:14px;overflow-x:auto;scrollbar-width:none}
+.tags::-webkit-scrollbar{display:none}
+.tgs{display:flex;align-items:baseline;white-space:nowrap}
+.tg{flex:0 0 auto;font-family:inherit;font-size:12.5px;font-weight:300;letter-spacing:.04em;color:#57544c;background:none;border:none;padding:4px 0;cursor:pointer}
+.tg:not(:last-child)::after{content:'｜';color:#cfcdc0;margin:0 5px 0 9px}
+.tg.on{color:var(--ink)}
+.tg.on b{font-weight:400;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.count{flex:0 0 auto;font-size:11px;color:var(--gray);letter-spacing:.1em;white-space:nowrap}
 
-.gctl{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:1100px;margin:0 auto 4px;padding:0 16px}
-.gctl button{font-family:inherit;font-size:12px;letter-spacing:.08em;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:11px 20px;cursor:pointer;transition:all .2s}
-.gctl button:hover{background:var(--ink);color:#fff}
-.gctl .gctl-shuffle{background:var(--gold);color:#fff;border-color:var(--gold)}
-.gctl .gctl-shuffle:hover{filter:brightness(.94)}
-.wcta{text-align:center;padding:10px 24px 70px}
-.wcta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:500;letter-spacing:.08em;margin-bottom:8px}
-.wcta p{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:24px}
-.wbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
+/* 帯（横スクロール・高さを揃える・写真は切らない） */
+.band{margin-top:16px}
+.band.hide{display:none}
+.strip{display:flex;gap:1px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;background:var(--kinari)}
+.strip::-webkit-scrollbar{display:none}
+.strip.grabbing{cursor:grabbing}
+.strip figure{flex:0 0 auto;margin:0;background:#e6e4da}
+.strip img{height:var(--bh);width:auto;max-width:none}
+.bhead{max-width:1240px;margin:0 auto;padding:16px 24px 0}
+.bmeta{font-size:11px;color:var(--gray);letter-spacing:.12em}
+.bmeta i{font-style:normal;color:#cfcdc0;margin:0 8px}
+.btitle{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(16px,4.4vw,20px);font-weight:400;letter-spacing:.1em;margin-top:6px}
+.bline{max-width:1240px;margin:30px auto 0;padding:0 24px}
+.bline hr{border:none;border-top:1px solid var(--linec)}
+@media(min-width:900px){
+  :root{--bh:510px}
+  .band{margin-top:52px}
+  .bhead{padding-top:20px}
+}
+
+.wcta{max-width:1240px;margin:0 auto;padding:66px 24px 70px}
+.wcta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:400;letter-spacing:.1em;margin-bottom:8px}
+.wcta p{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:26px}
+.wbtns{display:flex;flex-direction:column;gap:12px;max-width:380px}
 .wbtn{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.18em}
 .wbtn-fill{background:var(--ink);color:#fff}
 .wbtn-line{border:1px solid var(--ink)}
@@ -95,24 +113,23 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </header>
 
 <div class="whead">
-  <div class="en">Gallery</div>
-  <h1>施工写真ギャラリー</h1>
-  <p>専属の職人がつくり上げた「ちょうどいい」住まいの竣工写真を集めました。写真をタップすると拡大できます。<br><a href="jisseki.html" style="color:var(--ink);border-bottom:1px solid var(--gold)">邸ごとの写真は「建築実例」ページへ →</a></p>
+  <div class="wtop"><h1>施工写真</h1><span class="count" id="count"></span></div>
+  <p><span class="nb">写真は横にスクロールできます。</span><span class="nb">タップで大きく見られます。</span></p>
 </div>
 
-<div class="gctl">
-  <button type="button" class="gctl-shuffle" id="shuffleBtn">🔀 別の写真を見る</button>
-  <button type="button" id="allBtn">すべて見る（22枚）</button>
+<div class="tags">
+  <span class="tgs" id="tags"></span>
 </div>
-<div class="gallery" id="gallery"></div>
+
+<div id="bands"></div>
 
 <div class="wcta">
   <h2 class="gothic">あなたの「ちょうどいい」を、<br>一緒にかたちに。</h2>
-  <p>ご相談・見学のご予約はすべて無料です。</p>
+  <p>見学・来店のご予約はすべて無料です。</p>
   <div class="wbtns">
-    <a class="wbtn wbtn-line" href="jisseki.html">建築実例（間取り・価格・お客様の声）を見る</a>
-    <a class="wbtn wbtn-fill" href="reserve.html">来店予約・無料相談</a>
-    <a class="wbtn wbtn-line" href="tel:0120154483">電話で相談する（0120-154-483）</a>
+    <a class="wbtn wbtn-line" href="jisseki.html">建築実例（邸ごとの写真）を見る</a>
+    <a class="wbtn wbtn-fill" href="reserve.html">来店を予約する</a>
+    <a class="wbtn wbtn-line" href="tel:0120154483">電話で聞く（0120-154-483）</a>
   </div>
 </div>
 
@@ -132,49 +149,82 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </div>
 
 <nav class="fixed-cta">
-  <a class="fc-tel" href="tel:0120154483">電話で相談</a>
-  <a class="fc-reserve" href="reserve.html">来店予約</a>
+  <a class="fc-tel" href="tel:0120154483">電話で聞く</a>
+  <a class="fc-reserve" href="reserve.html">来店を予約</a>
 </nav>
 
 <script>
-const CAPS={ // 任意のキャプション（部屋・特徴ラベル。地名・お名前は入れない）
-  '01':'外観','02':'ダイニングと階段','03':'リビング','04':'キッチンと階段',
-  '05':'造作キッチン','06':'玄関土間','07':'廊下からキッチンへ','08':'ダイニング',
-  '09':'階段','10':'リビングダイニング','11':'陽ざしの入るリビング','12':'ダイニング',
-  '13':'リビング','14':'明るい部屋','15':'造作洗面','16':'造作カウンター',
-  '17':'吹き抜けと階段','18':'ダイニングと玄関','19':'対面キッチン','20':'階段のある住まい',
-  '21':'アクセントウォール','22':'玄関まわり'
-};
-const TOTAL=22, PICK=10;
-const allImgs=[];
-for(let i=1;i<=TOTAL;i++){allImgs.push('img/works/g'+String(i).padStart(2,'0')+'.jpg');}
-const g=document.getElementById('gallery');
-const shuffleBtn=document.getElementById('shuffleBtn'),allBtn=document.getElementById('allBtn');
-let shown=[],showingAll=false;
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function capFor(src){const m=src.match(/g(\d+)\.jpg/);return m&&CAPS[m[1]]?`<div class="cap">${CAPS[m[1]]}</div>`:'';}
-function render(){
-  g.innerHTML=shown.map((src,idx)=>`<div class="gitem" data-i="${idx}"><img src="${src}" alt="シバ・サンホーム 施工写真" loading="lazy">${capFor(src)}</div>`).join('');
-}
-function showRandom(){showingAll=false;shown=shuffle(allImgs).slice(0,PICK);render();allBtn.textContent='すべて見る（'+TOTAL+'枚）';}
-function showAll(){showingAll=true;shown=allImgs.slice();render();allBtn.textContent='ランダム10枚に戻る';}
-showRandom();
-shuffleBtn.addEventListener('click',showRandom);
-allBtn.addEventListener('click',()=>{showingAll?showRandom():showAll();});
+/* 帯＝写っているものでまとめる（お名前・地名・価格は出さない） */
+const BANDS=[
+  {title:'外観と玄関まわり',  imgs:['01','22','06']},
+  {title:'リビング・ダイニング', imgs:['03','13','11','10','14','21','02','08','12','18']},
+  {title:'キッチンと造作',    imgs:['05','19','04','07','16','15']},
+  {title:'階段と吹き抜け',    imgs:['17','09','20']}
+];
+const path=n=>'img/works/g'+n+'.jpg';
+const bandsEl=document.getElementById('bands'), tagsEl=document.getElementById('tags'), countEl=document.getElementById('count');
 
+bandsEl.innerHTML=BANDS.map((b,bi)=>`
+<section class="band" data-b="${bi}">
+  <div class="strip">${b.imgs.map(n=>`<figure><img src="${path(n)}" alt="奈良の注文住宅 施工写真" loading="lazy" decoding="async"></figure>`).join('')}</div>
+  <div class="bhead">
+    <div class="bmeta">写真${b.imgs.length}枚</div>
+    <h2 class="btitle">${b.title}</h2>
+  </div>
+  <div class="bline"><hr></div>
+</section>`).join('');
+
+const TOTAL=BANDS.reduce((s,b)=>s+b.imgs.length,0);
+tagsEl.innerHTML=['すべて',...BANDS.map(b=>b.title)]
+  .map((t,i)=>`<button type="button" class="tg${i===0?' on':''}" data-t="${i-1}"><b>${t}</b></button>`).join('');
+countEl.textContent='全'+TOTAL+'枚';
+
+tagsEl.addEventListener('click',e=>{
+  const b=e.target.closest('.tg'); if(!b) return;
+  tagsEl.querySelectorAll('.tg').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  const t=+b.dataset.t;
+  let n=0;
+  document.querySelectorAll('.band').forEach(sec=>{
+    const show=(t<0)||(+sec.dataset.b===t);
+    sec.classList.toggle('hide',!show);
+    if(show) n+=BANDS[+sec.dataset.b].imgs.length;
+  });
+  countEl.textContent='全'+n+'枚';
+});
+
+/* 横スクロール：ドラッグとホイールで動かす */
+document.querySelectorAll('.strip').forEach(st=>{
+  let down=false,sx=0,sl=0,moved=0;
+  st.addEventListener('pointerdown',e=>{down=true;moved=0;sx=e.clientX;sl=st.scrollLeft;st.classList.add('grabbing');});
+  st.addEventListener('pointermove',e=>{if(!down)return;const d=e.clientX-sx;moved=Math.max(moved,Math.abs(d));st.scrollLeft=sl-d;});
+  const up=()=>{down=false;st.classList.remove('grabbing');};
+  st.addEventListener('pointerup',up); st.addEventListener('pointerleave',up); st.addEventListener('pointercancel',up);
+  st.addEventListener('wheel',e=>{
+    if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;      // 横フリックはそのまま
+    const max=st.scrollWidth-st.clientWidth;
+    if((e.deltaY<0&&st.scrollLeft<=0)||(e.deltaY>0&&st.scrollLeft>=max-1))return; // 端では縦スクロールに戻す
+    e.preventDefault(); st.scrollLeft+=e.deltaY;
+  },{passive:false});
+  st.addEventListener('click',e=>{ if(moved>6){e.preventDefault();e.stopPropagation();} },true);
+});
+
+/* 拡大（帯をまたいで全部を順に見られる） */
 const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCount=document.getElementById('lbCount');
-let cur=0;
-function open(i){cur=(i+shown.length)%shown.length;lbImg.src=shown[cur];lbCount.textContent=(cur+1)+' / '+shown.length;lb.classList.add('on');document.body.style.overflow='hidden';}
-function close(){lb.classList.remove('on');document.body.style.overflow='';}
-g.addEventListener('click',e=>{const it=e.target.closest('.gitem');if(it)open(+it.dataset.i);});
+let list=[],cur=0;
+function visibleImgs(){return [...document.querySelectorAll('.band:not(.hide) .strip img')];}
+function open(i){list=list.length?list:visibleImgs();cur=(i+list.length)%list.length;lbImg.src=list[cur].src;lbCount.textContent=(cur+1)+' / '+list.length;lb.classList.add('on');document.body.style.overflow='hidden';}
+function close(){lb.classList.remove('on');lbImg.src='';list=[];document.body.style.overflow='';}
+bandsEl.addEventListener('click',e=>{
+  const img=e.target.closest('.strip img'); if(!img) return;
+  list=visibleImgs(); open(list.indexOf(img));
+});
 document.getElementById('lbClose').addEventListener('click',close);
 document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();open(cur-1);});
 document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();open(cur+1);});
 lb.addEventListener('click',e=>{if(e.target===lb)close();});
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')open(cur-1);if(e.key==='ArrowRight')open(cur+1);});
-// スワイプ
-let sx=0;lb.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
-lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)open(cur+(dx<0?1:-1));});
+let tx=0;lb.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)open(cur+(dx<0?1:-1));});
 </script>
 <script src="site.js?v=20260722" defer></script>
 </body>
