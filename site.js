@@ -47,9 +47,12 @@ const NAV_CV = [
   const css = `
   /* 日本語の改行（全ページ共通） */
   /* ① 禁則：行頭に「、。ー っ ）」」が来ないようにする */
-  body{line-break:strict;word-break:normal;overflow-wrap:anywhere}
+  body{line-break:strict;overflow-wrap:break-word}
   h1,h2,h3,h4,p,li,dt,dd,figcaption,span{line-break:strict}
-  /* ② 見出しは行の長さを均す／本文は最終行が1〜2文字だけにならないようにする */
+  /* ② 語の途中で改行しない（「無料。し／つこい営業」を防ぐ）
+        ブラウザが言葉の切れ目を判断する。対応していないブラウザは無視するだけで崩れない */
+  body,h1,h2,h3,h4,p,li,dt,dd,figcaption,summary,button,td,th,blockquote{word-break:auto-phrase}
+  /* ③ 見出しは行の長さを均す／本文は最終行が1〜2文字だけにならないようにする */
   h1,h2,h3,h4{text-wrap:balance}
   p,li,dd,dt,figcaption{text-wrap:pretty}
 
@@ -100,8 +103,40 @@ const NAV_CV = [
   }
   /* 改行の最適化：見出しは行を均等に、本文は最後の1〜2文字の孤立を防ぐ */
   h1,h2,h3{text-wrap:balance}
-  p,li,.lead,.sub,.note,.sim-note,.rsv-note,.enote,.pickhint{text-wrap:pretty}`;
+  p,li,.lead,.sub,.note,.sim-note,.rsv-note,.enote,.pickhint{text-wrap:pretty}
+  /* ここで囲んだ語は絶対に途中で折り返さない */
+  .nb{white-space:nowrap}
+  .no,.rank{white-space:nowrap}`;
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  // ---- 途中で切れると読みにくい語を、折り返し禁止で包む ----
+  // ブラウザの言葉区切り（word-break:auto-phrase）でも切れてしまう語を、実測で拾って登録している
+  const NOBREAK = ['シバ・サンホーム','チームシバサン会','関西国際空港','大工社長','人となり','突き板',
+    'お問い合わせ','立ち上がり','マーク付き','ひと続き','わがまま','おおよそ','しがちな','自由度','見た目',
+    '落として','落とさず','を通じて','部屋どうし','として','という','により','による','明るさ','ぜひ','部屋','にくく'];
+  (function nobreak(){
+    const re = new RegExp('(' + NOBREAK.sort((a,b)=>b.length-a.length).join('|') + ')', 'g');
+    const skip = 'script,style,textarea,code,pre,title,.nb';
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        if (!n.nodeValue || !re.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        return n.parentElement && n.parentElement.closest(skip) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const targets = []; let n;
+    while ((n = w.nextNode())) targets.push(n);
+    targets.forEach(node => {
+      const frag = document.createDocumentFragment();
+      let last = 0; const s = node.nodeValue; re.lastIndex = 0; let m;
+      while ((m = re.exec(s))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        const sp = document.createElement('span'); sp.className = 'nb'; sp.textContent = m[0];
+        frag.appendChild(sp); last = m.index + m[0].length;
+      }
+      if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  })();
 
   // ---- ロゴ画像の差し替え（LOGO_SRC が設定されていれば） ----
   if (LOGO_SRC) {
