@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【モック】トップ構成＝個別相談会推し｜株式会社シバ・サンホーム</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f2f1e9">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--linec:#e3e1d6;--kinari:#f2f1e9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--kinari);line-height:1.9;letter-spacing:.03em;padding-bottom:60px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase}
+.mocknote{background:#1a1a1a;color:#fff;font-size:11.5px;padding:10px 22px;letter-spacing:.06em;line-height:1.8}
+.mocknote b{color:#ffd76a;font-weight:500}
+.inner{max-width:1240px;margin:0 auto;padding:0 24px}
+.stepnum{display:inline-block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.2em;color:var(--gray);border:1px solid #d9d6c7;padding:4px 10px;margin-bottom:12px}
+.sec-t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(18px,4.8vw,25px);font-weight:400;letter-spacing:.12em;line-height:1.6}
+.sec-lead{font-size:12.5px;font-weight:300;color:#57544c;line-height:2;margin-top:10px}
+
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:rgba(242,241,233,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.hbtn{font-size:11.5px;letter-spacing:.1em;background:var(--ink);color:#fff;padding:10px 16px}
+
+/* ① ヒーロー：写真＋一行＋すぐ予約 */
+.hero{position:relative;height:64vh;min-height:380px;overflow:hidden;background:#20201e}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,13,.62),rgba(14,14,13,.06) 60%)}
+.hero-c{position:absolute;left:0;right:0;bottom:28px;z-index:2;color:#fff;padding:0 24px;max-width:1240px;margin:0 auto}
+.hero-c h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.8vw,34px);font-weight:400;letter-spacing:.1em;line-height:1.55}
+.hero-c p{font-size:12px;font-weight:300;margin-top:10px;opacity:.92}
+.hero-btn{display:inline-flex;align-items:center;gap:10px;margin-top:18px;background:#fff;color:var(--ink);padding:14px 22px;font-size:13px;letter-spacing:.1em}
+
+/* ② 相談会の帯（主役） */
+.soudan{background:#fff;border-top:1px solid var(--linec);border-bottom:1px solid var(--linec);padding:30px 0}
+.sd-grid{display:grid;gap:18px}
+@media(min-width:860px){.sd-grid{grid-template-columns:1.1fr 1fr;gap:38px;align-items:center}}
+.sd-tag{display:inline-block;font-size:10.5px;letter-spacing:.16em;border:1px solid var(--ink);padding:4px 10px;margin-bottom:12px}
+.sd h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,28px);font-weight:400;letter-spacing:.1em;line-height:1.5}
+.sd p{font-size:12.5px;font-weight:300;color:#57544c;line-height:2;margin-top:12px}
+.sd-facts{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
+.sd-facts span{font-size:11.5px;letter-spacing:.06em;border:1px solid var(--linec);padding:6px 12px;background:var(--kinari)}
+.sd-btns{display:flex;flex-direction:column;gap:10px;margin-top:20px;max-width:420px}
+.sd-btns a{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.12em}
+.sd-btns .fill{background:var(--ink);color:#fff}
+.sd-btns .line{border:1px solid var(--ink)}
+.sd-tel{margin-top:14px;font-size:11.5px;color:var(--gray)}
+.sd-tel b{font-family:'Jost',sans-serif;font-size:18px;color:var(--ink);letter-spacing:.04em;display:block;margin-top:2px}
+.sd-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e6e4da}
+
+/* ③ 相談会でわかること */
+.merits{display:grid;gap:2px;background:var(--linec);margin-top:22px}
+@media(min-width:760px){.merits{grid-template-columns:1fr 1fr}}
+.merits div{background:#fff;padding:18px}
+.merits .n{display:block;font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#a8a49a;margin-bottom:6px}
+.merits b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14.5px;font-weight:500;letter-spacing:.08em;margin-bottom:5px}
+.merits span.t{font-size:12.5px;font-weight:300;color:#57544c;line-height:1.95}
+
+/* ④ 当日の流れ */
+.flow{display:grid;gap:20px;margin-top:22px}
+@media(min-width:760px){.flow{grid-template-columns:repeat(3,1fr);gap:26px}}
+.flow figure{margin:0}
+.flow img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e6e4da}
+.flow figcaption{padding-top:11px}
+.flow figcaption b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.08em;margin-bottom:5px}
+.flow figcaption span{font-size:12.5px;font-weight:300;color:#57544c;line-height:1.95}
+
+/* ⑤ お知らせ3件 */
+.news{border-top:1px solid var(--linec);margin-top:20px}
+.news a{display:block;padding:14px 0;border-bottom:1px solid var(--linec)}
+.news .d{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.14em;color:var(--gray)}
+.news .k{display:inline-block;font-size:10.5px;letter-spacing:.08em;border:1px solid #d9d6c7;color:#57544c;padding:2px 8px;margin-left:10px}
+.news .t{font-size:13.5px;margin-top:6px;line-height:1.75}
+
+/* ⑥ 施工事例（横スクロール） */
+.works-scroll{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:20px 24px 4px}
+.works-scroll::-webkit-scrollbar{display:none}
+.work{flex:0 0 78%;max-width:420px}
+@media(min-width:860px){.work{flex:0 0 32%}}
+.work img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e6e4da}
+.work h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;margin-top:9px}
+.more{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.1em;border-bottom:1px solid #c9c6b6}
+
+/* ⑦ 家づくりの入口 */
+.gate{margin-top:8px}
+.gcard{display:grid;grid-template-columns:120px 1fr 24px;gap:14px;align-items:center;padding:15px 0;border-top:1px solid var(--linec)}
+.gcard:last-of-type{border-bottom:1px solid var(--linec)}
+.gcard img{width:120px;height:81px;object-fit:cover;background:#e6e4da}
+.gcard .glead{font-size:10.5px;color:var(--gray);letter-spacing:.1em}
+.gcard b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;letter-spacing:.06em;margin-top:4px}
+.gcard .arw{width:26px;height:26px;border-radius:50%;border:1px solid #d5d5d1;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray)}
+
+section{padding:46px 0 0}
+footer{background:#161614;color:#939391;padding:38px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:52px}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+.fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:200;display:grid;grid-template-columns:1fr 1fr;height:60px}
+.fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.16em}
+.fc-tel{background:#fff;color:var(--ink);border-top:1px solid var(--linec)}
+.fc-rsv{background:var(--ink);color:#fff}
+@media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+</style>
+</head>
+<body>
+
+<div class="mocknote">【モック】コラボハウスのトップ構成に寄せて、<b>個別相談会を主役</b>にした並びです。日付とメリットの文は仮。検索には出ません。</div>
+
+<header>
+  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="hbtn" href="reserve.html">相談会を予約</a>
+</header>
+
+<!-- ① ヒーロー -->
+<section class="hero" style="padding:0">
+  <img src="img/jisseki/case02/01.jpg" alt="奈良の注文住宅">
+  <div class="hero-c">
+    <h1>建てたあとの暮らしから、<br>いっしょに考えます。</h1>
+    <p>奈良で3代。大工歴43年の社長と専属の職人がつくる注文住宅。</p>
+    <a class="hero-btn" href="reserve.html">個別相談会を予約する（無料）<span>→</span></a>
+  </div>
+</section>
+
+<!-- ② 相談会の帯（主役） -->
+<div class="soudan">
+  <div class="inner sd">
+    <div class="sd-grid">
+      <div>
+        <span class="sd-tag">個別相談会</span>
+        <h2>まだ何も決まっていない段階で、<br>いちばん役に立ちます。</h2>
+        <p>土地もお金も決まっていない、という方がほとんどです。ご予算とやりたいことを聞いて、できること・できないことを正直にお伝えします。その場で契約を勧めることはしません。</p>
+        <div class="sd-facts">
+          <span>相談は無料</span><span>所要 約60分</span><span>ご予約制</span><span>オンラインもOK</span><span>お子様連れ歓迎</span>
+        </div>
+        <div class="sd-btns">
+          <a class="fill" href="reserve.html">日時を選んで予約する</a>
+          <a class="line" href="event.html">開催中の相談会を見る</a>
+        </div>
+        <div class="sd-tel">お電話でもご予約いただけます<b>0120-154-483</b>受付 9:00-18:00／水曜定休</div>
+      </div>
+      <div class="sd-photo"><img src="img/people/01.jpg" alt="打ち合わせの様子" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ 相談会でわかること -->
+<section>
+  <div class="inner">
+    <div class="stepnum">01</div>
+    <h2 class="sec-t">相談会でわかること</h2>
+    <p class="sec-lead">「まだ早いかな」と思っている方にこそ、来ていただきたい会です。</p>
+    <div class="merits">
+      <div><span class="n">01</span><b>総額でいくらになるか</b><span class="t">本体だけでなく、諸費用・外構まで含めた総額の目安をお出しします。</span></div>
+      <div><span class="n">02</span><b>いま借りられる金額</b><span class="t">ご年収と返済のバランスから、無理のない予算を一緒に出します。</span></div>
+      <div><span class="n">03</span><b>土地の探し方</b><span class="t">土地が決まっていなくて大丈夫。探し方と見るべき点をお伝えします。</span></div>
+      <div><span class="n">04</span><b>性能のほんとうの差</b><span class="t">耐震等級3相当・高断熱高気密が標準。数字の意味を噛みくだいて説明します。</span></div>
+      <div><span class="n">05</span><b>誰がつくるのか</b><span class="t">現場に立つ社長と専務が直接お話しします。営業だけの担当は付きません。</span></div>
+      <div><span class="n">06</span><b>建てたあとの付き合い</b><span class="t">点検・修理の体制と、実際にどれくらいで伺えるかをお話しします。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 当日の流れ -->
+<section>
+  <div class="inner">
+    <div class="stepnum">02</div>
+    <h2 class="sec-t">当日の流れ</h2>
+    <p class="sec-lead">約60分。持ち物はいりません。</p>
+    <div class="flow">
+      <figure>
+        <img src="img/jisseki/case04/02.jpg" alt="お話をうかがう" loading="lazy" decoding="async">
+        <figcaption><b>1. お話をうかがう</b><span>今の住まいの不便、やってみたい暮らし。決まっていないことも、そのままお話しください。</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/jisseki/case06/02.jpg" alt="お金と土地の話" loading="lazy" decoding="async">
+        <figcaption><b>2. お金と土地の話</b><span>総額の目安と、月々の返済。土地探しの進め方まで、その場で数字にします。</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/jisseki/case08/07.jpg" alt="持ち帰って考える" loading="lazy" decoding="async">
+        <figcaption><b>3. 持ち帰って考える</b><span>その日に決める必要はありません。資料をお渡しして、ゆっくり考えていただきます。</span></figcaption>
+      </figure>
+    </div>
+    <div class="sd-btns" style="margin-top:26px">
+      <a class="fill" href="reserve.html">日時を選んで予約する（無料）</a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ お知らせ -->
+<section>
+  <div class="inner">
+    <h2 class="sec-t" style="font-size:17px">お知らせ</h2>
+    <div class="news">
+      <a href="event.html"><span class="d">2026.07.26</span><span class="k">相談会</span><div class="t">個別相談会、随時受付中です（無料・ご予約制・オンラインOK）</div></a>
+      <a href="jisseki.html"><span class="d">2026.07.25</span><span class="k">建築実例</span><div class="t">建築実例に3軒を追加しました（10軒・74枚）</div></a>
+      <a href="blog-movie-bohan.html"><span class="d">2026.07.20</span><span class="k">動画</span><div class="t">防犯の話：泥棒に入られにくい家のつくり方</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 施工事例 -->
+<section style="padding-bottom:6px">
+  <div class="inner"><h2 class="sec-t" style="font-size:17px">施工事例</h2></div>
+  <div class="works-scroll">
+    <a class="work" href="jisseki-case02.html"><img src="img/jisseki/case02/thumb/06.jpg" alt="大開口" loading="lazy"><h3>庭までひと続きに見える大開口</h3></a>
+    <a class="work" href="jisseki-case08.html"><img src="img/jisseki/case08/thumb/04.jpg" alt="ダイニング" loading="lazy"><h3>窓辺に緑を並べるダイニング</h3></a>
+    <a class="work" href="jisseki-case06.html"><img src="img/jisseki/case06/thumb/07.jpg" alt="飾り棚" loading="lazy"><h3>やわらかく抜いた、アールの飾り棚</h3></a>
+    <a class="work" href="jisseki-case09.html"><img src="img/jisseki/case09/thumb/01.jpg" alt="畳の間" loading="lazy"><h3>畳の間を開けて、広く使う</h3></a>
+  </div>
+  <div class="inner"><a class="more" href="jisseki.html">建築実例をすべて見る（10軒・74枚）→</a></div>
+</section>
+
+<!-- ⑦ 家づくりの入口 -->
+<section>
+  <div class="inner">
+    <h2 class="sec-t" style="font-size:17px">私たちの家づくり</h2>
+    <div class="gate">
+      <a class="gcard" href="members.html"><img src="img/blog/blog-shacho-01_2.jpg" alt="つくり手" loading="lazy"><div><div class="glead">つくり手の顔が見える</div><b>大工社長と、専属の職人</b></div><span class="arw">›</span></a>
+      <a class="gcard" href="spec.html"><img src="img/jisseki/case05/thumb/06.jpg" alt="性能" loading="lazy"><div><div class="glead">住んでからで差が出る</div><b>性能と標準仕様</b></div><span class="arw">›</span></a>
+      <a class="gcard" href="products.html"><img src="img/jisseki/case07/thumb/06.jpg" alt="価格" loading="lazy"><div><div class="glead">はじめに総額が分かる</div><b>商品と価格</b></div><span class="arw">›</span></a>
+      <a class="gcard" href="after.html"><img src="img/jisseki/case04/thumb/06.jpg" alt="アフター" loading="lazy"><div><div class="glead">引き渡してからが本番</div><b>アフターと保証</b></div><span class="arw">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ 最後にもう一度、相談会 -->
+<div class="soudan" style="margin-top:48px">
+  <div class="inner sd">
+    <span class="sd-tag">個別相談会</span>
+    <h2>まずは、話を聞くだけでも。</h2>
+    <p>見学もご相談も無料です。しつこい営業はいたしません。</p>
+    <div class="sd-btns">
+      <a class="fill" href="reserve.html">日時を選んで予約する</a>
+      <a class="line" href="kengaku.html">OB様邸の見学を申し込む</a>
+    </div>
+    <div class="sd-tel">お電話でもご予約いただけます<b>0120-154-483</b>受付 9:00-18:00／水曜定休</div>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
+</footer>
+
+<nav class="fixed-cta">
+  <a class="fc-tel" href="tel:0120154483">電話で聞く</a>
+  <a class="fc-rsv" href="reserve.html">相談会を予約</a>
+</nav>
+</body>
+</html>
