@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【モック】会社案内｜株式会社シバ・サンホーム</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f2f1e9">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--linec:#e3e1d6;--kinari:#f2f1e9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--kinari);line-height:1.9;letter-spacing:.03em;padding-bottom:60px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase}
+.mocknote{background:#1a1a1a;color:#fff;font-size:11.5px;padding:10px 22px;letter-spacing:.06em;line-height:1.8}
+.mocknote b{color:#ffd76a;font-weight:500}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(242,241,233,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px}
+
+section{max-width:1240px;margin:0 auto;padding:0 24px}
+.sec-t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(17px,4.6vw,22px);font-weight:400;letter-spacing:.14em;margin:52px 0 22px}
+
+/* 代表挨拶（コラボハウス＝写真＋名前＋大きな一文＋本文） */
+.greet{display:grid;gap:22px}
+.greet img{width:100%;max-width:340px;aspect-ratio:3/4;object-fit:cover;background:#e6e4da}
+.greet .name{font-size:12px;color:var(--gray);letter-spacing:.12em}
+.greet .name b{display:block;font-size:15px;color:var(--ink);font-weight:500;letter-spacing:.1em;margin-top:4px}
+.greet h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(17px,4.8vw,23px);font-weight:400;letter-spacing:.08em;line-height:1.75;margin:18px 0 14px}
+.greet p{font-size:13px;font-weight:300;color:#57544c;line-height:2.1}
+.greet p + p{margin-top:14px}
+@media(min-width:820px){.greet{grid-template-columns:340px 1fr;gap:44px;align-items:start}}
+
+/* 理念（社会的使命／目指す未来像／大事にすること） */
+.mvv{border-top:1px solid var(--linec);margin-top:46px}
+.mvv .row{padding:26px 0;border-bottom:1px solid var(--linec)}
+.mvv .lbl{font-size:11px;color:var(--gray);letter-spacing:.16em}
+.mvv h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(16px,4.4vw,20px);font-weight:400;letter-spacing:.09em;margin:6px 0 10px;line-height:1.6}
+.mvv p{font-size:12.5px;font-weight:300;color:#57544c;line-height:2}
+.values{display:grid;gap:16px;margin-top:6px}
+@media(min-width:700px){.values{grid-template-columns:1fr 1fr;gap:16px 34px}}
+.values div{border-left:2px solid #d9d6c7;padding-left:14px}
+.values b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.08em;margin-bottom:4px}
+.values span{font-size:12px;font-weight:300;color:#57544c;line-height:1.95}
+
+/* 会社概要 */
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-weight:300}
+th,td{text-align:left;padding:13px 0;border-bottom:1px solid var(--linec);vertical-align:top}
+th{width:104px;color:var(--gray);font-weight:400;letter-spacing:.08em}
+footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:52px}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="mocknote">【モック】コラボハウスの「会社案内」の作りに合わせた案です。<b>黄色の部分は専務の言葉に差し替えが必要</b>（理念の文は私が仮で書いたもの）。検索には出ません。</div>
+
+<header>
+  <a class="logo" href="index.html">
+    <span class="en">Shiba Sun Home</span>
+    <small>奈良の注文住宅</small>
+  </a>
+  <a class="back en" href="index.html">← Home</a>
+</header>
+
+<section>
+  <h2 class="sec-t">代表挨拶</h2>
+  <div class="greet">
+    <img src="img/member-shacho.jpg" alt="代表取締役">
+    <div>
+      <div class="name">代表取締役<b>柴部 崇</b></div>
+      <h3>「わかりやすく、正直に。<br>それがいちばん喜ばれる。」</h3>
+      <p>大工として43年、現場に立ち続けてきました。木の癖を見て、手で確かめて、納まりを決める。その積み重ねが、住んでからの差になります。</p>
+      <p>今は息子と二人で、設計から現場、引き渡したあとまで見ています。会社を大きくすることよりも、任せてもらった一軒を丁寧に仕上げることを選んできました。</p>
+      <p>見学でも相談でも、遠慮なく聞いてください。できることは「できます」、できないことは「できません」と、正直にお伝えします。</p>
+    </div>
+  </div>
+</section>
+
+<section class="mvv">
+  <div class="row">
+    <div class="lbl">私たちの役割</div>
+    <h3>奈良で、長く住める家をつくり続ける。</h3>
+    <p>建てたあと何十年も、直しながら住み継げる家を残す。地元の工務店だからできる距離で、手入れまで付き合います。</p>
+  </div>
+  <div class="row">
+    <div class="lbl">目指すこと</div>
+    <h3>「ちょうどいい」を、いっしょに見つける。</h3>
+    <p>大きくなくても、豪華でなくてもいい。予算と暮らしに正直に向き合って、そのご家族にちょうどいい家をつくります。</p>
+  </div>
+  <div class="row">
+    <div class="lbl">大事にすること</div>
+    <div class="values">
+      <div><b>正直</b><span>できること・できないことを、はじめに伝えます。</span></div>
+      <div><b>わかりやすく</b><span>専門用語をかみくだいて、判断できる形でお渡しします。</span></div>
+      <div><b>手を動かす</b><span>現場に立つ人間が、そのまま打ち合わせに出ます。</span></div>
+      <div><b>長く付き合う</b><span>引き渡してからの点検と手入れまでを仕事と考えます。</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-t">会社概要</h2>
+  <table>
+    <tr><th>会社名</th><td>株式会社シバ・サンホーム</td></tr>
+    <tr><th>所在地</th><td>奈良県奈良市北之庄町41-1</td></tr>
+    <tr><th>電話</th><td>0120-154-483／0742-81-3948（受付 9:00-18:00・水曜定休）</td></tr>
+    <tr><th>事業内容</th><td>注文住宅の設計・施工、リフォーム・リノベーション、アフターメンテナンス</td></tr>
+    <tr><th>代表者</th><td>代表取締役 柴部 崇</td></tr>
+    <tr><th>創業</th><td style="color:#a8a49a">※要確認（創業年・設立年・許可番号を入れます）</td></tr>
+    <tr><th>建設業許可</th><td style="color:#a8a49a">※要確認</td></tr>
+  </table>
+</section>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
+</footer>
+<script src="site.js?v=20260722" defer></script>
+</body>
+</html>

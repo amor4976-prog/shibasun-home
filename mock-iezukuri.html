@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【モック】私たちの家づくり｜株式会社シバ・サンホーム</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#f2f1e9">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--linec:#e3e1d6;--kinari:#f2f1e9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--kinari);line-height:1.9;letter-spacing:.03em;padding-bottom:60px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase}
+.mocknote{background:#1a1a1a;color:#fff;font-size:11.5px;padding:10px 22px;letter-spacing:.06em;line-height:1.8}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(242,241,233,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px}
+
+.phead{max-width:1240px;margin:0 auto;padding:34px 24px 8px}
+.phead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,34px);font-weight:400;letter-spacing:.14em;line-height:1.6}
+.phead p{font-size:12.5px;font-weight:300;color:var(--gray);margin-top:14px;line-height:2}
+
+/* コラボハウスの家づくりページ＝写真＋小さな前置き＋大きな見出し＋→ のカードが縦に並ぶ */
+.cards{max-width:1240px;margin:0 auto;padding:26px 0 0}
+.card{display:grid;grid-template-columns:174px 1fr;gap:18px;align-items:center;padding:14px 24px;border-top:1px solid var(--linec)}
+.card:last-child{border-bottom:1px solid var(--linec)}
+.card img{width:174px;height:117px;object-fit:cover;background:#e6e4da}
+.card .lead{font-size:11px;color:var(--gray);letter-spacing:.1em;line-height:1.7}
+.card h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(15px,4.4vw,19px);font-weight:400;letter-spacing:.09em;margin-top:5px;line-height:1.55}
+.card .arw{grid-column:2;justify-self:end;width:26px;height:26px;border-radius:50%;border:1px solid #c9c6b6;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray);margin-top:-6px}
+@media(min-width:800px){
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:0 34px;padding:26px 24px 0}
+  .card{padding:20px 0}
+  .card img{width:220px;height:148px}
+  .card{grid-template-columns:220px 1fr}
+}
+.cta{max-width:1240px;margin:0 auto;padding:54px 24px 20px}
+.cta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(18px,4.8vw,24px);font-weight:400;letter-spacing:.1em;margin-bottom:8px}
+.cta p{font-size:13px;font-weight:300;color:var(--gray);margin-bottom:24px}
+.cbtns{display:flex;flex-direction:column;gap:12px;max-width:380px}
+.cbtns a{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.16em}
+.cbtns .fill{background:var(--ink);color:#fff}
+.cbtns .line{border:1px solid var(--ink)}
+footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em;margin-top:40px}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="mocknote">【モック】コラボハウスの「家づくり」ページの作りを、うちの中身で組んだ案です。写真は仮で既存のものを使っています。検索には出ません。</div>
+
+<header>
+  <a class="logo" href="index.html">
+    <span class="en">Shiba Sun Home</span>
+    <small>奈良の注文住宅</small>
+  </a>
+  <a class="back en" href="index.html">← Home</a>
+</header>
+
+<div class="phead">
+  <h1>私たちの<br>家づくり</h1>
+  <p>大工歴43年の社長と、専属の職人がつくります。<br>気になるところから見てください。</p>
+</div>
+
+<div class="cards">
+  <a class="card" href="members.html">
+    <img src="img/member-shacho.jpg" alt="">
+    <div>
+      <div class="lead">つくり手の顔が見える</div>
+      <h2>大工社長と、専属の職人</h2>
+    </div>
+    <span class="arw">›</span>
+  </a>
+  <a class="card" href="jisseki.html">
+    <img src="img/jisseki/case08/thumb/02.jpg" alt="">
+    <div>
+      <div class="lead">10軒・74枚の写真で見る</div>
+      <h2>建築実例</h2>
+    </div>
+    <span class="arw">›</span>
+  </a>
+  <a class="card" href="spec.html">
+    <img src="img/spec/spec-kouzo.jpg" alt="">
+    <div>
+      <div class="lead">「住んでから」で差が出る</div>
+      <h2>性能と標準仕様</h2>
+    </div>
+    <span class="arw">›</span>
+  </a>
+  <a class="card" href="products.html">
+    <img src="img/jisseki/case05/thumb/01.jpg" alt="">
+    <div>
+      <div class="lead">はじめに総額が分かる</div>
+      <h2>商品と価格</h2>
+    </div>
+    <span class="arw">›</span>
+  </a>
+  <a class="card" href="flow.html">
+    <img src="img/jisseki/case06/thumb/05.jpg" alt="">
+    <div>
+      <div class="lead">はじめての方へ</div>
+      <h2>家づくりの進め方</h2>
+    </div>
+    <span class="arw">›</span>
+  </a>
+  <a class="card" href="after.html">
+    <img src="img/jisseki/case01/thumb/12.jpg" alt="">
+    <div>
+      <div class="lead">引き渡してからが本番</div>
+      <h2>アフターと保証</h2>
+    </div>
+    <span class="arw">›</span>
+  </a>
+</div>
+
+<section class="cta">
+  <h2>見て、聞いて、確かめてください。</h2>
+  <p>見学・来店のご予約はすべて無料です。</p>
+  <div class="cbtns">
+    <a class="fill" href="reserve.html">来店を予約する</a>
+    <a class="line" href="kengaku.html">OB様邸の見学を申し込む</a>
+    <a class="line" href="tel:0120154483">電話で聞く（0120-154-483／受付 9:00-18:00・水曜定休）</a>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
+</footer>
+<script src="site.js?v=20260722" defer></script>
+</body>
+</html>
