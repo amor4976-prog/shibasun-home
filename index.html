@@ -586,8 +586,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .rev-card p{font-size:13px;font-weight:300;line-height:2;color:#454543}
 .rev-card .gi{margin-top:auto;padding-top:12px;font-size:10px;color:var(--gray);display:flex;align-items:center;gap:5px}
 .rev-cta{text-align:center;margin-top:30px}
-.rev-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);padding:14px 28px;font-size:12px;letter-spacing:.16em;transition:all .3s}
-.rev-btn:hover{background:var(--ink);color:#fff}
 .rev-hint{display:none;text-align:center;margin-top:22px;font-size:11px;font-weight:300;color:var(--gray);letter-spacing:.06em;line-height:1.9}
 
 /* ===== FAQ（よくある質問） ===== */
@@ -830,20 +828,20 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <div class="label"><span class="en">Works</span><small>施工事例</small></div>
     <div class="works-scroll" id="worksScroll">
       <a class="work fade" href="jisseki.html">
-        <img src="img/work-p1.jpg" alt="施工実例 ダイニングとキッチン" loading="lazy">
-        <div class="cap"><h3>光が回る、ダイニングとキッチン</h3></div>
+        <img src="img/jisseki/case08/04.jpg" alt="施工実例 グリーンを飾ったダイニング" loading="lazy">
+        <div class="cap"><h3>窓辺に緑を並べるダイニング</h3></div>
       </a>
       <a class="work fade" href="jisseki.html">
-        <img src="img/work-p2.jpg" alt="施工実例 玄関土間" loading="lazy">
-        <div class="cap"><h3>土間のある、ゆとりの玄関</h3></div>
+        <img src="img/jisseki/case02/06.jpg" alt="施工実例 大開口と造作ベンチ" loading="lazy">
+        <div class="cap"><h3>庭までひと続きに見える大開口</h3></div>
       </a>
       <a class="work fade" href="jisseki.html">
         <img src="img/work-p3.jpg" alt="施工実例 光の入る部屋" loading="lazy">
         <div class="cap"><h3>やわらかな光が差す、静かな部屋</h3></div>
       </a>
       <a class="work fade" href="jisseki.html">
-        <img src="img/work-kitchen.jpg" alt="施工実例 キッチン" loading="lazy">
-        <div class="cap"><h3>暮らしの中心になる、対面キッチン</h3></div>
+        <img src="img/jisseki/case06/07.jpg" alt="施工実例 アール壁の飾り棚" loading="lazy">
+        <div class="cap"><h3>やわらかく抜いた、アールの飾り棚</h3></div>
       </a>
       <a class="work fade" href="jisseki.html">
         <img src="img/work-vanity.jpg" alt="施工実例 洗面" loading="lazy">
@@ -853,17 +851,29 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         <img src="img/work-living.jpg" alt="施工実例 リビング" loading="lazy">
         <div class="cap"><h3>家族が集う、ダイニングのある暮らし</h3></div>
       </a>
-      <a class="work fade" href="jisseki.html">
-        <img src="img/work-stairs.jpg" alt="施工実例 吹き抜け階段" loading="lazy">
-        <div class="cap"><h3>吹き抜けと階段がつくる立体的な空間</h3></div>
+      <a class="work fade" href="jisseki-case05.html">
+        <img src="img/jisseki/case05/06.jpg" alt="施工実例 木の天井と吹き抜け" loading="lazy">
+        <div class="cap"><h3>木の天井と、吹き抜けの高さ</h3></div>
       </a>
-      <a class="work fade" href="jisseki.html">
-        <img src="img/work-open.jpg" alt="施工実例 オープンLDK" loading="lazy">
-        <div class="cap"><h3>視線が抜ける、開放的な間取り</h3></div>
+      <a class="work fade" href="jisseki-case07.html">
+        <img src="img/jisseki/case07/06.jpg" alt="施工実例 中庭に開くリビング" loading="lazy">
+        <div class="cap"><h3>中庭に開く、明るいリビング</h3></div>
       </a>
       <a class="work fade" href="jisseki.html">
         <img src="img/work-light.jpg" alt="施工実例 照明" loading="lazy">
         <div class="cap"><h3>アクセントカラーが映える住まい</h3></div>
+      </a>
+      <a class="work fade" href="jisseki-case08.html">
+        <img src="img/jisseki/case08/02.jpg" alt="施工実例 木の天井と対面キッチン" loading="lazy">
+        <div class="cap"><h3>木の天井の下の、対面キッチン</h3></div>
+      </a>
+      <a class="work fade" href="jisseki-case09.html">
+        <img src="img/jisseki/case09/01.jpg" alt="施工実例 畳の間とつながるLDK" loading="lazy">
+        <div class="cap"><h3>畳の間を開けて、広く使う</h3></div>
+      </a>
+      <a class="work fade" href="jisseki-case10.html">
+        <img src="img/jisseki/case10/01.jpg" alt="施工実例 木の天井とアイアンの梯子" loading="lazy">
+        <div class="cap"><h3>梯子で上がる、木の天井</h3></div>
       </a>
     </div>
     <div class="works-dots" id="worksDots"></div>
@@ -901,6 +911,15 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   if(!s)return;
   var slides=[].slice.call(s.querySelectorAll('.work'));
   if(!slides.length)return;
+  // 開くたびに順番を変える（同じ写真ばかり最初に見えないように）
+  (function(){
+    var a=slides.slice();
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+    var frag=document.createDocumentFragment();
+    a.forEach(function(el){frag.appendChild(el);});
+    s.appendChild(frag);
+    slides=a;
+  })();
   // 各カードに「＋」を付与
   slides.forEach(function(w){
     if(w.querySelector('.plus'))return;
@@ -1091,9 +1110,6 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
       <!-- Googleレビューが設定されると自動表示。未設定の間はサンプル表示 -->
     </div>
     <p class="rev-hint" id="rev-hint">※ 実際にシバ・サンホームでお建ていただいたお客様の声です。間取り・価格つきの詳しい事例は <a href="jisseki.html" style="color:var(--ink);border-bottom:1px solid var(--gold)">建築実例ページ</a> でご覧いただけます。</p>
-    <div class="rev-cta">
-      <a class="rev-btn en" id="rev-link" href="https://www.google.com/maps/search/?api=1&query=株式会社シバ・サンホーム+奈良市北之庄町41-1" target="_blank" rel="noopener">Googleで口コミを見る</a>
-    </div>
   </div>
 </section>
 
@@ -1382,7 +1398,8 @@ function renderReviews(list, avg, total, sample){
 
 function loadGoogleReviews(){
   if(GOOGLE_PLACE_ID){
-    document.getElementById('rev-link').href='https://search.google.com/local/reviews?placeid='+GOOGLE_PLACE_ID;
+    var revLink=document.getElementById('rev-link');
+    if(revLink) revLink.href='https://search.google.com/local/reviews?placeid='+GOOGLE_PLACE_ID;
   }
   if(!GOOGLE_API_KEY || !GOOGLE_PLACE_ID){
     // 未設定：サンプル表示（Google誘導ボタンは有効）
