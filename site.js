@@ -56,12 +56,15 @@ const NAV_CV = [
   .nav-inner{margin:auto 0;width:100%}
   body.nav-open{overflow:hidden}
   body.nav-open .nav-overlay{opacity:1;visibility:visible}
-  .nav-overlay a{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;letter-spacing:.06em;transform:translateY(10px);opacity:0;transition:transform .4s,opacity .4s,color .2s}
+  .nav-overlay a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.10);color:#fff;text-decoration:none;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:400;transform:translateY(10px);opacity:0;transition:transform .4s,opacity .4s,color .2s,padding-left .3s}
   body.nav-open .nav-overlay a{transform:none;opacity:1}
-  .nav-overlay a .ne{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:#8f8f8d;text-transform:uppercase;min-width:62px}
-  .nav-overlay a.cur{color:#fff}
-  .nav-overlay a.cur .ne{color:#fff}
-  .nav-overlay a:hover{color:#fff}
+  .nav-overlay a .nj{font-size:14px;letter-spacing:.14em;line-height:1.5}
+  .nav-overlay a .ne{font-family:'Jost',sans-serif;font-size:8.5px;letter-spacing:.28em;color:#7c7a75;text-transform:uppercase;white-space:nowrap}
+  .nav-overlay a.cur .nj{color:#fff;position:relative}
+  .nav-overlay a.cur .nj::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:rgba(255,255,255,.5)}
+  .nav-overlay a.cur .ne{color:#c9c6c0}
+  .nav-overlay a:hover{padding-left:6px}
+  .nav-overlay a:hover .ne{color:#b7b5b1}
   .nav-cv{display:flex;gap:10px;margin-top:24px}
   .nav-cv a{flex:1;justify-content:center!important;padding:13px 0!important;border:1px solid rgba(255,255,255,.55)!important;border-radius:2px;font-size:14px!important;letter-spacing:.08em!important;color:#fff!important;transform:none!important;opacity:1!important}
   .nav-cv a:first-child{background:#fff!important;color:#161614!important;border-color:#fff!important}
@@ -72,12 +75,19 @@ const NAV_CV = [
   .nav-tel{margin-top:24px;flex-direction:column!important;align-items:flex-start!important;gap:3px!important;font-family:'Jost',sans-serif!important;font-size:18px!important;letter-spacing:.06em!important;border-bottom:none!important;color:#fff!important}
   .nav-tel small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:10px;letter-spacing:.16em;color:#9b978f;margin-top:4px}
   .logo-img{height:30px;width:auto;display:block}
+  .fixed-cta.three{grid-template-columns:repeat(3,1fr)!important}
+  .fixed-cta .fc-line{display:flex;align-items:center;justify-content:center;gap:5px;background:#fff;color:var(--ink,#1a1a1a);font-family:'Noto Sans JP',sans-serif;font-size:12px;letter-spacing:.14em;text-decoration:none;border-right:1px solid var(--linec,#e8e8e6)}
+  .fixed-cta .fc-line .lw{font-family:'Jost',sans-serif;font-weight:600;letter-spacing:.04em;font-size:13px;color:#06c755}
+  .fixed-cta .fc-line:hover{background:#fafaf8}
   .line-fab{position:fixed;right:16px;bottom:74px;z-index:150;display:inline-flex;align-items:center;gap:6px;height:46px;padding:0 17px;border-radius:24px;background:#06c755;box-shadow:0 4px 14px rgba(0,0,0,.22);color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:12.5px;letter-spacing:.04em;font-weight:500;text-decoration:none;white-space:nowrap}
   .line-fab .lw{font-family:'Jost',sans-serif;font-weight:700;letter-spacing:.02em}
   .line-fab:hover{filter:brightness(.96)}
   @media(min-width:900px){
     .nav-overlay{align-items:center}
-    .nav-overlay a{font-size:24px;justify-content:center}
+    .nav-inner{max-width:620px}
+    .nav-overlay a{padding:15px 0}
+    .nav-overlay a .nj{font-size:17px}
+    .nav-overlay a .ne{font-size:9px}
     .line-fab{bottom:24px}
   }
   /* 改行の最適化：見出しは行を均等に、本文は最後の1〜2文字の孤立を防ぐ */
@@ -109,7 +119,7 @@ const NAV_CV = [
   ov.setAttribute('aria-label', 'メインメニュー');
   const cur = h => h === here ? 'cur' : '';
   ov.innerHTML = '<div class="nav-inner">' +
-    NAV.map(p => `<a href="${p.href}" class="${cur(p.href)}"><span class="ne">${p.en}</span>${p.label}</a>`).join('') +
+    NAV.map(p => `<a href="${p.href}" class="${cur(p.href)}"><span class="nj">${p.label}</span><span class="ne">${p.en}</span></a>`).join('') +
     `<div class="nav-cv">` + NAV_CV.map(p => `<a href="${p.href}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
     `<div class="nav-sub-h">そのほか</div>` +
     `<div class="nav-sub">` + NAV_SUB.map(p => `<a href="${p.href}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
@@ -122,13 +132,28 @@ const NAV_CV = [
 
   // ---- LINE フローティングボタン（LINE_URL を設定したときだけ表示）----
   if (LINE_URL) {
-    const lf = document.createElement('a');
-    lf.className = 'line-fab';
-    lf.href = LINE_URL; lf.target = '_blank'; lf.rel = 'noopener';
-    lf.setAttribute('aria-label', 'LINEで聞く');
-    lf.innerHTML = '<span class="lw">LINE</span>で聞く';
-    lf.addEventListener('click', () => { if (window.gtag) window.gtag('event', 'line_click'); });
-    document.body.appendChild(lf);
+    const bar = document.querySelector('.fixed-cta');
+    const mkLine = (cls) => {
+      const a = document.createElement('a');
+      a.className = cls;
+      a.href = LINE_URL; a.target = '_blank'; a.rel = 'noopener';
+      a.setAttribute('aria-label', 'LINEで聞く');
+      a.innerHTML = '<span class="lw">LINE</span>で聞く';
+      a.addEventListener('click', () => { if (window.gtag) window.gtag('event', 'line_click'); });
+      return a;
+    };
+    if (bar) {
+      // 下の固定バーを「電話｜LINE｜来店予約」の3分割にする（写真の上に浮かせない）
+      if (!bar.querySelector('.fc-line')) {
+        bar.classList.add('three');
+        const tel = bar.querySelector('.fc-tel');
+        const line = mkLine('fc-line');
+        if (tel && tel.nextSibling) bar.insertBefore(line, tel.nextSibling);
+        else bar.appendChild(line);
+      }
+    } else {
+      document.body.appendChild(mkLine('line-fab'));
+    }
     // アフターページ等の「LINEで相談」ボタンも有効化
     document.querySelectorAll('a.hbtn.line').forEach(a => {
       a.href = LINE_URL; a.target = '_blank'; a.rel = 'noopener'; a.onclick = null;
