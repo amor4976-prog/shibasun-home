@@ -31,16 +31,25 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
 .back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px}
 .back:hover{background:var(--ink);color:#fff}
-/* 上は詰める（開いてすぐ写真） */
-.chead{max-width:1240px;margin:0 auto;padding:18px 24px 12px}
-.cmeta{font-size:11px;color:var(--gray);letter-spacing:.12em}
-.cmeta i{font-style:normal;color:#cfcdc0;margin:0 8px}
-h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,27px);font-weight:400;letter-spacing:.1em;margin-top:6px}
+/* 1枚目＝代表写真（開いてすぐ大きく見せる） */
+.hero figure{margin:0}
+.hero img{width:100%;height:auto;background:#e6e4da}
+.hero figcaption{display:none}
+/* 地名 → タイトル → #タグ → 面積（参考：コラボハウス） */
+.chead{max-width:1240px;margin:0 auto;padding:22px 24px 4px}
+.jarea{font-size:11.5px;color:var(--gray);letter-spacing:.14em}
+h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,27px);font-weight:400;letter-spacing:.1em;margin:6px 0 12px}
+.jtags{display:flex;flex-wrap:wrap;gap:4px 14px}
+.jtag{font-size:11.5px;font-weight:300;color:#57544c;letter-spacing:.04em}
+.jspec{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:14px;padding-top:14px;border-top:1px solid var(--linec);font-size:12px;color:#57544c}
+.jspec i{font-style:normal;color:var(--gray);margin-right:8px}
 /* 写真が縦に連続する。PCは2列で縦写真と横写真を噛み合わせる（切らない・隙間なく詰む） */
 .shots{columns:1}
 .shots figure{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 24px}
 .shots img{width:100%;height:auto;background:#e6e4da}
-.shots figcaption{font-size:12px;font-weight:300;color:#57544c;letter-spacing:.04em;line-height:1.8;padding:9px 24px 0}
+.shots figcaption{padding:11px 24px 0}
+.shots figcaption b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
+.shots figcaption span{display:block;font-size:12.5px;font-weight:300;color:#57544c;letter-spacing:.03em;line-height:1.95}
 @media(min-width:700px){
   .shots{columns:2;column-gap:28px;max-width:1240px;margin:0 auto;padding:0 24px}
   .shots figure{margin-bottom:30px}
@@ -80,12 +89,16 @@ footer a{color:#c2c2c0} footer .copy{opacity:.5;margin-top:12px;font-size:10px}
   <a class="back en" href="jisseki.html">← 建築実例</a>
 </header>
 
+<div class="hero"><figure class="yoko"><img src="img/jisseki/case08/01.jpg" srcset="img/jisseki/case08/thumb/01.jpg 640w, img/jisseki/case08/01.jpg 1600w" sizes="100vw" alt="玄関まわり" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1068"><figcaption><b>玄関まわり</b><span>黒い外壁に木の玄関ドアを合わせ、ポーチをタイルで仕上げました。柱で軒を受け、雨の日も濡れずに出入りできます。</span></figcaption></figure></div>
+
 <div class="chead">
-  <div class="cmeta">2階建て<i>｜</i>吹き抜け<i>｜</i>大開口<i>｜</i>写真8枚</div>
+  
   <h1>木の天井と、対面キッチン</h1>
+  <div class="jtags"><span class="jtag">#2階建て</span><span class="jtag">#吹き抜け</span><span class="jtag">#大開口</span></div>
+  
 </div>
 
-<div class="shots"><figure class="yoko"><img src="img/jisseki/case08/01.jpg" srcset="img/jisseki/case08/thumb/01.jpg 640w, img/jisseki/case08/01.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="黒い外壁と木の玄関ドア" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲黒い外壁と木の玄関ドア</figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/02.jpg" srcset="img/jisseki/case08/thumb/02.jpg 640w, img/jisseki/case08/02.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="木の天井の下に伸びる対面キッチン" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲木の天井の下に伸びる対面キッチン</figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/04.jpg" srcset="img/jisseki/case08/thumb/04.jpg 640w, img/jisseki/case08/04.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="グリーンを飾ったダイニング" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲グリーンを飾ったダイニング</figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/03.jpg" srcset="img/jisseki/case08/thumb/03.jpg 640w, img/jisseki/case08/03.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="キッチンから見たダイニング" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲キッチンから見たダイニング</figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/05.jpg" srcset="img/jisseki/case08/thumb/05.jpg 640w, img/jisseki/case08/05.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="木の天井と格子・シーリングファン" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲木の天井と格子・シーリングファン</figcaption></figure><figure class="tate"><img src="img/jisseki/case08/06.jpg" srcset="img/jisseki/case08/thumb/06.jpg 640w, img/jisseki/case08/06.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="吹き抜けの高窓" loading="lazy" decoding="async" width="1068" height="1600"><figcaption>▲吹き抜けの高窓</figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/07.jpg" srcset="img/jisseki/case08/thumb/07.jpg 640w, img/jisseki/case08/07.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="2階から見下ろす吹き抜けと窓" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲2階から見下ろす吹き抜けと窓</figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/08.jpg" srcset="img/jisseki/case08/thumb/08.jpg 640w, img/jisseki/case08/08.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="籐かごを置いた造作洗面" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲籐かごを置いた造作洗面</figcaption></figure></div>
+<div class="shots"><figure class="yoko"><img src="img/jisseki/case08/02.jpg" srcset="img/jisseki/case08/thumb/02.jpg 640w, img/jisseki/case08/02.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="対面キッチン" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>対面キッチン</b><span>木の天井の下に対面のキッチンを置き、ダイニングと向き合う配置にしました。手元側の立ち上がりで、リビングからは中が見えません。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/04.jpg" srcset="img/jisseki/case08/thumb/04.jpg 640w, img/jisseki/case08/04.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="ダイニング" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>ダイニング</b><span>窓辺に植物を並べ、レースカーテンで光をやわらげました。木のテーブルと造作の棚で、日々の道具が景色になります。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/03.jpg" srcset="img/jisseki/case08/thumb/03.jpg 640w, img/jisseki/case08/03.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="キッチンからの眺め" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>キッチンからの眺め</b><span>作業をしながら、ダイニングと窓の外まで見通せます。柱と天井の木が、視線の抜けに輪郭をつけています。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/05.jpg" srcset="img/jisseki/case08/thumb/05.jpg 640w, img/jisseki/case08/05.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="吹き抜け" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>吹き抜け</b><span>天井に木を張り、格子とシーリングファンを組み合わせました。高い位置の光が、格子を通して1階まで落ちます。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case08/06.jpg" srcset="img/jisseki/case08/thumb/06.jpg 640w, img/jisseki/case08/06.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="高窓" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>高窓</b><span>吹き抜けの上部に窓を取り、真上から光を落としています。壁を白で通し、光がやわらかく回ります。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/07.jpg" srcset="img/jisseki/case08/thumb/07.jpg 640w, img/jisseki/case08/07.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="2階から" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>2階から</b><span>手すり越しに1階を見下ろせるようにし、家族の位置がわかる関係にしました。窓の高さを揃え、外の景色が横につながります。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case08/08.jpg" srcset="img/jisseki/case08/thumb/08.jpg 640w, img/jisseki/case08/08.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="造作洗面" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>造作洗面</b><span>木のカウンターの下を開け、かごを並べられるようにしました。鏡を大きく取り、二人並んでも使えます。</span></figcaption></figure></div>
 
 <section class="others">
   <h2>ほかの実例</h2>

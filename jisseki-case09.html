@@ -31,16 +31,25 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
 .back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px}
 .back:hover{background:var(--ink);color:#fff}
-/* 上は詰める（開いてすぐ写真） */
-.chead{max-width:1240px;margin:0 auto;padding:18px 24px 12px}
-.cmeta{font-size:11px;color:var(--gray);letter-spacing:.12em}
-.cmeta i{font-style:normal;color:#cfcdc0;margin:0 8px}
-h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,27px);font-weight:400;letter-spacing:.1em;margin-top:6px}
+/* 1枚目＝代表写真（開いてすぐ大きく見せる） */
+.hero figure{margin:0}
+.hero img{width:100%;height:auto;background:#e6e4da}
+.hero figcaption{display:none}
+/* 地名 → タイトル → #タグ → 面積（参考：コラボハウス） */
+.chead{max-width:1240px;margin:0 auto;padding:22px 24px 4px}
+.jarea{font-size:11.5px;color:var(--gray);letter-spacing:.14em}
+h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,27px);font-weight:400;letter-spacing:.1em;margin:6px 0 12px}
+.jtags{display:flex;flex-wrap:wrap;gap:4px 14px}
+.jtag{font-size:11.5px;font-weight:300;color:#57544c;letter-spacing:.04em}
+.jspec{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:14px;padding-top:14px;border-top:1px solid var(--linec);font-size:12px;color:#57544c}
+.jspec i{font-style:normal;color:var(--gray);margin-right:8px}
 /* 写真が縦に連続する。PCは2列で縦写真と横写真を噛み合わせる（切らない・隙間なく詰む） */
 .shots{columns:1}
 .shots figure{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 24px}
 .shots img{width:100%;height:auto;background:#e6e4da}
-.shots figcaption{font-size:12px;font-weight:300;color:#57544c;letter-spacing:.04em;line-height:1.8;padding:9px 24px 0}
+.shots figcaption{padding:11px 24px 0}
+.shots figcaption b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
+.shots figcaption span{display:block;font-size:12.5px;font-weight:300;color:#57544c;letter-spacing:.03em;line-height:1.95}
 @media(min-width:700px){
   .shots{columns:2;column-gap:28px;max-width:1240px;margin:0 auto;padding:0 24px}
   .shots figure{margin-bottom:30px}
@@ -80,12 +89,16 @@ footer a{color:#c2c2c0} footer .copy{opacity:.5;margin-top:12px;font-size:10px}
   <a class="back en" href="jisseki.html">← 建築実例</a>
 </header>
 
+<div class="hero"><figure class="yoko"><img src="img/jisseki/case09/01.jpg" srcset="img/jisseki/case09/thumb/01.jpg 640w, img/jisseki/case09/01.jpg 1600w" sizes="100vw" alt="畳の間" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1068"><figcaption><b>畳の間</b><span>LDKの隣に畳の間を設け、建具を開けてひと続きに使えるようにしました。柱を残して境界を示すので、閉じても孤立しません。</span></figcaption></figure></div>
+
 <div class="chead">
-  <div class="cmeta">2階建て<i>｜</i>吹き抜け<i>｜</i>大開口<i>｜</i>写真7枚</div>
+  
   <h1>畳の間とつながるLDK</h1>
+  <div class="jtags"><span class="jtag">#2階建て</span><span class="jtag">#吹き抜け</span><span class="jtag">#大開口</span></div>
+  
 </div>
 
-<div class="shots"><figure class="yoko"><img src="img/jisseki/case09/01.jpg" srcset="img/jisseki/case09/thumb/01.jpg 640w, img/jisseki/case09/01.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="畳の間とつながるLDK" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲畳の間とつながるLDK</figcaption></figure><figure class="tate"><img src="img/jisseki/case09/02.jpg" srcset="img/jisseki/case09/thumb/02.jpg 640w, img/jisseki/case09/02.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="黒い面材のアイランドキッチン" loading="lazy" decoding="async" width="1068" height="1600"><figcaption>▲黒い面材のアイランドキッチン</figcaption></figure><figure class="tate"><img src="img/jisseki/case09/03.jpg" srcset="img/jisseki/case09/thumb/03.jpg 640w, img/jisseki/case09/03.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="木の格子と吹き抜けの手すり" loading="lazy" decoding="async" width="1068" height="1600"><figcaption>▲木の格子と吹き抜けの手すり</figcaption></figure><figure class="yoko"><img src="img/jisseki/case09/04.jpg" srcset="img/jisseki/case09/thumb/04.jpg 640w, img/jisseki/case09/04.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="アイアン手すりの階段" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲アイアン手すりの階段</figcaption></figure><figure class="tate"><img src="img/jisseki/case09/05.jpg" srcset="img/jisseki/case09/thumb/05.jpg 640w, img/jisseki/case09/05.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="吹き抜けとダイニング" loading="lazy" decoding="async" width="1068" height="1600"><figcaption>▲吹き抜けとダイニング</figcaption></figure><figure class="yoko"><img src="img/jisseki/case09/06.jpg" srcset="img/jisseki/case09/thumb/06.jpg 640w, img/jisseki/case09/06.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="ペンダント照明の手洗いカウンター" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲ペンダント照明の手洗いカウンター</figcaption></figure><figure class="yoko"><img src="img/jisseki/case09/07.jpg" srcset="img/jisseki/case09/thumb/07.jpg 640w, img/jisseki/case09/07.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="ブラケット照明の灯り" loading="lazy" decoding="async" width="1600" height="1068"><figcaption>▲ブラケット照明の灯り</figcaption></figure></div>
+<div class="shots"><figure class="tate"><img src="img/jisseki/case09/02.jpg" srcset="img/jisseki/case09/thumb/02.jpg 640w, img/jisseki/case09/02.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="アイランドキッチン" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>アイランドキッチン</b><span>黒い面材の島型キッチンを中心に置き、回り込める動線にしました。木の床との対比で、輪郭がはっきり見えます。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case09/03.jpg" srcset="img/jisseki/case09/thumb/03.jpg 640w, img/jisseki/case09/03.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="吹き抜けの格子" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>吹き抜けの格子</b><span>吹き抜けに木の格子を回し、光と視線を通しながら安全を確保しました。上下階のつながりを保ったまま、囲われた安心感が出ます。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case09/04.jpg" srcset="img/jisseki/case09/thumb/04.jpg 640w, img/jisseki/case09/04.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="階段" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>階段</b><span>黒いアイアンの手すりと木の段板を組み合わせました。細い部材なので、階段が空間を圧迫しません。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case09/05.jpg" srcset="img/jisseki/case09/thumb/05.jpg 640w, img/jisseki/case09/05.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="吹き抜け" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>吹き抜け</b><span>ダイニングの上を吹き抜けにし、高い位置の窓から光を落とします。天井が高く、面積以上の広がりを感じられます。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case09/06.jpg" srcset="img/jisseki/case09/thumb/06.jpg 640w, img/jisseki/case09/06.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="手洗い" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>手洗い</b><span>小さなカウンターにペンダントを下げ、必要な明るさだけを確保しました。壁の色を落ち着かせ、灯りが浮かんで見えます。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case09/07.jpg" srcset="img/jisseki/case09/thumb/07.jpg 640w, img/jisseki/case09/07.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="灯り" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>灯り</b><span>壁付けのブラケットを一灯だけ付け、通路の足元を照らします。裸電球の暖色が、夜の階段まわりをやわらげます。</span></figcaption></figure></div>
 
 <section class="others">
   <h2>ほかの実例</h2>
