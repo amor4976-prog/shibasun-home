@@ -68,21 +68,23 @@ a{text-decoration:none;color:inherit}
 /* 気になるところから入れる入口（参考：コラボハウスの家づくりページ） */
 .gate{max-width:1100px;margin:0 auto;padding:34px 0 6px}
 .gate-h{padding:0 22px 6px;font-size:11.5px;color:var(--gray);letter-spacing:.14em}
-.gcard{display:block;margin-bottom:30px}
-.gcard img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#ededeb}
-.gcard .gtxt{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:12px 22px 0}
+/* 写真は左、文字は右、丸い矢印。薄い線で区切る（コラボハウスの並び） */
+.gcard{display:grid;grid-template-columns:120px 1fr 24px;gap:14px;align-items:center;
+       padding:16px 20px;border-top:1px solid var(--linec);background:#fff}
+.gcard:last-of-type{border-bottom:1px solid var(--linec)}
+.gcard img{width:120px;height:81px;object-fit:cover;background:#ededeb}
 .gcard .glead{font-size:10.5px;color:var(--gray);letter-spacing:.1em;line-height:1.7}
-.gcard h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(15px,4.4vw,19px);font-weight:600;letter-spacing:.07em;margin-top:4px;line-height:1.55}
-.gcard .garw{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid #d5d5d1;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray);margin-top:4px}
+.gcard h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;font-weight:600;letter-spacing:.05em;margin-top:5px;line-height:1.5}
+.gcard .garw{width:28px;height:28px;border-radius:50%;border:1px solid #d5d5d1;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray);transition:all .25s}
 .gcard:hover .garw{background:var(--ink);color:#fff;border-color:var(--ink)}
-.gcard:hover img{opacity:.92}
+.gcard:hover img{opacity:.93}
 @media(min-width:760px){
-  .gate{display:grid;grid-template-columns:1fr 1fr;gap:8px 30px;padding:34px 22px 6px}
+  .gate{display:grid;grid-template-columns:1fr 1fr;gap:0 34px;padding:34px 22px 6px}
   .gate-h{grid-column:1/-1;padding-left:0}
-  .gcard{margin-bottom:26px}
-  .gcard .gtxt{padding:12px 0 0}
+  .gcard{grid-template-columns:220px 1fr 28px;padding:20px 0}
+  .gcard img{width:220px;height:148px}
+  .gcard h2{font-size:19px}
 }
-@media(min-width:1040px){.gate{grid-template-columns:repeat(3,1fr)}}
 .icta{text-align:center;padding:52px 22px 20px}
 .icta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5vw,25px);font-weight:600;letter-spacing:.06em;margin-bottom:8px}
 .icta p{font-size:13px;color:var(--gray);margin-bottom:22px}
@@ -113,27 +115,27 @@ footer .copy{margin-top:14px;font-size:10px;opacity:.6}
   <div class="gate-h">気になるところから、ご覧ください</div>
   <a class="gcard" href="jisseki.html">
     <img src="img/jisseki/case08/02.jpg" alt="木の天井と対面キッチンのある家" loading="lazy" decoding="async">
-    <div class="gtxt"><div><div class="glead">10軒・74枚の写真で見る</div><h2>建築実例</h2></div><span class="garw">›</span></div>
+    <div class="gbody"><div class="glead">10軒・74枚の写真で見る</div><h2>建築実例</h2></div><span class="garw">›</span>
   </a>
   <a class="gcard" href="members.html">
     <img src="img/member-shacho.jpg" alt="大工歴43年の社長" loading="lazy" decoding="async">
-    <div class="gtxt"><div><div class="glead">つくり手の顔が見える</div><h2>大工社長と、専属の職人</h2></div><span class="garw">›</span></div>
+    <div class="gbody"><div class="glead">つくり手の顔が見える</div><h2>大工社長と、専属の職人</h2></div><span class="garw">›</span>
   </a>
   <a class="gcard" href="spec.html">
     <img src="img/jisseki/case05/06.jpg" alt="性能と標準仕様" loading="lazy" decoding="async">
-    <div class="gtxt"><div><div class="glead">住んでからで差が出る</div><h2>性能と標準仕様</h2></div><span class="garw">›</span></div>
+    <div class="gbody"><div class="glead">住んでからで差が出る</div><h2>性能と標準仕様</h2></div><span class="garw">›</span>
   </a>
   <a class="gcard" href="products.html">
     <img src="img/jisseki/case07/06.jpg" alt="商品と価格" loading="lazy" decoding="async">
-    <div class="gtxt"><div><div class="glead">はじめに総額が分かる</div><h2>商品と価格</h2></div><span class="garw">›</span></div>
+    <div class="gbody"><div class="glead">はじめに総額が分かる</div><h2>商品と価格</h2></div><span class="garw">›</span>
   </a>
   <a class="gcard" href="flow.html">
     <img src="img/jisseki/case06/05.jpg" alt="家づくりの進め方" loading="lazy" decoding="async">
-    <div class="gtxt"><div><div class="glead">はじめての方へ</div><h2>家づくりの進め方</h2></div><span class="garw">›</span></div>
+    <div class="gbody"><div class="glead">はじめての方へ</div><h2>家づくりの進め方</h2></div><span class="garw">›</span>
   </a>
   <a class="gcard" href="after.html">
     <img src="img/jisseki/case01/12.jpg" alt="アフターと保証" loading="lazy" decoding="async">
-    <div class="gtxt"><div><div class="glead">引き渡してからが本番</div><h2>アフターと保証</h2></div><span class="garw">›</span></div>
+    <div class="gbody"><div class="glead">引き渡してからが本番</div><h2>アフターと保証</h2></div><span class="garw">›</span>
   </a>
 </section>
 
