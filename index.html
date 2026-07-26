@@ -484,6 +484,30 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .sd-btns .line{border:1px solid var(--ink)}
 .sd-tel{text-align:center;margin-top:16px;font-size:11.5px;color:var(--gray);line-height:1.9}
 .sd-tel b{font-family:'Jost',sans-serif;font-size:19px;color:var(--ink);letter-spacing:.04em;display:block}
+
+/* コラム（参考：コラボハウスのトップのコラム欄） */
+.column{background:#fff;padding:66px 0 62px}
+.column .in{max-width:900px;margin:0 auto;padding:0 22px;position:relative}
+.cl-lead{font-size:12px;color:var(--gray);letter-spacing:.12em}
+.cl-h{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,32px);font-weight:500;letter-spacing:.1em;margin-top:6px}
+.cl-list{margin-top:26px}
+.cl-item{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linec)}
+.cl-item:first-of-type{border-top:1px solid var(--linec)}
+.cl-item .th{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb}
+.cl-item .th img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.cl-item:hover .th img{transform:scale(1.04)}
+.cl-item .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(26,26,26,.78);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;padding-left:2px}
+.cl-item .kind{display:block;font-size:10px;letter-spacing:.14em;color:var(--gray)}
+.cl-item .t{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;line-height:1.7;margin-top:5px}
+@media(min-width:760px){
+  .cl-item{grid-template-columns:180px 1fr;gap:22px;padding:18px 0}
+  .cl-item .t{font-size:15.5px}
+}
+.cl-more{display:flex;align-items:center;justify-content:center;gap:12px;max-width:420px;margin:30px auto 0;
+         border:1px solid var(--ink);border-radius:999px;padding:16px 24px;font-size:13px;letter-spacing:.12em}
+.cl-more span{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px}
+.cl-more:hover{background:var(--ink);color:#fff}
+.cl-more:hover span{background:#fff;color:var(--ink)}
 .spec-note{max-width:1040px;margin:18px auto 0;font-size:11px;color:var(--gray);letter-spacing:.08em;font-weight:300}
 
 /* ===== Compare（編集タイポ・レスポンシブ） ===== */
@@ -1216,24 +1240,34 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
   </div>
 </section>
 
-<section class="latest-blog" id="latest-blog" style="padding:72px 0;background:#fff">
-  <div class="inner" style="max-width:820px;margin:0 auto;padding:0 20px">
-    <div class="label"><span class="en">Blog</span><small>家づくりのブログ</small></div>
-    <div style="display:grid;gap:14px;margin-top:28px">
-      <a href="blog-movie-setsubi.html" class="fade" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;border:1px solid var(--linec);padding:12px">
-        <span style="position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb"><img src="https://i.ytimg.com/vi/PXi34b0cv7k/hqdefault.jpg" alt="付けたら損する住宅設備10選" loading="lazy" style="width:100%;height:100%;object-fit:cover"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(26,26,26,.8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;padding-left:2px;box-sizing:border-box">▶</span></span>
-        <span><span style="display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--gray)">MOVIE</span><span style="display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.7;margin-top:4px">付けたら損する住宅設備10選、大工が本音で解説</span></span>
+<!-- コラム -->
+<section class="column" id="column">
+  <div class="in">
+    <div class="cl-lead">家づくりのお役立ち情報</div>
+    <h2 class="cl-h">コラム</h2>
+    <div class="cl-list">
+      <a class="cl-item fade" href="blog-movie-setsubi.html">
+        <span class="th"><img src="https://i.ytimg.com/vi/PXi34b0cv7k/hqdefault.jpg" alt="付けたら損する住宅設備10選" loading="lazy" decoding="async"><span class="play">▶</span></span>
+        <span><span class="kind">動画つき</span><span class="t">付けたら損する住宅設備10選、大工が本音で解説</span></span>
       </a>
-      <a href="blog-tsubo.html" class="fade" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;border:1px solid var(--linec);padding:12px">
-        <span style="display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb"><img src="img/work-exterior.jpg" alt="奈良の坪単価" loading="lazy" style="width:100%;height:100%;object-fit:cover"></span>
-        <span><span style="display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--gray)">PRICE</span><span style="display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.7;margin-top:4px">奈良で注文住宅の坪単価はいくら？</span></span>
+      <a class="cl-item fade" href="blog-tsubo.html">
+        <span class="th"><img src="img/jisseki/case02/thumb/01.jpg" alt="奈良の坪単価" loading="lazy" decoding="async"></span>
+        <span><span class="kind">お金のこと</span><span class="t">奈良で注文住宅の坪単価はいくら？内訳から見る適正価格</span></span>
       </a>
-      <a href="blog-yosan.html" class="fade" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;border:1px solid var(--linec);padding:12px">
-        <span style="display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb"><img src="img/work-loft.jpg" alt="予算と資金計画" loading="lazy" style="width:100%;height:100%;object-fit:cover"></span>
-        <span><span style="display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--gray)">BUDGET</span><span style="display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.7;margin-top:4px">注文住宅の予算の決め方｜年収別の目安</span></span>
+      <a class="cl-item fade" href="blog-yosan.html">
+        <span class="th"><img src="img/jisseki/case04/thumb/02.jpg" alt="予算と資金計画" loading="lazy" decoding="async"></span>
+        <span><span class="kind">お金のこと</span><span class="t">注文住宅の予算の決め方｜年収別の目安と、無理のない返済</span></span>
+      </a>
+      <a class="cl-item fade" href="blog-movie-yuka-souji.html">
+        <span class="th"><img src="img/jisseki/case06/thumb/04.jpg" alt="床の掃除がラクになる床材" loading="lazy" decoding="async"></span>
+        <span><span class="kind">動画つき</span><span class="t">床の掃除がラクになる、床材の選び方</span></span>
+      </a>
+      <a class="cl-item fade" href="blog-hiraya.html">
+        <span class="th"><img src="img/jisseki/case07/thumb/01.jpg" alt="平屋の話" loading="lazy" decoding="async"></span>
+        <span><span class="kind">間取りのこと</span><span class="t">平屋は本当に高い？　総額で比べたときの考え方</span></span>
       </a>
     </div>
-    <div style="text-align:center;margin-top:24px"><a href="blog.html" style="display:inline-block;padding:13px 30px;border:1px solid var(--ink);font-size:12px;letter-spacing:.14em">ブログをすべて見る →</a></div>
+    <a class="cl-more" href="blog.html">コラムをさらに見る<span>›</span></a>
   </div>
 </section>
 
