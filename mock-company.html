@@ -50,6 +50,22 @@ section{max-width:1240px;margin:0 auto;padding:0 24px}
 .values b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.08em;margin-bottom:4px}
 .values span{font-size:12px;font-weight:300;color:#57544c;line-height:1.95}
 
+/* 私たちの仕事（写真＋見出し＋2文） */
+.works{display:grid;gap:26px}
+@media(min-width:760px){.works{grid-template-columns:1fr 1fr;gap:30px 30px}}
+.works figure{margin:0}
+.works img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e6e4da}
+.works figcaption{padding-top:11px}
+.works figcaption b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.1em;margin-bottom:5px}
+.works figcaption span{display:block;font-size:12.5px;font-weight:300;color:#57544c;line-height:1.95}
+
+/* つくり手 */
+.makers{display:grid;gap:22px}
+@media(min-width:700px){.makers{grid-template-columns:1fr 1fr;gap:30px}}
+.maker img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e6e4da}
+.maker .mlead{font-size:10.5px;color:var(--gray);letter-spacing:.1em;margin-top:11px}
+.maker b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;letter-spacing:.08em;margin-top:4px}
+
 /* 会社概要 */
 table{width:100%;border-collapse:collapse;font-size:12.5px;font-weight:300}
 th,td{text-align:left;padding:13px 0;border-bottom:1px solid var(--linec);vertical-align:top}
@@ -103,6 +119,44 @@ footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;col
       <div><b>手を動かす</b><span>現場に立つ人間が、そのまま打ち合わせに出ます。</span></div>
       <div><b>長く付き合う</b><span>引き渡してからの点検と手入れまでを仕事と考えます。</span></div>
     </div>
+  </div>
+</section>
+
+<!-- 仕事の中身を写真で見せる（文字だけにしない） -->
+<section>
+  <h2 class="sec-t">私たちの仕事</h2>
+  <div class="works">
+    <figure>
+      <img src="img/spec/spec-kouzo.jpg" alt="構造の現場" loading="lazy" decoding="async">
+      <figcaption><b>構造</b><span>住んでから見えなくなる場所こそ、手を抜けません。木の癖を見て納まりを決めるのは、現場に立つ人間の仕事です。</span></figcaption>
+    </figure>
+    <figure>
+      <img src="img/spec/spec-dannetsu.jpg" alt="断熱の施工" loading="lazy" decoding="async">
+      <figcaption><b>断熱・気密</b><span>夏の暑さと冬の寒さを、住んでから我慢しなくていいように。標準仕様で高断熱・高気密にしています。</span></figcaption>
+    </figure>
+    <figure>
+      <img src="img/spec/spec-taishin.jpg" alt="耐震の構造" loading="lazy" decoding="async">
+      <figcaption><b>耐震</b><span>耐震等級3相当の構造設計。地震のあとも住み続けられることを前提に考えます。</span></figcaption>
+    </figure>
+    <figure>
+      <img src="img/people/04.jpg" alt="引き渡してからの暮らし" loading="lazy" decoding="async">
+      <figcaption><b>引き渡してから</b><span>点検も修理も、電話一本で伺います。地元にいるからできる距離で、長く手入れをしていきます。</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- つくり手 -->
+<section>
+  <h2 class="sec-t">つくり手</h2>
+  <div class="makers">
+    <a class="maker" href="members.html">
+      <img src="img/blog/blog-shacho-01_1.jpg" alt="現場に立つ社長" loading="lazy" decoding="async">
+      <div><div class="mlead">大工歴43年・現場に立つ</div><b>代表取締役　柴部 崇</b></div>
+    </a>
+    <a class="maker" href="members.html">
+      <img src="img/member-senmu.jpg" alt="専務取締役" loading="lazy" decoding="async">
+      <div><div class="mlead">段取りとお金の計画を担当</div><b>専務取締役　柴部 文嘉</b></div>
+    </a>
   </div>
 </section>
 
