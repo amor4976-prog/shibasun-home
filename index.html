@@ -640,7 +640,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .rev-card p{font-size:13px;font-weight:300;line-height:2;color:#454543}
 .rev-card .gi{margin-top:auto;padding-top:12px;font-size:10px;color:var(--gray);display:flex;align-items:center;gap:5px}
 .rev-cta{text-align:center;margin-top:30px}
-.rev-hint{display:none;text-align:center;margin-top:22px;font-size:11px;font-weight:300;color:var(--gray);letter-spacing:.06em;line-height:1.9}
 
 /* ===== FAQ（よくある質問） ===== */
 .faq{background:#fff}
@@ -1207,7 +1206,6 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
     <div class="rev-track fade" id="rev-track">
       <!-- Googleレビューが設定されると自動表示。未設定の間はサンプル表示 -->
     </div>
-    <p class="rev-hint" id="rev-hint">※ 実際にシバ・サンホームでお建ていただいたお客様の声です。間取り・価格つきの詳しい事例は <a href="jisseki.html" style="color:var(--ink);border-bottom:1px solid var(--gold)">建築実例ページ</a> でご覧いただけます。</p>
   </div>
 </section>
 
@@ -1499,8 +1497,6 @@ function renderReviews(list, avg, total, sample){
     sc.innerHTML=`<span class="rev-stars" style="font-size:22px">★★★★★</span>`;
     if(gl)gl.style.display='none';
     cnt.textContent='奈良で家づくりをされたお客様の声';
-    const hint=document.getElementById('rev-hint');
-    if(hint)hint.style.display='block';
   }
 }
 

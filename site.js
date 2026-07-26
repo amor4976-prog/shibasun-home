@@ -45,6 +45,14 @@ const NAV_CV = [
 
   // ---- 共通CSS（1ファイルで全ページに適用） ----
   const css = `
+  /* 日本語の改行（全ページ共通） */
+  /* ① 禁則：行頭に「、。ー っ ）」」が来ないようにする */
+  body{line-break:strict;word-break:normal;overflow-wrap:anywhere}
+  h1,h2,h3,h4,p,li,dt,dd,figcaption,span{line-break:strict}
+  /* ② 見出しは行の長さを均す／本文は最終行が1〜2文字だけにならないようにする */
+  h1,h2,h3,h4{text-wrap:balance}
+  p,li,dd,dt,figcaption{text-wrap:pretty}
+
   .nav-toggle{position:relative;width:30px;height:22px;background:none;border:none;cursor:pointer;padding:0;z-index:402}
   .nav-toggle span{position:absolute;left:0;width:100%;height:1.6px;background:var(--ink,#1c1c1a);transition:.3s}
   .nav-toggle span:nth-child(1){top:0}.nav-toggle span:nth-child(2){top:10px}.nav-toggle span:nth-child(3){top:20px}
