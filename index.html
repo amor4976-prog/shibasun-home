@@ -93,7 +93,9 @@ header.scrolled .head-cta{color:var(--ink)}
   z-index:2;
 }
 .hero-copy{
-  position:absolute;left:24px;bottom:96px;z-index:3;color:#fff;
+  /* 本文と同じ縦のライン（1084px＝1040＋左右22）に揃える */
+  position:absolute;left:0;right:0;bottom:96px;z-index:3;color:#fff;
+  width:100%;max-width:1084px;margin:0 auto;padding:0 22px;
 }
 .hero-copy .en-line{font-size:10px;letter-spacing:.4em;margin-bottom:18px;opacity:.85}
 .hero-copy h1{
@@ -450,17 +452,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .spec-list li:last-child{border-bottom:none}
 .spec-list li span:first-child{color:var(--gray);font-size:11px;letter-spacing:.16em;white-space:nowrap}
 .spec-list li span:last-child{text-align:right}
-.qa{max-width:1040px;margin:52px auto 0;border-top:1px solid var(--linec)}
-.qa-row{padding:18px 0;border-bottom:1px solid var(--linec)}
-@media(min-width:800px){.qa-row{display:grid;grid-template-columns:290px 1fr;gap:28px;align-items:baseline}}
-.qa .q{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14.5px;font-weight:500;letter-spacing:.06em;line-height:1.6}
-.qa .a{font-size:13px;font-weight:300;color:#4a4a48;line-height:2;margin-top:6px}
-@media(min-width:800px){.qa .a{margin-top:0}}
-.qa .a b{font-weight:500;color:var(--ink)}
 
 /* 個別相談会（参考：コラボハウスの「無料相談会 7つのメリット」） */
 .soudan{background:#faf9f6;padding:64px 0 60px;border-top:1px solid var(--linec);border-bottom:1px solid var(--linec)}
-.soudan .in{max-width:1040px;margin:0 auto;padding:0 22px}
+.soudan .in{max-width:1084px;margin:0 auto;padding:0 22px}
 .sd-lead{font-size:12px;color:var(--gray);letter-spacing:.12em}
 .sd-h{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,34px);font-weight:500;letter-spacing:.1em;margin-top:8px}
 .sd-facts{display:flex;flex-wrap:wrap;gap:8px 9px;margin-top:14px}
@@ -490,7 +485,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 
 /* コラム（参考：コラボハウスのトップのコラム欄） */
 .column{background:#fff;padding:66px 0 62px}
-.column .in{max-width:900px;margin:0 auto;padding:0 22px;position:relative}
+.column .in{max-width:1084px;margin:0 auto;padding:0 22px;position:relative}
 .cl-lead{font-size:12px;color:var(--gray);letter-spacing:.12em}
 .cl-h{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,32px);font-weight:500;letter-spacing:.1em;margin-top:6px}
 .cl-list{margin-top:26px}
@@ -1068,7 +1063,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 
 <section class="spec" id="spec">
   <div class="inner">
-    <div class="label"><span class="en">Spec &amp; Price</span><small>仕様と価格</small></div>
+    <div class="label"><small>仕様と価格</small></div>
     <div class="spec-grid">
       <div class="spec-card fade">
         <div class="jp">価格</div>
@@ -1095,13 +1090,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       </div>
     </div>
     
-    <div class="qa fade">
-      <div class="qa-row"><div class="q">結局、いくらになるの？</div><div class="a">はじめに<b>総額</b>でお見せします。本体・諸費用・外構まで含めた金額で計画します。</div></div>
-      <div class="qa-row"><div class="q">性能は大手に負けない？</div><div class="a"><b>耐震等級3相当・高断熱高気密が標準</b>です。オプションではありません。</div></div>
-      <div class="qa-row"><div class="q">間取りは自由にできる？</div><div class="a"><b>自由設計</b>です。規格プランに暮らしを合わせてもらうことはしません。</div></div>
-      <div class="qa-row"><div class="q">誰がつくるの？</div><div class="a"><b>大工歴43年の社長と専属の職人</b>です。現場に立つ人間が打ち合わせにも出ます。</div></div>
-      <div class="qa-row"><div class="q">建てたあとは？</div><div class="a">奈良で3代。<b>点検も修理も電話1本</b>で伺います。</div></div>
-    </div>
     <div class="spec-note">※ 価格は仕様・敷地条件により変動します。詳しい仕様書と資金計画はご来店時にご案内します。</div>
   </div>
 </section>
