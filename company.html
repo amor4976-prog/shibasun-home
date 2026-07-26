@@ -37,6 +37,20 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
 .whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
 .sec{max-width:1040px;margin:0 auto;padding:44px 20px}
+.co-works{display:grid;gap:26px;max-width:1040px;margin:0 auto}
+@media(min-width:760px){.co-works{grid-template-columns:1fr 1fr;gap:30px}}
+.co-works figure{margin:0}
+.co-works img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9e6e0}
+.co-works figcaption{padding-top:11px}
+.co-works figcaption b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.1em;margin-bottom:5px}
+.co-works figcaption span{display:block;font-size:12.5px;font-weight:300;color:#454543;line-height:2}
+.lead-link{max-width:1040px;margin:0 auto;font-size:13px;font-weight:300;line-height:2.1;color:#454543}
+.lead-link a{border-bottom:1px solid var(--gold)}
+.co-links{max-width:1040px;margin:20px auto 0}
+.co-links a{display:inline-block;padding:13px 26px;border:1px solid var(--ink);font-size:12px;letter-spacing:.12em}
+.co-links a:hover{background:var(--ink);color:#fff}
+.person-more{margin-top:14px}
+.person-more a{font-size:12px;letter-spacing:.08em;border-bottom:1px solid var(--gold)}
 .label{display:flex;align-items:center;gap:16px;margin-bottom:30px}
 .label .en{font-size:11px;color:var(--ink);font-weight:500}
 .label::after{content:"";flex:0 0 40px;height:1px;background:var(--ink)}
@@ -64,11 +78,6 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .str-item h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:18px;font-weight:500;letter-spacing:.06em;margin:8px 0 8px}
 .str-item p{font-size:13px;font-weight:300;line-height:2.1;color:#454543}
 /* flow */
-.flow-grid{display:grid;gap:1px;background:var(--linec);border:1px solid var(--linec);max-width:1040px;margin:0 auto}
-.fstep{background:#fff;padding:24px 22px}
-.fstep .num{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.3em;color:var(--gold)}
-.fstep h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;letter-spacing:.08em;margin:8px 0 6px}
-.fstep p{font-size:12px;font-weight:300;color:var(--gray);line-height:2}
 /* company table */
 .ctable{width:100%;max-width:760px;margin:0 auto;border-collapse:collapse;font-size:13.5px;font-weight:300}
 .ctable th,.ctable td{padding:16px 8px;border-bottom:1px solid var(--linec);text-align:left;vertical-align:top}
@@ -93,7 +102,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:200;display:grid;grid-template-columns:1fr 1fr;height:60px;border-top:1px solid rgba(255,255,255,.15)}
 .fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em}
 .fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}.fc-reserve{background:var(--ink);color:#fff}
-@media(min-width:760px){.people{grid-template-columns:1fr 1fr;gap:56px}.str-grid{grid-template-columns:repeat(3,1fr)}.str-item{border-bottom:none;border-right:1px solid var(--linec)}.str-item:last-child{border-right:none}.flow-grid{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:760px){.people{grid-template-columns:1fr 1fr;gap:56px}.str-grid{grid-template-columns:repeat(3,1fr)}.str-item{border-bottom:none;border-right:1px solid var(--linec)}.str-item:last-child{border-right:none}}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
 </style>
 </head>
@@ -120,19 +129,34 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <div class="label"><span class="en">People</span><small>私たちがつくっています</small></div>
   <div class="people">
     <div class="person">
-      <div class="ph"><span>PHOTO — 社長</span></div>
+      <div class="ph"><img src="img/member-shacho.jpg" alt="代表取締役 柴部 崇" loading="lazy" decoding="async"></div>
       <div class="role">President / 大工社長</div>
       <h3>柴部 崇</h3>
       <div class="yomi">代表取締役・二級建築士</div>
       <p>建築歴43年。大工としてこの道ひと筋に、新築550棟以上を手がけてきました。今も現場に立ち、いい家をつくることに本気です。家づくりを通じて人を元気に、家族を幸せに。それが私の変わらない使命です。</p>
     </div>
     <div class="person">
-      <div class="ph"><span>PHOTO — 専務</span></div>
+      <div class="ph"><img src="img/member-senmu.jpg" alt="専務取締役 柴部 文嘉" loading="lazy" decoding="async"></div>
       <div class="role">Director / 専務</div>
       <h3>柴部 文嘉</h3>
       <div class="yomi">専務取締役</div>
       <p>資金計画・土地探し・設計の窓口として、初めての家づくりに伴走します。お金のことこそ正直に。納得して選んでいただけるまで、何度でもご説明します。しつこい営業は一切しません。</p>
     </div>
+  </div>
+  <div class="person-more"><a href="members.html">私たちのこと（社長の言葉・専属職人）を詳しく見る →</a></div>
+</section>
+
+<section class="sec">
+  <div class="label"><span class="en">Works</span><small>私たちの仕事</small></div>
+  <div class="co-works">
+    <figure><img src="img/spec/spec-kouzo.jpg" alt="構造" loading="lazy" decoding="async">
+      <figcaption><b>構造</b><span>住んでから見えなくなる場所こそ、手を抜けません。木の癖を見て納まりを決めるのは、現場に立つ人間の仕事です。</span></figcaption></figure>
+    <figure><img src="img/spec/spec-dannetsu.jpg" alt="断熱・気密" loading="lazy" decoding="async">
+      <figcaption><b>断熱・気密</b><span>夏の暑さと冬の寒さを、住んでから我慢しなくていいように。高断熱・高気密を標準にしています。</span></figcaption></figure>
+    <figure><img src="img/spec/spec-taishin.jpg" alt="耐震" loading="lazy" decoding="async">
+      <figcaption><b>耐震</b><span>耐震等級3相当の構造設計。地震のあとも住み続けられることを前提に考えます。</span></figcaption></figure>
+    <figure><img src="img/people/04.jpg" alt="引き渡してから" loading="lazy" decoding="async">
+      <figcaption><b>引き渡してから</b><span>点検も修理も、電話一本で伺います。地元にいるからできる距離で、長く手入れをしていきます。</span></figcaption></figure>
   </div>
 </section>
 
@@ -149,13 +173,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <section class="sec">
   <div class="label"><span class="en">Flow</span><small>家づくりの流れ</small></div>
-  <div class="flow-grid">
-    <div class="fstep"><div class="num">01</div><h3>ご相談</h3><p>資金計画・土地探しから。オンラインも可。</p></div>
-    <div class="fstep"><div class="num">02</div><h3>土地・敷地調査</h3><p>地元ネットワークで土地をご提案。</p></div>
-    <div class="fstep"><div class="num">03</div><h3>プラン・お見積り</h3><p>外構まで含めた総額でご提示。</p></div>
-    <div class="fstep"><div class="num">04</div><h3>着工〜お引き渡し</h3><p>専属職人による責任施工。見学歓迎。</p></div>
-    <div class="fstep"><div class="num">05</div><h3>アフターサポート</h3><p>定期点検と保証で永くお付き合い。</p></div>
-  </div>
+  <p class="lead-link">ご相談から資金計画、土地さがし、着工、お引き渡し、そのあとの点検まで。<br>
+    9つの段落に分けて、<a href="flow.html">家づくりの進め方</a>のページで詳しくご説明しています。</p>
+  <div class="co-links"><a href="flow.html">家づくりの進め方を見る →</a></div>
 </section>
 
 <section class="sec" style="background:var(--pale);max-width:none">

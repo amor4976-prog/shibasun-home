@@ -19,21 +19,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1a1a1a;--gray:#767674;--linec:#e3e1d6;--kinari:#f2f1e9}
+:root{--ink:#1a1a1a;--gray:#767674;--linec:#e3e1d6;--kinari:#f7f6f2}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--kinari);line-height:1.9;letter-spacing:.03em;padding-bottom:60px}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 .en{font-family:'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase}
-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(242,241,233,.96);border-bottom:1px solid var(--linec)}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(247,246,242,.96);border-bottom:1px solid var(--linec)}
 .logo{display:flex;flex-direction:column;line-height:1.25}
 .logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
 .logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
 .back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px}
 .back:hover{background:var(--ink);color:#fff}
 /* 1枚目＝代表写真（開いてすぐ大きく見せる） */
+.hero{background:#eceae2}
 .hero figure{margin:0}
-.hero img{width:100%;height:auto;background:#e6e4da}
+.hero img{width:auto;max-width:100%;height:auto;max-height:70vh;margin:0 auto}
 .hero figcaption{display:none}
 /* 地名 → タイトル → #タグ → 面積（参考：コラボハウス） */
 .chead{max-width:1240px;margin:0 auto;padding:22px 24px 4px}
