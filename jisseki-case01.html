@@ -38,12 +38,12 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .hero figcaption{display:none}
 /* 地名 → タイトル → #タグ → 面積（参考：コラボハウス） */
 .chead{max-width:1240px;margin:0 auto;padding:22px 24px 4px}
-.jarea{font-size:11.5px;color:var(--gray);letter-spacing:.14em}
+.jmeta{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 18px;font-size:11.5px;letter-spacing:.1em;color:#57544c;line-height:1.9}
+.jmeta .loc{color:var(--gray);letter-spacing:.14em}
 h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,27px);font-weight:400;letter-spacing:.1em;margin:6px 0 12px}
 .jtags{display:flex;flex-wrap:wrap;gap:4px 14px}
 .jtag{font-size:11.5px;font-weight:300;color:#57544c;letter-spacing:.04em}
-.jspec{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:14px;padding-top:14px;border-top:1px solid var(--linec);font-size:12px;color:#57544c}
-.jspec i{font-style:normal;color:var(--gray);margin-right:8px}
+.jmeta i{font-style:normal;color:var(--gray);margin-right:7px}
 .jspec .jwhen{color:var(--gray);font-size:10.5px;margin-left:6px}
 .pnote{max-width:1240px;margin:26px auto 0;padding:0 24px;font-size:11.5px;font-weight:300;color:var(--gray);line-height:1.9}
 .pnote a{color:var(--ink);border-bottom:1px solid var(--linec);white-space:nowrap}
@@ -96,10 +96,9 @@ footer a{color:#c2c2c0} footer .copy{opacity:.5;margin-top:12px;font-size:10px}
 <div class="hero"><figure class="yoko"><img src="img/jisseki/case01/01.jpg" srcset="img/jisseki/case01/thumb/01.jpg 640w, img/jisseki/case01/01.jpg 1600w" sizes="100vw" alt="外観" loading="eager" fetchpriority="high" decoding="async" width="1600" height="1066"><figcaption><b>外観</b><span>白い塗り壁に木の板を組み合わせ、黒いサッシで輪郭を締めた外観です。深い軒が窓の上に影をつくり、道路側からの視線をやわらげます。</span></figcaption></figure></div>
 
 <div class="chead">
-  <div class="jarea">奈良県奈良市</div>
+  <div class="jmeta"><span class="loc">奈良県奈良市</span><span><i>1階</i>56.31㎡</span><span><i>2階</i>52.99㎡</span><span><i>延床</i>109.30㎡（33.06坪）</span><span><i>本体価格</i>2,600万円台<small class="jwhen">（2026年竣工時の価格・税込）</small></span></div>
   <h1>2階から光が落ちてくる家</h1>
   <div class="jtags"><span class="jtag">#2階建て</span><span class="jtag">#吹き抜け</span><span class="jtag">#土間</span></div>
-  <div class="jspec"><span><i>1階</i>56.31㎡</span><span><i>2階</i>52.99㎡</span><span><i>延床</i>109.30㎡（33.06坪）</span><span><i>本体価格</i>2,600万円台<small class="jwhen">（2026年竣工時の価格・税込）</small></span></div>
 </div>
 
 <div class="shots"><figure class="yoko"><img src="img/jisseki/case01/02.jpg" srcset="img/jisseki/case01/thumb/02.jpg 640w, img/jisseki/case01/02.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="ダイニングとキッチン" loading="lazy" decoding="async" width="1600" height="1067"><figcaption><b>ダイニングとキッチン</b><span>テーブルの奥にキッチンを置き、壁で視線を止めないひと続きの空間にしています。天井の木梁とレールライトが、横への広がりに奥行きを与えます。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case01/08.jpg" srcset="img/jisseki/case01/thumb/08.jpg 640w, img/jisseki/case01/08.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="吹き抜けの高窓" loading="lazy" decoding="async" width="1068" height="1599"><figcaption><b>吹き抜けの高窓</b><span>階段上の高窓から光を落とし、天井の木格子でやわらげています。白い壁と木の色が、時間帯で表情を変えながら明るさを保ちます。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case01/09.jpg" srcset="img/jisseki/case01/thumb/09.jpg 640w, img/jisseki/case01/09.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="玄関土間" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>玄関土間</b><span>黒いタイルの土間の正面に、扉のないシューズクロークを設けました。壁が視線を受け止め、入った瞬間に奥行きを感じさせます。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case01/10.jpg" srcset="img/jisseki/case01/thumb/10.jpg 640w, img/jisseki/case01/10.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="玄関" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>玄関</b><span>土間から玄関ドアまでを一直線に通し、ブラケット照明で足元を照らします。土間の隅に、植栽を置ける余白を残しました。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case01/11.jpg" srcset="img/jisseki/case01/thumb/11.jpg 640w, img/jisseki/case01/11.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="引き戸" loading="lazy" decoding="async" width="1600" height="1067"><figcaption><b>引き戸</b><span>引き戸を開けるとキッチンへ抜けられる動線です。閉めれば手元や生活の音をやわらげ、来客のときもすっきり見せられます。</span></figcaption></figure><figure class="tate"><img src="img/jisseki/case01/13.jpg" srcset="img/jisseki/case01/thumb/13.jpg 640w, img/jisseki/case01/13.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="階段" loading="lazy" decoding="async" width="1068" height="1600"><figcaption><b>階段</b><span>木の段板とガラスの手すりで、階段そのものを軽く見せました。黒枠のガラス戸から光が抜け、廊下の奥まで明るさが届きます。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case01/12.jpg" srcset="img/jisseki/case01/thumb/12.jpg 640w, img/jisseki/case01/12.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="リビングダイニング" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>リビングダイニング</b><span>大きな窓とレースカーテンで光を拡散し、床の木目を明るく見せます。黒い手すりの階段が、白い空間の中で一本の線として効いています。</span></figcaption></figure><figure class="yoko"><img src="img/jisseki/case01/14.jpg" srcset="img/jisseki/case01/thumb/14.jpg 640w, img/jisseki/case01/14.jpg 1600w" sizes="(min-width:700px) 600px, 100vw" alt="小上がりの畳" loading="lazy" decoding="async" width="1600" height="1068"><figcaption><b>小上がりの畳</b><span>リビングの一角を一段上げ、腰かけられる高さの畳スペースにしました。奥の植栽とあわせ、床に近い居場所になります。</span></figcaption></figure></div>
