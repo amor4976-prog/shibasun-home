@@ -54,7 +54,7 @@ const NAV_CV = [
   body,h1,h2,h3,h4,p,li,dt,dd,figcaption,summary,button,td,th,blockquote{word-break:auto-phrase}
   /* ③ 見出しは行の長さを均す／本文は最終行が1〜2文字だけにならないようにする */
   h1,h2,h3,h4{text-wrap:balance}
-  p,li,dd,dt,figcaption{text-wrap:pretty}
+  p,li,dd,dt,figcaption,figcaption b,figcaption span,td,th,summary{text-wrap:pretty}
 
   .nav-toggle{position:relative;width:30px;height:22px;background:none;border:none;cursor:pointer;padding:0;z-index:402}
   .nav-toggle span{position:absolute;left:0;width:100%;height:1.6px;background:var(--ink,#1c1c1a);transition:.3s}
@@ -105,15 +105,17 @@ const NAV_CV = [
   h1,h2,h3{text-wrap:balance}
   p,li,.lead,.sub,.note,.sim-note,.rsv-note,.enote,.pickhint{text-wrap:pretty}
   /* ここで囲んだ語は絶対に途中で折り返さない */
-  .nb{white-space:nowrap}
+  /* ⚠️ページ側の「span{display:block}」を必ず打ち消す。効かないと語が単独行になる（2026-07-26に実例ページで発生） */
+  .nb{display:inline!important;white-space:nowrap}
   .no,.rank{white-space:nowrap}`;
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   // ---- 途中で切れると読みにくい語を、折り返し禁止で包む ----
   // ブラウザの言葉区切り（word-break:auto-phrase）でも切れてしまう語を、実測で拾って登録している
   const NOBREAK = ['シバ・サンホーム','チームシバサン会','関西国際空港','大工社長','人となり','突き板',
-    'お問い合わせ','立ち上がり','マーク付き','ひと続き','わがまま','おおよそ','しがちな','自由度','見た目','本体価格','延床',
-    '落として','落とさず','を通じて','部屋どうし','として','という','により','による','明るさ','ぜひ','部屋','にくく'];
+    'お問い合わせ','立ち上がり','マーク付き','部屋どうし','ひと続き','わがまま','おおよそ','しがちな',
+    '自由度','見た目','落として','落とさず','落とし','を通じて','として','という','により','による',
+    '明るさ','ぜひ','部屋','にくく'];
   (function nobreak(){
     const re = new RegExp('(' + NOBREAK.sort((a,b)=>b.length-a.length).join('|') + ')', 'g');
     const skip = 'script,style,textarea,code,pre,title,.nb';

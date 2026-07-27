@@ -65,7 +65,9 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .sec-h p{font-size:12.5px;font-weight:300;color:var(--gray);margin-top:10px;line-height:1.9}
 
 /* なぜOB様邸か（編集タイポ） */
-.why{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--linec)}
+.why{display:grid;grid-template-columns:1fr;border-top:1px solid var(--linec)}
+/* 狭い画面で2列にすると1行9文字ほどになり、改行が不自然になる（2026-07-26） */
+@media(min-width:480px){.why{grid-template-columns:repeat(2,1fr)}}
 .why .w{padding:28px 18px 26px;border-bottom:1px solid #ededeb;border-right:1px solid #ededeb}
 .why .w:nth-child(2n){border-right:none}
 .why .w .num{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;color:#a3a3a1}
@@ -365,6 +367,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   });
 })();
 </script>
-<script src="site.js?v=20260726c" defer></script>
+<script src="site.js?v=20260727" defer></script>
 </body>
 </html>
