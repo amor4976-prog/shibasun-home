@@ -79,3 +79,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .author-box .nm{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.05em}
 .author-box .rl{font-size:10.5px;color:var(--gray);letter-spacing:.08em;margin:2px 0 8px}
 .author-box p{font-size:12px;font-weight:300;color:#555553;line-height:1.9;margin:0}
+
+/* 記事内の写真（2026-07-28 専務「コラムにもっと写真を」）
+   figure.aimg で囲み、figcaption に「その写真の話」を1〜2行。
+   枚数のために内容と合わない写真は貼らないこと。 */
+.aimg{margin:30px 0}
+.aimg img{width:100%;height:auto;display:block}
+.aimg figcaption{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.9;margin-top:9px}
