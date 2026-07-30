@@ -15,4 +15,4 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://www.shibasunhome.com/sitemap.xml
+Sitemap: https://www.shibasun.jp/sitemap.xml
