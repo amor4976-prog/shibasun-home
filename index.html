@@ -1453,8 +1453,8 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
 // ===== Google口コミ =====
 // ★ 実レビューを表示するには、Google Cloud で Places API(JS) を有効にした
 //   APIキーと、店舗の Place ID を以下に設定してください（未設定でもサンプル表示＋Google誘導は機能します）。
-const GOOGLE_API_KEY = '';   // 例: 'AIza...'（HTTPリファラ制限を推奨）
-const GOOGLE_PLACE_ID = '';  // 例: 'ChIJ...'（Place ID Finder で取得）
+const GOOGLE_API_KEY = 'AIzaSyCDnQh8cw3JXANo2jH_WLXz7WuvBZIyaRQ';  // shibasun.jp限定のリファラ制限済み（2026-07-30）
+const GOOGLE_PLACE_ID = 'ChIJ96D1wwc6AWARwOOpt7WiAwk';  // 株式会社シバ・サンホーム（北之庄町41-1）
 
 function star(n){return '★★★★★☆☆☆☆☆'.slice(5-Math.round(n),10-Math.round(n));}
 // 設定が入るまでの間、信頼感を出すためのサンプル（実レビュー連携後は自動で置き換わります）
