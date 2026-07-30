@@ -62,14 +62,12 @@
 
 
 # ---- アフター・保証 ---------------------------------------------
-/after                /after         301
 /after/*              /after         301
 /after_follow         /after         301
 /after_follow/*       /after         301
 
 
 # ---- イベント・お知らせ（新サイトは event.html が兼ねる）--------
-/event                /event         301
 /event/*              /event         301
 /news                 /event         301
 /news/*               /event         301
