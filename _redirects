@@ -45,6 +45,32 @@
 
 
 # ---- 施工事例・お客様の声 → 建築実例 ---------------------------
+# 旧サイトの .html 直付き型（/concept.html 等）。新サイトに同名ファイルが無いので
+# clean-URL の 308 が効かず、明示ルールが要る（2026-07-30 実測で404を確認して追加）
+/about_us.html        /company       301
+/concept.html         /company       301
+/hajimemashite.html   /hajimete      301
+/contact.html         /reserve       301
+/soudan.html          /reserve       301
+/case.html            /jisseki       301
+/voice.html           /jisseki       301
+/staff.html           /members       301
+/blog_adviser.html    /blog          301
+
+# 旧・実例詳細（jisseki-c01〜c13 は 2026-07-30 廃止。現行は jisseki-case01〜14）
+/jisseki-c01          /jisseki       301
+/jisseki-c02          /jisseki       301
+/jisseki-c03          /jisseki       301
+/jisseki-c04          /jisseki       301
+/jisseki-c05          /jisseki       301
+/jisseki-c06          /jisseki       301
+/jisseki-c07          /jisseki       301
+/jisseki-c08          /jisseki       301
+/jisseki-c09          /jisseki       301
+/jisseki-c10          /jisseki       301
+/jisseki-c11          /jisseki       301
+/jisseki-c12          /jisseki       301
+/jisseki-c13          /jisseki       301
 /case                 /jisseki       301
 /case/*               /jisseki       301
 /voice                /jisseki       301
