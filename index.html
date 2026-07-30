@@ -633,6 +633,9 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .rev-who{line-height:1.4}.rev-who .nm{font-size:13px;font-weight:500}.rev-who .dt{font-size:10px;color:var(--gray);letter-spacing:.06em}
 .rev-card .rs{color:#FBBC05;font-size:13px;letter-spacing:1px;margin-bottom:8px}
 .rev-card p{font-size:13px;font-weight:300;line-height:2;color:#454543}
+.rev-body.clamp{display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden}
+.rev-more{align-self:flex-start;margin-top:8px;background:none;border:none;padding:2px 0;font-family:inherit;font-size:12px;letter-spacing:.08em;color:var(--ink);border-bottom:1px solid var(--ink);cursor:pointer}
+.rev-more:hover{opacity:.55}
 .rev-card .gi{margin-top:auto;padding-top:12px;font-size:10px;color:var(--gray);display:flex;align-items:center;gap:5px}
 .rev-cta{text-align:center;margin-top:30px}
 
@@ -1472,8 +1475,21 @@ function renderReviews(list, avg, total, sample){
   track.innerHTML=list.map(r=>{
     const ini=(r.author||'様').trim().charAt(0);
     const foot=sample?'お客様の声':`<span class="rev-g" style="font-size:13px"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>の口コミ`;
-    return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div><div class="dt">${r.time||''}</div></div></div><div class="rs">${star(r.rating)}</div><p>${r.text}</p><div class="gi">${foot}</div></div>`;
+    return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div><div class="dt">${r.time||''}</div></div></div><div class="rs">${star(r.rating)}</div><p class="rev-body">${r.text}</p><button class="rev-more" type="button" hidden>続きを読む</button><div class="gi">${foot}</div></div>`;
   }).join('');
+  // 長い口コミは8行で折りたたみ、「続きを読む」で全文（読みたい人は全部読める）
+  track.querySelectorAll('.rev-card').forEach(card=>{
+    const p=card.querySelector('.rev-body'), btn=card.querySelector('.rev-more');
+    p.classList.add('clamp');
+    requestAnimationFrame(()=>{
+      if(p.scrollHeight>p.clientHeight+4){ btn.hidden=false; }
+      else{ p.classList.remove('clamp'); }
+    });
+    btn.addEventListener('click',()=>{
+      const open=p.classList.toggle('clamp');
+      btn.textContent=open?'続きを読む':'閉じる';
+    });
+  });
   const sc=document.getElementById('rev-score');
   const cnt=document.getElementById('rev-count');
   const gl=document.getElementById('rev-glabel');
