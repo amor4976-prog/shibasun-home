@@ -1,20 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- シバ・サンホームのロゴ（大屋根の家）。2026-07-30 ロゴ支給に合わせて刷新。
-       暗い画面（ダークモード）では自動で白に反転する。 -->
-  <style>
-    .k{fill:#1a1a1a}
-    .s{stroke:#1a1a1a}
-    @media (prefers-color-scheme: dark){
-      .k{fill:#ffffff}
-      .s{stroke:#ffffff}
-    }
-  </style>
-  <g transform="translate(1.4,12.2) scale(0.0464)">
-    <path class="k" d="M30 385 L383 28 Q395 16 408 26 L1280 372 Q1292 377 1292 390 L1292 756 Q1292 792 1256 792 L782 792 Q746 792 746 756 L746 452 L410 124 Q396 111 383 124 L92 418 A34 34 0 0 1 30 385 Z"/>
-    <line class="s" x1="33" y1="418" x2="33" y2="766" stroke-width="46" stroke-linecap="round"/>
-    <rect class="k" x="238" y="398" width="142" height="142" rx="28"/>
-    <rect class="k" x="424" y="398" width="142" height="142" rx="28"/>
-    <rect class="k" x="238" y="584" width="142" height="142" rx="28"/>
-    <rect class="k" x="424" y="584" width="142" height="142" rx="28"/>
-  </g>
+  <!-- 案4：白地に黒。屋根の線＋太陽（社名の「サン」）。2026-07-30 専務指定「一旦4で」 -->
+  <rect width="64" height="64" rx="12" fill="#ffffff" stroke="#e0e0de" stroke-width="1"/>
+  <circle cx="32" cy="22" r="6.5" fill="#1a1a1a"/>
+  <path d="M14 46 L32 31 L50 46" fill="none" stroke="#1a1a1a" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>
