@@ -18,69 +18,70 @@
 
 
 # ---- きれいなURL（/blog で /blog.html を表示する）--------------
-/blog                 /blog.html          200
-/blog/                /blog.html          200
-/blog/:slug           /blog-:slug.html    200
+# Cloudflare Pages は「.html 無し」のきれいなURLを自前で配信する（/blog で blog.html が出る）。
+# ここで /blog→/blog.html の書き換えを書くとループするので、正規化の301だけ置く。
+/blog/                /blog               301
+/blog/:slug           /blog-:slug         301
 
 
 # ---- 会社を知るページ ------------------------------------------
-/about_us             /company.html       301
-/about_us/*           /company.html       301
-/concept              /company.html       301
-/concept/*            /company.html       301
-/reason               /company.html       301
-/reason/*             /company.html       301
-/media                /company.html       301
-/media/*              /company.html       301
-/recruit              /company.html       301
-/recruit/*            /company.html       301
+/about_us             /company       301
+/about_us/*           /company       301
+/concept              /company       301
+/concept/*            /company       301
+/reason               /company       301
+/reason/*             /company       301
+/media                /company       301
+/media/*              /company       301
+/recruit              /company       301
+/recruit/*            /company       301
 
 
 # ---- 人のページ（スタッフ紹介・大工紹介）-----------------------
-/staff                /members.html       301
-/staff/*              /members.html       301
-/carpenter            /members.html       301
-/carpenter/*          /members.html       301
+/staff                /members       301
+/staff/*              /members       301
+/carpenter            /members       301
+/carpenter/*          /members       301
 
 
 # ---- 施工事例・お客様の声 → 建築実例 ---------------------------
-/case                 /jisseki.html       301
-/case/*               /jisseki.html       301
-/voice                /jisseki.html       301
-/voice/*              /jisseki.html       301
+/case                 /jisseki       301
+/case/*               /jisseki       301
+/voice                /jisseki       301
+/voice/*              /jisseki       301
 
 
 # ---- はじめての方へ ---------------------------------------------
-/hajimemashite        /hajimete.html      301
-/hajimemashite/*      /hajimete.html      301
+/hajimemashite        /hajimete      301
+/hajimemashite/*      /hajimete      301
 
 
 # ---- 商品・価格 -------------------------------------------------
-/lineup               /products.html      301
-/lineup/*             /products.html      301
+/lineup               /products      301
+/lineup/*             /products      301
 
 
 # ---- アフター・保証 ---------------------------------------------
-/after                /after.html         301
-/after/*              /after.html         301
-/after_follow         /after.html         301
-/after_follow/*       /after.html         301
+/after                /after         301
+/after/*              /after         301
+/after_follow         /after         301
+/after_follow/*       /after         301
 
 
 # ---- イベント・お知らせ（新サイトは event.html が兼ねる）--------
-/event                /event.html         301
-/event/*              /event.html         301
-/news                 /event.html         301
-/news/*               /event.html         301
+/event                /event         301
+/event/*              /event         301
+/news                 /event         301
+/news/*               /event         301
 
 
 # ---- 問い合わせ・相談 -------------------------------------------
-/contact              /reserve.html       301
-/contact/*            /reserve.html       301
-/soudan               /reserve.html       301
-/soudan/*             /reserve.html       301
-/consultation         /reserve.html       301
-/consultation/*       /reserve.html       301
+/contact              /reserve       301
+/contact/*            /reserve       301
+/soudan               /reserve       301
+/soudan/*             /reserve       301
+/consultation         /reserve       301
+/consultation/*       /reserve       301
 
 
 # ---- 旧ブログ（348本）------------------------------------------
@@ -91,27 +92,27 @@
 # 書き直したら「#」を外す行（旧URLはエンコード済み・そのまま使える）：
 #
 # 保存版】奈良県住宅補助金一覧まとめてみた。（検索 年75件）
-# /blog_adviser/%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91%E5%A5%88%E8%89%AF%E7%9C%8C%E4%BD%8F%E5%AE%85%E8%A3%9C%E5%8A%A9%E9%87%91%E4%B8%80%E8%A6%A7%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82/  /blog-hojokin.html  301
+# /blog_adviser/%E4%BF%9D%E5%AD%98%E7%89%88%E3%80%91%E5%A5%88%E8%89%AF%E7%9C%8C%E4%BD%8F%E5%AE%85%E8%A3%9C%E5%8A%A9%E9%87%91%E4%B8%80%E8%A6%A7%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82/  /blog-hojokin  301
 #
 # sto｜汚れにくい塗り壁（検索 年88件）
-# /blog_adviser/sto-%E6%B1%9A%E3%82%8C%E3%81%AB%E3%81%8F%E3%81%84%E5%A1%97%E3%82%8A%E5%A3%81/  /blog-nurikabe.html  301
+# /blog_adviser/sto-%E6%B1%9A%E3%82%8C%E3%81%AB%E3%81%8F%E3%81%84%E5%A1%97%E3%82%8A%E5%A3%81/  /blog-nurikabe  301
 #
 # お家にまつわる、ムシできない虫の話（検索 年69件）
-# /blog_adviser/%E3%81%8A%E5%AE%B6%E3%81%AB%E3%81%BE%E3%81%A4%E3%82%8F%E3%82%8B%E3%80%81%E3%83%A0%E3%82%B7%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E8%99%AB%E3%81%AE%E8%A9%B1/  /blog-mushi.html  301
+# /blog_adviser/%E3%81%8A%E5%AE%B6%E3%81%AB%E3%81%BE%E3%81%A4%E3%82%8F%E3%82%8B%E3%80%81%E3%83%A0%E3%82%B7%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E8%99%AB%E3%81%AE%E8%A9%B1/  /blog-mushi  301
 #
 # GX志向型住宅ってなんぞや｜2025年度補助金（検索 年39件）
-# /blog_adviser/gx%E5%BF%97%E5%90%91%E5%9E%8B%E4%BD%8F%E5%AE%85%E3%81%A3%E3%81%A6%E3%81%AA%E3%82%93%E3%81%9E%E3%82%84%EF%BC%9F%EF%BD%9C2025%E5%B9%B4%E5%BA%A6%E4%BD%8F%E5%AE%85%E8%A3%9C%E5%8A%A9%E9%87%91%EF%BD%9C/  /blog-hojokin.html  301
+# /blog_adviser/gx%E5%BF%97%E5%90%91%E5%9E%8B%E4%BD%8F%E5%AE%85%E3%81%A3%E3%81%A6%E3%81%AA%E3%82%93%E3%81%9E%E3%82%84%EF%BC%9F%EF%BD%9C2025%E5%B9%B4%E5%BA%A6%E4%BD%8F%E5%AE%85%E8%A3%9C%E5%8A%A9%E9%87%91%EF%BD%9C/  /blog-hojokin  301
 #
 # 外壁の塗替は何年がベスト？
-# /blog_adviser/%E5%A4%96%E5%A3%81%E3%81%AE%E5%A1%97%E6%9B%BF%E3%81%AF%E4%BD%95%E5%B9%B4%E3%81%8C%E3%83%99%E3%82%B9%E3%83%88%EF%BC%9F10%E5%B9%B4%EF%BC%9F%E6%97%A9%E3%81%84%E6%97%A9%E3%81%84%EF%BC%81/  /blog-gaiheki.html  301
+# /blog_adviser/%E5%A4%96%E5%A3%81%E3%81%AE%E5%A1%97%E6%9B%BF%E3%81%AF%E4%BD%95%E5%B9%B4%E3%81%8C%E3%83%99%E3%82%B9%E3%83%88%EF%BC%9F10%E5%B9%B4%EF%BC%9F%E6%97%A9%E3%81%84%E6%97%A9%E3%81%84%EF%BC%81/  /blog-gaiheki  301
 #
 # ルームツアーってネタバレですよね？
-# /blog_adviser/%E3%83%AB%E3%83%BC%E3%83%A0%E3%83%84%E3%82%A2%E3%83%BC%E3%81%A3%E3%81%A6%E3%83%8D%E3%82%BF%E3%83%90%E3%83%AC%E3%81%A7%E3%81%99%E3%82%88%E3%81%AD%EF%BC%9F/  /lessons.html  301
+# /blog_adviser/%E3%83%AB%E3%83%BC%E3%83%A0%E3%83%84%E3%82%A2%E3%83%BC%E3%81%A3%E3%81%A6%E3%83%8D%E3%82%BF%E3%83%90%E3%83%AC%E3%81%A7%E3%81%99%E3%82%88%E3%81%AD%EF%BC%9F/  /lessons  301
 
-/blog_adviser         /blog.html          301
-/blog_adviser/*       /blog.html          301
+/blog_adviser         /blog          301
+/blog_adviser/*       /blog          301
 
 
 # ---- 新サイト内の整理（施工写真は建築実例に一本化・2026-07-25）--
-/works.html           /jisseki.html       301
-/works                /jisseki.html       301
+/works.html           /jisseki       301
+/works                /jisseki       301
