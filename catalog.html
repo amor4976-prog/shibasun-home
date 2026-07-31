@@ -100,10 +100,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         <div class="cat-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
         <div class="cat-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
         <div class="cat-field">
-          <label>ご住所（郵送をご希望の方）</label>
+          <label>ご住所<em>必須</em><span style="color:var(--gray);font-size:10px;margin-left:6px">資料のお届け先です。番地までご記入ください</span></label>
           <div class="cat-row2">
-            <input name="postal" inputmode="numeric" autocomplete="postal-code" placeholder="〒630-8451">
-            <input name="address" autocomplete="street-address" placeholder="奈良市〇〇町0-0">
+            <input name="postal" required inputmode="numeric" autocomplete="postal-code" placeholder="〒630-8451">
+            <input name="address" required autocomplete="street-address" placeholder="奈良市北之庄町41-1">
           </div>
         </div>
         <div class="cat-field"><label>ご質問・ご要望</label><textarea name="message" rows="3" placeholder="例：平屋に興味があります／土地から探しています（任意）"></textarea></div>

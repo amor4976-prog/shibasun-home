@@ -160,7 +160,7 @@ function rsvRender(){
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
       <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
-      <div class="rsv-field"><label>ご住所<em>必須</em></label><input name="address" required autocomplete="street-address" placeholder="例：奈良市北之庄町41-1（市町村までで結構です）"></div>
+      <div class="rsv-field"><label>ご住所<em>必須</em></label><input name="address" required autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
       <div class="rsv-field"><label>ご相談方法</label>
         <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
