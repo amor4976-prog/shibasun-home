@@ -160,6 +160,7 @@ function rsvRender(){
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
       <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
+      <div class="rsv-field"><label>ご住所<em>必須</em></label><input name="address" required autocomplete="street-address" placeholder="例：奈良市北之庄町41-1（市町村までで結構です）"></div>
       <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
       <div class="rsv-field"><label>ご相談方法</label>
         <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
@@ -183,7 +184,7 @@ async function rsvSubmit(e){
   const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip)')].map(c=>c.dataset.t);
   const methodEl=rsvApp.querySelector('.mchip.on');
   const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
-  const msg=[`【相談方法】${methodLabel}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  const msg=[`【相談方法】${methodLabel}`,`【ご住所】${f.address.value.trim()}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,message:msg})});
     const data=await r.json().catch(()=>({}));
@@ -192,7 +193,7 @@ async function rsvSubmit(e){
     rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
   }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
 }
-function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.email.value||f.message.value);}
+function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
 async function rsvLoad(){
   try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
   catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
