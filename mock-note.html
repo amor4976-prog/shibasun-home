@@ -264,7 +264,7 @@
   let items=JSON.parse(localStorage.getItem(KEY)||'null');
   if(!items){
     const s='9月5日岡本様邸　中本様\n\nクレヴィ　施工説明書\n今井様の持ち込み品リスト確認';
-    items=[{t:'17:42', s, y:yomu(s,'17:42'), machi:false}];
+    items=[{t:'17:42', s, y:yomu(s,'17:42')}];
   }
   /* 写真ごと端末に残す。入りきらない時は古い写真から落とす（試作なので落ちても構わない） */
   function save(){
@@ -291,9 +291,7 @@
         box.append(sh);
       }
       const ashi=document.createElement('div'); ashi.className='ashi';
-      if(it.machi){
-        ashi.innerHTML='<span class="tama"></span>読んでいます…';
-      }else if(!it.s.trim() && it.ph && it.ph.length){
+      if(!it.s.trim() && it.ph && it.ph.length){
         ashi.textContent=`写真${it.ph.length}枚を残しました`;
       }else if(it.y && it.y.length){
         const nokori=it.y.filter(y=>!y.sumi).length;
@@ -408,11 +406,11 @@
     const s=memo.value.replace(/\s+$/,'');
     if(!s.trim() && !matsu.length) return;
     const t=hm(new Date());
-    const it={t, s, ph:matsu.slice(), y:null, machi:!!s.trim()};
+    // 仕分けはその場で終わる（文字の規則だけ・待たせない）
+    const it={t, s, ph:matsu.slice(), y:s.trim()?yomu(s,t):null};
     items.push(it);
     memo.value=''; memo.style.height='auto'; matsu=[]; drawMatsu(); okuru.disabled=true;
-    save(); drawChat();
-    if(s.trim()) setTimeout(()=>{ it.machi=false; it.y=yomu(s,t); save(); drawChat(); },900);
+    save(); drawChat(); drawYaru();
   }
   memo.addEventListener('input',()=>{
     hantei();
