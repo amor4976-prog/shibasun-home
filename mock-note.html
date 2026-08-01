@@ -4,146 +4,136 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#f7f6f3">
-<title>タスクノート 新しい形（試作）</title>
+<meta name="theme-color" content="#ffffff">
+<title>タスクノート</title>
 </head>
 <body>
 <style>
+  /* 白基調でひとつに決め打ち（シバグラム本体と同じ見た目に合わせる） */
   :root{
-    --ji:#f7f6f3; --kami:#ffffff; --sumi:#1c1b19; --usu:#8b8781;
-    --kei:#e7e4de; --kin:#a8853f; --kin-usu:#f4efe3; --sumi-yowa:#4b4842;
-    --maru:13px; --w:440px;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --ji:#161513; --kami:#1f1e1b; --sumi:#efece6; --usu:#8f8a82;
-           --kei:#312f2a; --kin:#cfab66; --kin-usu:#2a2519; --sumi-yowa:#c6c1b8; }
-  }
-  :root[data-theme="dark"]{
-    --ji:#161513; --kami:#1f1e1b; --sumi:#efece6; --usu:#8f8a82;
-    --kei:#312f2a; --kin:#cfab66; --kin-usu:#2a2519; --sumi-yowa:#c6c1b8;
-  }
-  :root[data-theme="light"]{
-    --ji:#f7f6f3; --kami:#ffffff; --sumi:#1c1b19; --usu:#8b8781;
-    --kei:#e7e4de; --kin:#a8853f; --kin-usu:#f4efe3; --sumi-yowa:#4b4842;
+    --ji:#f4f3f0;      /* 地 */
+    --kami:#ffffff;    /* 紙 */
+    --sumi:#1e1d1a;    /* 墨 */
+    --sumi-yowa:#57544e;
+    --usu:#8d8981;
+    --kei:#e4e1da;
+    --kin:#a07733;
+    --kin-usu:#f6f1e6;
+    --maru:12px; --w:460px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; background:var(--ji); color:var(--sumi);
     font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
-    -webkit-font-smoothing:antialiased; line-height:1.7; font-feature-settings:"palt" 1;
+    -webkit-font-smoothing:antialiased; line-height:1.75;
+    font-feature-settings:"palt" 1;
+    -webkit-text-size-adjust:100%;
   }
-  .app{max-width:var(--w); margin:0 auto; min-height:100%; display:flex; flex-direction:column; background:var(--ji)}
+  .app{
+    max-width:var(--w); margin:0 auto; min-height:100dvh;
+    display:flex; flex-direction:column; background:var(--kami);
+  }
   @media(min-width:900px){
-    .app{margin:26px auto; height:calc(100vh - 52px); min-height:0;
-      border-radius:24px; overflow:hidden; box-shadow:0 22px 56px rgba(0,0,0,.11)}
+    .app{margin:24px auto; height:calc(100vh - 48px); min-height:0;
+      border-radius:22px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.10)}
   }
 
-  /* 帯＋2画面の切り替え */
+  /* 帯とタブ */
   .obi{background:var(--kami); border-bottom:1px solid var(--kei)}
-  .obi .ue{display:flex; align-items:baseline; gap:10px; padding:15px 18px 11px}
-  .obi h1{font-size:15.5px; font-weight:600; margin:0; letter-spacing:.05em}
-  .obi .hi{margin-left:auto; font-size:11px; color:var(--usu); font-variant-numeric:tabular-nums}
-  .kirikae{display:flex; gap:2px; padding:0 12px}
+  .obi .ue{display:flex; align-items:baseline; gap:10px; padding:16px 18px 12px}
+  .obi h1{font-size:16.5px; font-weight:600; margin:0; letter-spacing:.04em}
+  .obi .hi{margin-left:auto; font-size:12px; color:var(--usu); font-variant-numeric:tabular-nums}
+  .kirikae{display:flex; padding:0 10px}
   .kirikae button{
-    flex:1; border:0; background:transparent; font:inherit; font-size:13.5px; cursor:pointer;
-    color:var(--usu); padding:9px 4px 11px; position:relative; letter-spacing:.05em;
-    display:flex; align-items:center; justify-content:center; gap:7px;
+    flex:1; border:0; background:transparent; font:inherit; font-size:15px; cursor:pointer;
+    color:var(--usu); padding:10px 4px 12px; position:relative; letter-spacing:.04em;
+    display:flex; align-items:center; justify-content:center; gap:8px;
   }
   .kirikae button::after{
-    content:""; position:absolute; left:8px; right:8px; bottom:0; height:2px;
+    content:""; position:absolute; left:10px; right:10px; bottom:0; height:2.5px;
     background:transparent; border-radius:2px; transition:background .18s;
   }
   .kirikae button[aria-selected="true"]{color:var(--sumi); font-weight:600}
   .kirikae button[aria-selected="true"]::after{background:var(--kin)}
   .kirikae .kazu{
-    font-size:10.5px; font-variant-numeric:tabular-nums; color:var(--kin);
-    background:var(--kin-usu); border-radius:999px; padding:1px 7px; letter-spacing:0;
+    font-size:11.5px; font-variant-numeric:tabular-nums; color:#fff;
+    background:var(--kin); border-radius:999px; padding:1px 8px; letter-spacing:0; font-weight:600;
   }
+  .kirikae .kazu[data-zero="1"]{background:var(--kei); color:var(--usu)}
 
-  .men{display:flex; flex-direction:column; min-height:0}
+  .men{flex:1; display:flex; flex-direction:column; min-height:0}
   .men[hidden]{display:none}
 
-  /* ── 画面1：マイチャット ── */
+  /* 画面1：マイチャット（チャットワークと同じ並び方） */
   .nagare{
-    flex:1; overflow-y:auto; padding:16px 14px 10px;
-    display:flex; flex-direction:column; gap:12px;
-    min-height:min(46vh,380px);
+    flex:1; overflow-y:auto; background:var(--kami);
+    padding:6px 0 12px;
   }
   .fuda{
-    background:var(--kami); border:1px solid var(--kei); border-radius:var(--maru);
-    padding:12px 15px; animation:ukabu .28s cubic-bezier(.2,.8,.3,1) both;
+    padding:15px 18px 16px; border-bottom:1px solid var(--kei);
+    animation:ukabu .28s cubic-bezier(.2,.8,.3,1) both;
   }
-  @keyframes ukabu{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+  @keyframes ukabu{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
   @media (prefers-reduced-motion:reduce){.fuda{animation:none}}
-  .fuda .toki{font-size:10.5px; color:var(--usu); font-variant-numeric:tabular-nums; letter-spacing:.06em}
-  .fuda .hon{margin-top:4px; font-size:15.5px; line-height:1.8; white-space:pre-wrap; overflow-wrap:anywhere}
+  .fuda .toki{font-size:11.5px; color:var(--usu); font-variant-numeric:tabular-nums; letter-spacing:.06em}
+  .fuda .hon{margin-top:5px; font-size:17px; line-height:1.9; white-space:pre-wrap; overflow-wrap:anywhere}
   .ashi{
-    margin-top:10px; padding-top:9px; border-top:1px solid var(--kei);
-    font-size:11.5px; color:var(--usu); display:flex; align-items:center; gap:7px;
+    margin-top:9px; font-size:12.5px; color:var(--usu);
+    display:flex; align-items:center; gap:8px;
   }
   .ashi button{
-    border:0; background:transparent; font:inherit; font-size:11.5px; color:var(--kin);
+    border:0; background:transparent; font:inherit; font-size:12.5px; color:var(--kin);
     cursor:pointer; padding:0; text-decoration:underline; text-underline-offset:3px;
   }
   .ashi .tama{width:5px; height:5px; border-radius:50%; background:var(--kin); animation:matataki 1.1s ease-in-out infinite}
   @keyframes matataki{0%,100%{opacity:.25}50%{opacity:1}}
 
   /* 書く場所 */
-  .kaku{position:sticky; bottom:0; background:var(--kami); border-top:1px solid var(--kei); padding:10px 12px 13px}
+  .kaku{position:sticky; bottom:0; background:var(--kami); border-top:1px solid var(--kei); padding:11px 12px 14px}
   .kaku .waku{
     display:flex; align-items:flex-end; gap:9px; background:var(--ji);
-    border:1px solid var(--kei); border-radius:var(--maru); padding:6px 6px 6px 12px; transition:border-color .18s;
+    border:1px solid var(--kei); border-radius:var(--maru); padding:6px 6px 6px 13px; transition:border-color .18s;
   }
   .kaku .waku:focus-within{border-color:var(--kin)}
   #memo{
-    flex:1; border:0; background:transparent; color:inherit; font:inherit; font-size:16.5px;
-    line-height:1.75; resize:none; outline:none; padding:6px 0; max-height:180px; min-height:34px;
+    flex:1; border:0; background:transparent; color:inherit; font:inherit; font-size:17px;
+    line-height:1.8; resize:none; outline:none; padding:7px 0; max-height:190px; min-height:36px;
   }
   #memo::placeholder{color:var(--usu)}
   .okuru{
-    flex:none; border:0; border-radius:10px; cursor:pointer; background:var(--sumi); color:var(--ji);
-    font:inherit; font-size:13px; font-weight:600; padding:9px 16px; letter-spacing:.08em; transition:opacity .15s;
+    flex:none; border:0; border-radius:10px; cursor:pointer; background:var(--sumi); color:#fff;
+    font:inherit; font-size:14px; font-weight:600; padding:10px 18px; letter-spacing:.08em; transition:opacity .15s;
   }
-  .okuru:disabled{opacity:.25; cursor:default}
-  .tebiki{font-size:10.5px; color:var(--usu); margin:8px 2px 0}
+  .okuru:disabled{opacity:.22; cursor:default}
 
-  /* ── 画面2：やること ── */
-  .yaruba{flex:1; overflow-y:auto; padding:14px 14px 24px; min-height:min(46vh,380px)}
-  .kumi{margin-bottom:20px}
+  /* 画面2：やること */
+  .yaruba{flex:1; overflow-y:auto; padding:14px 14px 28px; background:var(--ji)}
+  .kumi{background:var(--kami); border:1px solid var(--kei); border-radius:var(--maru); margin-bottom:12px; overflow:hidden}
   .kumi .kashira{
-    display:flex; align-items:baseline; gap:9px; padding:0 3px 8px;
-    border-bottom:1px solid var(--kei); margin-bottom:4px;
+    display:flex; align-items:baseline; gap:9px; padding:11px 15px 10px;
+    background:var(--kin-usu); border-bottom:1px solid var(--kei);
   }
-  .kumi .kashira b{font-size:13.5px; font-weight:600; letter-spacing:.03em}
-  .kumi .kashira .doko{font-size:10.5px; color:var(--usu); letter-spacing:.06em}
-  .kumi .kashira .nan{margin-left:auto; font-size:10.5px; color:var(--usu); font-variant-numeric:tabular-nums}
-  .yaru{display:flex; align-items:flex-start; gap:10px; padding:10px 4px; cursor:pointer; border-bottom:1px solid var(--kei)}
+  .kumi .kashira b{font-size:15px; font-weight:600; letter-spacing:.02em}
+  .kumi .kashira .doko{font-size:11.5px; color:var(--kin)}
+  .kumi .kashira .nan{margin-left:auto; font-size:11.5px; color:var(--usu); font-variant-numeric:tabular-nums}
+  .yaru{display:flex; align-items:flex-start; gap:11px; padding:13px 15px; cursor:pointer; border-bottom:1px solid var(--kei)}
   .yaru:last-child{border-bottom:0}
-  .yaru .box{flex:none; width:17px; height:17px; margin-top:3px; border-radius:3px; border:1.5px solid var(--kin); position:relative; transition:.15s}
+  .yaru:active{background:var(--ji)}
+  .yaru .box{
+    flex:none; width:20px; height:20px; margin-top:2px; border-radius:4px;
+    border:1.5px solid var(--kin); position:relative; transition:.15s; background:var(--kami);
+  }
   .yaru.sumi .box{background:var(--kin)}
   .yaru.sumi .box::after{
-    content:""; position:absolute; left:5px; top:1.5px; width:4px; height:8.5px;
-    border:solid var(--kami); border-width:0 1.5px 1.5px 0; transform:rotate(42deg);
+    content:""; position:absolute; left:6px; top:2.5px; width:5px; height:10px;
+    border:solid #fff; border-width:0 2px 2px 0; transform:rotate(42deg);
   }
   .yaru .naka{min-width:0}
-  .yaru .mo{font-size:15px; line-height:1.7}
+  .yaru .mo{font-size:16px; line-height:1.7}
   .yaru.sumi .mo{color:var(--usu); text-decoration:line-through; text-decoration-thickness:1px}
-  .yaru .moto{font-size:10.5px; color:var(--usu); margin-top:3px; font-variant-numeric:tabular-nums}
-  .karappo{padding:44px 20px; text-align:center; color:var(--usu); font-size:13.5px; line-height:2}
-  .doukisen{
-    margin:4px 3px 0; padding:12px 14px; border-radius:var(--maru);
-    background:var(--kin-usu); font-size:11.5px; line-height:1.85; color:var(--sumi-yowa);
-  }
-  .doukisen b{color:var(--sumi); font-weight:600}
-
-  /* 説明 */
-  .setsu{padding:26px 20px 40px; border-top:1px solid var(--kei); background:var(--ji)}
-  .setsu h2{font-size:11.5px; font-weight:600; letter-spacing:.14em; color:var(--usu); margin:0 0 16px}
-  .setsu dl{margin:0; display:grid; gap:16px}
-  .setsu dt{font-size:14.5px; font-weight:600; margin-bottom:3px}
-  .setsu dd{margin:0; font-size:13px; line-height:1.9; color:var(--sumi-yowa)}
-  .setsu .ima{color:var(--usu); font-size:12px}
+  .yaru .moto{font-size:11.5px; color:var(--usu); margin-top:4px; font-variant-numeric:tabular-nums}
+  .karappo{padding:52px 20px; text-align:center; color:var(--usu); font-size:14px; line-height:2}
 </style>
 
 <div class="app">
@@ -158,7 +148,6 @@
     </div>
   </div>
 
-  <!-- 画面1：自由に書くだけ -->
   <div class="men" id="men-memo">
     <div class="nagare" id="nagare"></div>
     <div class="kaku">
@@ -166,31 +155,11 @@
         <textarea id="memo" rows="1" placeholder="いつも通り、まとめて書いてください"></textarea>
         <button class="okuru" id="okuru" type="button" disabled>入れる</button>
       </div>
-      <p class="tebiki">改行もそのまま。ここは書くだけの場所です。</p>
     </div>
   </div>
 
-  <!-- 画面2：やること -->
   <div class="men" id="men-yaru" hidden>
     <div class="yaruba" id="yaruba"></div>
-  </div>
-
-  <div class="setsu">
-    <h2>この2画面で、なにが変わるか</h2>
-    <dl>
-      <dt>マイチャットは、ただ書くだけの場所</dt>
-      <dd>チェックも分類も出てきません。いつも通り「9月5日岡本様邸　中本様」から書き始めて、送るだけ。<b>邪魔をしません。</b></dd>
-
-      <dt>やることは、勝手に隣の画面に並ぶ</dt>
-      <dd>書いた箇条書きが、右のタブに□付きで積まれます。書くときに仕分けを考えなくていい、という意味です。</dd>
-
-      <dt>お客様・業者さんごとにまとまる</dt>
-      <dd>岡本様はお客様の台帳、中本様はNT WELDさん——<b>シバグラムは名前を知っている</b>ので、勝手にまとめます。
-        <span class="ima">（チャットワークでは、ただの文字のまま流れていきます）</span></dd>
-
-      <dt>タスク表と同じものを見ている</dt>
-      <dd>ここで済みにすればタスク表でも済み。戻せば戻る。<b>二重に管理しません。</b></dd>
-    </dl>
   </div>
 </div>
 
@@ -198,17 +167,15 @@
   const $=(s)=>document.querySelector(s);
   const memo=$('#memo'), okuru=$('#okuru'), nagare=$('#nagare'), yaruba=$('#yaruba'), kazu=$('#kazu');
   const tabMemo=$('#tab-memo'), tabYaru=$('#tab-yaru'), menMemo=$('#men-memo'), menYaru=$('#men-yaru');
-  const KEY='shibagram-note-mock-v3';
+  const KEY='shibagram-note-mock-v4';
 
   const hm=(d)=>String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
   $('#kyou').textContent=(()=>{const d=new Date(),w='日月火水木金土'[d.getDay()];
     return `${d.getMonth()+1}月${d.getDate()}日（${w}）`})();
 
-  /* シバグラムが知っている名前（本番は台帳・業者マスタを引きます） */
   const KYAKU=['岡本','今井','中井','狩野','松井','中村','川本','永吉','大西'];
   const GYOSHA={'中本':'NT WELD','横田':'住設','山岡':'ルームワン','柴山':'大工','岩井':'あをによし'};
 
-  /** 書いた文章を行ごとに読む（本番はえいちゃんが読みます） */
   function yomu(text, toki){
     const lines=text.split('\n').map(s=>s.trim()).filter(Boolean);
     const out=[]; let genba=null, hizuke=null;
@@ -262,11 +229,14 @@
       nagare.append(box);
     });
     nagare.scrollTop=nagare.scrollHeight;
+    const n=zenbu().filter(y=>!y.sumi).length;
+    kazu.textContent=n; kazu.dataset.zero = n?'0':'1';
   }
 
   function drawYaru(){
     const all=zenbu();
-    kazu.textContent=all.filter(y=>!y.sumi).length;
+    const n=all.filter(y=>!y.sumi).length;
+    kazu.textContent=n; kazu.dataset.zero = n?'0':'1';
     yaruba.innerHTML='';
     if(!all.length){
       yaruba.innerHTML='<div class="karappo">やることはありません。<br>マイチャットに書けば、ここに並びます。</div>';
@@ -277,14 +247,12 @@
     kumi.forEach((list,saki)=>{
       const box=document.createElement('div'); box.className='kumi';
       const kashira=document.createElement('div'); kashira.className='kashira';
-      const b=document.createElement('b'); b.textContent=saki;
-      kashira.append(b);
+      const b=document.createElement('b'); b.textContent=saki; kashira.append(b);
       const sh=list[0].shubetsu;
       if(sh){const d=document.createElement('span'); d.className='doko'; d.textContent=sh; kashira.append(d)}
       const nan=document.createElement('span'); nan.className='nan';
       nan.textContent=`残り${list.filter(y=>!y.sumi).length}／${list.length}`;
-      kashira.append(nan);
-      box.append(kashira);
+      kashira.append(nan); box.append(kashira);
 
       list.forEach(y=>{
         const row=document.createElement('div'); row.className='yaru'+(y.sumi?' sumi':'');
@@ -299,9 +267,6 @@
       });
       yaruba.append(box);
     });
-    const d=document.createElement('div'); d.className='doukisen';
-    d.innerHTML='ここで済みにすると、<b>シバグラムのタスク表でも済み</b>になります。逆も同じです。';
-    yaruba.append(d);
   }
 
   function switchTo(which){
@@ -322,15 +287,15 @@
     items.push(it);
     memo.value=''; memo.style.height='auto'; okuru.disabled=true;
     save(); drawChat();
-    setTimeout(()=>{ it.machi=false; it.y=yomu(s,t); save(); drawChat(); drawYaru(); },900);
+    setTimeout(()=>{ it.machi=false; it.y=yomu(s,t); save(); drawChat(); },900);
   }
   memo.addEventListener('input',()=>{
     okuru.disabled=!memo.value.trim();
-    memo.style.height='auto'; memo.style.height=Math.min(memo.scrollHeight,180)+'px';
+    memo.style.height='auto'; memo.style.height=Math.min(memo.scrollHeight,190)+'px';
   });
   okuru.addEventListener('click',ireru);
 
-  drawChat(); drawYaru();
+  drawChat();
 </script>
 
 </body>
