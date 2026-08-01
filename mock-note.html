@@ -34,10 +34,6 @@
     max-width:var(--w); margin:0 auto; min-height:100dvh;
     display:flex; flex-direction:column; background:var(--kami);
   }
-  @media(min-width:900px){
-    .app{margin:24px auto; height:calc(100vh - 48px); min-height:0;
-      border-radius:22px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.10)}
-  }
 
   /* 帯とタブ */
   .obi{background:var(--kami); border-bottom:1px solid var(--kei)}
@@ -78,6 +74,12 @@
   @media (prefers-reduced-motion:reduce){.fuda{animation:none}}
   .fuda .toki{font-size:11.5px; color:var(--usu); font-variant-numeric:tabular-nums; letter-spacing:.06em}
   .fuda .hon{margin-top:5px; font-size:17px; line-height:1.9; white-space:pre-wrap; overflow-wrap:anywhere}
+  .fuda .hon:empty{display:none}
+  .shashin{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px}
+  .shashin img{
+    width:104px; height:104px; object-fit:cover; border-radius:9px;
+    border:1px solid var(--kei); display:block; background:var(--ji);
+  }
   .ashi{
     margin-top:9px; font-size:12.5px; color:var(--usu);
     display:flex; align-items:center; gap:8px;
@@ -91,10 +93,29 @@
 
   /* 書く場所 */
   .kaku{position:sticky; bottom:0; background:var(--kami); border-top:1px solid var(--kei); padding:11px 12px 14px}
-  .kaku .waku{
-    display:flex; align-items:flex-end; gap:9px; background:var(--ji);
-    border:1px solid var(--kei); border-radius:var(--maru); padding:6px 6px 6px 13px; transition:border-color .18s;
+  .machiuke{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:9px}
+  .machiuke .tsutsumi{position:relative}
+  .machiuke img{
+    width:66px; height:66px; object-fit:cover; border-radius:8px;
+    border:1px solid var(--kei); display:block;
   }
+  .machiuke .kesu{
+    position:absolute; top:-6px; right:-6px; width:22px; height:22px; border-radius:50%;
+    border:1px solid var(--kei); background:var(--kami); color:var(--sumi-yowa);
+    font-size:14px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 1px 3px rgba(0,0,0,.12);
+  }
+  .kaku .waku{
+    display:flex; align-items:flex-end; gap:8px; background:var(--ji);
+    border:1px solid var(--kei); border-radius:var(--maru); padding:6px 6px 6px 8px; transition:border-color .18s;
+  }
+  .camera{
+    flex:none; width:38px; height:38px; border-radius:9px; border:0; background:transparent;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--sumi-yowa);
+    transition:background .15s;
+  }
+  .camera:hover{background:var(--kei)}
+  .camera svg{width:22px; height:22px}
   .kaku .waku:focus-within{border-color:var(--kin)}
   #memo{
     flex:1; border:0; background:transparent; color:inherit; font:inherit; font-size:17px;
@@ -134,6 +155,31 @@
   .yaru.sumi .mo{color:var(--usu); text-decoration:line-through; text-decoration-thickness:1px}
   .yaru .moto{font-size:11.5px; color:var(--usu); margin-top:4px; font-variant-numeric:tabular-nums}
   .karappo{padding:52px 20px; text-align:center; color:var(--usu); font-size:14px; line-height:2}
+  .hashira{display:none}
+
+  /* PC：タブで切り替えず、左右に並べて両方見える */
+  @media(min-width:900px){
+    .app{
+      max-width:1180px; margin:26px auto; height:calc(100vh - 52px); min-height:0;
+      border-radius:20px; overflow:hidden; box-shadow:0 18px 46px rgba(0,0,0,.10);
+      display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr;
+    }
+    .obi{grid-column:1 / -1}
+    .kirikae{display:none}
+    .men{min-height:0}
+    .men[hidden]{display:flex}          /* タブの状態に関係なく両方出す */
+    #men-yaru{border-left:1px solid var(--kei)}
+    .hashira{
+      display:flex; align-items:baseline; gap:9px;
+      padding:12px 18px 11px; border-bottom:1px solid var(--kei); background:var(--kami);
+    }
+    .hashira b{font-size:13.5px; font-weight:600; letter-spacing:.06em}
+    .hashira .kazu2{
+      font-size:11.5px; font-variant-numeric:tabular-nums; color:#fff; background:var(--kin);
+      border-radius:999px; padding:1px 8px; font-weight:600;
+    }
+    .hashira .kazu2[data-zero="1"]{background:var(--kei); color:var(--usu)}
+  }
 </style>
 
 <div class="app">
@@ -149,9 +195,17 @@
   </div>
 
   <div class="men" id="men-memo">
+    <div class="hashira"><b>マイチャット</b></div>
     <div class="nagare" id="nagare"></div>
     <div class="kaku">
+      <div class="machiuke" id="machiuke"></div>
       <div class="waku">
+        <button class="camera" id="camera" type="button" aria-label="写真を入れる">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8.5h3.2l1.4-2.1h8.8l1.4 2.1H21v10H3z"/><circle cx="12" cy="13.2" r="3.4"/>
+          </svg>
+        </button>
+        <input type="file" id="file" accept="image/*" multiple hidden>
         <textarea id="memo" rows="1" placeholder="いつも通り、まとめて書いてください"></textarea>
         <button class="okuru" id="okuru" type="button" disabled>入れる</button>
       </div>
@@ -159,6 +213,7 @@
   </div>
 
   <div class="men" id="men-yaru" hidden>
+    <div class="hashira"><b>やること</b><span class="kazu2" id="kazu2">0</span></div>
     <div class="yaruba" id="yaruba"></div>
   </div>
 </div>
@@ -167,6 +222,12 @@
   const $=(s)=>document.querySelector(s);
   const memo=$('#memo'), okuru=$('#okuru'), nagare=$('#nagare'), yaruba=$('#yaruba'), kazu=$('#kazu');
   const tabMemo=$('#tab-memo'), tabYaru=$('#tab-yaru'), menMemo=$('#men-memo'), menYaru=$('#men-yaru');
+  const kazu2=$('#kazu2');
+  /** 残り件数をタブとPCの柱の両方に出す */
+  function nokoriHyouji(){
+    const n=zenbu().filter(y=>!y.sumi).length;
+    [kazu,kazu2].forEach(el=>{ if(el){ el.textContent=n; el.dataset.zero = n?'0':'1'; } });
+  }
   const KEY='shibagram-note-mock-v4';
 
   const hm=(d)=>String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
@@ -203,7 +264,13 @@
     const s='9月5日岡本様邸　中本様\n\nクレヴィ　施工説明書\n今井様の持ち込み品リスト確認';
     items=[{t:'17:42', s, y:yomu(s,'17:42'), machi:false}];
   }
-  const save=()=>localStorage.setItem(KEY,JSON.stringify(items));
+  /* 写真ごと端末に残す。入りきらない時は古い写真から落とす（試作なので落ちても構わない） */
+  function save(){
+    for(let i=0;i<6;i++){
+      try{ localStorage.setItem(KEY,JSON.stringify(items)); return; }
+      catch{ const furui=items.find(it=>it.ph&&it.ph.length); if(!furui) return; furui.ph=[]; }
+    }
+  }
   const zenbu=()=>items.flatMap(it=>it.y||[]);
 
   function drawChat(){
@@ -213,9 +280,19 @@
       const toki=document.createElement('div'); toki.className='toki'; toki.textContent=it.t;
       const hon=document.createElement('div'); hon.className='hon'; hon.textContent=it.s;
       box.append(toki,hon);
+      if(it.ph && it.ph.length){
+        const sh=document.createElement('div'); sh.className='shashin';
+        it.ph.forEach(src=>{
+          const im=document.createElement('img'); im.src=src; im.alt='現場の写真'; im.loading='lazy';
+          sh.append(im);
+        });
+        box.append(sh);
+      }
       const ashi=document.createElement('div'); ashi.className='ashi';
       if(it.machi){
         ashi.innerHTML='<span class="tama"></span>読んでいます…';
+      }else if(!it.s.trim() && it.ph && it.ph.length){
+        ashi.textContent=`写真${it.ph.length}枚を残しました`;
       }else if(it.y && it.y.length){
         const nokori=it.y.filter(y=>!y.sumi).length;
         ashi.append(document.createTextNode(`やること${it.y.length}件`+(nokori<it.y.length?`（残り${nokori}）`:'')+'　'));
@@ -229,14 +306,12 @@
       nagare.append(box);
     });
     nagare.scrollTop=nagare.scrollHeight;
-    const n=zenbu().filter(y=>!y.sumi).length;
-    kazu.textContent=n; kazu.dataset.zero = n?'0':'1';
+    nokoriHyouji();
   }
 
   function drawYaru(){
     const all=zenbu();
-    const n=all.filter(y=>!y.sumi).length;
-    kazu.textContent=n; kazu.dataset.zero = n?'0':'1';
+    nokoriHyouji();
     yaruba.innerHTML='';
     if(!all.length){
       yaruba.innerHTML='<div class="karappo">やることはありません。<br>マイチャットに書けば、ここに並びます。</div>';
@@ -279,23 +354,72 @@
   tabMemo.addEventListener('click',()=>switchTo('memo'));
   tabYaru.addEventListener('click',()=>switchTo('yaru'));
 
+  /* ── 写真 ── */
+  const camera=$('#camera'), file=$('#file'), machiuke=$('#machiuke');
+  let matsu=[];   // 送る前の写真
+
+  /** 大きすぎる写真は縮めてから持つ（端末に置くだけなので軽くする） */
+  function chijimeru(f){
+    return new Promise(res=>{
+      const fr=new FileReader();
+      fr.onload=()=>{
+        const im=new Image();
+        im.onload=()=>{
+          const max=760, r=Math.min(1, max/Math.max(im.width,im.height));
+          const c=document.createElement('canvas');
+          c.width=Math.round(im.width*r); c.height=Math.round(im.height*r);
+          c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+          res(c.toDataURL('image/jpeg',0.72));
+        };
+        im.onerror=()=>res(null);
+        im.src=fr.result;
+      };
+      fr.onerror=()=>res(null);
+      fr.readAsDataURL(f);
+    });
+  }
+
+  function drawMatsu(){
+    machiuke.innerHTML='';
+    matsu.forEach((src,i)=>{
+      const t=document.createElement('div'); t.className='tsutsumi';
+      const im=document.createElement('img'); im.src=src; im.alt='入れる前の写真';
+      const k=document.createElement('button'); k.className='kesu'; k.type='button';
+      k.textContent='×'; k.setAttribute('aria-label','この写真をやめる');
+      k.addEventListener('click',()=>{matsu.splice(i,1); drawMatsu(); hantei()});
+      t.append(im,k); machiuke.append(t);
+    });
+    machiuke.style.display = matsu.length ? 'flex' : 'none';
+  }
+  const hantei=()=>{ okuru.disabled = !memo.value.trim() && !matsu.length; };
+
+  camera.addEventListener('click',()=>file.click());
+  file.addEventListener('change',async ()=>{
+    for(const f of [...file.files].slice(0,4)){
+      const d=await chijimeru(f);
+      if(d) matsu.push(d);
+    }
+    file.value=''; drawMatsu(); hantei();
+  });
+
   function ireru(){
     const s=memo.value.replace(/\s+$/,'');
-    if(!s.trim()) return;
+    if(!s.trim() && !matsu.length) return;
     const t=hm(new Date());
-    const it={t, s, y:null, machi:true};
+    const it={t, s, ph:matsu.slice(), y:null, machi:!!s.trim()};
     items.push(it);
-    memo.value=''; memo.style.height='auto'; okuru.disabled=true;
+    memo.value=''; memo.style.height='auto'; matsu=[]; drawMatsu(); okuru.disabled=true;
     save(); drawChat();
-    setTimeout(()=>{ it.machi=false; it.y=yomu(s,t); save(); drawChat(); },900);
+    if(s.trim()) setTimeout(()=>{ it.machi=false; it.y=yomu(s,t); save(); drawChat(); },900);
   }
   memo.addEventListener('input',()=>{
-    okuru.disabled=!memo.value.trim();
+    hantei();
     memo.style.height='auto'; memo.style.height=Math.min(memo.scrollHeight,190)+'px';
   });
   okuru.addEventListener('click',ireru);
+  drawMatsu();
 
-  drawChat();
+  drawChat(); drawYaru();
 </script>
 
 </body>
