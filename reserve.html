@@ -53,6 +53,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 @media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
 .slot-btn{padding:13px 6px;text-align:center;border:1px solid var(--linec);background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-btn.full{color:var(--gray);background:var(--pale);cursor:default;pointer-events:none}
+.slot-btn.full small{color:var(--gray)}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .slot-btn.on small{color:#d8c49a}
 .rsv-field{margin-top:22px}
@@ -155,7 +157,7 @@ function rsvRender(){
     <div class="rsv-step-label">1. 日付を選ぶ</div>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
-    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.id===rsvSlot?' on':''}" data-slot="${s.id}">${s.startTime}<small>残り${s.availableCount}枠</small></button>`).join('')}</div>
+    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
     <form id="rsv-form">
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
@@ -166,7 +168,7 @@ function rsvRender(){
         <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選択OK</span></label>
-        <div class="topic-chips">${['OB様邸の見学','土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
+        <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
@@ -195,7 +197,7 @@ async function rsvSubmit(e){
 }
 function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
 async function rsvLoad(){
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
   catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
 }
 rsvLoad();setInterval(rsvLoad,60000);
