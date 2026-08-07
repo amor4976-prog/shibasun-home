@@ -628,6 +628,9 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .rev-stars{color:#FBBC05;font-size:16px;letter-spacing:2px}
 .rev-count{font-size:11px;color:var(--gray)}
 .rev-track{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 14px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
+.rev-all{text-align:center;margin-top:18px;font-size:12px;letter-spacing:.06em}
+.rev-all a{color:var(--gray);border-bottom:1px solid var(--linec);padding-bottom:3px;transition:all .3s}
+.rev-all a:hover{color:var(--ink);border-color:var(--ink)}
 .rev-card{flex:0 0 84%;max-width:340px;scroll-snap-align:center;background:#fff;border:1px solid var(--linec);padding:24px 22px;display:flex;flex-direction:column}
 @media(min-width:760px){.rev-card{flex-basis:340px}}
 .rev-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
@@ -1199,6 +1202,8 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
     <div class="rev-track fade" id="rev-track">
       <!-- Googleレビューが設定されると自動表示。未設定の間はサンプル表示 -->
     </div>
+    <!-- Googleが渡してくれる口コミは5件まで。残りはGoogleの一覧で読んでいただく -->
+    <p class="rev-all fade"><a id="rev-link" href="#" target="_blank" rel="noopener">Googleのクチコミをすべて見る</a></p>
   </div>
 </section>
 
