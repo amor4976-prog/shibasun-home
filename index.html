@@ -1526,8 +1526,10 @@ window.__initRev=function(){
     const svc=new google.maps.places.PlacesService(document.createElement('div'));
     svc.getDetails({placeId:GOOGLE_PLACE_ID,fields:['rating','user_ratings_total','reviews'],language:'ja'},(res,status)=>{
       if(status==='OK'&&res&&res.reviews&&res.reviews.length){
+        // いつ書かれたか（「4年前」など）は出さない（専務 2026-08-03）。
+        // 口コミの中身と評価はそのまま。年月だけ伏せる
         const list=res.reviews.filter(r=>r.text&&r.rating>=4).slice(0,6).map(r=>({
-          author:r.author_name,rating:r.rating,time:r.relative_time_description,text:r.text
+          author:r.author_name,rating:r.rating,text:r.text
         }));
         renderReviews(list,res.rating,res.user_ratings_total,false);
       }else{ renderReviews(SAMPLE_REVIEWS,null,null,true); }
