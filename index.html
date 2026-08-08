@@ -635,7 +635,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 @media(min-width:760px){.rev-card{flex-basis:340px}}
 .rev-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .rev-av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-family:'Zen Kaku Gothic New',sans-serif;flex:0 0 auto}
-.rev-who{line-height:1.4}.rev-who .nm{font-size:13px;font-weight:500}.rev-who .dt{font-size:10px;color:var(--gray);letter-spacing:.06em}
+.rev-who{line-height:1.4}.rev-who .nm{font-size:13px;font-weight:500}
 .rev-card .rs{color:#FBBC05;font-size:13px;letter-spacing:1px;margin-bottom:8px}
 .rev-card p{font-size:13px;font-weight:300;line-height:2;color:#454543}
 .rev-body.clamp{display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden}
@@ -1469,12 +1469,12 @@ const GOOGLE_PLACE_ID = 'ChIJ96D1wwc6AWARwOOpt7WiAwk';  // 株式会社シバ・
 function star(n){return '★★★★★☆☆☆☆☆'.slice(5-Math.round(n),10-Math.round(n));}
 // 設定が入るまでの間、信頼感を出すためのサンプル（実レビュー連携後は自動で置き換わります）
 const SAMPLE_REVIEWS=[
-  {author:'I様',rating:5,time:'決め手は“人”',text:'親身になって、すぐに動いてくれたのには本当に驚きました。最後の決め手は、結局「人」。担当者の方を心から信用できたことです。'},
-  {author:'S様',rating:5,time:'誠意を感じて',text:'こちらが多くを言わなくても、誠意のある動きをしてくれました。私たちの意見も、わがままも、いつもしっかり聞いてくれます。'},
-  {author:'T様',rating:5,time:'職人・現場',text:'一人の大工さんが、最初から最後まで見てくれる。だからこそ、安心してお任せできました。'},
-  {author:'M様',rating:5,time:'性能・仕様',text:'標準仕様が他と比べて高く、自由度も性能も納得できました。社長が建築士で、コストのバランスも良く、信用できます。'},
-  {author:'F様',rating:5,time:'ご家族でシバを選択',text:'親身なサポートと、これまでの実績で「ぜひここに」と思いました。細部までこだわりを形にしてもらえました。'},
-  {author:'T様',rating:5,time:'予算とこだわり',text:'社長の本に共感して、ここで建てたいと思いました。限られた予算の中でも、やりたいことが叶いました。'}
+  {author:'I様',rating:5,text:'親身になって、すぐに動いてくれたのには本当に驚きました。最後の決め手は、結局「人」。担当者の方を心から信用できたことです。'},
+  {author:'S様',rating:5,text:'こちらが多くを言わなくても、誠意のある動きをしてくれました。私たちの意見も、わがままも、いつもしっかり聞いてくれます。'},
+  {author:'T様',rating:5,text:'一人の大工さんが、最初から最後まで見てくれる。だからこそ、安心してお任せできました。'},
+  {author:'M様',rating:5,text:'標準仕様が他と比べて高く、自由度も性能も納得できました。社長が建築士で、コストのバランスも良く、信用できます。'},
+  {author:'F様',rating:5,text:'親身なサポートと、これまでの実績で「ぜひここに」と思いました。細部までこだわりを形にしてもらえました。'},
+  {author:'T様',rating:5,text:'社長の本に共感して、ここで建てたいと思いました。限られた予算の中でも、やりたいことが叶いました。'}
 ];
 
 function renderReviews(list, avg, total, sample){
@@ -1482,7 +1482,7 @@ function renderReviews(list, avg, total, sample){
   track.innerHTML=list.map(r=>{
     const ini=(r.author||'様').trim().charAt(0);
     const foot=sample?'お客様の声':`<span class="rev-g" style="font-size:13px"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>の口コミ`;
-    return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div><div class="dt">${r.time||''}</div></div></div><div class="rs">${star(r.rating)}</div><p class="rev-body">${r.text}</p><button class="rev-more" type="button" hidden>続きを読む</button><div class="gi">${foot}</div></div>`;
+    return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div></div></div><div class="rs">${star(r.rating)}</div><p class="rev-body">${r.text}</p><button class="rev-more" type="button" hidden>続きを読む</button><div class="gi">${foot}</div></div>`;
   }).join('');
   // 長い口コミは8行で折りたたみ、「続きを読む」で全文（読みたい人は全部読める）
   track.querySelectorAll('.rev-card').forEach(card=>{
