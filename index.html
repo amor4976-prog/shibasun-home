@@ -1472,14 +1472,6 @@ const GOOGLE_PLACE_ID = 'ChIJ96D1wwc6AWARwOOpt7WiAwk';  // 株式会社シバ・
 
 function star(n){return '★★★★★☆☆☆☆☆'.slice(5-Math.round(n),10-Math.round(n));}
 // 設定が入るまでの間、信頼感を出すためのサンプル（実レビュー連携後は自動で置き換わります）
-const SAMPLE_REVIEWS=[
-  {author:'I様',rating:5,text:'親身になって、すぐに動いてくれたのには本当に驚きました。最後の決め手は、結局「人」。担当者の方を心から信用できたことです。'},
-  {author:'S様',rating:5,text:'こちらが多くを言わなくても、誠意のある動きをしてくれました。私たちの意見も、わがままも、いつもしっかり聞いてくれます。'},
-  {author:'T様',rating:5,text:'一人の大工さんが、最初から最後まで見てくれる。だからこそ、安心してお任せできました。'},
-  {author:'M様',rating:5,text:'標準仕様が他と比べて高く、自由度も性能も納得できました。コストのバランスも良く、信用できました。'},
-  {author:'F様',rating:5,text:'親身なサポートと、これまでの実績で「ぜひここに」と思いました。細部までこだわりを形にしてもらえました。'},
-  {author:'T様',rating:5,text:'社長の本に共感して、ここで建てたいと思いました。限られた予算の中でも、やりたいことが叶いました。'}
-];
 
 function renderReviews(list, avg, total, sample){
   const track=document.getElementById('rev-track');
@@ -1509,7 +1501,7 @@ function renderReviews(list, avg, total, sample){
   const gl=document.getElementById('rev-glabel');
   if(avg){ // 実Googleレビュー
     sc.innerHTML=`<span class="pt">${avg.toFixed(1)}</span><span class="rev-stars">${star(avg)}</span>`;
-    cnt.textContent=(total?`Googleクチコミ ${total}件`:'Googleクチコミ')+' ／ お客様の声';
+    cnt.textContent=total?`Googleクチコミ ${total}件`:'Googleクチコミ';
     if(gl)gl.style.display='';
   }else{ // サンプル（連携前）
     sc.innerHTML=`<span class="rev-stars" style="font-size:22px">★★★★★</span>`;
@@ -1518,14 +1510,19 @@ function renderReviews(list, avg, total, sample){
   }
 }
 
+/** 本物のGoogleの口コミが出せない時は、口コミ欄そのものを出さない（2026-08-08 専務「イニシャルのやつはなしで」） */
+function hideReviews(){
+  const sec=document.getElementById('reviews');
+  if(sec) sec.style.display='none';
+}
+
 function loadGoogleReviews(){
   if(GOOGLE_PLACE_ID){
     var revLink=document.getElementById('rev-link');
     if(revLink) revLink.href='https://search.google.com/local/reviews?placeid='+GOOGLE_PLACE_ID;
   }
   if(!GOOGLE_API_KEY || !GOOGLE_PLACE_ID){
-    // 未設定：サンプル表示（Google誘導ボタンは有効）
-    renderReviews(SAMPLE_REVIEWS, null, null, true);
+    hideReviews();  // 出せる本物が無い時は、欄ごと出さない（作り物を置かない）
     return;
   }
   // Places API(JS) を動的読み込みして実レビューを取得
@@ -1543,11 +1540,11 @@ window.__initRev=function(){
         const list=res.reviews.filter(r=>r.text&&r.rating>=4).slice(0,6).map(r=>({
           author:r.author_name,rating:r.rating,text:r.text
         }));
-        const voices=SAMPLE_REVIEWS.map(function(v){return Object.assign({},v,{src:'s'})});
-        renderReviews(list.map(function(g){return Object.assign({},g,{src:'g'})}).concat(voices),res.rating,res.user_ratings_total,false);
-      }else{ renderReviews(SAMPLE_REVIEWS,null,null,true); }
+        // イニシャルのお客様の声は出さない（専務 2026-08-08）。本人が確認できるGoogleの口コミだけ並べる
+        renderReviews(list.map(function(g){return Object.assign({},g,{src:'g'})}),res.rating,res.user_ratings_total,false);
+      }else{ hideReviews(); }
     });
-  }catch(e){ renderReviews(SAMPLE_REVIEWS,null,null,true); }
+  }catch(e){ hideReviews(); }
 };
 loadGoogleReviews();
 </script>
