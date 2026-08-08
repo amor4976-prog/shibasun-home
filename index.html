@@ -1246,6 +1246,18 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
     <div class="cl-lead">家づくりのお役立ち情報</div>
     <h2 class="cl-h">コラム</h2>
     <div class="cl-list">
+      <a class="cl-item fade" href="blog-hojokin.html">
+        <span class="th"><img src="img/work-ldk.jpg" alt="2026年の住宅補助金" loading="lazy" decoding="async"></span>
+        <span><span class="kind">お金のこと</span><span class="t">2026年の住宅補助金｜奈良で家を建てる人がもらえるお金</span></span>
+      </a>
+      <a class="cl-item fade" href="blog-gaiheki.html">
+        <span class="th"><img src="img/blog/gaiheki/01-koking.jpg" alt="築10年の外壁とコーキング" loading="lazy" decoding="async"></span>
+        <span><span class="kind">住んでから</span><span class="t">外壁の塗り替えは何年目がベスト？「10年」は早いかも</span></span>
+      </a>
+      <a class="cl-item fade" href="blog-nurikabe.html">
+        <span class="th"><img src="img/jisseki/case01/thumb/01.jpg" alt="深い軒と鎖樋の外観" loading="lazy" decoding="async"></span>
+        <span><span class="kind">外まわり</span><span class="t">塗り壁の外壁は汚れる？汚れにくくする設計の話</span></span>
+      </a>
       <a class="cl-item fade" href="blog-movie-setsubi.html">
         <span class="th"><img src="https://i.ytimg.com/vi/PXi34b0cv7k/hqdefault.jpg" alt="付けたら損する住宅設備10選" loading="lazy" decoding="async"><span class="play">▶</span></span>
         <span><span class="kind">動画つき</span><span class="t">付けたら損する住宅設備10選、大工が本音で解説</span></span>
@@ -1257,14 +1269,6 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
       <a class="cl-item fade" href="blog-yosan.html">
         <span class="th"><img src="img/jisseki/case04/thumb/02.jpg" alt="予算と資金計画" loading="lazy" decoding="async"></span>
         <span><span class="kind">お金のこと</span><span class="t">注文住宅の予算の決め方｜年収別の目安と、無理のない返済</span></span>
-      </a>
-      <a class="cl-item fade" href="blog-movie-yuka-souji.html">
-        <span class="th"><img src="img/jisseki/case06/thumb/04.jpg" alt="床の掃除がラクになる床材" loading="lazy" decoding="async"></span>
-        <span><span class="kind">動画つき</span><span class="t">床の掃除がラクになる、床材の選び方</span></span>
-      </a>
-      <a class="cl-item fade" href="blog-hiraya.html">
-        <span class="th"><img src="img/jisseki/case07/thumb/01.jpg" alt="平屋の話" loading="lazy" decoding="async"></span>
-        <span><span class="kind">間取りのこと</span><span class="t">平屋は本当に高い？　総額で比べたときの考え方</span></span>
       </a>
     </div>
     <a class="cl-more" href="blog.html">コラムをさらに見る<span>›</span></a>
@@ -1481,7 +1485,10 @@ function renderReviews(list, avg, total, sample){
   const track=document.getElementById('rev-track');
   track.innerHTML=list.map(r=>{
     const ini=(r.author||'様').trim().charAt(0);
-    const foot=sample?'お客様の声':`<span class="rev-g" style="font-size:13px"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>の口コミ`;
+    // 出どころは1枚ずつ書く。Googleの口コミ（本人の投稿が見られる）と
+    // アンケートのお客様の声（匿名）を、混ぜても取り違えないようにするため
+    const isSample = r.src ? r.src==='s' : sample;
+    const foot=isSample?'お客様の声':`<span class="rev-g" style="font-size:13px"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>の口コミ`;
     return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div></div></div><div class="rs">${star(r.rating)}</div><p class="rev-body">${r.text}</p><button class="rev-more" type="button" hidden>続きを読む</button><div class="gi">${foot}</div></div>`;
   }).join('');
   // 長い口コミは8行で折りたたみ、「続きを読む」で全文（読みたい人は全部読める）
@@ -1502,7 +1509,7 @@ function renderReviews(list, avg, total, sample){
   const gl=document.getElementById('rev-glabel');
   if(avg){ // 実Googleレビュー
     sc.innerHTML=`<span class="pt">${avg.toFixed(1)}</span><span class="rev-stars">${star(avg)}</span>`;
-    cnt.textContent=total?`Googleクチコミ ${total}件`:'Googleクチコミ';
+    cnt.textContent=(total?`Googleクチコミ ${total}件`:'Googleクチコミ')+' ／ お客様の声';
     if(gl)gl.style.display='';
   }else{ // サンプル（連携前）
     sc.innerHTML=`<span class="rev-stars" style="font-size:22px">★★★★★</span>`;
@@ -1536,7 +1543,8 @@ window.__initRev=function(){
         const list=res.reviews.filter(r=>r.text&&r.rating>=4).slice(0,6).map(r=>({
           author:r.author_name,rating:r.rating,text:r.text
         }));
-        renderReviews(list,res.rating,res.user_ratings_total,false);
+        const voices=SAMPLE_REVIEWS.map(function(v){return Object.assign({},v,{src:'s'})});
+        renderReviews(list.map(function(g){return Object.assign({},g,{src:'g'})}).concat(voices),res.rating,res.user_ratings_total,false);
       }else{ renderReviews(SAMPLE_REVIEWS,null,null,true); }
     });
   }catch(e){ renderReviews(SAMPLE_REVIEWS,null,null,true); }
