@@ -34,6 +34,8 @@ FIXES = [
     ("徹底いして", "徹底して"),
     ("他社にみ見に行ったり", "他社に見に行ったり"),
     ("しんみに話を", "親身に話を"),
+    # 住まいの見当がつく表現は消す（2026-08-10 専務指示。所在地を出さない方針に合わせる）
+    ("桜井店が近くだったので", "お店が近くだったので"),
     ("おすすめもあって天然芝にしました。\n実際には、子供が裸足で遊んでても気にならないし", "おすすめもあって人工芝にしました。\n実際には、子供が裸足で遊んでても気にならないし"),
 ]
 
@@ -259,16 +261,29 @@ def mask_name(v, t):
         return t
     return t.replace(v["real"] + "様", v["initial"] + "様").replace(v["real"] + "邸", v["initial"] + "邸")
 
+# 旧サイトのページ送り（本文ではない）
+NAV_JUNK = {"次へ", "前へ", "＜前へ", "<<", ">>", "≪", "≫", "一覧へ", "一覧へ戻る", "▶", "│", "|"}
+
 def paras_of(v):
+    """原稿を段落にまとめ直す。
+    ⚠️質問の見出し（「シバサンホームとの出合い」など）は句点で終わらないので、
+    素朴に前後をつなぐと見出しが本文に飲み込まれてQ&Aが1問しか出なくなる
+    （2026-08-10 に実際に発生）。見出しは必ず独立した1件として扱う。"""
     src = BY[v["num"]]["paras"]
     skip = set(v.get("skip", []))
+    heads = {a for a, _ in v.get("heads", [])}
     out = []
     for p in src:
         p = mask_name(v, fix(p.strip()))
-        if not p or p == "。" or p in skip:
+        if not p or p == "。" or p in skip or p in NAV_JUNK:
+            continue
+        if p in heads:                      # 見出しは独立させる（つながない）
+            out.append(p)
             continue
         # 細切れ行（元サイトの改行）を前の行につなぐ: 文末記号で終わらない短い行
-        if out and not re.search(r"[。！？…笑\)）」』〜]$", out[-1]) and not out[-1].endswith("・・・"):
+        if (out and out[-1] not in heads
+                and not re.search(r"[。！？…笑\)）」』〜]$", out[-1])
+                and not out[-1].endswith("・・・")):
             out[-1] += p
         else:
             out.append(p)
