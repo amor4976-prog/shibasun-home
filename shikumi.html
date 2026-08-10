@@ -126,6 +126,35 @@ p b{font-weight:500;color:var(--ink)}
 .facts .t{font-size:11.5px;color:var(--gray);font-weight:300;letter-spacing:.04em;line-height:1.9}
 @media(min-width:700px){.facts{grid-template-columns:repeat(4,1fr)}}
 
+
+/* 読みやすさ：方眼の上に白い紙を敷いて、その上に文章を置く */
+.card{background:#fff;border:1px solid var(--line);padding:26px 22px;margin:22px 0}
+.card > :first-child{margin-top:0}
+.card > :last-child{margin-bottom:0}
+p{font-size:15px;font-weight:400;color:#2b2b29;line-height:1.95;margin:18px 0;text-wrap:pretty}
+.hero .lead{font-size:15.5px;font-weight:400;color:#2b2b29;line-height:1.95}
+.item .lead{font-size:14.5px;font-weight:400;color:#2b2b29;line-height:1.95}
+.note p{font-size:14px;color:#2b2b29}
+.facts .t{font-size:12px;color:#4a4947}
+.soon{font-size:12px;color:#4a4947}
+
+/* 困りごとのチェック欄 */
+.checks{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px}
+.chk{background:#fff;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;padding:16px 16px}
+.chk svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.chk span{font-size:14px;font-weight:400;color:#2b2b29;line-height:1.85}
+@media(min-width:700px){.checks{grid-template-columns:1fr 1fr}}
+
+/* 写真 */
+.photo{margin:26px 0;border:1px solid var(--line);background:#fff;padding:10px}
+.photo img{width:100%;height:auto;display:block}
+.photo figcaption{font-size:12px;color:#4a4947;font-weight:400;margin-top:10px;line-height:1.9;padding:0 2px 4px}
+.photo.zoom img{transform:scale(1.04);transition:transform 1.4s cubic-bezier(.22,.61,.36,1)}
+.photo.zoom.in img{transform:none}
+
+/* 項目のアイコン */
+.mark svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+
 /* ── 問い合わせ ───────────────── */
 .cta{background:var(--ink);color:#fff;padding:46px 22px;margin-top:10px;text-align:center;
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
@@ -208,20 +237,39 @@ footer a{color:var(--gray)}
     </div>
   </div>
 
+
+  <section>
+    <div class="rule"></div>
+    <h2 class="up" style="margin-top:22px"><span class="tag">00</span>こんなこと、ありませんか</h2>
+    <div class="checks up">
+      <div class="chk"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9m6 10V5m6 14v-7"/></svg><span>人を増やさないと回らない。でも増やせば固定費が上がる</span></div>
+      <div class="chk"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span>段取りと事務で一日が終わり、自分の仕事に手がつかない</span></div>
+      <div class="chk"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/></svg><span>同じ説明を何度も電話でしている</span></div>
+      <div class="chk"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg><span>粗利が締めまで分からない。気づいたときには終わっている</span></div>
+      <div class="chk"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M9 12h6"/></svg><span>道具を入れてはみたが、誰も使わないまま止まっている</span></div>
+      <div class="chk"><svg viewBox="0 0 24 24"><path d="M12 3l8 5v8l-8 5-8-5V8z"/><path d="M12 12v8"/><path d="M12 12l8-4M12 12L4 8"/></svg><span>他社の話は聞き飽きた。同じ規模の実物が見たい</span></div>
+    </div>
+  </section>
+
   <section>
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">01</span>人を増やさずに、会社を回すために</h2>
-    <p class="up">数年前、うちの会社は「売上は下がったのに、固定費だけが上がっている」状態でした。人を増やせば固定費が上がる。増やさなければ、段取りと事務で一日が終わる。景気が戻るのを待つ余裕も、人を増やす体力もありませんでした。</p>
-    <p class="up">そこで、<b>足りない人手のかわりになる仕組みを、自分たちで作る</b>ことにしました。業者さんとのやりとり、工程の共有、原価と粗利、点検やお客様への連絡。ひとつずつ形にして、いまも毎日、現場で動いています。</p>
+    <div class="card up"><p>数年前、うちの会社は「売上は下がったのに、固定費だけが上がっている」状態でした。人を増やせば固定費が上がる。増やさなければ、段取りと事務で一日が終わる。景気が戻るのを待つ余裕も、人を増やす体力もありませんでした。</p>
+    <p>そこで、<b>足りない人手のかわりになる仕組みを、自分たちで作る</b>ことにしました。業者さんとのやりとり、工程の共有、原価と粗利、点検やお客様への連絡。ひとつずつ形にして、いまも毎日、現場で動いています。</p></div>
     <div class="note up"><p>よそから買ってきた道具の紹介ではありません。<b>うちの会社が今日も使っているもの</b>を、そのままお見せしています。合わなければ「合いません」と申し上げます。</p></div>
   </section>
+
+  <figure class="photo zoom up">
+    <img src="img/shikumi/genba.jpg" alt="上棟した木造の骨組み（奈良県内・シバ・サンホームの現場）" loading="lazy" width="1400" height="787">
+    <figcaption>私たちの本業は、家をつくることです。仕組みは、この現場を回すために生まれました。</figcaption>
+  </figure>
 
   <section>
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">02</span>やっていること</h2>
 
     <div class="item up">
-      <div class="mark">01</div>
+      <div class="mark"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h9M4 17h13"/><circle cx="19" cy="17" r="2"/></svg></div>
       <div>
         <h3>うちの番頭</h3>
         <div class="lead">小さな工務店のための業務システム。工程・業者さんとのやりとり・原価と粗利・お客様への連絡までをひとつに。うちの会社が毎日使っているものを、そのままお渡しします。</div>
@@ -230,7 +278,7 @@ footer a{color:var(--gray)}
     </div>
 
     <div class="item up">
-      <div class="mark">02</div>
+      <div class="mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M9 21h6M12 17v4"/></svg></div>
       <div>
         <h3>AI成功事例共有会</h3>
         <div class="lead">工務店の経営者・後継者の方に向けた、90分のオンライン勉強会。きれいな資料ではなく、その日いま動いている画面のままお見せします。商圏が重なるため、近畿圏の工務店様はご遠慮いただいています。</div>
@@ -239,7 +287,7 @@ footer a{color:var(--gray)}
     </div>
 
     <div class="item up">
-      <div class="mark">03</div>
+      <div class="mark"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></div>
       <div>
         <h3>ホームページの作り直し</h3>
         <div class="lead">このサイトも、私たちが自分で<span class="nb">作り替えました</span>。499ページあった古いサイトを、必要な44ページに整理し、表示も軽くしました。同じことでお困りの会社さんのお手伝いもしています。</div>
@@ -251,6 +299,10 @@ footer a{color:var(--gray)}
   <section>
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">03</span>私たちについて</h2>
+    <figure class="photo up" style="max-width:420px">
+      <img src="img/shikumi/senmu.jpg" alt="専務 柴部文嘉" loading="lazy" width="1400" height="846">
+      <figcaption>窓口は専務の柴部文嘉。打ち合わせから仕組みづくりまで、同じ人間が受けます。</figcaption>
+    </figure>
     <p class="up">奈良で注文住宅を建てている工務店です。大工歴43年の社長のもと、専属の職人が家をつくっています。しくみ設計室は、その会社の中にある部署です。<b>窓口は専務の柴部文嘉</b>が務めます。</p>
     <div class="facts up" id="facts">
       <div><div class="n"><i data-count="43">0</i><span>年</span></div><div class="dimline"></div><div class="t">奈良で家をつくってきた年数</div></div>
