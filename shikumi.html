@@ -6,7 +6,7 @@
 <title>しくみ設計室｜株式会社シバ・サンホーム</title>
 <meta name="description" content="奈良の工務店が、自分の会社のためにつくった仕組みを、同じ悩みを持つ工務店さんへ。株式会社シバ・サンホーム しくみ設計室のご案内。">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#1c1c1a">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社シバ・サンホーム">
 <meta property="og:title" content="しくみ設計室｜株式会社シバ・サンホーム">
@@ -18,136 +18,255 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1a1a1a;--gray:#5e5d5b;--pale:#f6f6f5;--linec:#e8e8e6}
+:root{
+  --ink:#1a1a1a; --gray:#5e5d5b; --line:#e4e4e1;
+  --grid:#ececea;      /* 方眼のうすい線 */
+  --grid2:#e2e2df;     /* 5マスごとの太い線 */
+  --paper:#fcfcfb;     /* 図面の紙 */
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);background:#fff;line-height:2.05;
-     overflow-wrap:break-word;word-break:auto-phrase;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);line-height:2.05;
+  background:var(--paper);
+  overflow-wrap:break-word;word-break:auto-phrase;-webkit-text-size-adjust:100%;
+}
+/* ── 図面の方眼（画面全体の下敷き） ───────────────── */
+.paper{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    linear-gradient(var(--grid2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid2) 1px,transparent 1px);
+  background-size:16px 16px,16px 16px,80px 80px,80px 80px;
+  opacity:0;transition:opacity 1.6s ease}
+.paper.on{opacity:1}
+@media(min-width:800px){.paper{background-size:20px 20px,20px 20px,100px 100px,100px 100px}}
+
 img{max-width:100%;display:block}
 a{color:inherit}
-.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
 
-header{padding:26px 0 0}
-header .en{font-family:'Jost',sans-serif;letter-spacing:.28em;font-size:14px;font-weight:500}
-header small{display:block;font-size:10px;color:var(--gray);letter-spacing:.14em;margin-top:3px}
+/* ── 図面の表題欄ふう ヘッダー ───────────────── */
+header{padding:18px 0 0}
+.title-block{border:1px solid var(--ink);background:#fff;display:grid;
+  grid-template-columns:1fr auto;align-items:stretch}
+.title-block .l{padding:12px 14px}
+.title-block .en{font-family:'Jost',sans-serif;letter-spacing:.26em;font-size:13px;font-weight:500}
+.title-block small{display:block;font-size:9.5px;color:var(--gray);letter-spacing:.12em;margin-top:3px}
+.title-block .r{border-left:1px solid var(--ink);padding:12px 14px;text-align:right;
+  font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.18em;color:var(--gray);
+  display:flex;flex-direction:column;justify-content:center}
 
-.hero{padding:56px 0 8px;text-align:center}
-.hero .en{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.34em;color:#a3a3a1;text-transform:uppercase}
-.hero h1{font-size:clamp(27px,7vw,40px);font-weight:500;letter-spacing:.1em;margin:14px 0 18px;line-height:1.5}
-.hero p{font-size:14.5px;font-weight:300;color:#333;max-width:560px;margin:0 auto;line-height:2.15;text-wrap:pretty}
+/* ── ヒーロー：図面が引かれる ───────────────── */
+.hero{position:relative;padding:40px 0 26px}
+.dwg{width:100%;height:auto;display:block}
+.dwg .ln{fill:none;stroke:var(--ink);stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.dwg .thin{stroke:#9a9a97;stroke-width:.8}
+.dwg .dim{stroke:#9a9a97;stroke-width:.8;stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.dwg text{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.14em;fill:#9a9a97;opacity:0}
+.drawn .ln,.drawn .dim{animation:draw 1.5s cubic-bezier(.22,.61,.36,1) forwards}
+.drawn text{animation:fadein .9s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadein{to{opacity:1}}
 
-section{padding:52px 0}
-section + section{border-top:1px solid var(--linec)}
-h2{font-size:19px;font-weight:500;letter-spacing:.08em;margin-bottom:20px;line-height:1.7;text-wrap:balance}
+.hero .cap{text-align:center;margin-top:26px}
+.hero .no{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.34em;color:#a3a3a1}
+.hero h1{font-size:clamp(27px,7.2vw,42px);font-weight:500;letter-spacing:.14em;margin:12px 0 16px;line-height:1.45}
+.hero .lead{font-size:14.5px;font-weight:300;color:#333;max-width:560px;margin:0 auto;line-height:2.15;text-wrap:pretty}
+
+/* ── 出てくる動き ───────────────── */
+.up{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,.61,.36,1)}
+.up.in{opacity:1;transform:none}
+.up.d1{transition-delay:.12s}.up.d2{transition-delay:.24s}.up.d3{transition-delay:.36s}
+
+/* 罫線が伸びる */
+.rule{height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform 1.1s cubic-bezier(.22,.61,.36,1)}
+.rule.in{transform:scaleX(1)}
+
+section{padding:54px 0}
+h2{font-size:19.5px;font-weight:500;letter-spacing:.09em;line-height:1.7;text-wrap:balance;
+   display:flex;align-items:baseline;gap:12px}
+h2 .tag{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.24em;color:#a3a3a1;white-space:nowrap}
 p{font-size:14px;font-weight:300;color:#333;margin:16px 0;text-wrap:pretty}
 p b{font-weight:500;color:var(--ink)}
-
-.list{border-top:1px solid var(--ink);margin-top:26px}
-.item{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:baseline;
-      padding:24px 2px;border-bottom:1px solid var(--linec)}
-.item .no{font-family:'Jost',sans-serif;font-size:21px;font-weight:300;color:var(--ink)}
-.item h3{font-size:16px;font-weight:500;letter-spacing:.05em;line-height:1.75}
-.item .lead{font-size:13.5px;font-weight:300;color:#333;margin-top:8px;line-height:2.05}
-.item .go{display:inline-block;font-size:12.5px;letter-spacing:.08em;margin-top:12px;
-          padding-bottom:3px;border-bottom:1px solid var(--ink);text-decoration:none}
-.item .soon{display:inline-block;font-size:11.5px;color:var(--gray);font-weight:300;margin-top:12px}
-
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--linec);margin-top:24px}
-.facts div{padding:18px 4px;border-bottom:1px solid var(--linec)}
-.facts .n{font-family:'Jost',sans-serif;font-size:26px;font-weight:300;letter-spacing:.02em}
-.facts .n span{font-size:13px;font-family:'Zen Kaku Gothic New',sans-serif;margin-left:4px}
-.facts .t{font-size:11.5px;color:var(--gray);font-weight:300;margin-top:4px;letter-spacing:.04em}
-
 .nb{display:inline!important;white-space:nowrap}
-.note{border-left:2px solid var(--ink);padding:2px 0 2px 16px;margin:26px 0;
-      font-size:13px;font-weight:300;line-height:2.05;color:#3c3c3a}
 
-.cta{background:#161614;color:#fff;padding:44px 24px;text-align:center;margin-top:8px}
-.cta h2{color:#fff;margin-bottom:8px}
-.cta p{color:#c2c2c0;font-size:13px;margin:0 auto 22px;max-width:460px}
+.note{position:relative;margin:28px 0;padding:18px 18px 18px 20px;background:#fff;border:1px solid var(--line)}
+.note:before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:2px;background:var(--ink)}
+.note p{margin:0;font-size:13px;line-height:2.05;color:#3c3c3a}
+
+/* ── やっていること：図面の番号丸＋引き出し線 ───────────────── */
+.item{display:grid;grid-template-columns:46px 1fr;gap:16px;padding:26px 0;border-bottom:1px solid var(--line)}
+.item:first-of-type{border-top:1px solid var(--ink)}
+.mark{width:34px;height:34px;border:1px solid var(--ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:#fff;
+  font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.04em}
+.item h3{font-size:16.5px;font-weight:500;letter-spacing:.05em;line-height:1.75}
+.item .lead{font-size:13.5px;font-weight:300;color:#333;margin-top:9px;line-height:2.05}
+.go{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.08em;
+  margin-top:14px;padding-bottom:4px;border-bottom:1px solid var(--ink);text-decoration:none;
+  transition:gap .3s ease}
+.go:hover{gap:14px}
+.soon{display:inline-block;font-size:11.5px;color:var(--gray);font-weight:300;margin-top:14px}
+
+/* ── 数字：寸法線ふう ───────────────── */
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:26px}
+.facts > div{background:#fff;padding:20px 14px}
+.facts .n{font-family:'Jost',sans-serif;font-size:30px;font-weight:300;letter-spacing:.01em;line-height:1.2}
+.facts .n span{font-size:12.5px;font-family:'Zen Kaku Gothic New',sans-serif;margin-left:5px;color:var(--ink)}
+.facts .dimline{position:relative;height:9px;margin:9px 0 8px}
+.facts .dimline:before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:#c9c9c6;
+  transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.22,.61,.36,1)}
+.facts.in .dimline:before{transform:scaleX(1)}
+.facts .dimline:after{content:"";position:absolute;left:0;top:0;width:1px;height:9px;background:#c9c9c6}
+.facts .t{font-size:11.5px;color:var(--gray);font-weight:300;letter-spacing:.04em;line-height:1.9}
+@media(min-width:700px){.facts{grid-template-columns:repeat(4,1fr)}}
+
+/* ── 問い合わせ ───────────────── */
+.cta{background:var(--ink);color:#fff;padding:46px 22px;margin-top:10px;text-align:center;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:20px 20px,20px 20px}
+.cta h2{color:#fff;justify-content:center;margin-bottom:10px}
+.cta p{color:#c2c2c0;font-size:13px;margin:0 auto 24px;max-width:460px}
 .cta .row{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto}
-.cta a{display:block;padding:15px;font-size:13px;letter-spacing:.1em;text-decoration:none;background:#fff;color:var(--ink)}
-.cta a.line2{background:transparent;color:#fff;border:1px solid #55534f}
+.cta a{display:block;padding:15px;font-size:13px;letter-spacing:.1em;text-decoration:none;
+  background:#fff;color:var(--ink);transition:transform .25s ease,opacity .25s ease}
+.cta a:hover{transform:translateY(-2px)}
+.cta a.g{background:transparent;color:#fff;border:1px solid #55534f}
+@media(min-width:700px){.cta .row{flex-direction:row;max-width:520px}.cta .row a{flex:1}}
 
-footer{padding:38px 0 60px;font-size:11.5px;color:var(--gray);font-weight:300;line-height:2}
+footer{padding:36px 0 64px;font-size:11.5px;color:var(--gray);font-weight:300;line-height:2}
 footer .fl{font-family:'Jost',sans-serif;letter-spacing:.3em;color:var(--ink);font-size:12px;margin-bottom:10px}
 footer a{color:var(--gray)}
-@media(min-width:700px){ .cta .row{flex-direction:row;max-width:520px} .cta .row a{flex:1} }
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .up,.rule,.paper{transition:none}
+  .up{opacity:1;transform:none}.rule{transform:scaleX(1)}.paper{opacity:1}
+  .drawn .ln,.drawn .dim{animation:none;stroke-dashoffset:0}
+  .drawn text{animation:none;opacity:1}
+}
 </style>
 </head>
 <body>
+<div class="paper" id="paper"></div>
 
 <div class="wrap">
   <header>
-    <a href="index.html" style="text-decoration:none">
-      <div class="en">SHIBA SUN HOME</div>
-      <small>奈良の注文住宅・株式会社シバ・サンホーム</small>
+    <a href="index.html" style="text-decoration:none" class="up">
+      <div class="title-block">
+        <div class="l">
+          <div class="en">SHIBA SUN HOME</div>
+          <small>奈良県奈良市北之庄町41-1／注文住宅・リフォーム</small>
+        </div>
+        <div class="r"><span>DRAWN BY</span><span>SHIKUMI</span></div>
+      </div>
     </a>
   </header>
 
+  <!-- ヒーロー：家の断面が引かれていく -->
   <div class="hero">
-    <div class="en">Shikumi</div>
-    <h1>しくみ設計室</h1>
-    <p>奈良の小さな工務店が、自分の会社のためにつくった仕組みを、同じ悩みを持つ工務店さんへお渡しする部署です。売るためにつくったものではなく、<b><span class="nb">自分たち</span>が毎日使っているもの</b>だけを扱います。</p>
+    <svg class="dwg" id="dwg" viewBox="0 0 640 240" role="img" aria-label="家の断面図が引かれる図">
+      <!-- 寸法線（上） -->
+      <line class="dim" x1="120" y1="26" x2="520" y2="26"/>
+      <line class="thin" x1="120" y1="18" x2="120" y2="34"/>
+      <line class="thin" x1="520" y1="18" x2="520" y2="34"/>
+      <text x="320" y="20" text-anchor="middle">SHIKUMI SEKKEISHITSU</text>
+      <!-- 屋根 -->
+      <path class="ln" d="M104,120 L320,44 L536,120"/>
+      <!-- 軒 -->
+      <line class="ln" x1="104" y1="120" x2="128" y2="120"/>
+      <line class="ln" x1="512" y1="120" x2="536" y2="120"/>
+      <!-- 壁 -->
+      <line class="ln" x1="128" y1="120" x2="128" y2="206"/>
+      <line class="ln" x1="512" y1="120" x2="512" y2="206"/>
+      <!-- 床・地面 -->
+      <line class="ln" x1="128" y1="206" x2="512" y2="206"/>
+      <line class="thin" x1="68" y1="206" x2="572" y2="206"/>
+      <!-- 中の間仕切りと開口 -->
+      <line class="dim" x1="320" y1="130" x2="320" y2="206"/>
+      <rect class="ln" x="168" y="150" width="86" height="44"/>
+      <rect class="ln" x="386" y="150" width="86" height="44"/>
+      <!-- 中心線 -->
+      <line class="dim" x1="320" y1="30" x2="320" y2="44"/>
+      <!-- 寸法線（下） -->
+      <line class="dim" x1="128" y1="224" x2="512" y2="224"/>
+      <line class="thin" x1="128" y1="216" x2="128" y2="232"/>
+      <line class="thin" x1="512" y1="216" x2="512" y2="232"/>
+      <text x="320" y="238" text-anchor="middle">NARA / SINCE 43 YEARS</text>
+    </svg>
+
+    <div class="cap">
+      <div class="no up">SHEET 01</div>
+      <h1 class="up d1">しくみ設計室</h1>
+      <p class="lead up d2">奈良の小さな工務店が、自分の会社のためにつくった仕組みを、同じ悩みを持つ工務店さんへお渡しする部署です。売るためにつくったものではなく、<b><span class="nb">自分たち</span>が毎日使っているもの</b>だけを扱います。</p>
+    </div>
   </div>
 
   <section>
-    <h2>人を増やさずに、<br>会社を回すために始めました</h2>
-    <p>数年前、うちの会社は「売上は下がったのに、固定費だけが上がっている」状態でした。人を増やせば固定費が上がる。増やさなければ、段取りと事務で一日が終わる。景気が戻るのを待つ余裕も、人を増やす体力もありませんでした。</p>
-    <p>そこで、<b>足りない人手のかわりになる仕組みを、自分たちで作る</b>ことにしました。業者さんとのやりとり、工程の共有、原価と粗利、点検やお客様への連絡。ひとつずつ形にして、いまも毎日、現場で動いています。</p>
-    <p class="note">よそから買ってきた道具の紹介ではありません。<b>うちの会社が今日も使っているもの</b>を、そのままお見せしています。合わなければ「合いません」と申し上げます。</p>
+    <div class="rule"></div>
+    <h2 class="up" style="margin-top:22px"><span class="tag">01</span>人を増やさずに、会社を回すために</h2>
+    <p class="up">数年前、うちの会社は「売上は下がったのに、固定費だけが上がっている」状態でした。人を増やせば固定費が上がる。増やさなければ、段取りと事務で一日が終わる。景気が戻るのを待つ余裕も、人を増やす体力もありませんでした。</p>
+    <p class="up">そこで、<b>足りない人手のかわりになる仕組みを、自分たちで作る</b>ことにしました。業者さんとのやりとり、工程の共有、原価と粗利、点検やお客様への連絡。ひとつずつ形にして、いまも毎日、現場で動いています。</p>
+    <div class="note up"><p>よそから買ってきた道具の紹介ではありません。<b>うちの会社が今日も使っているもの</b>を、そのままお見せしています。合わなければ「合いません」と申し上げます。</p></div>
   </section>
 
   <section>
-    <h2>やっていること</h2>
+    <div class="rule"></div>
+    <h2 class="up" style="margin-top:22px"><span class="tag">02</span>やっていること</h2>
 
-    <div class="list">
-      <div class="item">
-        <div class="no">01</div>
-        <div>
-          <h3>うちの番頭</h3>
-          <div class="lead">小さな工務店のための業務システム。工程・業者さんとのやりとり・原価と粗利・お客様への連絡までをひとつに。うちの会社が毎日使っているものを、そのままお渡しします。</div>
-          <a class="go" href="https://amor4976-prog.github.io/genba-ban-lp/" target="_blank" rel="noopener">くわしく見る →</a>
-        </div>
+    <div class="item up">
+      <div class="mark">01</div>
+      <div>
+        <h3>うちの番頭</h3>
+        <div class="lead">小さな工務店のための業務システム。工程・業者さんとのやりとり・原価と粗利・お客様への連絡までをひとつに。うちの会社が毎日使っているものを、そのままお渡しします。</div>
+        <a class="go" href="https://amor4976-prog.github.io/genba-ban-lp/" target="_blank" rel="noopener">くわしく見る<span>→</span></a>
       </div>
+    </div>
 
-      <div class="item">
-        <div class="no">02</div>
-        <div>
-          <h3>AI成功事例共有会</h3>
-          <div class="lead">工務店の経営者・後継者の方に向けた、90分のオンライン勉強会。きれいな資料ではなく、その日いま動いている画面のままお見せします。商圏が重なるため、近畿圏の工務店様はご遠慮いただいています。</div>
-          <span class="soon">次回のご案内は準備中です。ご希望の方はご連絡ください。</span>
-        </div>
+    <div class="item up">
+      <div class="mark">02</div>
+      <div>
+        <h3>AI成功事例共有会</h3>
+        <div class="lead">工務店の経営者・後継者の方に向けた、90分のオンライン勉強会。きれいな資料ではなく、その日いま動いている画面のままお見せします。商圏が重なるため、近畿圏の工務店様はご遠慮いただいています。</div>
+        <span class="soon">次回のご案内は準備中です。ご希望の方はご連絡ください。</span>
       </div>
+    </div>
 
-      <div class="item">
-        <div class="no">03</div>
-        <div>
-          <h3>ホームページの作り直し</h3>
-          <div class="lead">このサイトも、私たちが自分で<span class="nb">作り替えました</span>。499ページあった古いサイトを、必要な44ページに整理し、表示も軽くしました。同じことでお困りの会社さんのお手伝いもしています。</div>
-          <span class="soon">まずはこのサイトをご覧のうえ、ご相談ください。</span>
-        </div>
+    <div class="item up">
+      <div class="mark">03</div>
+      <div>
+        <h3>ホームページの作り直し</h3>
+        <div class="lead">このサイトも、私たちが自分で<span class="nb">作り替えました</span>。499ページあった古いサイトを、必要な44ページに整理し、表示も軽くしました。同じことでお困りの会社さんのお手伝いもしています。</div>
+        <span class="soon">まずはこのサイトをご覧のうえ、ご相談ください。</span>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>私たちについて</h2>
-    <p>奈良で注文住宅を建てている工務店です。大工歴43年の社長のもと、専属の職人が家をつくっています。しくみ設計室は、その会社の中にある部署です。<b>窓口は専務の柴部文嘉</b>が務めます。</p>
-    <div class="facts">
-      <div><div class="n">43<span>年</span></div><div class="t">奈良で家をつくってきた年数</div></div>
-      <div><div class="n">570<span>棟以上</span></div><div class="t">これまでに建てた新築の数</div></div>
-      <div><div class="n">10<span>名以下</span></div><div class="t">私たちと同じくらいの規模の会社に向いています</div></div>
-      <div><div class="n">毎日<span>稼働中</span></div><div class="t">仕組みは自社の現場で動いています</div></div>
+    <div class="rule"></div>
+    <h2 class="up" style="margin-top:22px"><span class="tag">03</span>私たちについて</h2>
+    <p class="up">奈良で注文住宅を建てている工務店です。大工歴43年の社長のもと、専属の職人が家をつくっています。しくみ設計室は、その会社の中にある部署です。<b>窓口は専務の柴部文嘉</b>が務めます。</p>
+    <div class="facts up" id="facts">
+      <div><div class="n"><i data-count="43">0</i><span>年</span></div><div class="dimline"></div><div class="t">奈良で家をつくってきた年数</div></div>
+      <div><div class="n"><i data-count="570">0</i><span>棟以上</span></div><div class="dimline"></div><div class="t">これまでに建てた新築の数</div></div>
+      <div><div class="n"><i data-count="10">0</i><span>名以下</span></div><div class="dimline"></div><div class="t">同じくらいの規模の会社に向いています</div></div>
+      <div><div class="n">毎日<span>稼働中</span></div><div class="dimline"></div><div class="t">仕組みは自社の現場で動いています</div></div>
     </div>
   </section>
 </div>
 
 <div class="cta">
-  <h2>まずは、話を聞いてみてください。</h2>
-  <p>売り込みはしません。合うかどうかを一緒に確かめる時間だとお考えください。</p>
-  <div class="row">
+  <h2 class="up">まずは、話を聞いてみてください。</h2>
+  <p class="up d1">売り込みはしません。合うかどうかを一緒に確かめる時間だとお考えください。</p>
+  <div class="row up d2">
     <a href="tel:0742813948">電話で聞く　0742-81-3948</a>
-    <a class="line2" href="mailto:yasuhiro@shibasun.jp?subject=%E3%81%97%E3%81%8F%E3%81%BF%E8%A8%AD%E8%A8%88%E5%AE%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで聞く</a>
+    <a class="g" href="mailto:yasuhiro@shibasun.jp?subject=%E3%81%97%E3%81%8F%E3%81%BF%E8%A8%AD%E8%A8%88%E5%AE%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで聞く</a>
   </div>
 </div>
 
@@ -161,5 +280,100 @@ footer a{color:var(--gray)}
   </footer>
 </div>
 
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // 方眼をふわっと出す
+  requestAnimationFrame(function(){ document.getElementById('paper').classList.add('on'); });
+
+  // 図面の線：長さを測って、順番に引く
+  var dwg = document.getElementById('dwg');
+  if (dwg){
+    var i = 0;
+    dwg.querySelectorAll('.ln,.dim').forEach(function(el){
+      var len = (el.getTotalLength ? el.getTotalLength() : 400);
+      el.style.setProperty('--len', Math.ceil(len));
+      el.style.animationDelay = (0.15 + i * 0.11) + 's';
+      i++;
+    });
+    dwg.querySelectorAll('text').forEach(function(el, n){
+      el.style.animationDelay = (1.5 + n * 0.25) + 's';
+    });
+    if (reduce) { dwg.classList.add('drawn'); }
+    else { requestAnimationFrame(function(){ dwg.classList.add('drawn'); }); }
+  }
+
+  // 画面に入ったら出す（スマホでもPCでも同じ動き）
+  // ※監視APIに頼らず、スクロールで自分で見る。どの端末でも確実に動く。
+  var targets = [].slice.call(document.querySelectorAll('.up,.rule,#facts'));
+  var facts = document.getElementById('facts');
+
+  function showAll(){
+    targets.forEach(function(el){ el.classList.add('in'); });
+    countUp(facts);
+  }
+
+  function check(){
+    var h = window.innerHeight || document.documentElement.clientHeight;
+    for (var i = targets.length - 1; i >= 0; i--) {
+      var el = targets[i], r = el.getBoundingClientRect();
+      if (r.top < h * 0.88 && r.bottom > 0) {
+        el.classList.add('in');
+        if (el === facts) countUp(facts);
+        targets.splice(i, 1);
+      }
+    }
+    if (!targets.length) {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    }
+  }
+
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ ticking = false; check(); });
+  }
+
+  if (reduce) { showAll(); }
+  else {
+    // 画面に入ったかを見る（対応していればこちらが主役）
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(es){
+        var hit = false;
+        es.forEach(function(e){ if (e.isIntersecting) hit = true; });
+        if (hit) check();
+      }, {rootMargin:'0px 0px -12% 0px', threshold:0.1});
+      targets.forEach(function(el){ io.observe(el); });
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', check);
+    check();
+    setTimeout(check, 300);
+    // ⚠️安全策：動きが動かない環境でも、文字が消えたままにならないようにする
+    setTimeout(showAll, 2500);
+  }
+
+  // 数字を数える
+  function countUp(root){
+    if (!root) return;
+    root.querySelectorAll('[data-count]').forEach(function(el){
+      var to = parseInt(el.dataset.count, 10), t0 = null, dur = 1100;
+      if (reduce) { el.textContent = to; return; }
+      function step(t){
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+})();
+</script>
 </body>
 </html>
