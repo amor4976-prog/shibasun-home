@@ -202,6 +202,7 @@ header small{display:block;font-size:10px;color:var(--gray);letter-spacing:.14em
 .quotehero .who{font-size:12.5px;color:var(--gray);font-weight:300;letter-spacing:.06em;text-wrap:pretty}
 .hero img{width:100%;aspect-ratio:4/3;object-fit:cover}
 .data{max-width:640px;margin:32px auto 0;padding:0 24px}
+.data .srcnote{font-size:11.5px;color:var(--gray);font-weight:300;letter-spacing:.04em}
 .data table{width:100%;border-collapse:collapse;font-size:13px}
 .data th,.data td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--linec);font-weight:300}
 .data th{width:9em;color:var(--gray);font-weight:400;letter-spacing:.06em}
@@ -245,17 +246,25 @@ def esc(t):
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 def name_of(v):
-    """誰の家かの表記。⚠️所在地（市町村）は出さない（2026-08-10 専務指示）。"""
+    """誰の家かの表記。⚠️所在地（市町村）も家族構成も出さない（2026-08-10 専務指示）。
+    出すのはイニシャルだけ。分からない邸は空（その行ごと出さない）。"""
     if v["initial"]:
         return (v["real"] + "様邸") if (REAL_NAMES and v["real"]) else (v["initial"] + "様邸")
-    return v["family"]
+    return ""
+
+def mask_name(v, t):
+    """本文に残る実名をイニシャルに置き換える（森様ご夫妻→M様ご夫妻）。
+    ⚠️実名で公開する時（REAL_NAMES=True）は置き換えない。"""
+    if REAL_NAMES or not v.get("real") or not v.get("initial"):
+        return t
+    return t.replace(v["real"] + "様", v["initial"] + "様").replace(v["real"] + "邸", v["initial"] + "邸")
 
 def paras_of(v):
     src = BY[v["num"]]["paras"]
     skip = set(v.get("skip", []))
     out = []
     for p in src:
-        p = fix(p.strip())
+        p = mask_name(v, fix(p.strip()))
         if not p or p == "。" or p in skip:
             continue
         # 細切れ行（元サイトの改行）を前の行につなぐ: 文末記号で終わらない短い行
@@ -281,18 +290,18 @@ def build_detail(v, prev_href, next_href):
     fname = f"mock-voice-{v['no']:02d}.html"
     page_title = f"【モック】{v['title']}｜お客様の声 #{v['no']:02d}｜シバ・サンホーム"
     h = HEAD.format(title=esc(page_title), css=CSS)
-    h += f'<div class="mocknote"><b>【B案モック #{v["no"]:02d}】</b>お名前はイニシャル・所在地は出さない方針で確定。顔が写る写真は使っていません。本文は旧サイトの取材原稿のまま（誤字のみ修正）。</div>\n'
+    h += f'<div class="mocknote"><b>【B案モック #{v["no"]:02d}】</b>お名前はイニシャルのみ・所在地と家族構成は出さない方針で確定。顔が写る写真は使っていません。本文は旧サイトの取材原稿のまま（誤字のみ修正）。</div>\n'
     h += '<header><div class="en">SHIBA SUN HOME</div><small>奈良の注文住宅</small></header>\n'
+    nm = name_of(v)
+    who = esc(v["title"]) + ("｜" + esc(nm) if nm else "")
     h += f'''<div class="quotehero">
   <div class="no">VOICE #{v["no"]:02d}</div>
   <h1>「{esc(v["quote"])}」</h1>
-  <div class="who">{esc(v["title"])}｜{esc(name_of(v))}</div>
+  <div class="who">{who}</div>
 </div>\n'''
     if os.path.exists(os.path.join(ROOT, f"img/mock-voice/v{v['num']}_1.jpg")):
         h += f'<div class="hero"><img src="img/mock-voice/v{v["num"]}_1.jpg" alt="{esc(v["title"])}"></div>\n'
-    rows = f"<tr><th>ご家族</th><td>{esc(v['family'])}</td></tr>"
-    rows += "<tr><th>取材</th><td>旧サイト掲載の取材原稿より</td></tr>"
-    h += f'<div class="data"><table>{rows}</table></div>\n<div class="body">\n'
+    h += '<div class="data"><p class="srcnote">旧サイトに掲載していた取材記事より。</p></div>\n<div class="body">\n'
 
     paras = paras_of(v)
     mid_photo = photo(v, 2)
@@ -366,7 +375,7 @@ LIST_CSS = CSS + """
 
 def build_list():
     h = HEAD.format(title="【モック】お客様の声 一覧｜シバ・サンホーム", css=LIST_CSS)
-    h += '<div class="mocknote"><b>【デザイン提案モック・B案】</b>旧サイトに眠っていた「お客様の声」16本の復活案。<b>新しい家から順</b>・<b>お名前はイニシャル</b>・<b>所在地は出さない</b>・顔が写る写真は不使用。公開前に残るのは「内容の時点確認」だけです。</div>\n'
+    h += '<div class="mocknote"><b>【デザイン提案モック・B案】</b>旧サイトに眠っていた「お客様の声」16本の復活案。<b>新しい家から順</b>・<b>お名前はイニシャルのみ</b>・<b>所在地と家族構成は出さない</b>・顔が写る写真は不使用。公開前に残るのは「内容の時点確認」だけです。</div>\n'
     h += '<header><div class="en">SHIBA SUN HOME</div><small>奈良の注文住宅</small></header>\n'
     h += '''<div class="whead">
   <div class="en">Voice</div>
@@ -378,12 +387,13 @@ def build_list():
         href = f"mock-voice-{v['no']:02d}.html"
         img = f"img/mock-voice/v{v['num']}_1.jpg"
         imgtag = f'<img src="{img}" alt="{esc(v["title"])}" loading="lazy">' if os.path.exists(os.path.join(ROOT, img)) else ""
+        nm = name_of(v)
+        wholine = f'    <div class="who">{esc(nm)}</div>\n' if nm else ""
         h += f'''  <a class="card" href="{href}">
     <div class="ph">{imgtag}</div>
     <div class="no">VOICE #{v['no']:02d}</div>
     <h2>{esc(v["title"])}</h2>
-    <div class="who">{esc(name_of(v))}</div>
-    <div class="quote">「{esc(v["quote"])}」</div>
+{wholine}    <div class="quote">「{esc(v["quote"])}」</div>
     <div class="more">READ →</div>
   </a>\n'''
     h += '''</div>
