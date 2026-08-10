@@ -82,7 +82,7 @@ V = [
       qby="ご主人"),
  dict(num="0010", no=7, layout="qa", area="奈良市・菖蒲池", family="ご夫婦とお子様",
       initial="", real="",
-      title="あやめ池の平屋。",
+      title="広い土地に出会えたから、平屋にしました。",
       quote="シバサンホームの中で、一番喧嘩したと思います",
       qby="奥様",
       heads=[("〇家づくりを考え始めたキッカケは？", "家づくりを考え始めたキッカケは？"),
@@ -245,10 +245,10 @@ def esc(t):
     return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 def name_of(v):
+    """誰の家かの表記。⚠️所在地（市町村）は出さない（2026-08-10 専務指示）。"""
     if v["initial"]:
-        nm = (v["real"] + "様邸") if (REAL_NAMES and v["real"]) else (v["initial"] + "様邸")
-        return nm + ("（" + v["area"] + "）" if v["area"] else "")
-    return (v["area"] + "・" + v["family"]) if v["area"] else v["family"]
+        return (v["real"] + "様邸") if (REAL_NAMES and v["real"]) else (v["initial"] + "様邸")
+    return v["family"]
 
 def paras_of(v):
     src = BY[v["num"]]["paras"]
@@ -281,7 +281,7 @@ def build_detail(v, prev_href, next_href):
     fname = f"mock-voice-{v['no']:02d}.html"
     page_title = f"【モック】{v['title']}｜お客様の声 #{v['no']:02d}｜シバ・サンホーム"
     h = HEAD.format(title=esc(page_title), css=CSS)
-    h += f'<div class="mocknote"><b>【B案モック #{v["no"]:02d}】</b>お名前はイニシャル表示（この方針で確定）。顔が写る写真は使っていません。本文は旧サイトの取材原稿のまま（誤字のみ修正）。</div>\n'
+    h += f'<div class="mocknote"><b>【B案モック #{v["no"]:02d}】</b>お名前はイニシャル・所在地は出さない方針で確定。顔が写る写真は使っていません。本文は旧サイトの取材原稿のまま（誤字のみ修正）。</div>\n'
     h += '<header><div class="en">SHIBA SUN HOME</div><small>奈良の注文住宅</small></header>\n'
     h += f'''<div class="quotehero">
   <div class="no">VOICE #{v["no"]:02d}</div>
@@ -290,8 +290,7 @@ def build_detail(v, prev_href, next_href):
 </div>\n'''
     if os.path.exists(os.path.join(ROOT, f"img/mock-voice/v{v['num']}_1.jpg")):
         h += f'<div class="hero"><img src="img/mock-voice/v{v["num"]}_1.jpg" alt="{esc(v["title"])}"></div>\n'
-    rows = f"<tr><th>所在地</th><td>{esc('奈良県' + v['area'] if v['area'] and not v['area'].startswith('奈良') else (v['area'] or '奈良県内'))}</td></tr>"
-    rows += f"<tr><th>ご家族</th><td>{esc(v['family'])}</td></tr>"
+    rows = f"<tr><th>ご家族</th><td>{esc(v['family'])}</td></tr>"
     rows += "<tr><th>取材</th><td>旧サイト掲載の取材原稿より</td></tr>"
     h += f'<div class="data"><table>{rows}</table></div>\n<div class="body">\n'
 
@@ -367,7 +366,7 @@ LIST_CSS = CSS + """
 
 def build_list():
     h = HEAD.format(title="【モック】お客様の声 一覧｜シバ・サンホーム", css=LIST_CSS)
-    h += '<div class="mocknote"><b>【デザイン提案モック・B案】</b>旧サイトに眠っていた「お客様の声」16本の復活案。<b>新しい家から順</b>・<b>お名前はイニシャル</b>・顔が写る写真は不使用。公開前に残るのは「内容の時点確認」だけです。</div>\n'
+    h += '<div class="mocknote"><b>【デザイン提案モック・B案】</b>旧サイトに眠っていた「お客様の声」16本の復活案。<b>新しい家から順</b>・<b>お名前はイニシャル</b>・<b>所在地は出さない</b>・顔が写る写真は不使用。公開前に残るのは「内容の時点確認」だけです。</div>\n'
     h += '<header><div class="en">SHIBA SUN HOME</div><small>奈良の注文住宅</small></header>\n'
     h += '''<div class="whead">
   <div class="en">Voice</div>
