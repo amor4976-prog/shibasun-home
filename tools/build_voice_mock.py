@@ -281,7 +281,7 @@ def build_detail(v, prev_href, next_href):
     fname = f"mock-voice-{v['no']:02d}.html"
     page_title = f"【モック】{v['title']}｜お客様の声 #{v['no']:02d}｜シバ・サンホーム"
     h = HEAD.format(title=esc(page_title), css=CSS)
-    h += f'<div class="mocknote"><b>【B案モック #{v["no"]:02d}】</b>お名前はイニシャル仮表示。本文は旧サイトの取材原稿のまま（誤字のみ修正）。</div>\n'
+    h += f'<div class="mocknote"><b>【B案モック #{v["no"]:02d}】</b>お名前はイニシャル表示（この方針で確定）。顔が写る写真は使っていません。本文は旧サイトの取材原稿のまま（誤字のみ修正）。</div>\n'
     h += '<header><div class="en">SHIBA SUN HOME</div><small>奈良の注文住宅</small></header>\n'
     h += f'''<div class="quotehero">
   <div class="no">VOICE #{v["no"]:02d}</div>
@@ -367,7 +367,7 @@ LIST_CSS = CSS + """
 
 def build_list():
     h = HEAD.format(title="【モック】お客様の声 一覧｜シバ・サンホーム", css=LIST_CSS)
-    h += '<div class="mocknote"><b>【デザイン提案モック・B案で作成】</b>旧サイトに眠っていた「お客様の声」16本の復活案。お名前はイニシャル仮表示（公開には ①内容の時点確認 ②お名前・写真の再掲載のご承諾 が必要）。</div>\n'
+    h += '<div class="mocknote"><b>【デザイン提案モック・B案】</b>旧サイトに眠っていた「お客様の声」16本の復活案。<b>新しい家から順</b>・<b>お名前はイニシャル</b>・顔が写る写真は不使用。公開前に残るのは「内容の時点確認」だけです。</div>\n'
     h += '<header><div class="en">SHIBA SUN HOME</div><small>奈良の注文住宅</small></header>\n'
     h += '''<div class="whead">
   <div class="en">Voice</div>
@@ -375,7 +375,7 @@ def build_list():
   <p>シバ・サンホームで家を建てたご家族に、住んでからの本音をうかがいました。ぜんぶ、実際にあった家づくりの話です。</p>
 </div>
 <div class="list">\n'''
-    for v in V:
+    for v in sorted(V, key=lambda x: x["no"]):
         href = f"mock-voice-{v['no']:02d}.html"
         img = f"img/mock-voice/v{v['num']}_1.jpg"
         imgtag = f'<img src="{img}" alt="{esc(v["title"])}" loading="lazy">' if os.path.exists(os.path.join(ROOT, img)) else ""
@@ -396,6 +396,11 @@ def build_list():
 </html>
 '''
     open(os.path.join(ROOT, "mock-voice.html"), "w", encoding="utf-8").write(h)
+
+# 並びは「新しい家から」（2026-08-10 専務指示。旧サイトの番号が新しいほど新しい取材）
+NEW_ORDER = ["0020","0019","0018","0017","0016","0015","0014","0013","0012","0010","0008","0004","0003","0002","0001","0000"]
+for _v in V:
+    _v["no"] = NEW_ORDER.index(_v["num"]) + 1
 
 def main():
     order = sorted(V, key=lambda v: v["no"])
