@@ -38,6 +38,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
 .whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
 .rsv-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:var(--gray);margin-top:14px}
+.rsv-after{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.9;margin-top:12px}
 .rsv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7da06f;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .wrap{max-width:640px;margin:0 auto;padding:24px 20px 50px}
@@ -172,6 +173,7 @@ function rsvRender(){
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
+      <p class="rsv-after">送信後、担当の柴部（専務）から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
     </form>`;
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
