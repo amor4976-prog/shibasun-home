@@ -173,7 +173,7 @@ function rsvRender(){
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
-      <p class="rsv-after">送信後、担当の柴部（専務）から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
+      <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
     </form>`;
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
