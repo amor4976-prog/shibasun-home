@@ -370,43 +370,58 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
    ＝スマートフォン側の作りには一切さわらない。 */
 .pcl,.pcr{display:none}
 @media(min-width:1080px){
-  body{padding-bottom:0}
-  /* 左：大きな写真（動かない） */
-  .pcl{display:block;position:fixed;top:0;bottom:0;left:0;width:calc(50% - 250px);z-index:0;
-    background:#141412 url("img/shikumi/genba.jpg") center/cover no-repeat}
-  .pcl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,20,18,.34),rgba(20,20,18,0) 55%,rgba(255,255,255,.06))}
-  /* 中央：スマートフォンと同じ1列 */
-  .wrap{max-width:470px;margin:0 0 0 calc(50% - 250px);padding:0 20px;position:relative;z-index:2;
-    background:var(--paper-bg,#fbfaf8);box-shadow:0 0 60px rgba(0,0,0,.07)}
+  body{padding-bottom:0;background:#f2f1ee}
+  /* 左：白地に主役を大きく置き、下に題字（参考サイトと同じ組み方） */
+  .pcl{display:flex;position:fixed;top:0;bottom:0;left:0;width:calc(50% - 250px);z-index:0;
+    align-items:center;justify-content:flex-end;background:#fff;padding:0 clamp(24px,3.4vw,64px)}
+  .pcl-in{display:flex;flex-direction:column;align-items:flex-start;gap:30px;max-width:340px}
+  .pcl-ph{width:clamp(178px,15.5vw,268px);height:auto;display:block;border:1px solid #e7e5e0;
+    box-shadow:0 22px 54px rgba(0,0,0,.15)}
+  .pcl-cap{margin:0}
+  .pcl-en{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.34em;color:#a3a3a1;margin:0 0 10px}
+  .pcl-jp{font-size:clamp(24px,2.1vw,31px);font-weight:500;letter-spacing:.1em;line-height:1.5;color:var(--ink);margin:0}
+  .pcl-sub{font-size:12.5px;line-height:2;color:var(--gray);margin:14px 0 0}
+  /* 中央：スマートフォンと同じ1列。紙のように浮かせる */
+  .wrap{max-width:470px;margin:0 0 0 calc(50% - 250px);padding:0 22px;position:relative;z-index:2;
+    background:#fbfaf8;box-shadow:0 0 44px rgba(0,0,0,.09)}
   .paper{left:calc(50% - 250px);right:auto;width:470px}
-  /* 右：いつでも押せる案内（動かない） */
+  /* 右：白いカードの案内（参考サイトと同じ・角丸と淡い影） */
   .pcr{display:flex;position:fixed;top:0;bottom:0;left:calc(50% + 240px);right:0;z-index:2;
-    align-items:center;padding:0 clamp(28px,4vw,72px)}
-  .pcr-in{max-width:340px}
-  .pcr-t{font-size:23px;font-weight:500;letter-spacing:.12em;line-height:1.6;color:var(--ao);margin:0}
-  .pcr-s{font-size:12.5px;line-height:1.95;color:var(--gray);margin:12px 0 26px}
-  .pcr-nav{display:flex;flex-direction:column;border-top:1px solid var(--line)}
-  .pcr-nav a{display:flex;gap:12px;align-items:baseline;padding:13px 2px;border-bottom:1px solid var(--line);
-    font-size:13.5px;letter-spacing:.04em;color:var(--ink);text-decoration:none;transition:color .2s ease}
-  .pcr-nav a span{font-family:'Jost',sans-serif;font-size:11px;color:#b8b7b4;letter-spacing:.1em}
-  .pcr-nav a:hover{color:var(--ao)}
-  .pcr-nav a:hover span{color:var(--ao)}
-  .pcr-cta{display:block;margin-top:24px;padding:15px;background:var(--ink);color:#fff;text-align:center;
-    font-size:13.5px;letter-spacing:.08em;text-decoration:none;transition:opacity .2s ease}
-  .pcr-cta:hover{opacity:.85}
-  .pcr-tel{display:block;margin-top:9px;padding:13px;border:1px solid var(--line);background:#fff;
-    text-align:center;font-size:12.5px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
-  .pcr-tel:hover{border-color:var(--ao);color:var(--ao)}
-  .pcr-n{font-size:10.5px;line-height:1.9;color:#a3a3a1;margin:22px 0 0}
-  /* 中央列は狭いので、スマートフォン用の並びをそのまま使う。
-     広げる指定は入れない（後付けで足すと余白が壊れる） */
-  .topc{display:none}       /* パソコンで見ている人に「パソコンで見る」案内は要らない */
-  footer .fl{margin-bottom:6px}
+    align-items:center;padding:0 clamp(26px,3.4vw,72px)}
+  .pcr-in{width:100%;max-width:318px}
+  .pcr-nav{display:flex;flex-direction:column;gap:9px}
+  .pcr-nav a{display:grid;grid-template-columns:26px 1fr 12px;align-items:center;gap:10px;
+    background:#fff;border-radius:8px;box-shadow:0 1px 12px rgba(0,0,0,.13);
+    padding:13px 15px;text-decoration:none;color:var(--ink);transition:box-shadow .2s ease,transform .2s ease}
+  .pcr-nav a:hover{box-shadow:0 3px 18px rgba(0,0,0,.18);transform:translateY(-1px)}
+  .pcr-nav b{font-family:'Jost',sans-serif;font-size:11px;font-weight:400;color:#b3b2af;letter-spacing:.1em}
+  .pcr-nav em{font-style:normal;font-size:13px;letter-spacing:.03em;line-height:1.5}
+  .pcr-nav i,.pcr-cta i{font-style:normal;color:#b3b2af;font-size:15px;line-height:1;text-align:right}
+  .pcr-lb{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.28em;color:#a3a3a1;margin:26px 0 9px}
+  .pcr-cta{display:grid;grid-template-columns:1fr 12px;align-items:center;gap:10px;
+    background:var(--ink);color:#fff;border-radius:8px;box-shadow:0 1px 12px rgba(0,0,0,.2);
+    padding:16px 17px;font-size:13.5px;letter-spacing:.06em;text-decoration:none;transition:opacity .2s ease}
+  .pcr-cta i{color:rgba(255,255,255,.6)}
+  .pcr-cta:hover{opacity:.88}
+  .pcr-tel{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px;
+    background:#fff;border-radius:8px;box-shadow:0 1px 12px rgba(0,0,0,.11);
+    padding:14px 17px;font-size:12.5px;letter-spacing:.04em;color:var(--ink);text-decoration:none}
+  .pcr-tel b{font-family:'Jost',sans-serif;font-size:14px;font-weight:400;letter-spacing:.06em}
+  .pcr-tel:hover{box-shadow:0 3px 18px rgba(0,0,0,.16)}
+  .pcr-n{font-size:10.5px;line-height:1.95;color:#a3a3a1;margin:24px 0 0}
+  /* 中央列は電話の幅なので、見比べもiPhoneの録画に戻す */
+  .ba{max-width:390px}
+  .ba .sp{display:block}
+  .ba .frame.pc{display:none}
+  .ba p.cap2.pc{display:none}
+  .ba p.cap2.sp{display:block}
+  /* パソコンで見ている人に「パソコンに送る」案内は要らない */
+  .topc{display:none}
 }
 @media(min-width:1500px){
-  .wrap{margin-left:calc(50% - 300px);max-width:520px}
-  .paper{left:calc(50% - 300px);width:520px}
-  .pcl{width:calc(50% - 300px)}
+  .wrap{margin-left:calc(50% - 290px);max-width:500px}
+  .paper{left:calc(50% - 290px);width:500px}
+  .pcl{width:calc(50% - 290px)}
   .pcr{left:calc(50% + 240px)}
 }
 @media(min-width:820px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
@@ -444,20 +459,29 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 <div class="paper" id="paper"></div>
 
 <!-- パソコンだけ：左に大きな写真、右にいつでも押せる案内 -->
-<div class="pcl" aria-hidden="true"></div>
+<div class="pcl" aria-hidden="true">
+    <div class="pcl-in">
+      <video class="pcl-ph" src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg"
+             autoplay muted loop playsinline preload="metadata" width="800" height="1420"></video>
+      <div class="pcl-cap">
+        <p class="pcl-en">SHEET HP</p>
+        <p class="pcl-jp">ホームページの<br>リフォーム</p>
+        <p class="pcl-sub">奈良の工務店が、自社のホームページを<br>作り替えたのと同じ手順で。</p>
+      </div>
+    </div>
+  </div>
 <aside class="pcr" aria-label="ページの案内">
   <div class="pcr-in">
-    <p class="pcr-t">ホームページの<br>リフォーム</p>
-    <p class="pcr-s">奈良の工務店が、自社のホームページを<br>作り替えたのと同じ手順で。</p>
     <nav class="pcr-nav">
-      <a href="#c01"><span>01</span>こんなことに、なっていませんか</a>
-      <a href="#c02"><span>02</span>私どもも、全部そうでした</a>
-      <a href="#c03"><span>03</span>正直な価格でやっています</a>
-      <a href="#soudan"><span>04</span>無料相談（30分）のご予約</a>
+      <a href="#c01"><b>01</b><em>こんなことに、なっていませんか</em><i>›</i></a>
+      <a href="#c02"><b>02</b><em>私どもも、全部そうでした</em><i>›</i></a>
+      <a href="#c03"><b>03</b><em>正直な価格でやっています</em><i>›</i></a>
+      <a href="#soudan"><b>04</b><em>無料相談（30分）のご予約</em><i>›</i></a>
     </nav>
-    <a class="pcr-cta" href="#soudan">無料相談（30分）を予約する</a>
-    <a class="pcr-tel" href="tel:0742813948">電話で聞く　0742-81-3948</a>
-    <p class="pcr-n">株式会社シバ・サンホーム　しくみ設計室<br>奈良県奈良市北之庄町41-1</p>
+    <p class="pcr-lb">無料でできること</p>
+    <a class="pcr-cta" href="#soudan">無料相談（30分）を予約する<i>›</i></a>
+    <a class="pcr-tel" href="tel:0742813948">電話で聞く<b>0742-81-3948</b></a>
+    <p class="pcr-n">株式会社シバ・サンホーム　しくみ設計室<br>奈良県奈良市北之庄町41-1／注文住宅・リフォーム</p>
   </div>
 </aside>
 
