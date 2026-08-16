@@ -401,6 +401,22 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .pcr-nav b{font-family:'Jost',sans-serif;font-size:11px;font-weight:400;color:#b3b2af;letter-spacing:.1em}
   .pcr-nav em{font-style:normal;font-size:13px;letter-spacing:.03em;line-height:1.5}
   .pcr-nav i,.pcr-cta i{font-style:normal;color:#b3b2af;font-size:15px;line-height:1;text-align:right}
+  /* 02（証拠の節）のときだけ、右に数字の図を出す */
+  .pcr-graph{display:none;margin:26px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+  .pcr.sec-c02 .pcr-graph{display:block}
+  .pcr.sec-c02 .pcr-me{display:none}
+  .pcr-glb{font-size:11.5px;letter-spacing:.06em;color:var(--gray);margin:0 0 14px}
+  .pcr-bar{display:grid;grid-template-columns:1fr;gap:5px;margin-bottom:14px}
+  .pcr-bar .lb{font-size:11px;color:#a3a3a1;letter-spacing:.04em}
+  .pcr-bar .tr{height:10px;background:#eceae5}
+  .pcr-bar .tr i{display:block;height:100%;background:#c7c5c0;
+    transform-origin:left;animation:barin .9s cubic-bezier(.22,.61,.36,1) both}
+  .pcr-bar .vl{font-size:13px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+  .pcr-bar.now .tr i{background:var(--ao);animation-delay:.15s}
+  .pcr-bar.now .vl{color:var(--ao);font-size:16px}
+  @keyframes barin{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media(prefers-reduced-motion:reduce){.pcr-bar .tr i{animation:none}}
+  .pcr-gn{font-size:10px;line-height:1.85;color:#a3a3a1;margin:12px 0 0}
   /* 誰と話すのかを、ボタンのすぐ上に置く */
   .pcr-me{display:flex;align-items:center;gap:13px;margin:26px 0 0;padding-top:22px;border-top:1px solid var(--line)}
   .pcr-me img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:76% 20%;flex:0 0 auto;display:block}
@@ -440,7 +456,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .pcl{width:calc(50% - 300px)}
   .pcr{left:calc(50% + 160px)}
 }
-@media(min-width:820px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
+@media(min-width:820px) and (max-width:1079.98px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
 .ba .cap2{font-size:13.5px;line-height:1.75;color:var(--gray);margin-top:8px;text-align:center}
 .ba .cap2 b{color:var(--ink);font-weight:500}
 
@@ -516,6 +532,20 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
       <a href="#c03"><b>03</b><em>正直な価格でやっています</em><i>›</i></a>
       <a href="#soudan"><b>04</b><em>無料相談（30分）のご予約</em><i>›</i></a>
     </nav>
+    <div class="pcr-graph">
+      <p class="pcr-glb">ホームページからの問い合わせ</p>
+      <div class="pcr-bar">
+        <div class="lb">作り替える前</div>
+        <div class="tr"><i style="width:9%"></i></div>
+        <div class="vl">月1〜2件</div>
+      </div>
+      <div class="pcr-bar now">
+        <div class="lb">作り替えた後</div>
+        <div class="tr"><i style="width:100%"></i></div>
+        <div class="vl">月16件</div>
+      </div>
+      <p class="pcr-gn">後の数字は、公開して17日間で9件を月に直したものです。<br>17日間だけの実測なので、これから先も同じ調子とは限りません。</p>
+    </div>
     <div class="pcr-me">
       <img src="img/shikumi/senmu.jpg" alt="専務取締役 柴部文嘉" loading="lazy" width="120" height="120">
       <div>
@@ -949,6 +979,8 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
       if(key===now) return;
       now=key;
       panels.forEach(function(p){ p.classList.toggle('on', p.dataset.for===key); });
+      var r=document.querySelector('.pcr');
+      if(r){ ['top','c02','c03','soudan'].forEach(function(k){ r.classList.toggle('sec-'+k, k===key); }); }
     }
     var targets=[];
     ['c02','c03','soudan'].forEach(function(id){ var e=document.getElementById(id); if(e) targets.push(e); });
