@@ -276,6 +276,8 @@ section{padding:58px 22px}
 .pbs{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 1.4s ease}
 /* 画面に近づいてから読み込む（先に読むとトップの表示が遅れる） */
 .photoband.ready .pbs{background-image:var(--bg)}
+.photoband.bg-sp{background-image:var(--bg)}
+@media(max-width:820px){.photoband.bg-sp{background-image:var(--bg-sp,var(--bg))}}
 @media(max-width:820px){.photoband.ready .pbs{background-image:var(--bg-sp,var(--bg))}}
 .pbs.on{opacity:1}
 .photoband .pbcap{position:absolute;left:22px;right:22px;bottom:24px;z-index:2;color:#fff}
@@ -868,7 +870,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <div class="evcards">
       <a class="evcard fade" href="kengaku.html">
         <span class="tag">見学会</span>
-        <div class="ph"><img src="img/work-exterior.jpg" alt="OB様邸見学会" loading="lazy"></div>
+        <div class="ph"><img src="img/work-exterior.jpg" srcset="img/sp/work-exterior.jpg 900w, img/work-exterior.jpg 2000w" sizes="(max-width:820px) 100vw, 900px" alt="OB様邸見学会" loading="lazy"></div>
         <div class="bd">
           <h3>OB様邸 見学会</h3>
           <p>実際にお客様が暮らしている家を見学できます。住み心地は、住んでいる人に聞くのがいちばんです。</p>
@@ -877,7 +879,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       </a>
       <a class="evcard fade" href="event.html">
         <span class="tag">無料</span>
-        <div class="ph"><img src="img/ev-soudan.jpg" alt="個別相談会" loading="lazy"></div>
+        <div class="ph"><img src="img/ev-soudan.jpg" srcset="img/sp/ev-soudan.jpg 900w, img/ev-soudan.jpg 2000w" sizes="(max-width:820px) 100vw, 900px" alt="個別相談会" loading="lazy"></div>
         <div class="bd">
           <h3>個別相談会（無料）</h3>
           <p>土地・予算・間取りのことを、なんでも聞けます。ご来店でも、オンラインでも。</p>
@@ -956,7 +958,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <h2 class="sd-h">個別相談会</h2>
     <div class="sd-facts"><span>相談は無料</span><span>ご予約制</span><span>所要 約60分</span><span>オンラインもOK</span></div>
     <div class="sd-photo fade">
-      <img src="img/soudan.jpg" alt="個別相談会のようす" loading="lazy" decoding="async">
+      <img src="img/soudan.jpg" srcset="img/sp/soudan.jpg 900w, img/soudan.jpg 2000w" sizes="(max-width:820px) 100vw, 900px" alt="個別相談会のようす" loading="lazy" decoding="async">
       <div class="sd-badge"><span>ほぼ</span><b>毎日受付</b></div>
     </div>
     <div class="sd-mh"><span>個別相談会</span><em>6</em><span>つのいいこと</span></div>
@@ -1097,7 +1099,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </section>
 
 <!-- ▼専務へ：全幅フォトバンド②（つくり手・現場）。写真は差し替え可 -->
-<div class="photoband" style="background-image:url('img/spec/spec-kouzo.jpg')">
+<div class="photoband bg-sp" style="--bg:url('img/spec/spec-kouzo.jpg');--bg-sp:url('img/sp/spec-kouzo.jpg')">
   <div class="pbcap"><div class="jp">つくり手</div><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div></div>
 </div>
 
