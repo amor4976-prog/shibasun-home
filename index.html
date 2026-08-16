@@ -36,6 +36,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
+<noscript><style>.photoband .pbs{background-image:var(--bg)}</style></noscript>
 <style>
 :root{
   --ink:#1a1a1a;
@@ -273,6 +274,9 @@ section{padding:58px 22px}
 .photoband::after{z-index:1}
 /* 暮らしの写真が切り替わる（クロスフェード） */
 .pbs{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 1.4s ease}
+/* 画面に近づいてから読み込む（先に読むとトップの表示が遅れる） */
+.photoband.ready .pbs{background-image:var(--bg)}
+@media(max-width:820px){.photoband.ready .pbs{background-image:var(--bg-sp,var(--bg))}}
 .pbs.on{opacity:1}
 .photoband .pbcap{position:absolute;left:22px;right:22px;bottom:24px;z-index:2;color:#fff}
 .photoband .pbcap .en,.photoband .pbcap .jp{font-size:10.5px;letter-spacing:.3em;opacity:.92}
@@ -1152,16 +1156,38 @@ window.bgVideo=function(id,src){
 };
 bgVideo('conceptVid', matchMedia('(min-width:821px)').matches ? 'img/concept-pc.mp4' : 'img/concept-sp.mp4');
 // ヒーローはスマホ＝縦動画／PC＝横動画（使う方だけ読み込む）
-bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' : 'img/hero-sp.mp4');
+// ヒーローの動画は1MB超あるので、写真と文字が出そろってから取りに行く
+(function(){
+  var c=navigator.connection||{};
+  if(c.saveData||/(^|-)2g$/.test(c.effectiveType||'')) return;   // 遅い回線では動画を出さない
+  var go=function(){ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' : 'img/hero-sp.mp4'); };
+  if(document.readyState==='complete'){ setTimeout(go,500); }
+  else addEventListener('load',function(){ setTimeout(go,500); },{once:true});
+})();
+// 暮らしの写真は、その帯が近づいてから読み込む
+// この script は帯より前に置かれているので、組み上がってから探す
+function setupLifeBand(){
+  var band=document.getElementById('lifeBand'); if(!band) return;
+  var on=function(){ band.classList.add('ready'); };
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ on(); io.disconnect(); } }); },{rootMargin:'400px'});
+    io.observe(band);
+  } else on();
+  // 保険：見張りが働かない場面でも、表示が済んだ2秒後には必ず読み込む
+  if(document.readyState==='complete') setTimeout(on,2000);
+  else addEventListener('load',function(){ setTimeout(on,2000); },{once:true});
+}
+if(document.readyState==='loading') addEventListener('DOMContentLoaded',setupLifeBand,{once:true});
+else setupLifeBand();
 </script>
 
 <!-- 暮らしの気配：お客様のお住まいの写真がゆっくり切り替わる -->
 <div class="photoband" id="lifeBand">
-  <div class="pbs on" style="background-image:url('img/life/01.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/02.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/03.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/04.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/05.jpg?v=3')"></div>
+  <div class="pbs on" style="--bg:url('img/life/01.jpg?v=3');--bg-sp:url('img/sp/life-01.jpg')"></div>
+  <div class="pbs" style="--bg:url('img/life/02.jpg?v=3');--bg-sp:url('img/sp/life-02.jpg')"></div>
+  <div class="pbs" style="--bg:url('img/life/03.jpg?v=3');--bg-sp:url('img/sp/life-03.jpg')"></div>
+  <div class="pbs" style="--bg:url('img/life/04.jpg?v=3');--bg-sp:url('img/sp/life-04.jpg')"></div>
+  <div class="pbs" style="--bg:url('img/life/05.jpg?v=3');--bg-sp:url('img/sp/life-05.jpg')"></div>
   <div class="pbcap"><div class="jp">暮らし</div><div class="t"><span>建てたあとの、</span><span>毎日のために。</span></div></div>
 </div>
 <script>
