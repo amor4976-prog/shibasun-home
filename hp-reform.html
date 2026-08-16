@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ホームページのリフォーム｜シバ・サンホーム しくみ設計室</title>
-<meta name="description" content="全部を建て替えなくても、傷んだところから直せます。奈良の工務店が自社のホームページを作り替えたのと同じ手順で、他府県の工務店さんのホームページをリフォームします。現況調査は無料。">
+<meta name="description" content="ホームページから、仕事は来ていますか。奈良の工務店が自分の会社のホームページを作り替えたのと同じ手順で、他府県の工務店さんのホームページをリフォームします。現況調査は無料。">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社シバ・サンホーム">
 <meta property="og:title" content="ホームページのリフォーム｜シバ・サンホーム しくみ設計室">
-<meta property="og:description" content="全部を建て替えなくても、傷んだところから直せます。現況調査は無料。他府県の工務店さんだけ。">
+<meta property="og:description" content="ホームページから、仕事は来ていますか。現況調査は無料。他府県の工務店さんだけ。">
 <meta property="og:url" content="https://www.shibasun.jp/hp-reform">
 <meta property="og:locale" content="ja_JP">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -344,7 +344,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 
 /* ビフォーアフター（仕切りを動かして見比べる） */
 .ba{position:relative;max-width:390px;margin:22px auto 0;user-select:none;touch-action:pan-y}
-.ba .frame{position:relative;width:100%;aspect-ratio:800/1420;overflow:hidden;border:1px solid var(--line);background:#fff}
+.ba .frame{position:relative;width:100%;aspect-ratio:560/1212;overflow:hidden;border:1px solid var(--line);background:#fff}
 .ba .frame img,.ba .frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block;pointer-events:none}
 .ba .before{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0);z-index:1}
 .ba .bar{z-index:3;position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--ao);transform:translateX(-1px);pointer-events:none}
@@ -410,6 +410,8 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .pcr-tel b{font-family:'Jost',sans-serif;font-size:14px;font-weight:400;letter-spacing:.06em}
   .pcr-tel:hover{box-shadow:0 3px 18px rgba(0,0,0,.16)}
   .pcr-n{font-size:10.5px;line-height:1.95;color:#a3a3a1;margin:24px 0 0}
+  /* 黒い帯は中央列の外に置いてあるので、列の位置に合わせる（横に飛び出さないように） */
+  .cta{margin-left:calc(50% - 250px);width:470px;padding-left:22px;padding-right:22px}
   /* 左に同じ一文を大きく出しているので、中央では重ねない */
   .hero .lead{display:none}
   .hero{padding-bottom:6px}
@@ -424,6 +426,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 }
 @media(min-width:1500px){
   .wrap{margin-left:calc(50% - 290px);max-width:500px}
+  .cta{margin-left:calc(50% - 290px);width:500px}
   .paper{left:calc(50% - 290px);width:500px}
   .pcl{width:calc(50% - 290px)}
   .pcr{left:calc(50% + 240px)}
@@ -535,7 +538,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <div class="cap">
       <div class="no up">SHEET HP</div>
       <h1 class="up d1">ホームページの<span class="nb">リフォーム</span></h1>
-      <p class="lead up d2">築十五年の家はリフォームするのに、ホームページは十年そのまま——という会社さんへ。<b>全部を建て替えなくても、傷んだところから直せます。</b>奈良の工務店が、自社のホームページを作り替えたのと同じ手順で、<span class="nb">他府県</span>の工務店さんのお手伝いをしています。</p>
+      <p class="lead up d2"><b>ホームページから、仕事は来ていますか。</b>奈良の工務店が、自分の会社のホームページを作り替えました。同じ手順を、<span class="nb">他府県</span>の工務店さんのホームページで行っています。</p>
     </div>
   </div>
 
@@ -577,8 +580,8 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 
     <div class="ba up" id="ba">
       <div class="frame sp" id="baFrame">
-        <video src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg" autoplay muted loop playsinline preload="metadata" width="800" height="1420" aria-label="リフォーム後のホームページをiPhoneで動かしたところ"></video>
-        <video class="before" src="img/hp-reform/before.mp4" poster="img/hp-reform/before_poster.jpg" autoplay muted loop playsinline preload="metadata" width="800" height="1420" aria-label="リフォーム前のホームページをiPhoneで動かしたところ"></video>
+        <video src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg" autoplay muted loop playsinline preload="metadata" width="560" height="1212" aria-label="リフォーム後のホームページをiPhoneで動かしたところ"></video>
+        <video class="before" src="img/hp-reform/before.mp4" poster="img/hp-reform/before_poster.jpg" autoplay muted loop playsinline preload="metadata" width="560" height="1212" aria-label="リフォーム前のホームページをiPhoneで動かしたところ"></video>
         <span class="tag2 l"><em>リフォーム前</em></span>
         <span class="tag2 r"><em>リフォーム後</em></span>
         <span class="bar"></span>
