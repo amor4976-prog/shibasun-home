@@ -364,68 +364,50 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 .ba .pc{display:none}
 .ba .frame.pc{aspect-ratio:880/550}
 
-/* ── パソコンの幅を使う（1000px以上） ───────────────────────
-   本文の1行は伸ばしすぎない。空いた幅は「並べる」ことに使う。 */
-@media(min-width:1000px){
-  .wrap{max-width:1100px;padding:0 40px}
-  section{padding:74px 0}
-  /* 表題まわり：図面の中に文字を置いて、空きを作らない */
-  .hero{padding:34px 0 6px;display:grid;place-items:center}
-  .hero .dwg{grid-area:1/1;width:700px;max-width:100%;opacity:.32;transform:translateY(-8px)}
-  .hero .cap{grid-area:1/1;margin-top:0;position:relative}
-  .hero h1{margin:10px 0 14px}
-  h2{font-size:27px}
-  /* 読み幅の上限。長すぎる行は読みにくい */
-  .hero .lead{max-width:700px;font-size:15.5px}
-  section > p{max-width:820px}
-  /* 01 困りごとの一覧は2列に */
-  .checks{grid-template-columns:1fr 1fr}
-  .chk{padding:19px 20px}
-  .chk span{font-size:15px}
-  /* 02 見比べ */
-  .ba{max-width:980px}
-  /* 03 入るもの：1行に収まる幅にする */
-  .inc{grid-template-columns:1fr 1fr;column-gap:48px}
-  .inc li{font-size:14.5px}
-  .pk{padding:34px 30px}
-  /* 04 面談のあとの流れは横に3つ */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;border-top:0;margin-top:26px}
-  .step{display:block;border-top:1px solid var(--ink);border-bottom:0;padding:18px 0 0}
-  .step .w{margin-bottom:8px;padding-top:0}
-  /* 予約の枠は広く使う */
-  .rsv{padding:30px 28px}
-  .rsv .times{grid-template-columns:repeat(4,1fr)}
-  .rsv .f.two{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
-  /* 傷みの一覧・比較表 */
-  .itami{grid-template-columns:76px 1fr;gap:22px}
-  .card{padding:30px 28px}
-  .hitotsu{padding:30px 26px}
-  /* 人物は文章の横に並べる。回り込みだと文章より背が高くなり、下に空きの帯ができる */
-  section > p:has(> .hito){display:grid;grid-template-columns:1fr 132px;gap:0 26px;align-items:start;
-    margin-top:0!important;position:relative}
-  /* 人物は見出しの高さまで引き上げて、文章の脇に寄り添わせる（宙に浮かせない） */
-  .hito{float:none;width:132px;margin:-62px 0 0;grid-column:2;grid-row:1;align-self:start}
-  .hbody{grid-column:1;grid-row:1;display:block;padding-top:2px}
-  /* 値段の枠は横いっぱいにしない（中身が少ないので間延びする） */
-  .pk{max-width:620px;margin-left:auto;margin-right:auto}
-  /* ボタンは横いっぱいに伸ばさない（幅いっぱいの黒帯は品がない） */
-  .gonav{display:inline-block;min-width:360px;width:auto;padding:17px 44px;margin:26px auto 0}
-  .hitotsu,.card,.pk{text-align:center}
-  .card{text-align:left}
-  /* 枠を軽くする。罫線だらけの表に見せない */
-  .checks{background:transparent;border:0;gap:0;border-top:1px solid var(--ink);column-gap:44px}
-  .chk{border-bottom:1px solid var(--line);padding:15px 2px}
-  .hitotsu{padding:34px 30px}
-  .card{padding:26px 28px}
-  /* 節と節の間を詰める（回り込みの空きが出過ぎていた） */
-  section{padding:48px 0}
-  .hitotsu{margin-top:30px}
-  h2{margin-top:16px}
-  .topc{padding:22px 24px}
+/* ── パソコン（1080px以上）─────────────────────────────
+   本文はスマートフォンと同じ1列のまま中央に置き、
+   空いた左右を「大きな写真」と「いつでも押せる案内」に使う。
+   ＝スマートフォン側の作りには一切さわらない。 */
+.pcl,.pcr{display:none}
+@media(min-width:1080px){
+  body{padding-bottom:0}
+  /* 左：大きな写真（動かない） */
+  .pcl{display:block;position:fixed;top:0;bottom:0;left:0;width:calc(50% - 250px);z-index:0;
+    background:#141412 url("img/shikumi/genba.jpg") center/cover no-repeat}
+  .pcl::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,20,18,.34),rgba(20,20,18,0) 55%,rgba(255,255,255,.06))}
+  /* 中央：スマートフォンと同じ1列 */
+  .wrap{max-width:470px;margin:0 0 0 calc(50% - 250px);padding:0 20px;position:relative;z-index:2;
+    background:var(--paper-bg,#fbfaf8);box-shadow:0 0 60px rgba(0,0,0,.07)}
+  .paper{left:calc(50% - 250px);right:auto;width:470px}
+  /* 右：いつでも押せる案内（動かない） */
+  .pcr{display:flex;position:fixed;top:0;bottom:0;left:calc(50% + 240px);right:0;z-index:2;
+    align-items:center;padding:0 clamp(28px,4vw,72px)}
+  .pcr-in{max-width:340px}
+  .pcr-t{font-size:23px;font-weight:500;letter-spacing:.12em;line-height:1.6;color:var(--ao);margin:0}
+  .pcr-s{font-size:12.5px;line-height:1.95;color:var(--gray);margin:12px 0 26px}
+  .pcr-nav{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .pcr-nav a{display:flex;gap:12px;align-items:baseline;padding:13px 2px;border-bottom:1px solid var(--line);
+    font-size:13.5px;letter-spacing:.04em;color:var(--ink);text-decoration:none;transition:color .2s ease}
+  .pcr-nav a span{font-family:'Jost',sans-serif;font-size:11px;color:#b8b7b4;letter-spacing:.1em}
+  .pcr-nav a:hover{color:var(--ao)}
+  .pcr-nav a:hover span{color:var(--ao)}
+  .pcr-cta{display:block;margin-top:24px;padding:15px;background:var(--ink);color:#fff;text-align:center;
+    font-size:13.5px;letter-spacing:.08em;text-decoration:none;transition:opacity .2s ease}
+  .pcr-cta:hover{opacity:.85}
+  .pcr-tel{display:block;margin-top:9px;padding:13px;border:1px solid var(--line);background:#fff;
+    text-align:center;font-size:12.5px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+  .pcr-tel:hover{border-color:var(--ao);color:var(--ao)}
+  .pcr-n{font-size:10.5px;line-height:1.9;color:#a3a3a1;margin:22px 0 0}
+  /* 中央列は狭いので、スマートフォン用の並びをそのまま使う。
+     広げる指定は入れない（後付けで足すと余白が壊れる） */
+  .topc{display:none}       /* パソコンで見ている人に「パソコンで見る」案内は要らない */
+  footer .fl{margin-bottom:6px}
 }
-@media(min-width:1240px){
-  .wrap{max-width:1180px}
-  .ba{max-width:1040px}
+@media(min-width:1500px){
+  .wrap{margin-left:calc(50% - 300px);max-width:520px}
+  .paper{left:calc(50% - 300px);width:520px}
+  .pcl{width:calc(50% - 300px)}
+  .pcr{left:calc(50% + 240px)}
 }
 @media(min-width:820px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
 .ba .cap2{font-size:13.5px;line-height:1.75;color:var(--gray);margin-top:8px;text-align:center}
@@ -460,6 +442,24 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 </head>
 <body>
 <div class="paper" id="paper"></div>
+
+<!-- パソコンだけ：左に大きな写真、右にいつでも押せる案内 -->
+<div class="pcl" aria-hidden="true"></div>
+<aside class="pcr" aria-label="ページの案内">
+  <div class="pcr-in">
+    <p class="pcr-t">ホームページの<br>リフォーム</p>
+    <p class="pcr-s">奈良の工務店が、自社のホームページを<br>作り替えたのと同じ手順で。</p>
+    <nav class="pcr-nav">
+      <a href="#c01"><span>01</span>こんなことに、なっていませんか</a>
+      <a href="#c02"><span>02</span>私どもも、全部そうでした</a>
+      <a href="#c03"><span>03</span>正直な価格でやっています</a>
+      <a href="#soudan"><span>04</span>無料相談（30分）のご予約</a>
+    </nav>
+    <a class="pcr-cta" href="#soudan">無料相談（30分）を予約する</a>
+    <a class="pcr-tel" href="tel:0742813948">電話で聞く　0742-81-3948</a>
+    <p class="pcr-n">株式会社シバ・サンホーム　しくみ設計室<br>奈良県奈良市北之庄町41-1</p>
+  </div>
+</aside>
 
 <div class="wrap">
   <header>
@@ -514,7 +514,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   </div>
 
 
-  <section>
+  <section id="c01">
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">01</span>こんなことに、なっていませんか</h2>
     <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">
@@ -544,7 +544,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     </div>
   </section>
 
-  <section>
+  <section id="c02">
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">02</span>私どもも、全部そうでした</h2>
     <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">ここに並べたものは、すべて<b>去年までの私どもの話</b>です。ホームページは十年ほど、ただ置いてあるだけでした。そこで一から作り替えました。変わったのは、こういうところです。</p>
@@ -596,7 +596,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <p class="up" style="font-size:14.5px;color:#2b2b29;margin-top:16px">特別なことはしていません。<b>同じ手順を、御社のホームページで行うだけ</b>です。</p>
   </section>
 
-  <section>
+  <section id="c03">
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">03</span>正直な価格でやっています</h2>
     <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">
