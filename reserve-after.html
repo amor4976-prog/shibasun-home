@@ -18,7 +18,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
 <style>
 :root{--ink:#1a1a1a;--gray:#767674;--pale:#ffffff;--linec:#e8e8e6;--gold:#1a1a1a;--line:#06c755}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -53,6 +54,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 @media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
 .slot-btn{padding:13px 6px;text-align:center;border:1px solid var(--linec);background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-btn.full{color:var(--gray);background:var(--pale);cursor:default;pointer-events:none}
+.slot-btn.full small{color:var(--gray)}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .slot-btn.on small{color:#d8c49a}
 .rsv-field{margin-top:22px}
@@ -155,7 +158,7 @@ function rsvRender(){
     <div class="rsv-step-label">1. 日付を選ぶ</div>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
-    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.id===rsvSlot?' on':''}" data-slot="${s.id}">${s.startTime}<small>残り${s.availableCount}枠</small></button>`).join('')}</div>
+    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
     <form id="rsv-form">
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
@@ -189,7 +192,7 @@ async function rsvSubmit(e){
 }
 function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.place.value||f.message.value);}
 async function rsvLoad(){
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=inspection');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=inspection&includeFull=1');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
   catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
 }
 rsvLoad();setInterval(rsvLoad,60000);

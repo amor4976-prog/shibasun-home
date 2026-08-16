@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>【モック・ひかり型】私たちの家づくり｜シバ・サンホーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Jost:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--ink:#1a1a1a;--gray:#5e5d5b;--pale:#f6f6f5;--linec:#e8e8e6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);background:#fff;line-height:2;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase}
+.mockbar{position:fixed;left:0;top:0;right:0;z-index:99;background:#2a6;color:#fff;font-size:11px;letter-spacing:.12em;text-align:center;padding:6px}
+
+/* ヒーロー：明るい空×白文字（ひかり /concept/ の空気感） */
+.hero{position:relative;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:110px 26px 80px}
+.hero-bg{position:absolute;inset:0;background:url('img/work-exterior.jpg') center top/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,30,28,.16),rgba(30,30,28,.10) 45%,rgba(30,30,28,.34))}
+.hero-in{text-shadow:0 1px 26px rgba(0,0,0,.38)}
+.hero-in{position:relative;z-index:2;color:#fff;max-width:720px;margin:0 auto;width:100%}
+.hero-in .en{font-size:11px;opacity:.9}
+.hero-title{margin-top:34px;font-size:clamp(27px,7.6vw,56px);font-weight:700;line-height:1.66;letter-spacing:.09em}
+.hero-title span{white-space:nowrap}
+.hero-title span{display:block}
+.hero-lead{margin-top:44px;font-size:clamp(13.5px,3.8vw,16px);font-weight:500;line-height:2.35;letter-spacing:.04em}
+.hero-lead b{display:block;margin-top:1.6em;font-weight:700;font-size:1.1em}
+
+/* 宣言（白地の見出しブロック） */
+.vow{padding:96px 26px 10px;text-align:center}
+.vow .en{display:block;font-size:10px;color:var(--gray);margin-bottom:26px}
+.vow h2{font-size:clamp(19px,5.2vw,28px);font-weight:700;line-height:2.1;letter-spacing:.1em}
+.vow br.sp{display:inline}
+@media(min-width:600px){.vow br.sp{display:none}}
+.vow p{max-width:640px;margin:26px auto 0;font-size:14px;color:#333;line-height:2.2;text-align:left}
+@media(min-width:600px){.vow p{text-align:center}}
+
+/* こだわりブロック：大きな写真 → 番号見出し → 本文（ひかりの繰り返しリズム） */
+.blocks{max-width:720px;margin:0 auto;padding:60px 26px 30px}
+.blk{margin-bottom:84px}
+.blk .ph{aspect-ratio:1/1;overflow:hidden}
+@media(min-width:600px){.blk .ph{aspect-ratio:4/3}}
+.blk .ph img{width:100%;height:100%;object-fit:cover}
+.blk .rn{display:block;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.34em;color:var(--gray);margin-top:30px}
+.blk h3{font-size:clamp(20px,5.6vw,26px);font-weight:700;letter-spacing:.08em;line-height:1.7;margin-top:10px}
+.blk .rule{width:26px;height:2px;background:var(--ink);margin:18px 0 16px}
+.blk p{font-size:14px;color:#333;line-height:2.25}
+.blk small{display:block;margin-top:12px;font-size:11.5px;color:var(--gray);letter-spacing:.04em}
+
+/* CTA */
+.cta{background:var(--ink);color:#fff;padding:86px 26px;text-align:center}
+.cta h2{font-size:clamp(18px,5vw,24px);font-weight:700;letter-spacing:.12em;line-height:2.1}
+.cta .btns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:32px auto 0}
+.cta a{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.16em}
+.cta .fill{background:#fff;color:var(--ink)}
+.cta .line{border:1px solid rgba(255,255,255,.75);color:#fff}
+.iback{max-width:720px;margin:30px auto 40px;padding:0 26px}
+.iback a{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;color:var(--gray)}
+</style>
+</head>
+<body>
+<div class="mockbar">モック【ひかり /concept/ 型・私たちの家づくり】</div>
+<div style="max-width:720px;margin:34px auto 10px;padding:0 26px;font-size:11px;color:var(--gray);letter-spacing:.08em"><a href="index.html" style="color:var(--gray)">ホーム</a><span style="margin:0 8px;color:var(--linec)">—</span>私たちの家づくり</div>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-in">
+    <span class="en">Concept</span>
+    <div class="hero-title">
+      <span>私たちが考える</span>
+      <span>いい家とは、</span>
+      <span>家族がいい毎日を</span>
+      <span>暮らせる家のこと。</span>
+    </div>
+    <p class="hero-lead">
+      家を建てることは、<br>家族にとってゴールではありません。<br>
+      どれだけ立派で高性能な家でも、<br>
+      家計を圧迫して、暮らしが窮屈になるなら、<br>
+      いい家とは呼べません。
+      <b>ぜんぶ、「家族のいい毎日」のために。</b>
+    </p>
+  </div>
+</div>
+
+<section class="vow">
+  <span class="en">Our Promise</span>
+  <h2>安心して快適に暮らせる、<br class="sp">確かな性能。<br>地元の職人が、<br class="sp">まじめにつくる品質。<br>それを、正直な価格で。</h2>
+</section>
+
+<div class="blocks">
+  <div class="blk">
+    <div class="ph"><img src="img/work-living.jpg" alt="とことん、親身に。"></div>
+    <span class="rn">01</span><h3>とことん、親身に。</h3><div class="rule"></div>
+    <p>叶えたいことも、迷っていることも。ぜんぶ話してください。ひとつずつ、一緒に答えを見つけます。</p>
+  </div>
+  <div class="blk">
+    <div class="ph"><img src="img/work-kitchen.jpg" alt="自分たちらしい家を、自由に。"></div>
+    <span class="rn">02</span><h3>自分たちらしい家を、自由に。</h3><div class="rule"></div>
+    <p>「こんな暮らしがしたい」を、カタチにできる自由設計。性能とコストのバランスを考えぬいた標準仕様。家族にとって、ベストな家づくりが叶います。</p>
+  </div>
+  <div class="blk">
+    <div class="ph"><img src="img/performance.jpg" alt="一年中、心地いい。"></div>
+    <span class="rn">03</span><h3>一年中、心地いい。</h3><div class="rule"></div>
+    <p>夏は涼しく、冬はあたたかい。高い断熱性能で、少ない冷暖房でも一年中快適。だから光熱費もグッと抑えられます。性能のよさは、これからの家計をずっと守ってくれます。</p>
+    <small>断熱等級6・UA値0.4水準／耐震等級3・長期優良住宅</small>
+  </div>
+  <div class="blk">
+    <div class="ph"><img src="img/work-light.jpg" alt="暮らしを、圧迫しない。"></div>
+    <span class="rn">04</span><h3>暮らしを、圧迫しない。</h3><div class="rule"></div>
+    <p>どんなに立派な家でも、ローンで日々の暮らしが窮屈になっては、いい家とは言えません。私たちは建てる前に、その先の家計まで見すえた計画を一緒に考えます。家を建てたあとにこそ、家族の思い出を重ねてほしいから。</p>
+  </div>
+  <div class="blk">
+    <div class="ph"><img src="img/works/g03.jpg" alt="建てるのは、地元の職人です。"></div>
+    <span class="rn">05</span><h3>建てるのは、地元の職人です。</h3><div class="rule"></div>
+    <p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。</p>
+  </div>
+  <div class="blk">
+    <div class="ph"><img src="img/work-exterior.jpg" alt="いいものを、正直な価格で。"></div>
+    <span class="rn">06</span><h3>いいものを、正直な価格で。</h3><div class="rule"></div>
+    <p>広告を打つより、釘を打つ。派手な展示場も、大量の広告もありません。かけるお金は、宣伝ではなく家そのものに。</p>
+  </div>
+  <div class="blk" style="margin-bottom:40px">
+    <div class="ph"><img src="img/work-vanity.jpg" alt="お引き渡しは、始まりです。"></div>
+    <span class="rn">07</span><h3>お引き渡しは、始まりです。</h3><div class="rule"></div>
+    <p>長く安心して住み継げる家を、長期優良住宅の基準でつくります。お引き渡しはゴールではなく、お付き合いの始まり。点検やメンテナンスで、これからの暮らしを地元の工務店として見守り続けます。</p>
+  </div>
+</div>
+
+<section class="cta">
+  <h2>まずは、話を聞くことから<br>はじめませんか。</h2>
+  <div class="btns">
+    <a class="fill" href="reserve.html">来店予約・無料相談</a>
+    <a class="line" href="catalog.html">カタログ資料請求（無料）</a>
+  </div>
+</section>
+<div class="iback"><a href="index.html">← ホームへ戻る</a></div>
+</body>
+</html>

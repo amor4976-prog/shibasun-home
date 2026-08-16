@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- ▼専務へ：建築実例ページ「新デザイン案 v2（neie＋dan-sumai風）」。写真・名前・件数は仮。カードの写真は◀▶で送れます。 -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建築実例（新デザイン案 v2）｜シバ・サンホーム</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--ink:#1a1a1a;--gray:#5e5d5b;--pale:#f6f6f5;--linec:#e8e8e6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#fff;line-height:1.9;letter-spacing:.04em;padding-bottom:40px}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
+.mincho{font-family:'Zen Kaku Gothic New',sans-serif}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px}
+
+.whead{padding:28px 24px 2px;text-align:center}
+.whead .en{font-size:11px;color:var(--gray);font-weight:500}
+.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(26px,6.6vw,40px);font-weight:600;letter-spacing:.1em;margin:8px 0 12px}
+.whead p{font-size:13px;font-weight:400;color:var(--gray);max-width:560px;margin:0 auto;line-height:2.0;text-wrap:balance}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0}
+
+.filter{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;overflow-x:auto;margin:18px auto 2px;max-width:100%;padding:0 12px;scrollbar-width:none}
+.filter::-webkit-scrollbar{display:none}
+.filter button{flex:0 0 auto}
+.filter{margin-bottom:22px}
+@media(min-width:640px){.filter{justify-content:center}}
+.filter button{font-family:inherit;font-size:12px;letter-spacing:.08em;color:var(--gray);background:none;border:none;padding:8px 14px;cursor:pointer;position:relative;transition:color .2s}
+.filter button::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:1px;background:var(--ink);transform:scaleX(0);transition:transform .25s}
+.filter button:hover{color:var(--ink)}
+.filter button.on{color:var(--ink)}
+.filter button.on::after{transform:scaleX(1)}
+.count{text-align:center;font-family:'Jost',sans-serif;font-size:11px;color:var(--gray);letter-spacing:.2em;margin:8px 0 18px}
+
+.grid{display:grid;grid-template-columns:1fr;gap:56px 30px}
+@media(min-width:760px){.grid{grid-template-columns:1fr 1fr;gap:70px 30px}}
+.case.hide{display:none}
+.slider{position:relative;aspect-ratio:4/5;overflow:hidden;background:#ececeb}
+@media(min-width:760px){.slider{aspect-ratio:3/2}}
+.slider .sl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.slider .sl.on{opacity:1}
+.slider .nav{position:absolute;top:0;bottom:0;width:44%;cursor:pointer;z-index:2;opacity:0;display:flex;align-items:center;transition:opacity .2s}
+.slider:hover .nav{opacity:1}
+@media(hover:none){.slider .nav{opacity:1}.slider .nav span{background:rgba(255,255,255,.7)}}
+.slider .nav.prev{left:0;justify-content:flex-start;padding-left:12px}
+.slider .nav.next{right:0;justify-content:flex-end;padding-right:12px}
+.slider .nav span{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.85);color:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:15px}
+.slider .idx{position:absolute;right:12px;bottom:11px;z-index:2;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;color:#fff;background:rgba(20,20,18,.5);padding:3px 9px}
+.cbody{padding:18px 22px 0}
+.ctags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ctags span{font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.16em;color:var(--gray);text-transform:uppercase;border:1px solid var(--linec);padding:4px 10px}
+.cname{font-family:'Zen Kaku Gothic New',sans-serif;font-size:20px;font-weight:600;letter-spacing:.08em;line-height:1.5}
+.cname em{font-style:normal;font-size:14px;color:var(--gray);margin-left:6px}
+.carea{font-size:11.5px;color:var(--gray);letter-spacing:.06em;margin-top:8px}
+.cmore{display:inline-block;margin-top:14px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.2em;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2px}
+
+.cta{text-align:center;padding:70px 22px 10px}
+.cta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5vw,28px);font-weight:600;letter-spacing:.08em;margin-bottom:10px}
+.cta p{font-size:13px;color:var(--gray);margin-bottom:22px}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;padding:16px 36px;font-size:13px;letter-spacing:.14em;background:var(--ink);color:#fff}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="back en" href="index.html">← Home</a>
+</header>
+
+<div class="whead">
+  <div class="en">Works</div>
+  <h1 class="mincho">建築実例</h1>
+  <p>奈良で暮らす、ちょうどいい家。写真と間取りから、あなたの「好き」を見つけてください。</p>
+</div>
+
+<div class="wrap">
+
+  <div class="filter" id="filter">
+    <button class="on" data-f="all">すべて</button>
+    <button data-f="平屋">平屋</button>
+    <button data-f="2階建て">2階建て</button>
+    <button data-f="吹抜">吹抜</button>
+    <button data-f="大開口">大開口</button>
+    <button data-f="土間">土間</button>
+    <button data-f="中庭">中庭</button>
+  </div>
+  <div class="grid" id="grid">
+
+    <a class="case" href="#" data-tags="平屋 大開口">
+      <div class="slider" data-imgs="img/work-exterior.jpg,img/works/g01.jpg,img/works/g03.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>平屋</span><span>大開口</span></div>
+        <div class="cname mincho">シンプルモダンな平屋</div>
+        <div class="carea">奈良市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="2階建て 吹抜">
+      <div class="slider" data-imgs="img/work-loft.jpg,img/work-stairs.jpg,img/works/g07.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>2階建て</span><span>吹抜</span></div>
+        <div class="cname mincho">吹き抜けに光が満ちる家</div>
+        <div class="carea">橿原市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="2階建て 大開口">
+      <div class="slider" data-imgs="img/work-ldk.jpg,img/work-living.jpg,img/works/g05.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>2階建て</span><span>大開口</span></div>
+        <div class="cname mincho">木の天井に包まれるLDK</div>
+        <div class="carea">大和郡山市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="2階建て 中庭">
+      <div class="slider" data-imgs="img/work-kitchen.jpg,img/work-vanity.jpg,img/works/g09.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>2階建て</span><span>中庭</span></div>
+        <div class="cname mincho">中庭のある静かな住まい</div>
+        <div class="carea">天理市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="2階建て 大開口">
+      <div class="slider" data-imgs="img/work-open.jpg,img/works/g11.jpg,img/works/g13.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>2階建て</span><span>大開口</span></div>
+        <div class="cname mincho">視線が抜ける開放的な間取り</div>
+        <div class="carea">生駒市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="平屋 土間">
+      <div class="slider" data-imgs="img/works/g15.jpg,img/works/g17.jpg,img/work-exterior.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>平屋</span><span>土間</span></div>
+        <div class="cname mincho">土間のある平屋</div>
+        <div class="carea">生駒市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="2階建て">
+      <div class="slider" data-imgs="img/work-living.jpg,img/works/g02.jpg,img/work-ldk.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>2階建て</span></div>
+        <div class="cname mincho">家族が集う、広々リビング</div>
+        <div class="carea">桜井市</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+    <a class="case" href="#" data-tags="2階建て 中庭">
+      <div class="slider" data-imgs="img/work-light.jpg,img/works/g04.jpg,img/work-vanity.jpg"></div>
+      <div class="cbody">
+        <div class="ctags"><span>2階建て</span><span>中庭</span></div>
+        <div class="cname mincho">上質に整う住まい</div>
+        <div class="carea">北葛城郡</div>
+        <span class="cmore">詳しく見る →</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="cta">
+  <h2 class="mincho">あなたの「ちょうどいい」も。</h2>
+  <p>間取り・価格の詳しい資料を無料でお届けします。</p>
+  <a class="cbtn" href="reserve.html">来店を予約する</a>
+</div>
+
+<script>
+(function(){
+  // 各カードのスライダー生成
+  document.querySelectorAll('.slider').forEach(function(sl){
+    var imgs=(sl.dataset.imgs||'').split(',').filter(Boolean);
+    var i=0;
+    imgs.forEach(function(src,n){
+      var im=document.createElement('img');im.className='sl'+(n===0?' on':'');im.src=src;im.alt='';im.loading='lazy';
+      sl.appendChild(im);
+    });
+    var idx=document.createElement('div');idx.className='idx';idx.textContent='1 / '+imgs.length;sl.appendChild(idx);
+    function go(d,e){if(e){e.preventDefault();e.stopPropagation();}var els=sl.querySelectorAll('.sl');els[i].classList.remove('on');i=(i+d+imgs.length)%imgs.length;els[i].classList.add('on');idx.textContent=(i+1)+' / '+imgs.length;}
+    var timer=null;
+    function autostart(){if(imgs.length>1){timer=setInterval(function(){go(1);},6500);}}
+    function manual(d,e){if(timer)clearInterval(timer);go(d,e);autostart();}
+    var prev=document.createElement('div');prev.className='nav prev';prev.innerHTML='<span>‹</span>';prev.addEventListener('click',function(e){manual(-1,e);});
+    var next=document.createElement('div');next.className='nav next';next.innerHTML='<span>›</span>';next.addEventListener('click',function(e){manual(1,e);});
+    sl.appendChild(prev);sl.appendChild(next);
+    autostart();
+  });
+  // フィルター
+  var btns=[].slice.call(document.querySelectorAll('#filter button'));
+  var cases=[].slice.call(document.querySelectorAll('.case'));
+  function apply(f){cases.forEach(function(c){var ok=(f==='all')||c.dataset.tags.split(' ').indexOf(f)>-1;c.classList.toggle('hide',!ok);});}
+  btns.forEach(function(b){b.addEventListener('click',function(){btns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');apply(b.dataset.f);});});
+  apply('all');
+})();
+</script>
+</body>
+</html>

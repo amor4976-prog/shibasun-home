@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>【A案・掴み系】トップ試作｜シバ・サンホーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Jost:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--ink:#1a1a1a;--gray:#5e5d5b;--pale:#f6f6f5;--linec:#e8e8e6}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);background:#fff;line-height:1.9;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.en{font-family:'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase}
+
+/* ヒーロー：画面いっぱいの写真＋太ゴシックの強いコピー */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;background:url('img/hero.jpg') center/cover no-repeat;animation:kb 18s ease-out forwards}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
+@media (prefers-reduced-motion: reduce){.hero-bg{animation:none}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.52) 0%,rgba(0,0,0,.12) 45%,rgba(0,0,0,.18) 100%)}
+.hero-in{position:relative;z-index:2;color:#fff;padding:0 24px 12svh;width:100%}
+.hero-in .en{font-size:10px;opacity:.85}
+.hero-in h1{font-size:clamp(38px,11vw,84px);font-weight:900;line-height:1.32;letter-spacing:.04em;margin-top:14px}
+.hero-in p{font-size:clamp(14px,3.8vw,20px);font-weight:500;letter-spacing:.14em;margin-top:16px}
+.hero-cta{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.hbtn{display:inline-block;padding:15px 26px;font-size:13px;letter-spacing:.14em;text-decoration:none;font-weight:500}
+.hbtn-fill{background:#fff;color:var(--ink)}
+.hbtn-line{border:1px solid rgba(255,255,255,.75);color:#fff}
+.scr{position:absolute;right:18px;bottom:16px;color:#fff;font-size:9px;letter-spacing:.3em;writing-mode:vertical-rl;z-index:2}
+
+/* 黒バンド：宣言 */
+.statement{background:var(--ink);color:#fff;padding:88px 24px;text-align:center}
+.statement h2{font-size:clamp(20px,5.6vw,34px);font-weight:700;line-height:2;letter-spacing:.08em;text-wrap:balance}
+.statement .en{display:block;font-size:10px;opacity:.6;margin-bottom:22px}
+
+/* 写真パネル帯（D'S風の映像的コラージュ） */
+.panels{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.panels .p{aspect-ratio:3/4;overflow:hidden}
+.panels .p:first-child{grid-column:1/-1;aspect-ratio:16/10}
+.panels img{width:100%;height:100%;object-fit:cover}
+
+/* コンセプト（ひかり型：情緒の導入→こだわりを順に） */
+.concept{padding:92px 24px 20px}
+.label{text-align:center;margin-bottom:44px}
+.label .en{font-size:10px;color:var(--gray)}
+.label h2{font-size:clamp(22px,6vw,32px);font-weight:700;letter-spacing:.1em;margin-top:10px}
+.lead{max-width:640px;margin:0 auto;font-size:15px;font-weight:500;line-height:2.4;text-align:center}
+.lead b{font-weight:700}
+.reasons{max-width:960px;margin:70px auto 0}
+.reason{display:grid;gap:0;margin-bottom:64px}
+.reason .ph{aspect-ratio:16/10;overflow:hidden}
+.reason .ph img{width:100%;height:100%;object-fit:cover}
+.reason .tx{padding:26px 4px 0}
+.rn{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.3em;color:var(--gray)}
+.reason h3{font-size:21px;font-weight:700;letter-spacing:.06em;margin:8px 0 12px;line-height:1.6}
+.reason p{font-size:14px;color:#333;line-height:2.1}
+.reason small{display:block;margin-top:10px;font-size:11.5px;color:var(--gray);letter-spacing:.04em}
+@media(min-width:760px){
+  .reason{grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .reason:nth-child(even) .ph{order:2}
+}
+
+/* 人柄（シンケンの人の見せ方をモノクロトーンで） */
+.people{background:var(--pale);padding:90px 24px;margin-top:60px}
+.people .inwrap{max-width:960px;margin:0 auto}
+.people .ph{aspect-ratio:4/3;overflow:hidden}
+.people img{width:100%;height:100%;object-fit:cover}
+.people .tx{padding-top:26px}
+.people h3{font-size:21px;font-weight:700;letter-spacing:.06em;line-height:1.8}
+.people p{font-size:14px;color:#333;margin-top:12px;line-height:2.1}
+@media(min-width:760px){.people .inwrap{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}.people .tx{padding-top:0}}
+
+/* 価格 */
+.price{padding:92px 24px;text-align:center}
+.price .row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:34px}
+.price .it .t{font-size:12px;letter-spacing:.2em;color:var(--gray)}
+.price .it .v{font-family:'Jost','Zen Kaku Gothic New',sans-serif;font-size:44px;font-weight:500;letter-spacing:.02em;line-height:1.3}
+.price .it .v small{font-size:14px;font-weight:400}
+.price .note{font-size:11.5px;color:var(--gray);margin-top:22px;line-height:2}
+
+/* CTA */
+.cta{background:var(--ink);color:#fff;padding:86px 24px;text-align:center}
+.cta h2{font-size:clamp(19px,5vw,26px);font-weight:700;letter-spacing:.1em;line-height:2}
+.cta .btns{display:flex;justify-content:center;gap:12px;margin-top:32px;flex-wrap:wrap}
+.mockbar{position:fixed;left:0;top:0;right:0;z-index:99;background:#b33;color:#fff;font-size:11px;letter-spacing:.12em;text-align:center;padding:6px}
+.mockbar a{color:#fff}
+</style>
+</head>
+<body>
+<div class="mockbar">A案【掴み系】 ／ <a href="top-mock-b.html">B案【静か系】を見る →</a></div>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-in">
+    <span class="en">Shiba Sun Home — Nara</span>
+    <h1>いい家で、<br>いい毎日を。</h1>
+    <p>確かな品質を、正直な価格で。</p>
+    <div class="hero-cta">
+      <a class="hbtn hbtn-fill" href="#">建築実例を見る</a>
+      <a class="hbtn hbtn-line" href="#">来店予約</a>
+    </div>
+  </div>
+  <div class="scr en">Scroll</div>
+</div>
+
+<section class="statement">
+  <span class="en">Concept</span>
+  <h2>いい家とは、<br>家族がいい毎日を暮らせる家のこと。</h2>
+</section>
+
+<div class="panels">
+  <div class="p"><img src="img/work-ldk.jpg" alt="LDK"></div>
+  <div class="p"><img src="img/work-kitchen.jpg" alt="キッチン"></div>
+  <div class="p"><img src="img/work-stairs.jpg" alt="階段"></div>
+</div>
+
+<section class="concept">
+  <div class="label"><span class="en">Our Promise</span><h2>私たちの家づくり</h2></div>
+  <p class="lead">家を建てることは、家族にとってゴールではありません。<br>どれだけ立派で高性能な家でも、家計を圧迫して、暮らしが窮屈になるなら、いい家とは呼べません。<br><br>安心して快適に暮らせる、確かな性能。<br>地元の職人が、まじめにつくる品質。<br>それを、正直な価格で。<br><b>ぜんぶ、「家族のいい毎日」のために。</b></p>
+
+  <div class="reasons">
+    <div class="reason">
+      <div class="ph"><img src="img/work-living.jpg" alt=""></div>
+      <div class="tx"><span class="rn">01</span><h3>とことん、親身に。</h3><p>叶えたいことも、迷っていることも。ぜんぶ話してください。ひとつずつ、一緒に答えを見つけます。</p></div>
+    </div>
+    <div class="reason">
+      <div class="ph"><img src="img/work-open.jpg" alt=""></div>
+      <div class="tx"><span class="rn">02</span><h3>自分たちらしい家を、自由に。</h3><p>「こんな暮らしがしたい」を、カタチにできる自由設計。性能とコストのバランスを考えぬいた標準仕様。家族にとって、ベストな家づくりが叶います。</p></div>
+    </div>
+    <div class="reason">
+      <div class="ph"><img src="img/performance.jpg" alt=""></div>
+      <div class="tx"><span class="rn">03</span><h3>一年中、心地いい。</h3><p>夏は涼しく、冬はあたたかい。高い断熱性能で、少ない冷暖房でも一年中快適。だから光熱費もグッと抑えられます。性能のよさは、これからの家計をずっと守ってくれます。</p><small>断熱等級6・UA値0.4水準／耐震等級3・長期優良住宅</small></div>
+    </div>
+    <div class="reason">
+      <div class="ph"><img src="img/work-light.jpg" alt=""></div>
+      <div class="tx"><span class="rn">04</span><h3>暮らしを、圧迫しない。</h3><p>どんなに立派な家でも、ローンで日々の暮らしが窮屈になっては、いい家とは言えません。私たちは建てる前に、その先の家計まで見すえた計画を一緒に考えます。家を建てたあとにこそ、家族の思い出を重ねてほしいから。</p></div>
+    </div>
+    <div class="reason">
+      <div class="ph"><img src="img/works/g03.jpg" alt=""></div>
+      <div class="tx"><span class="rn">05</span><h3>建てるのは、地元の職人です。</h3><p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。</p></div>
+    </div>
+    <div class="reason">
+      <div class="ph"><img src="img/work-exterior.jpg" alt=""></div>
+      <div class="tx"><span class="rn">06</span><h3>いいものを、正直な価格で。</h3><p>広告を打つより、釘を打つ。派手な展示場も、大量の広告もありません。かけるお金は、宣伝ではなく家そのものに。</p></div>
+    </div>
+    <div class="reason">
+      <div class="ph"><img src="img/work-vanity.jpg" alt=""></div>
+      <div class="tx"><span class="rn">07</span><h3>お引き渡しは、始まりです。</h3><p>長く安心して住み継げる家を、長期優良住宅の基準でつくります。お引き渡しはゴールではなく、お付き合いの始まり。点検やメンテナンスで、これからの暮らしを地元の工務店として見守り続けます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="people">
+  <div class="inwrap">
+    <div class="ph"><img src="img/member-shacho.jpg" alt="大工社長"></div>
+    <div class="tx">
+      <span class="rn">Craftsman</span>
+      <h3>建てるのは、地元の職人です。</h3>
+      <p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="price">
+  <div class="label"><span class="en">Price</span><h2>価格を、かくさない。</h2></div>
+  <div class="row">
+    <div class="it"><div class="t">2階建て</div><div class="v">2,095<small>万円〜</small></div></div>
+    <div class="it"><div class="t">平屋</div><div class="v">1,888<small>万円〜</small></div></div>
+  </div>
+  <p class="note">※ 本体価格（税込・目安）。諸費用・外構は別途。総額の目安も最初にご提示します。</p>
+</section>
+
+<section class="cta">
+  <h2>まずは、話を聞くことから<br>はじめませんか。</h2>
+  <div class="btns">
+    <a class="hbtn hbtn-fill" href="#">来店予約</a>
+    <a class="hbtn hbtn-line" href="#">電話で聞く</a>
+  </div>
+</section>
+</body>
+</html>

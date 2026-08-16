@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>【B案・静か系】トップ試作｜シバ・サンホーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Jost:wght@300;400&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Jost:wght@300;400&display=swap"></noscript>
+<style>
+:root{--ink:#1a1a1a;--gray:#5e5d5b;--pale:#f6f6f5;--linec:#e8e8e6}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);background:#fff;line-height:2.1;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.en{font-family:'Jost',sans-serif;letter-spacing:.3em;text-transform:uppercase}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity 1.1s ease,transform 1.1s ease}
+.fade.show{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.fade{opacity:1;transform:none;transition:none}}
+
+/* ヒーロー：静かな写真＋縦書きの一言 */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('img/work-ldk.jpg') center/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.06)}
+.hero-copy{position:absolute;top:50%;right:9%;transform:translateY(-50%);z-index:2;writing-mode:vertical-rl;color:#fff;text-shadow:0 1px 22px rgba(0,0,0,.35)}
+.hero-copy h1{font-size:clamp(26px,7vw,44px);font-weight:500;letter-spacing:.34em;line-height:1.9}
+.hero-copy p{font-size:clamp(12px,3.2vw,15px);font-weight:400;letter-spacing:.3em;margin-right:22px;margin-top:6px}
+.hero-en{position:absolute;left:20px;bottom:20px;color:#fff;font-size:9px;letter-spacing:.32em;z-index:2;opacity:.85}
+.scr{position:absolute;right:20px;bottom:16px;color:#fff;font-size:9px;letter-spacing:.3em;writing-mode:vertical-rl;z-index:2;opacity:.85}
+
+/* 導入の物語：白・余白・細い文字 */
+.story{padding:130px 28px;text-align:center}
+.story .en{display:block;font-size:9.5px;color:var(--gray);margin-bottom:34px}
+.story h2{font-size:clamp(19px,5vw,26px);font-weight:500;letter-spacing:.14em;line-height:2.4;text-wrap:balance}
+.story p{max-width:560px;margin:44px auto 0;font-size:14px;font-weight:400;color:#333;line-height:2.6;text-align:left}
+.story p b{font-weight:700}
+@media(min-width:600px){.story p{text-align:center}}
+
+/* 一枚写真をゆったり */
+.solo{padding:0 28px}
+.solo .ph{max-width:960px;margin:0 auto;aspect-ratio:16/9;overflow:hidden}
+.solo img{width:100%;height:100%;object-fit:cover}
+.solo figcaption{max-width:960px;margin:14px auto 0;font-size:11px;color:var(--gray);letter-spacing:.14em}
+
+/* 選ばれる理由：細い罫線と番号で静かに */
+.reasons{max-width:760px;margin:0 auto;padding:120px 28px}
+.label{margin-bottom:56px}
+.label .en{font-size:9.5px;color:var(--gray)}
+.label h2{font-size:clamp(20px,5vw,26px);font-weight:500;letter-spacing:.16em;margin-top:12px}
+.ritem{border-top:1px solid var(--linec);padding:38px 2px}
+.ritem:last-child{border-bottom:1px solid var(--linec)}
+.rn{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.3em;color:var(--gray)}
+.ritem h3{font-size:17.5px;font-weight:700;letter-spacing:.1em;margin:10px 0 12px;line-height:1.8}
+.ritem p{font-size:13.5px;color:#333;line-height:2.3}
+.ritem small{display:block;margin-top:10px;font-size:11px;color:var(--gray);letter-spacing:.06em}
+.ritem .ph{aspect-ratio:16/9;overflow:hidden;margin-top:20px}
+.ritem .ph img{width:100%;height:100%;object-fit:cover}
+@media(min-width:760px){
+  .ritem{display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:start}
+  .ritem .ph{margin-top:4px;aspect-ratio:4/3}
+  .ritem .tx{order:0}
+}
+
+/* 人柄：静かな余白の中の人 */
+.people{background:var(--pale);padding:120px 28px}
+.people .inwrap{max-width:760px;margin:0 auto}
+.people .ph{aspect-ratio:4/3;overflow:hidden}
+.people img{width:100%;height:100%;object-fit:cover}
+.people .tx{padding-top:30px}
+.people h3{font-size:18px;font-weight:700;letter-spacing:.12em;line-height:2}
+.people p{font-size:13.5px;color:#333;margin-top:14px;line-height:2.4}
+@media(min-width:760px){.people .inwrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}.people .tx{padding-top:0}}
+
+/* 価格：数字も静かに */
+.price{padding:120px 28px;text-align:center}
+.price .row{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;margin-top:40px}
+.price .it .t{font-size:11px;letter-spacing:.26em;color:var(--gray)}
+.price .it .v{font-family:'Jost','Zen Kaku Gothic New',sans-serif;font-size:38px;font-weight:300;letter-spacing:.04em;line-height:1.5}
+.price .it .v small{font-size:13px;font-weight:400}
+.price .note{font-size:11px;color:var(--gray);margin-top:26px;line-height:2.2;letter-spacing:.04em}
+
+/* CTA：白のまま静かに */
+.cta{border-top:1px solid var(--linec);padding:110px 28px;text-align:center}
+.cta h2{font-size:clamp(17px,4.6vw,22px);font-weight:500;letter-spacing:.18em;line-height:2.3}
+.cta .btns{display:flex;justify-content:center;gap:14px;margin-top:36px;flex-wrap:wrap}
+.hbtn{display:inline-block;padding:16px 34px;font-size:12px;letter-spacing:.2em;text-decoration:none;font-weight:500}
+.hbtn-fill{background:var(--ink);color:#fff}
+.hbtn-line{border:1px solid var(--ink);color:var(--ink)}
+.mockbar{position:fixed;left:0;top:0;right:0;z-index:99;background:#357;color:#fff;font-size:11px;letter-spacing:.12em;text-align:center;padding:6px}
+.mockbar a{color:#fff}
+</style>
+</head>
+<body>
+<div class="mockbar">B案【静か系】 ／ <a href="top-mock-a.html">A案【掴み系】を見る →</a></div>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-copy">
+    <h1>いい家で、いい毎日を。</h1>
+    <p>確かな品質を、正直な価格で。</p>
+  </div>
+  <span class="hero-en en">Shiba Sun Home — Nara, Japan</span>
+  <div class="scr en">Scroll</div>
+</div>
+
+<section class="story">
+  <span class="en fade">Concept</span>
+  <h2 class="fade">私たちが考えるいい家とは、<br>家族がいい毎日を暮らせる家のこと。</h2>
+  <p class="fade">家を建てることは、家族にとってゴールではありません。<br>どれだけ立派で高性能な家でも、<br>家計を圧迫して、暮らしが窮屈になるなら、<br>いい家とは呼べません。<br><br>安心して快適に暮らせる、確かな性能。<br>地元の職人が、まじめにつくる品質。<br>それを、正直な価格で。<br><b>ぜんぶ、「家族のいい毎日」のために。</b></p>
+</section>
+
+<div class="solo fade">
+  <figure>
+    <div class="ph"><img src="img/work-open.jpg" alt="吹き抜けのリビング"></div>
+    <figcaption class="en">Nara — Custom Home</figcaption>
+  </figure>
+</div>
+
+<section class="reasons">
+  <div class="label fade"><span class="en">Reasons</span><h2>選ばれる理由</h2></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">01</span><h3>とことん、親身に。</h3><p>叶えたいことも、迷っていることも。ぜんぶ話してください。ひとつずつ、一緒に答えを見つけます。</p></div><div class="ph"><img src="img/work-living.jpg" alt=""></div></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">02</span><h3>自分たちらしい家を、自由に。</h3><p>「こんな暮らしがしたい」を、カタチにできる自由設計。性能とコストのバランスを考えぬいた標準仕様。家族にとって、ベストな家づくりが叶います。</p></div><div class="ph"><img src="img/work-kitchen.jpg" alt=""></div></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">03</span><h3>一年中、心地いい。</h3><p>夏は涼しく、冬はあたたかい。高い断熱性能で、少ない冷暖房でも一年中快適。だから光熱費もグッと抑えられます。性能のよさは、これからの家計をずっと守ってくれます。</p><small>断熱等級6・UA値0.4水準／耐震等級3・長期優良住宅</small></div><div class="ph"><img src="img/performance.jpg" alt=""></div></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">04</span><h3>暮らしを、圧迫しない。</h3><p>どんなに立派な家でも、ローンで日々の暮らしが窮屈になっては、いい家とは言えません。私たちは建てる前に、その先の家計まで見すえた計画を一緒に考えます。家を建てたあとにこそ、家族の思い出を重ねてほしいから。</p></div><div class="ph"><img src="img/work-light.jpg" alt=""></div></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">05</span><h3>建てるのは、地元の職人です。</h3><p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。</p></div><div class="ph"><img src="img/works/g03.jpg" alt=""></div></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">06</span><h3>いいものを、正直な価格で。</h3><p>広告を打つより、釘を打つ。派手な展示場も、大量の広告もありません。かけるお金は、宣伝ではなく家そのものに。</p></div><div class="ph"><img src="img/work-exterior.jpg" alt=""></div></div>
+
+  <div class="ritem fade"><div class="tx"><span class="rn">07</span><h3>お引き渡しは、始まりです。</h3><p>長く安心して住み継げる家を、長期優良住宅の基準でつくります。お引き渡しはゴールではなく、お付き合いの始まり。点検やメンテナンスで、これからの暮らしを地元の工務店として見守り続けます。</p></div><div class="ph"><img src="img/work-vanity.jpg" alt=""></div></div>
+</section>
+
+<section class="people">
+  <div class="inwrap">
+    <div class="ph fade"><img src="img/member-shacho.jpg" alt="大工社長"></div>
+    <div class="tx fade">
+      <span class="rn">Craftsman</span>
+      <h3>建てるのは、地元の職人です。</h3>
+      <p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。</p>
+    </div>
+  </div>
+</section>
+
+<section class="price">
+  <div class="label fade"><span class="en">Price</span><h2>価格を、かくさない。</h2></div>
+  <div class="row fade">
+    <div class="it"><div class="t">2階建て</div><div class="v">2,095<small>万円〜</small></div></div>
+    <div class="it"><div class="t">平屋</div><div class="v">1,888<small>万円〜</small></div></div>
+  </div>
+  <p class="note fade">※ 本体価格（税込・目安）。諸費用・外構は別途。総額の目安も最初にご提示します。</p>
+</section>
+
+<section class="cta">
+  <h2 class="fade">まずは、話を聞くことから<br>はじめませんか。</h2>
+  <div class="btns fade">
+    <a class="hbtn hbtn-fill" href="#">来店予約</a>
+    <a class="hbtn hbtn-line" href="#">電話で聞く</a>
+  </div>
+</section>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

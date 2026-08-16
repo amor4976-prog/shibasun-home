@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>奈良の注文住宅・工務店｜坪単価69.9万円〜（税込）・耐震等級3が標準｜シバ・サンホーム</title>
-<meta name="description" content="奈良の工務店シバ・サンホーム。坪単価69.9万円〜（税込）と価格を公開し、耐震等級3（全棟・許容応力度計算）・断熱等級6が標準。建築実例の写真ギャラリー・本物のクチコミ・見学会の日程を掲載。親子二代で正直につくる注文住宅です。">
+<title>【C案・写真多め】トップ試作｜シバ・サンホーム</title>
+<meta name="description" content="奈良で3代続く工務店。現場に立つ大工歴43年の社長と、暮らしに寄り添う二代目が、親子二代で正直につくる自由設計の注文住宅。坪単価69.9万円〜（税込）の適正価格で、大手ハウスメーカー水準の高気密・高断熱・耐震等級3相当の性能を標準に。奈良市・大和郡山市・天理市・桜井市・生駒市対応。無料相談・来店予約はこちら。">
 <meta name="keywords" content="奈良 注文住宅,奈良市 工務店,奈良 注文住宅 坪単価,奈良 自由設計,奈良 大工 社長,奈良 自然素材 家,奈良 高気密 高断熱,奈良 耐震等級3,大和郡山 注文住宅,生駒 注文住宅,奈良 平屋,シバサンホーム">
-<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="robots" content="noindex,nofollow">
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#1c1c1a">
 <meta name="geo.region" content="JP-29">
@@ -20,7 +20,7 @@
 <!-- OGP / SNSシェア -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社シバ・サンホーム">
-<meta property="og:title" content="奈良の注文住宅・工務店｜坪単価69.9万円〜（税込）・耐震等級3が標準｜シバ・サンホーム">
+<meta property="og:title" content="奈良の注文住宅・工務店｜株式会社シバ・サンホーム">
 <meta property="og:description" content="親子二代で、正直に家をつくる。現場に立つ大工社長と、暮らしに寄り添う二代目。坪単価69.9万円〜（税込）の適正価格で大手水準の性能を。奈良の地域密着工務店。">
 <meta property="og:url" content="https://www.shibasun.jp/">
 <meta property="og:image" content="https://www.shibasun.jp/img/og-image.jpg">
@@ -39,7 +39,7 @@
 :root{
   --ink:#1a1a1a;
   --gray:#5e5d5b;
-  --pale:#ffffff;
+  --pale:#f6f6f5;
   --linec:#e8e8e6;
   --gold:#1a1a1a;
 }
@@ -49,7 +49,7 @@ body{
   font-family:'Noto Sans JP',sans-serif;
   font-weight:400;
   color:var(--ink);
-  background:#f6f6f5;
+  background:#fff;
   line-height:2;
   letter-spacing:.06em;
   padding-bottom:60px;
@@ -58,8 +58,6 @@ img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 .mincho{font-family:'Zen Kaku Gothic New',sans-serif}
 .en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
-/* 日本語の小ラベル（横文字を客に見せない方針・英字ラベルと同じ位置づけ） */
-.jp{font-family:'Zen Kaku Gothic New',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.26em}
 
 /* ===== Header ===== */
 header{
@@ -90,13 +88,10 @@ header.scrolled .head-cta{color:var(--ink)}
 .hero-slide.on{opacity:1}
 .hero::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom, rgba(20,20,18,.40), rgba(20,20,18,.16) 38%, rgba(20,20,18,.66));
-  z-index:2;
+  background:linear-gradient(to bottom, rgba(20,20,18,.34), rgba(20,20,18,.12) 45%, rgba(20,20,18,.42));
 }
 .hero-copy{
-  /* 本文と同じ縦のライン（1084px＝1040＋左右22）に揃える */
-  position:absolute;left:0;right:0;bottom:96px;z-index:3;color:#fff;
-  width:100%;max-width:1084px;margin:0 auto;padding:0 22px;
+  position:absolute;left:24px;bottom:96px;z-index:2;color:#fff;
 }
 .hero-copy .en-line{font-size:10px;letter-spacing:.4em;margin-bottom:18px;opacity:.85}
 .hero-copy h1{
@@ -104,7 +99,6 @@ header.scrolled .head-cta{color:var(--ink)}
 }
 .hero-copy p{margin-top:18px;font-size:13px;letter-spacing:.14em;opacity:.9}
 .hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.hero-first{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:.14em;color:#fff;opacity:.92;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:3px}
 .hero-area{margin-top:18px;font-size:11px;letter-spacing:.08em;opacity:.78;line-height:1.7}
 /* 信頼バッジ帯 */
 .trustbar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linec);border-bottom:1px solid var(--linec)}
@@ -122,37 +116,19 @@ header.scrolled .head-cta{color:var(--ink)}
 .concept p:last-child{margin-bottom:0}
 .concept .cc-last{margin-top:.4em;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:600;letter-spacing:.05em;color:var(--ink);text-align:center}
 .concept .cm-lead span{white-space:nowrap;display:inline-block}
-/* コンセプト：写真の上に載せる（ひかり /concept/ の見せ方） */
-.concept{position:relative;overflow:hidden;background:#1a1a18;padding:88px 22px 76px}
-@media(min-width:820px){.concept{padding:130px 24px 110px}}
-@media(min-width:821px){.concept .cbg{background-image:url('img/concept-pc-poster.jpg')!important}}
-.concept .cbg{position:absolute;inset:0;z-index:0;background:url('img/concept-sp-poster.jpg') center/cover no-repeat}
-/* 背景動画：写真の上にふわっと重なる。読み込めない・省データの人は写真のまま */
-.concept .cvid{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;pointer-events:none}
-.concept .cvid.on{opacity:1}
-.concept::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(18,18,16,.80),rgba(18,18,16,.72) 45%,rgba(18,18,16,.84))}
-.concept .concept-inner{position:relative;z-index:2;color:#fff}
-.concept .cc-label{color:rgba(255,255,255,.8)!important}
-.concept .cm-lead{margin-bottom:30px;color:#fff}
-.cc-body{max-width:560px;margin:0 auto 46px!important;font-size:13.5px!important;line-height:2.15!important;color:rgba(255,255,255,.86)!important}
-.vows{max-width:520px;margin:0 auto;border-top:1px solid rgba(255,255,255,.28)}
-.vow{display:flex;align-items:baseline;gap:18px;padding:20px 2px;border-bottom:1px solid rgba(255,255,255,.28);text-align:left}
-.vow .vn{flex:0 0 auto;font-size:10.5px;letter-spacing:.24em;color:rgba(255,255,255,.62);padding-top:2px}
-.vow p{margin:0!important;font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(15px,4.1vw,18px)!important;font-weight:500;letter-spacing:.05em;line-height:1.85!important;color:#fff!important;text-align:left!important}
-.vow br.sp{display:inline}
-@media(min-width:520px){.vow br.sp{display:none}}
-.concept .cc-last{margin-top:38px!important;font-size:clamp(15px,4.2vw,19px)!important;letter-spacing:.08em;color:#fff!important}
-.concept .cn-tile{margin-top:52px}
-.concept .cn-tile::after{background:linear-gradient(to top,rgba(20,20,18,.72),rgba(20,20,18,.10) 60%)}
-/* こだわりへの入口タイル（ひかり型：写真タイルで別ページへ振り分け） */
-.cn-tile{position:relative;display:block;margin-top:44px;overflow:hidden;aspect-ratio:16/9}
-@media(min-width:600px){.cn-tile{aspect-ratio:2/1}}
-.cn-tile img{width:100%;height:100%;object-fit:cover}
-.cn-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,18,.58),rgba(20,20,18,.06) 55%)}
-.cn-tile .ct-cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:#fff;text-align:left;display:block}
-.cn-tile .ct-cap .en{display:block;font-size:9.5px;letter-spacing:.3em;opacity:.85}
-.cn-tile .ct-t{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(18px,4.8vw,24px);font-weight:600;letter-spacing:.08em;margin-top:7px}
-.cn-tile .ct-s{display:block;font-size:11.5px;letter-spacing:.1em;margin-top:6px;opacity:.92}
+/* 写真タイルのハブ（ひかり型：写真で各ページへ振り分け） */
+.hub{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:44px}
+@media(min-width:760px){.hub{gap:12px}}
+.htile{position:relative;display:block;overflow:hidden;aspect-ratio:4/3}
+.htile.wide{grid-column:1/-1;aspect-ratio:16/8}
+.htile img{width:100%;height:100%;object-fit:cover}
+.htile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,18,.62),rgba(20,20,18,.04) 58%)}
+.ht-cap{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff;text-align:left;display:block}
+.htile.wide .ht-cap{left:20px;right:20px;bottom:18px}
+.ht-cap .en{display:block;font-size:8.5px;letter-spacing:.28em;opacity:.85}
+.ht-t{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(13px,3.6vw,17px);font-weight:600;letter-spacing:.06em;margin-top:5px;line-height:1.5}
+.htile.wide .ht-t{font-size:clamp(18px,4.8vw,24px);letter-spacing:.08em}
+.ht-s{display:block;font-size:11px;letter-spacing:.1em;margin-top:5px;opacity:.92}
 /* 選ばれる理由 01-07 */
 .reasons .reason-list{max-width:760px;margin:8px auto 0}
 .reason{display:flex;gap:16px;padding:26px 2px;border-top:1px solid var(--linec)}
@@ -184,7 +160,7 @@ header.scrolled .head-cta{color:var(--ink)}
 .hbtn-line{border:1px solid rgba(255,255,255,.8);color:#fff}
 .hbtn-line:hover{background:rgba(255,255,255,.16)}
 .hero-scroll{
-  position:absolute;right:24px;bottom:32px;z-index:3;color:#fff;
+  position:absolute;right:24px;bottom:32px;z-index:2;color:#fff;
   font-size:9px;letter-spacing:.35em;writing-mode:vertical-rl;
   display:flex;align-items:center;gap:10px;opacity:.8;
 }
@@ -258,21 +234,10 @@ section{padding:58px 22px}
 
 /* 全幅フォトバンド（セクションの区切り＝余白の呼吸。写真は差し替え可） */
 .photoband{position:relative;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden}
-/* PCは横長になりすぎて写真の上下が切れるので、高さを確保して切り取りを浅くする */
-@media(min-width:760px){.photoband{aspect-ratio:16/9;max-height:820px}}
-@media(min-width:1500px){.photoband{aspect-ratio:2.2/1;max-height:880px}}
-.photoband::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(20,20,18,.42),rgba(20,20,18,0) 46%)}
-/* ヒーローとフォトバンドの背景動画（写真の上にふわっと重なる） */
-.hero-vid{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;pointer-events:none}
-.hero-vid.on{opacity:1}
-.photoband .pbvid{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;pointer-events:none}
-.photoband .pbvid.on{opacity:1}
-.photoband::after{z-index:1}
-/* 暮らしの写真が切り替わる（クロスフェード） */
-.pbs{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity 1.4s ease}
-.pbs.on{opacity:1}
+@media(min-width:760px){.photoband{aspect-ratio:2/1;max-height:600px}}
+.photoband::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,18,.42),rgba(20,20,18,0) 46%)}
 .photoband .pbcap{position:absolute;left:22px;right:22px;bottom:24px;z-index:2;color:#fff}
-.photoband .pbcap .en,.photoband .pbcap .jp{font-size:10.5px;letter-spacing:.3em;opacity:.92}
+.photoband .pbcap .en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;opacity:.92}
 .photoband .pbcap .t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.4vw,32px);font-weight:500;letter-spacing:.08em;line-height:1.55;margin-top:9px;text-wrap:balance}
 .photoband .pbcap .t span{white-space:nowrap}
 @media(min-width:760px){.photoband .pbcap{left:6vw;bottom:40px}}
@@ -287,8 +252,8 @@ section{padding:58px 22px}
 .works-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}
 .works-scroll::-webkit-scrollbar{display:none}
 .work{position:relative;flex:0 0 80%;scroll-snap-align:center;overflow:hidden;background:#ddd}
-@media(min-width:760px){.work{flex-basis:360px}}
-.work img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform .7s ease}
+@media(min-width:760px){.work{flex-basis:440px}}
+.work img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .7s ease}
 .works-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:20px}
 .works-dots button{width:8px;height:8px;padding:0;border:none;border-radius:50%;background:var(--linec);cursor:pointer;transition:background .25s,transform .25s}
 .works-dots button.on{background:var(--ink);transform:scale(1.15)}
@@ -375,7 +340,7 @@ section{padding:58px 22px}
 }
 .contact::after{content:"";position:absolute;inset:0;background:rgba(20,20,18,.74)}
 .contact .inner{position:relative;z-index:2}
-.contact .en,.contact .jp{font-size:11px;letter-spacing:.34em;opacity:.85}
+.contact .en{font-size:11px;letter-spacing:.4em;opacity:.85}
 .contact h2{
   font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(22px,5.4vw,32px);
   font-weight:500;letter-spacing:.14em;line-height:2;margin:18px 0 14px;
@@ -436,7 +401,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .spec-grid{display:grid;gap:16px;max-width:1040px;margin:0 auto}
 @media(min-width:820px){.spec-grid{grid-template-columns:1fr 1fr;gap:20px}}
 .spec-card{background:#fff;border:1px solid var(--linec);padding:42px 28px}
-.spec-card .en,.spec-card .jp{font-size:10.5px;color:var(--gold)}
+.spec-card .en{font-size:10px;color:var(--gold)}
 .spec-card h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin:10px 0 22px}
 .spec-card .price{font-family:'Jost',sans-serif;font-size:clamp(36px,9vw,52px);font-weight:300;letter-spacing:.02em}
 .spec-card .price small{font-size:.36em;letter-spacing:.16em;color:var(--gray)}
@@ -454,65 +419,35 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .spec-list li:last-child{border-bottom:none}
 .spec-list li span:first-child{color:var(--gray);font-size:11px;letter-spacing:.16em;white-space:nowrap}
 .spec-list li span:last-child{text-align:right}
-
-/* 個別相談会（参考：コラボハウスの「無料相談会 7つのメリット」） */
-.soudan{background:#faf9f6;padding:64px 0 60px;border-top:1px solid var(--linec);border-bottom:1px solid var(--linec)}
-.soudan .in{max-width:1084px;margin:0 auto;padding:0 22px}
-.sd-lead{font-size:12px;color:var(--gray);letter-spacing:.12em}
-.sd-h{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,34px);font-weight:500;letter-spacing:.1em;margin-top:8px}
-.sd-facts{display:flex;flex-wrap:wrap;gap:8px 9px;margin-top:14px}
-.sd-facts span{font-size:11.5px;letter-spacing:.05em;color:#4a4a48;border:1px solid var(--linec);background:#fff;padding:6px 12px}
-.sd-photo{position:relative;margin-top:62px}
-.sd-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;background:#ededeb}
-.sd-badge{position:absolute;left:14px;top:-46px;width:92px;height:92px;border-radius:50%;background:var(--ink);color:#fff;
-          display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.5;
-          font-size:11.5px;letter-spacing:.06em;box-shadow:0 0 0 5px var(--pale,#fff)}
-.sd-badge b{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:600;letter-spacing:.02em;margin-top:1px}
-@media(min-width:760px){.sd-badge{left:20px;top:-56px;width:112px;height:112px;font-size:12px}.sd-badge b{font-size:15.5px}}
-.sd-mh{display:flex;align-items:baseline;gap:12px;margin:42px 0 10px}
-.sd-mh span{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(17px,4.6vw,22px);font-weight:500;letter-spacing:.1em}
-.sd-mh em{font-family:'Jost',sans-serif;font-style:normal;font-size:clamp(30px,8vw,42px);font-weight:300;line-height:1;border-bottom:2px solid var(--ink);padding:0 2px 2px}
-.sd-list{margin-top:14px}
-.sd-list li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:baseline;padding:17px 0;border-bottom:1px solid var(--linec);list-style:none}
-.sd-list .n{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#a9a9a5}
-.sd-list p{font-size:15px;line-height:2.05;letter-spacing:.02em;color:#262624}
-.sd-list u{text-decoration:none;font-weight:500;box-shadow:inset 0 -8px 0 rgba(200,175,120,.24)}
-@media(min-width:760px){.sd-list li{grid-template-columns:38px 1fr;padding:19px 0}.sd-list p{font-size:16px}}
-.sd-btns{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:30px auto 0}
-.sd-btns a{display:flex;align-items:center;justify-content:center;padding:16px;font-size:13px;letter-spacing:.14em}
-.sd-btns .fill{background:var(--ink);color:#fff}
-.sd-btns .line{border:1px solid var(--ink)}
-.sd-tel{text-align:center;margin-top:16px;font-size:11.5px;color:var(--gray);line-height:1.9}
-.sd-tel b{font-family:'Jost',sans-serif;font-size:19px;color:var(--ink);letter-spacing:.04em;display:block}
-
-/* コラム（参考：コラボハウスのトップのコラム欄） */
-.column{background:#fff;padding:66px 0 62px}
-.column .in{max-width:1084px;margin:0 auto;padding:0 22px;position:relative}
-.cl-lead{font-size:12px;color:var(--gray);letter-spacing:.12em}
-.cl-h{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,32px);font-weight:500;letter-spacing:.1em;margin-top:6px}
-.cl-list{margin-top:26px}
-.cl-item{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linec)}
-.cl-item:first-of-type{border-top:1px solid var(--linec)}
-.cl-item .th{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb}
-.cl-item .th img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.cl-item:hover .th img{transform:scale(1.04)}
-.cl-item .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(26,26,26,.78);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;padding-left:2px}
-.cl-item .kind{display:block;font-size:10px;letter-spacing:.14em;color:var(--gray)}
-.cl-item .t{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;line-height:1.7;margin-top:5px}
-@media(min-width:760px){
-  .cl-item{grid-template-columns:180px 1fr;gap:22px;padding:18px 0}
-  .cl-item .t{font-size:15.5px}
-}
-.cl-more{display:flex;align-items:center;justify-content:center;gap:12px;max-width:420px;margin:30px auto 0;
-         border:1px solid var(--ink);border-radius:999px;padding:16px 24px;font-size:13px;letter-spacing:.12em}
-.cl-more span{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px}
-.cl-more:hover{background:var(--ink);color:#fff}
-.cl-more:hover span{background:#fff;color:var(--ink)}
 .spec-note{max-width:1040px;margin:18px auto 0;font-size:11px;color:var(--gray);letter-spacing:.08em;font-weight:300}
 
 /* ===== Compare（編集タイポ・レスポンシブ） ===== */
+.compare{max-width:920px;margin:56px auto 0}
+.vhead{display:none}
+.vrow{border-bottom:1px solid #f0f0ee;padding-bottom:22px}
+.vrow:first-child{border-top:1px solid var(--linec)}
+.vcrit{font-size:10px;letter-spacing:.2em;color:#a3a3a1;padding-top:20px}
+.vcell{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:10px 0 0 15px;font-size:12.5px;color:#a3a3a1}
+.vcell .vv{text-align:right}
+.vcell.us{padding-left:13px;border-left:2px solid var(--gold);margin-top:14px;align-items:baseline}
+.vcell.us .co{font-size:11px;color:#a3a3a1}
+.vcell.us .vv{font-size:16px;font-weight:500;color:var(--ink)}
 @media(min-width:760px){
+  .vhead{display:grid;grid-template-columns:90px 1.25fr 1fr 1fr}
+  .vhead span{text-align:center;padding:0 8px 14px;font-size:12px;letter-spacing:.06em;color:#a3a3a1}
+  .vhead .us{color:var(--ink);font-weight:500;font-size:13px;border-bottom:2px solid var(--gold)}
+  .vhead .o{border-bottom:1px solid #ededeb}
+  .vrow{display:grid;grid-template-columns:90px 1.25fr 1fr 1fr;align-items:center;padding:0;border-bottom:1px solid #f0f0ee}
+  .vrow:first-child{border-top:none}
+  .vcrit{padding:0 0 0 2px;letter-spacing:.18em}
+  .vcell{display:block;text-align:center;padding:24px 10px;margin:0;border-left:none}
+  .vcell .vv{text-align:center}
+  .vcell.us{background:#f4f4f3;border-left:none;margin:0;padding:24px 10px}
+  .vcell .co{display:none}
+  .vcell.us .vv{font-size:13.5px}
+  .vcell .vv{font-size:12px;color:#a3a3a1}
 }
+.compare-hint{display:none}
 
 /* ===== People ===== */
 .people-grid{display:grid;gap:44px;max-width:1040px;margin:0 auto}
@@ -569,8 +504,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif;
 }
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
-.slot-btn.full{color:var(--gray);background:var(--pale);cursor:default;pointer-events:none}
-.slot-btn.full small{color:var(--gray)}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .slot-btn.on small{color:#bdbdbb}
 .rsv-field{margin-top:22px}
@@ -630,21 +563,18 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .rev-stars{color:#FBBC05;font-size:16px;letter-spacing:2px}
 .rev-count{font-size:11px;color:var(--gray)}
 .rev-track{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 14px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
-.rev-all{text-align:center;margin-top:18px;font-size:12px;letter-spacing:.06em}
-.rev-all a{color:var(--gray);border-bottom:1px solid var(--linec);padding-bottom:3px;transition:all .3s}
-.rev-all a:hover{color:var(--ink);border-color:var(--ink)}
 .rev-card{flex:0 0 84%;max-width:340px;scroll-snap-align:center;background:#fff;border:1px solid var(--linec);padding:24px 22px;display:flex;flex-direction:column}
 @media(min-width:760px){.rev-card{flex-basis:340px}}
 .rev-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .rev-av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;font-family:'Zen Kaku Gothic New',sans-serif;flex:0 0 auto}
-.rev-who{line-height:1.4}.rev-who .nm{font-size:13px;font-weight:500}
+.rev-who{line-height:1.4}.rev-who .nm{font-size:13px;font-weight:500}.rev-who .dt{font-size:10px;color:var(--gray);letter-spacing:.06em}
 .rev-card .rs{color:#FBBC05;font-size:13px;letter-spacing:1px;margin-bottom:8px}
 .rev-card p{font-size:13px;font-weight:300;line-height:2;color:#454543}
-.rev-body.clamp{display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden}
-.rev-more{align-self:flex-start;margin-top:8px;background:none;border:none;padding:2px 0;font-family:inherit;font-size:12px;letter-spacing:.08em;color:var(--ink);border-bottom:1px solid var(--ink);cursor:pointer}
-.rev-more:hover{opacity:.55}
 .rev-card .gi{margin-top:auto;padding-top:12px;font-size:10px;color:var(--gray);display:flex;align-items:center;gap:5px}
 .rev-cta{text-align:center;margin-top:30px}
+.rev-btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);padding:14px 28px;font-size:12px;letter-spacing:.16em;transition:all .3s}
+.rev-btn:hover{background:var(--ink);color:#fff}
+.rev-hint{display:none;text-align:center;margin-top:22px;font-size:11px;font-weight:300;color:var(--gray);letter-spacing:.06em;line-height:1.9}
 
 /* ===== FAQ（よくある質問） ===== */
 .faq{background:#fff}
@@ -691,7 +621,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .evcard .ph{aspect-ratio:16/9;overflow:hidden}
 .evcard .ph img{width:100%;height:100%;object-fit:cover}
 .evcard .bd{padding:20px 20px 24px}
-.evcard .tag{position:absolute;top:12px;left:12px;z-index:2;background:var(--ink);color:#fff;font-family:'Zen Kaku Gothic New',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.16em;padding:5px 12px}
+.evcard .tag{position:absolute;top:12px;left:12px;z-index:2;background:var(--ink);color:#fff;font-size:9.5px;letter-spacing:.2em;padding:4px 11px}
 .evcard h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:16.5px;font-weight:600;letter-spacing:.05em;line-height:1.6}
 .evcard p{font-size:12.5px;color:#454543;line-height:1.9;margin-top:8px}
 .evcard .more{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.12em;border-bottom:1px solid var(--ink);padding-bottom:2px;font-weight:500}
@@ -719,7 +649,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       "@id": "https://www.shibasun.jp/#business",
       "name": "株式会社シバ・サンホーム",
       "alternateName": ["シバサンホーム", "シバ・サンホーム", "SHIBA SUN HOME"],
-      "description": "奈良の工務店。現場に立つ大工歴43年の社長と、暮らしに寄り添う二代目が、親子二代で正直につくる自由設計の注文住宅。坪単価69.9万円〜（税込）の適正価格で、大手ハウスメーカー水準の高気密・高断熱・耐震等級3（許容応力度計算認定）の性能を標準にする。",
+      "description": "奈良で3代続く工務店。現場に立つ大工歴43年の社長と、暮らしに寄り添う二代目が、親子二代で正直につくる自由設計の注文住宅。坪単価69.9万円〜（税込）の適正価格で、大手ハウスメーカー水準の高気密・高断熱・耐震等級3相当の性能を標準にする。",
       "url": "https://www.shibasun.jp/",
       "image": "https://www.shibasun.jp/img/hero.jpg",
       "logo": "https://www.shibasun.jp/img/hero.jpg",
@@ -795,12 +725,12 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         {
           "@type": "Question",
           "name": "住宅の性能はどのくらいですか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "耐震等級3、許容応力度計算認定の構造設計、高断熱・高気密仕様を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています。" }
+          "acceptedAnswer": { "@type": "Answer", "text": "耐震等級3相当の構造設計、高断熱・高気密仕様を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています。" }
         },
         {
           "@type": "Question",
           "name": "土地を持っていなくても相談できますか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。" }
+          "acceptedAnswer": { "@type": "Answer", "text": "はい。奈良で3代続く地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。" }
         },
         {
           "@type": "Question",
@@ -814,6 +744,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </script>
 </head>
 <body>
+<div style="position:fixed;left:0;top:0;right:0;z-index:999;background:#2a6;color:#fff;font-size:11px;letter-spacing:.12em;text-align:center;padding:6px">C案【写真多め・ひかり/シンケン風タイル】プレビュー用モック</div>
 
 <header id="header">
   <a class="logo" href="#top">
@@ -826,12 +757,11 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 <div class="hero" id="top">
   <div class="hero-slides" id="hero-slides">
     <div class="hero-slide on" style="background-image:url('img/hero.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('img/work-exterior.jpg');background-position:center 22%"></div>
+    <div class="hero-slide" style="background-image:url('img/work-exterior.jpg')"></div>
     <div class="hero-slide" style="background-image:url('img/work-ldk.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('img/hero-2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('img/work-kitchen.jpg')"></div>
     <div class="hero-slide" style="background-image:url('img/performance.jpg')"></div>
   </div>
-  <video class="hero-vid" id="heroVid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
   <div class="hero-copy">
     <div class="en en-line">Shiba Sun Home — Nara, Japan</div>
     <h1 class="mincho">いい家で、<br>いい毎日を。</h1>
@@ -841,17 +771,16 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       <a class="hbtn hbtn-line" href="catalog.html">資料請求（無料）</a>
     </div>
     <div class="hero-area">奈良県全域対応　｜　総額提示の明朗価格</div>
-    <a class="hero-first" href="hajimete.html">はじめての方はこちら →</a>
   </div>
   <div class="hero-scroll en">Scroll</div>
 </div>
 
 <!-- 信頼の数字（FV直下＝勝ちサイト共通の型） -->
 <div class="trustbar">
-  <div class="tb"><span class="tb-v">地元密着</span><span class="tb-c">奈良の工務店</span></div>
+  <div class="tb"><span class="tb-v">奈良で3代</span><span class="tb-c">地元密着の工務店</span></div>
   <div class="tb"><span class="tb-v">570棟以上</span><span class="tb-c">これまでの施工実績</span></div>
   <div class="tb"><span class="tb-v">69.9万円〜</span><span class="tb-c">坪単価（税込）</span></div>
-  <div class="tb"><span class="tb-v">耐震等級3</span><span class="tb-c">許容応力度計算認定が標準</span></div>
+  <div class="tb"><span class="tb-v">耐震等級3相当</span><span class="tb-c">高断熱・高気密が標準</span></div>
 </div>
 
 <!-- 見学会・相談会（イベントを上に＝集客サイトの型） -->
@@ -860,7 +789,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <div class="label"><span class="en">Event</span><small>見学会・相談会</small></div>
     <div class="evcards">
       <a class="evcard fade" href="kengaku.html">
-        <span class="tag">見学会</span>
+        <span class="tag en">Tour</span>
         <div class="ph"><img src="img/work-exterior.jpg" alt="OB様邸見学会" loading="lazy"></div>
         <div class="bd">
           <h3>OB様邸 見学会</h3>
@@ -869,8 +798,8 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         </div>
       </a>
       <a class="evcard fade" href="event.html">
-        <span class="tag">無料</span>
-        <div class="ph"><img src="img/ev-soudan.jpg" alt="個別相談会" loading="lazy"></div>
+        <span class="tag en">Free</span>
+        <div class="ph"><img src="img/work-kitchen.jpg" alt="個別相談会" loading="lazy"></div>
         <div class="bd">
           <h3>個別相談会（無料）</h3>
           <p>土地・予算・間取りのことを、なんでも聞けます。ご来店でも、オンラインでも。</p>
@@ -886,53 +815,41 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   <div class="inner">
     <div class="label"><span class="en">Works</span><small>施工事例</small></div>
     <div class="works-scroll" id="worksScroll">
-      <a class="work fade" href="jisseki-case12.html">
-        <img src="img/jisseki/case12/thumb/03.jpg" srcset="img/jisseki/case12/thumb/03.jpg 640w, img/jisseki/case12/03.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 窓の外の緑を眺めながら、丸いテーブルを囲む" loading="eager" decoding="async">
-        <div class="cap"><h3>窓の外の緑を眺めながら、丸いテーブルを囲む</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-exterior.jpg" alt="施工実例 外観" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>シンプルモダンな外観の家</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case13.html">
-        <img src="img/jisseki/case13/thumb/03.jpg" srcset="img/jisseki/case13/thumb/03.jpg 640w, img/jisseki/case13/03.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 光が床を伝って、奥のキッチンまで届く" loading="eager" decoding="async">
-        <div class="cap"><h3>光が床を伝って、奥のキッチンまで届く</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-loft.jpg" alt="施工実例 吹き抜け" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>吹き抜けに光が満ちる家</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case03.html">
-        <img src="img/jisseki/case03/thumb/02.jpg" srcset="img/jisseki/case03/thumb/02.jpg 640w, img/jisseki/case03/02.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 勾配天井とシーリングファン。上に抜ける居間" loading="eager" decoding="async">
-        <div class="cap"><h3>勾配天井とシーリングファン。上に抜ける居間</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-ldk.jpg" alt="施工実例 LDK" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>木の天井に包まれる開放的なLDK</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case03.html">
-        <img src="img/jisseki/case03/thumb/01.jpg" srcset="img/jisseki/case03/thumb/01.jpg 640w, img/jisseki/case03/01.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 ロフトを見上げるダイニング。声が届く高さに" loading="lazy" decoding="async">
-        <div class="cap"><h3>ロフトを見上げるダイニング。声が届く高さに</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-kitchen.jpg" alt="施工実例 キッチン" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>暮らしの中心になるアイランドキッチン</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case13.html">
-        <img src="img/jisseki/case13/thumb/07.jpg" srcset="img/jisseki/case13/thumb/07.jpg 640w, img/jisseki/case13/07.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 大きな窓のダイニング。朝の光が入る向きに" loading="lazy" decoding="async">
-        <div class="cap"><h3>大きな窓のダイニング。朝の光が入る向きに</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-vanity.jpg" alt="施工実例 洗面" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>毎日を整える、上質な洗面空間</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case11.html">
-        <img src="img/jisseki/case11/thumb/06.jpg" srcset="img/jisseki/case11/thumb/06.jpg 640w, img/jisseki/case11/06.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 対面キッチンに、灯りを三つ。手元と食卓を分けて" loading="lazy" decoding="async">
-        <div class="cap"><h3>対面キッチンに、灯りを三つ。手元と食卓を分けて</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-living.jpg" alt="施工実例 リビング" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>家族が集う、広々としたリビング</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case03.html">
-        <img src="img/jisseki/case03/thumb/04.jpg" srcset="img/jisseki/case03/thumb/04.jpg 640w, img/jisseki/case03/04.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 階段の先にダイニング。廊下をつくらない間取り" loading="lazy" decoding="async">
-        <div class="cap"><h3>階段の先にダイニング。廊下をつくらない間取り</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-stairs.jpg" alt="施工実例 吹き抜け階段" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>吹き抜けと階段がつくる立体的な空間</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case05.html">
-        <img src="img/jisseki/case05/thumb/06.jpg" srcset="img/jisseki/case05/thumb/06.jpg 640w, img/jisseki/case05/06.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 吹き抜けの木天井。二階とゆるくつながる" loading="lazy" decoding="async">
-        <div class="cap"><h3>吹き抜けの木天井。二階とゆるくつながる</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-open.jpg" alt="施工実例 オープンLDK" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>視線が抜ける、開放的な間取り</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case05.html">
-        <img src="img/jisseki/case05/thumb/02.jpg" srcset="img/jisseki/case05/thumb/02.jpg 640w, img/jisseki/case05/02.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 広い天板の対面キッチン。二人でも立てる幅に" loading="lazy" decoding="async">
-        <div class="cap"><h3>広い天板の対面キッチン。二人でも立てる幅に</h3></div>
-      </a>
-      <a class="work fade" href="jisseki-case09.html">
-        <img src="img/jisseki/case09/thumb/05.jpg" srcset="img/jisseki/case09/thumb/05.jpg 640w, img/jisseki/case09/05.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 一枚板のテーブルに、上から光が落ちる" loading="lazy" decoding="async">
-        <div class="cap"><h3>一枚板のテーブルに、上から光が落ちる</h3></div>
-      </a>
-      <a class="work fade" href="jisseki-case12.html">
-        <img src="img/jisseki/case12/thumb/01.jpg" srcset="img/jisseki/case12/thumb/01.jpg 640w, img/jisseki/case12/01.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 黒い外壁に、木の軒を差した外観" loading="lazy" decoding="async">
-        <div class="cap"><h3>黒い外壁に、木の軒を差した外観</h3></div>
-      </a>
-      <a class="work fade" href="jisseki-case06.html">
-        <img src="img/jisseki/case06/thumb/01.jpg" srcset="img/jisseki/case06/thumb/01.jpg 640w, img/jisseki/case06/01.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 グレーの外壁と木の玄関ドア。山の見える敷地に" loading="lazy" decoding="async">
-        <div class="cap"><h3>グレーの外壁と木の玄関ドア。山の見える敷地に</h3></div>
+      <a class="work fade" href="jisseki.html">
+        <img src="img/work-light.jpg" alt="施工実例 照明" loading="lazy">
+        <div class="cap"><div class="area en">Nara</div><h3>灯りが映える、夜の表情</h3></div>
       </a>
     </div>
     <div class="works-dots" id="worksDots"></div>
@@ -941,55 +858,35 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </section>
 
 <!-- コンセプト（ひかり型：情緒の導入→選ばれる理由。文章はNotion原文どおり） -->
-
-<!-- 個別相談会（トップの推し） -->
-<section class="soudan" id="soudan">
-  <div class="in">
-    <div class="sd-lead">家づくりは、ここからはじまります</div>
-    <h2 class="sd-h">個別相談会</h2>
-    <div class="sd-facts"><span>相談は無料</span><span>ご予約制</span><span>所要 約60分</span><span>オンラインもOK</span></div>
-    <div class="sd-photo fade">
-      <img src="img/soudan.jpg" alt="個別相談会のようす" loading="lazy" decoding="async">
-      <div class="sd-badge"><span>ほぼ</span><b>毎日受付</b></div>
-    </div>
-    <div class="sd-mh"><span>個別相談会</span><em>6</em><span>つのいいこと</span></div>
-    <ul class="sd-list">
-      <li><span class="n">01</span><p>担当は<u>はじめから引き渡しまで同じ人</u>。話した内容が引き継ぎで消えません</p></li>
-      <li><span class="n">02</span><p>本体・諸費用・外構まで含めた<u>総額の目安</u>を、その場でお出しします</p></li>
-      <li><span class="n">03</span><p><u>土地が決まっていなくても</u>大丈夫。土地の見方からお話しします</p></li>
-      <li><span class="n">04</span><p><u>他社と迷っている段階</u>で構いません。比べるための材料をお渡しします</p></li>
-      <li><span class="n">05</span><p>ご来店でも<u>オンライン</u>でも。所要は約60分、お子様連れも歓迎です</p></li>
-      <li><span class="n">06</span><p>その場で<u>契約を勧めることはしません</u>。持ち帰って考えてください</p></li>
-    </ul>
-    <div class="sd-btns">
-      <a class="fill js-reserve" href="#reserve">日時を選んで予約する（無料）</a>
-      <a class="line" href="event.html">開催中の相談会を見る</a>
-    </div>
-    <div class="sd-tel">お電話でもご予約いただけます<b>0120-154-483</b>受付 9:00-18:00／水曜定休</div>
-  </div>
-</section>
-
 <section class="concept" id="concept">
-  <div class="cbg" aria-hidden="true"></div>
-  <video class="cvid" id="conceptVid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
   <div class="concept-inner">
     <span class="en cc-label fade">Concept</span>
     <p class="cm-lead fade"><span>私たちが考えるいい家とは、</span><span>家族がいい毎日を暮らせる家のこと。</span></p>
-    <p class="cc-body fade">家を建てることは、家族にとってゴールではありません。どれだけ立派で高性能な家でも、家計を圧迫して、暮らしが窮屈になるなら、いい家とは呼べません。</p>
-    <div class="vows fade">
-      <div class="vow"><span class="vn en">01</span><p>安心して快適に暮らせる、<br class="sp">確かな性能。</p></div>
-      <div class="vow"><span class="vn en">02</span><p>地元の職人が、<br class="sp">まじめにつくる品質。</p></div>
-      <div class="vow"><span class="vn en">03</span><p>それを、正直な価格で。</p></div>
-    </div>
+    <p class="fade">家を建てることは、家族にとってゴールではありません。どれだけ立派で高性能な家でも、家計を圧迫して、暮らしが窮屈になるなら、いい家とは呼べません。</p>
+    <p class="fade">安心して快適に暮らせる、確かな性能。<br>地元の職人が、まじめにつくる品質。<br>それを、正直な価格で。</p>
     <p class="cc-last fade">ぜんぶ、「家族のいい毎日」のために。</p>
-    <a class="cn-tile fade" href="iezukuri.html">
-      <img src="img/works/g03.jpg" alt="私たちのこだわり" loading="lazy">
-      <span class="ct-cap">
-        <span class="en">Our Promise</span>
-        <span class="ct-t">私たちのこだわり</span>
-        <span class="ct-s">選ばれる理由 01 − 07 を見る →</span>
-      </span>
-    </a>
+    <div class="hub fade">
+      <a class="htile wide" href="iezukuri.html">
+        <img src="img/works/g03.jpg" alt="私たちのこだわり" loading="lazy">
+        <span class="ht-cap"><span class="en">Our Promise</span><span class="ht-t">私たちのこだわり</span><span class="ht-s">選ばれる理由 01 − 07 →</span></span>
+      </a>
+      <a class="htile" href="spec.html">
+        <img src="img/spec/spec-taishin.jpg" alt="性能・標準仕様" loading="lazy">
+        <span class="ht-cap"><span class="en">Spec</span><span class="ht-t">性能・標準仕様</span></span>
+      </a>
+      <a class="htile" href="products.html">
+        <img src="img/work-vanity.jpg" alt="価格・プラン" loading="lazy">
+        <span class="ht-cap"><span class="en">Price</span><span class="ht-t">価格・プラン</span></span>
+      </a>
+      <a class="htile" href="hajimete.html">
+        <img src="img/work-living.jpg" alt="はじめての方へ" loading="lazy">
+        <span class="ht-cap"><span class="en">Guide</span><span class="ht-t">はじめての方へ</span></span>
+      </a>
+      <a class="htile" href="kengaku.html">
+        <img src="img/work-exterior.jpg" alt="OB様邸見学会" loading="lazy">
+        <span class="ht-cap"><span class="en">Tour</span><span class="ht-t">OB様邸 見学会</span></span>
+      </a>
+    </div>
   </div>
 </section>
 <script>
@@ -998,15 +895,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   if(!s)return;
   var slides=[].slice.call(s.querySelectorAll('.work'));
   if(!slides.length)return;
-  // 開くたびに順番を変える（同じ写真ばかり最初に見えないように）
-  (function(){
-    var a=slides.slice();
-    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
-    var frag=document.createDocumentFragment();
-    a.forEach(function(el){frag.appendChild(el);});
-    s.appendChild(frag);
-    slides=a;
-  })();
   // 各カードに「＋」を付与
   slides.forEach(function(w){
     if(w.querySelector('.plus'))return;
@@ -1058,10 +946,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 
 <section class="spec" id="spec">
   <div class="inner">
-    <div class="label"><small>仕様と価格</small></div>
+    <div class="label"><span class="en">Spec &amp; Price</span><small>仕様と価格</small></div>
     <div class="spec-grid">
       <div class="spec-card fade">
-        <div class="jp">価格</div>
+        <div class="en">Price</div>
         <h3>価格を、かくさない。</h3>
         <div class="price-two">
           <div class="pt-row"><span class="pt-t">2階建て</span><span class="pt-v">2,095<small>万円〜</small></span></div>
@@ -1073,10 +961,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         </div>
       </div>
       <div class="spec-card fade">
-        <div class="jp">標準仕様</div>
+        <div class="en">Standard Spec</div>
         <h3>標準仕様で、この性能。</h3>
         <ul class="spec-list">
-          <li><span>耐震</span><span>耐震等級3、許容応力度計算認定の構造設計</span></li>
+          <li><span>耐震</span><span>耐震等級3相当の構造設計</span></li>
           <li><span>断熱・気密</span><span>高断熱・高気密仕様が標準</span></li>
           <li><span>素材</span><span>無垢材など自然素材の内装</span></li>
           <li><span>設計</span><span>自由設計</span></li>
@@ -1084,14 +972,49 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         </ul>
       </div>
     </div>
-    
+    <div class="compare fade">
+      <div class="vcmp">
+        <div class="vhead"><span></span><span class="us">シバ・サンホーム</span><span class="o">大手ハウスメーカー</span><span class="o">ローコスト住宅</span></div>
+        <div class="vrow">
+          <div class="vcrit">価格</div>
+          <div class="vcell us"><span class="co">シバ・サンホーム</span><span class="vv">明朗・総額提示</span></div>
+          <div class="vcell"><span class="co">大手ハウスメーカー</span><span class="vv">広告・展示場費が上乗せ</span></div>
+          <div class="vcell"><span class="co">ローコスト住宅</span><span class="vv">追加費用が出やすい</span></div>
+        </div>
+        <div class="vrow">
+          <div class="vcrit">性能</div>
+          <div class="vcell us"><span class="co">シバ・サンホーム</span><span class="vv">大手水準が標準</span></div>
+          <div class="vcell"><span class="co">大手ハウスメーカー</span><span class="vv">高い</span></div>
+          <div class="vcell"><span class="co">ローコスト住宅</span><span class="vv">最低限</span></div>
+        </div>
+        <div class="vrow">
+          <div class="vcrit">設計</div>
+          <div class="vcell us"><span class="co">シバ・サンホーム</span><span class="vv">自由設計</span></div>
+          <div class="vcell"><span class="co">大手ハウスメーカー</span><span class="vv">規格の範囲内</span></div>
+          <div class="vcell"><span class="co">ローコスト住宅</span><span class="vv">規格プラン中心</span></div>
+        </div>
+        <div class="vrow">
+          <div class="vcrit">つくる人</div>
+          <div class="vcell us"><span class="co">シバ・サンホーム</span><span class="vv">大工社長と専属職人</span></div>
+          <div class="vcell"><span class="co">大手ハウスメーカー</span><span class="vv">営業＋下請け施工</span></div>
+          <div class="vcell"><span class="co">ローコスト住宅</span><span class="vv">下請け施工</span></div>
+        </div>
+        <div class="vrow">
+          <div class="vcrit">アフター</div>
+          <div class="vcell us"><span class="co">シバ・サンホーム</span><span class="vv">地元3代、すぐ駆けつける</span></div>
+          <div class="vcell"><span class="co">大手ハウスメーカー</span><span class="vv">窓口はコールセンター</span></div>
+          <div class="vcell"><span class="co">ローコスト住宅</span><span class="vv">会社による</span></div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:#adadab;margin-top:18px;line-height:1.7;letter-spacing:.02em">※ 一般的な傾向の比較です。特定の企業を指すものではありません。</div>
+    </div>
     <div class="spec-note">※ 価格は仕様・敷地条件により変動します。詳しい仕様書と資金計画はご来店時にご案内します。</div>
   </div>
 </section>
 
 <!-- ▼専務へ：全幅フォトバンド②（つくり手・現場）。写真は差し替え可 -->
 <div class="photoband" style="background-image:url('img/spec/spec-kouzo.jpg')">
-  <div class="pbcap"><div class="jp">つくり手</div><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div></div>
+  <div class="pbcap"><div class="en">Craft</div><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div></div>
 </div>
 
 
@@ -1115,67 +1038,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </section>
 
-<script>
-// ===== 背景動画の共通処理 =====
-// ・画面に入ってから読み込む（最初は写真のまま＝真っ白にならない）
-// ・省データ設定／動きを減らす設定／細い回線の人には出さない
-// ・画面外では一時停止（電池とデータの節約）
-window.bgVideo=function(id,src){
-  var v=document.getElementById(id); if(!v)return;
-  var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)');
-  if(mq&&mq.matches)return;
-  var c=navigator.connection||{};
-  if(c.saveData)return;
-  if(c.effectiveType&&/(^|-)2g/.test(c.effectiveType))return;
-  var box=v.parentElement;
-  function load(){
-    if(v.dataset.loaded)return; v.dataset.loaded='1';
-    v.src=src;
-    v.addEventListener('canplay',function(){ v.classList.add('on'); var p=v.play(); if(p&&p.catch)p.catch(function(){}); },{once:true});
-    v.load();
-  }
-  // すでに画面内（またはすぐ下）にあるものは待たずに読み込む
-  function near(){ var r=box.getBoundingClientRect();
-    return r.top < (window.innerHeight||0)+250 && r.bottom > -250; }
-  if(near()) load();
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ load(); io.disconnect(); } }); },{rootMargin:'250px'});
-    io.observe(box);
-    addEventListener('scroll',function onScr(){ if(near()){ load(); removeEventListener('scroll',onScr); } },{passive:true});
-    var io2=new IntersectionObserver(function(es){ es.forEach(function(e){
-      if(!v.dataset.loaded)return; e.isIntersecting?v.play().catch(function(){}):v.pause(); }); },{threshold:0});
-    io2.observe(box);
-  } else { load(); }
-};
-bgVideo('conceptVid', matchMedia('(min-width:821px)').matches ? 'img/concept-pc.mp4' : 'img/concept-sp.mp4');
-// ヒーローはスマホ＝縦動画／PC＝横動画（使う方だけ読み込む）
-bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' : 'img/hero-sp.mp4');
-</script>
-
-<!-- 暮らしの気配：お客様のお住まいの写真がゆっくり切り替わる -->
-<div class="photoband" id="lifeBand">
-  <div class="pbs on" style="background-image:url('img/life/01.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/02.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/03.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/04.jpg?v=3')"></div>
-  <div class="pbs" style="background-image:url('img/life/05.jpg?v=3')"></div>
-  <div class="pbcap"><div class="jp">暮らし</div><div class="t"><span>建てたあとの、</span><span>毎日のために。</span></div></div>
-</div>
-<script>
-(function(){
-  var b=document.getElementById('lifeBand'); if(!b)return;
-  var s=[].slice.call(b.querySelectorAll('.pbs'));
-  if(s.length<2)return;
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  var i=0, t=null;
-  function go(){ s[i].classList.remove('on'); i=(i+1)%s.length; s[i].classList.add('on'); }
-  function play(){ stop(); t=setInterval(go,5200); }
-  function stop(){ if(t){clearInterval(t); t=null;} }
-  play();
-  document.addEventListener('visibilitychange',function(){ document.hidden?stop():play(); });
-})();
-</script>
-
 <section class="reviews" id="reviews">
   <div class="inner">
     <div class="label"><span class="en">Reviews</span><small>お客様の声・Google口コミ</small></div>
@@ -1189,8 +1051,10 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
     <div class="rev-track fade" id="rev-track">
       <!-- Googleレビューが設定されると自動表示。未設定の間はサンプル表示 -->
     </div>
-    <!-- Googleが渡してくれる口コミは5件まで。残りはGoogleの一覧で読んでいただく -->
-    <p class="rev-all fade"><a id="rev-link" href="#" target="_blank" rel="noopener">Googleのクチコミをすべて見る</a></p>
+    <p class="rev-hint" id="rev-hint">※ 実際にシバ・サンホームでお建ていただいたお客様の声です。間取り・価格つきの詳しい事例は <a href="jisseki.html" style="color:var(--ink);border-bottom:1px solid var(--gold)">建築実例ページ</a> でご覧いただけます。</p>
+    <div class="rev-cta">
+      <a class="rev-btn en" id="rev-link" href="https://www.google.com/maps/search/?api=1&query=株式会社シバ・サンホーム+奈良市北之庄町41-1" target="_blank" rel="noopener">Googleで口コミを見る</a>
+    </div>
   </div>
 </section>
 
@@ -1205,7 +1069,7 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">対応エリアはどこですか？</button>
-        <div class="faq-a"><div>奈良市・大和郡山市・天理市・桜井市・生駒市を中心に、奈良県全域で対応しています。地元の工務店として、その土地の気候や地盤を知り尽くしています。</div></div>
+        <div class="faq-a"><div>奈良市・大和郡山市・天理市・桜井市・生駒市を中心に、奈良県全域で対応しています。地元3代の工務店として、その土地の気候や地盤を知り尽くしています。</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">大手ハウスメーカーとの違いは何ですか？</button>
@@ -1213,11 +1077,11 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">住宅の性能はどのくらいですか？</button>
-        <div class="faq-a"><div>耐震等級3、許容応力度計算認定の構造設計、高断熱・高気密仕様を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備。夏涼しく冬あたたかい、地震に強く永く快適に住み継げる家をお届けします。</div></div>
+        <div class="faq-a"><div>耐震等級3相当の構造設計、高断熱・高気密仕様を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備。夏涼しく冬あたたかい、地震に強く永く快適に住み継げる家をお届けします。</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">土地を持っていなくても相談できますか？</button>
-        <div class="faq-a"><div>はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。</div></div>
+        <div class="faq-a"><div>はい。奈良で3代続く地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">相談は無料ですか？しつこい営業はありませんか？</button>
@@ -1227,32 +1091,31 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
   </div>
 </section>
 
-<!-- コラム -->
-<section class="column" id="column">
-  <div class="in">
-    <div class="cl-lead">家づくりのお役立ち情報</div>
-    <h2 class="cl-h">コラム</h2>
-    <div class="cl-list">
-      <a class="cl-item fade" href="blog-taifu.html">
-        <span class="th"><img src="img/blog/taifu_gaikan.jpg" alt="台風前の点検" loading="lazy" decoding="async"></span>
-        <span><span class="kind">住んでから</span><span class="t">台風が来る前に。家を守る点検チェックリスト</span></span>
+<section class="latest-blog" id="latest-blog" style="padding:72px 0;background:#fff">
+  <div class="inner" style="max-width:820px;margin:0 auto;padding:0 20px">
+    <div class="label"><span class="en">Blog</span><small>家づくりのブログ</small></div>
+    <div style="display:grid;gap:14px;margin-top:28px">
+      <a href="blog-movie-setsubi.html" class="fade" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;border:1px solid var(--linec);padding:12px">
+        <span style="position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb"><img src="https://i.ytimg.com/vi/PXi34b0cv7k/hqdefault.jpg" alt="付けたら損する住宅設備10選" loading="lazy" style="width:100%;height:100%;object-fit:cover"><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:rgba(26,26,26,.8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;padding-left:2px;box-sizing:border-box">▶</span></span>
+        <span><span style="display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--gray)">MOVIE</span><span style="display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.7;margin-top:4px">付けたら損する住宅設備10選、大工が本音で解説</span></span>
       </a>
-      <a class="cl-item fade" href="blog-roomtour.html">
-        <span class="th"><img src="https://i.ytimg.com/vi/NOtf7NI7-LM/hqdefault.jpg" alt="ルームツアー" loading="lazy" decoding="async"><span class="play">▶</span></span>
-        <span><span class="kind">動画つき</span><span class="t">ルームツアーはネタバレ？動画で予習する家づくり</span></span>
+      <a href="blog-tsubo.html" class="fade" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;border:1px solid var(--linec);padding:12px">
+        <span style="display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb"><img src="img/work-exterior.jpg" alt="奈良の坪単価" loading="lazy" style="width:100%;height:100%;object-fit:cover"></span>
+        <span><span style="display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--gray)">PRICE</span><span style="display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.7;margin-top:4px">奈良で注文住宅の坪単価はいくら？</span></span>
       </a>
-      <a class="cl-item fade" href="blog-mushi.html">
-        <span class="th"><img src="img/blog/mushi-kikuimushi.jpg" alt="キクイムシの図鑑風イラスト" loading="lazy" decoding="async"></span>
-        <span><span class="kind">住んでから</span><span class="t">家に出る虫の正直な話。キクイムシとシバンムシ</span></span>
-      </a>
-      <a class="cl-item fade" href="blog-hojokin.html">
-        <span class="th"><img src="img/work-ldk.jpg" alt="2026年の住宅補助金" loading="lazy" decoding="async"></span>
-        <span><span class="kind">お金のこと</span><span class="t">2026年の住宅補助金｜奈良で家を建てる人がもらえるお金</span></span>
+      <a href="blog-yosan.html" class="fade" style="display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;border:1px solid var(--linec);padding:12px">
+        <span style="display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb"><img src="img/work-kitchen.jpg" alt="予算と資金計画" loading="lazy" style="width:100%;height:100%;object-fit:cover"></span>
+        <span><span style="display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.22em;color:var(--gray)">BUDGET</span><span style="display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;line-height:1.7;margin-top:4px">注文住宅の予算の決め方｜年収別の目安</span></span>
       </a>
     </div>
-    <a class="cl-more" href="blog.html">コラムをさらに見る<span>›</span></a>
+    <div style="text-align:center;margin-top:24px"><a href="blog.html" style="display:inline-block;padding:13px 30px;border:1px solid var(--ink);font-size:12px;letter-spacing:.14em">ブログをすべて見る →</a></div>
   </div>
 </section>
+
+<!-- 締めの全幅写真（写真多め方針・2026-07-22） -->
+<div class="photoband" style="background-image:url('img/work-open.jpg')">
+  <div class="pbcap"><div class="en">Nara</div><div class="t"><span>奈良で、</span><span>正直に。</span></div></div>
+</div>
 
 <section class="reserve" id="reserve">
   <div class="inner">
@@ -1274,7 +1137,7 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
 <div class="contact" id="contact">
   <div class="bg"></div>
   <div class="inner">
-    <div class="jp">お問い合わせ</div>
+    <div class="en">Contact</div>
     <h2>まずは、話を聞くことからはじめませんか。</h2>
     <p>見学・ご来店のご予約は、すべて無料です。</p>
     <div class="btns">
@@ -1294,6 +1157,7 @@ bgVideo('heroVid', matchMedia('(min-width:821px)').matches ? 'img/hero-pc.mp4' :
       <a href="event.html">無料相談会・お知らせ</a>
       <a href="kengaku.html">OB様邸見学</a>
       <a href="jisseki.html">建築実例</a>
+      <a href="works.html">施工写真</a>
       <a href="products.html">商品・価格</a>
       <a href="spec.html">性能・標準仕様</a>
       <a href="flow.html">家づくりの進め方</a>
@@ -1352,7 +1216,7 @@ function rsvRender(){
       return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
     <div class="slot-grid">${daySlots.map(s=>
-      `<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
+      `<button type="button" class="slot-btn${s.id===rsvSlot?' on':''}" data-slot="${s.id}">${s.startTime}<small>残り${s.availableCount}枠</small></button>`).join('')}</div>
     <form id="rsv-form">
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
@@ -1362,7 +1226,7 @@ function rsvRender(){
         <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選択OK</span></label>
-        <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
+        <div class="topic-chips">${['OB様邸の見学','土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
@@ -1416,7 +1280,7 @@ function rsvFormDirty(){
 }
 async function rsvLoad(){
   try{
-    const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');
+    const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit');
     if(!r.ok)throw 0;
     const data=await r.json();
     rsvSlots=data.slots||[];
@@ -1446,35 +1310,27 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
 // ===== Google口コミ =====
 // ★ 実レビューを表示するには、Google Cloud で Places API(JS) を有効にした
 //   APIキーと、店舗の Place ID を以下に設定してください（未設定でもサンプル表示＋Google誘導は機能します）。
-const GOOGLE_API_KEY = 'AIzaSyCDnQh8cw3JXANo2jH_WLXz7WuvBZIyaRQ';  // shibasun.jp限定のリファラ制限済み（2026-07-30）
-const GOOGLE_PLACE_ID = 'ChIJ96D1wwc6AWARwOOpt7WiAwk';  // 株式会社シバ・サンホーム（北之庄町41-1）
+const GOOGLE_API_KEY = '';   // 例: 'AIza...'（HTTPリファラ制限を推奨）
+const GOOGLE_PLACE_ID = '';  // 例: 'ChIJ...'（Place ID Finder で取得）
 
 function star(n){return '★★★★★☆☆☆☆☆'.slice(5-Math.round(n),10-Math.round(n));}
 // 設定が入るまでの間、信頼感を出すためのサンプル（実レビュー連携後は自動で置き換わります）
+const SAMPLE_REVIEWS=[
+  {author:'I様',rating:5,time:'決め手は“人”',text:'親身になって、すぐに動いてくれたのには本当に驚きました。最後の決め手は、結局「人」。担当者の方を心から信用できたことです。'},
+  {author:'S様',rating:5,time:'誠意を感じて',text:'こちらが多くを言わなくても、誠意のある動きをしてくれました。私たちの意見も、わがままも、いつもしっかり聞いてくれます。'},
+  {author:'T様',rating:5,time:'職人・現場',text:'一人の大工さんが、最初から最後まで見てくれる。だからこそ、安心してお任せできました。'},
+  {author:'M様',rating:5,time:'性能・仕様',text:'標準仕様が他と比べて高く、自由度も性能も納得できました。社長が建築士で、コストのバランスも良く、信用できます。'},
+  {author:'F様',rating:5,time:'ご家族でシバを選択',text:'親身なサポートと、これまでの実績で「ぜひここに」と思いました。細部までこだわりを形にしてもらえました。'},
+  {author:'T様',rating:5,time:'予算とこだわり',text:'社長の本に共感して、ここで建てたいと思いました。限られた予算の中でも、やりたいことが叶いました。'}
+];
 
 function renderReviews(list, avg, total, sample){
   const track=document.getElementById('rev-track');
   track.innerHTML=list.map(r=>{
     const ini=(r.author||'様').trim().charAt(0);
-    // 出どころは1枚ずつ書く。Googleの口コミ（本人の投稿が見られる）と
-    // アンケートのお客様の声（匿名）を、混ぜても取り違えないようにするため
-    const isSample = r.src ? r.src==='s' : sample;
-    const foot=isSample?'お客様の声':`<span class="rev-g" style="font-size:13px"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>の口コミ`;
-    return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div></div></div><div class="rs">${star(r.rating)}</div><p class="rev-body">${r.text}</p><button class="rev-more" type="button" hidden>続きを読む</button><div class="gi">${foot}</div></div>`;
+    const foot=sample?'お客様の声':`<span class="rev-g" style="font-size:13px"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>の口コミ`;
+    return `<div class="rev-card"><div class="rev-top"><div class="rev-av">${ini}</div><div class="rev-who"><div class="nm">${r.author}</div><div class="dt">${r.time||''}</div></div></div><div class="rs">${star(r.rating)}</div><p>${r.text}</p><div class="gi">${foot}</div></div>`;
   }).join('');
-  // 長い口コミは8行で折りたたみ、「続きを読む」で全文（読みたい人は全部読める）
-  track.querySelectorAll('.rev-card').forEach(card=>{
-    const p=card.querySelector('.rev-body'), btn=card.querySelector('.rev-more');
-    p.classList.add('clamp');
-    requestAnimationFrame(()=>{
-      if(p.scrollHeight>p.clientHeight+4){ btn.hidden=false; }
-      else{ p.classList.remove('clamp'); }
-    });
-    btn.addEventListener('click',()=>{
-      const open=p.classList.toggle('clamp');
-      btn.textContent=open?'続きを読む':'閉じる';
-    });
-  });
   const sc=document.getElementById('rev-score');
   const cnt=document.getElementById('rev-count');
   const gl=document.getElementById('rev-glabel');
@@ -1486,22 +1342,18 @@ function renderReviews(list, avg, total, sample){
     sc.innerHTML=`<span class="rev-stars" style="font-size:22px">★★★★★</span>`;
     if(gl)gl.style.display='none';
     cnt.textContent='奈良で家づくりをされたお客様の声';
+    const hint=document.getElementById('rev-hint');
+    if(hint)hint.style.display='block';
   }
-}
-
-/** 本物のGoogleの口コミが出せない時は、口コミ欄そのものを出さない（2026-08-08 専務「イニシャルのやつはなしで」） */
-function hideReviews(){
-  const sec=document.getElementById('reviews');
-  if(sec) sec.style.display='none';
 }
 
 function loadGoogleReviews(){
   if(GOOGLE_PLACE_ID){
-    var revLink=document.getElementById('rev-link');
-    if(revLink) revLink.href='https://search.google.com/local/reviews?placeid='+GOOGLE_PLACE_ID;
+    document.getElementById('rev-link').href='https://search.google.com/local/reviews?placeid='+GOOGLE_PLACE_ID;
   }
   if(!GOOGLE_API_KEY || !GOOGLE_PLACE_ID){
-    hideReviews();  // 出せる本物が無い時は、欄ごと出さない（作り物を置かない）
+    // 未設定：サンプル表示（Google誘導ボタンは有効）
+    renderReviews(SAMPLE_REVIEWS, null, null, true);
     return;
   }
   // Places API(JS) を動的読み込みして実レビューを取得
@@ -1514,16 +1366,13 @@ window.__initRev=function(){
     const svc=new google.maps.places.PlacesService(document.createElement('div'));
     svc.getDetails({placeId:GOOGLE_PLACE_ID,fields:['rating','user_ratings_total','reviews'],language:'ja'},(res,status)=>{
       if(status==='OK'&&res&&res.reviews&&res.reviews.length){
-        // いつ書かれたか（「4年前」など）は出さない（専務 2026-08-03）。
-        // 口コミの中身と評価はそのまま。年月だけ伏せる
         const list=res.reviews.filter(r=>r.text&&r.rating>=4).slice(0,6).map(r=>({
-          author:r.author_name,rating:r.rating,text:r.text
+          author:r.author_name,rating:r.rating,time:r.relative_time_description,text:r.text
         }));
-        // イニシャルのお客様の声は出さない（専務 2026-08-08）。本人が確認できるGoogleの口コミだけ並べる
-        renderReviews(list.map(function(g){return Object.assign({},g,{src:'g'})}),res.rating,res.user_ratings_total,false);
-      }else{ hideReviews(); }
+        renderReviews(list,res.rating,res.user_ratings_total,false);
+      }else{ renderReviews(SAMPLE_REVIEWS,null,null,true); }
     });
-  }catch(e){ hideReviews(); }
+  }catch(e){ renderReviews(SAMPLE_REVIEWS,null,null,true); }
 };
 loadGoogleReviews();
 </script>
