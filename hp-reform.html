@@ -369,6 +369,11 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 @media(min-width:1000px){
   .wrap{max-width:1100px;padding:0 40px}
   section{padding:74px 0}
+  /* 表題まわり：図面の中に文字を置いて、空きを作らない */
+  .hero{padding:34px 0 6px;display:grid;place-items:center}
+  .hero .dwg{grid-area:1/1;width:700px;max-width:100%;opacity:.32;transform:translateY(-8px)}
+  .hero .cap{grid-area:1/1;margin-top:0;position:relative}
+  .hero h1{margin:10px 0 14px}
   h2{font-size:27px}
   /* 読み幅の上限。長すぎる行は読みにくい */
   .hero .lead{max-width:700px;font-size:15.5px}
