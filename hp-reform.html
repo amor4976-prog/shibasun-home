@@ -360,7 +360,9 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 .ba .tag2.r{right:10px}
 .ba .how{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-size:13.5px;color:var(--gray);letter-spacing:.04em}
 .ba .how b{color:var(--ao);font-weight:500}
-@media(min-width:820px){.ba{max-width:460px}}
+.ba .pc{display:none}
+.ba .frame.pc{aspect-ratio:1600/1075}
+@media(min-width:820px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
 .ba .cap2{font-size:13.5px;line-height:1.75;color:var(--gray);margin-top:8px;text-align:center}
 .ba .cap2 b{color:var(--ink);font-weight:500}
 
@@ -483,7 +485,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">いま並べたものは、ぜんぶ<b>去年までのうちの話</b>です。ホームページは十年ほど、置いてあるだけでした。そこで一から作り直しました。変わったのは、こういうところです。</p>
 
     <div class="ba up" id="ba">
-      <div class="frame" id="baFrame">
+      <div class="frame sp" id="baFrame">
         <video src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg" autoplay muted loop playsinline preload="metadata" width="800" height="1420" aria-label="リフォーム後のホームページをiPhoneで動かしたところ"></video>
         <video class="before" src="img/hp-reform/before.mp4" poster="img/hp-reform/before_poster.jpg" autoplay muted loop playsinline preload="metadata" width="800" height="1420" aria-label="リフォーム前のホームページをiPhoneで動かしたところ"></video>
         <span class="tag2 l"><em>リフォーム前</em></span>
@@ -491,8 +493,17 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
         <span class="bar"></span>
         <span class="knob">‹›</span>
       </div>
+      <div class="frame pc" id="baFramePc">
+        <img src="img/hp-reform/pc_after.jpg" alt="リフォーム後のホームページをパソコンで見たところ" loading="lazy" width="1600" height="1075">
+        <img class="before" src="img/hp-reform/pc_before.jpg" alt="リフォーム前のホームページをパソコンで見たところ" loading="lazy" width="1600" height="1075">
+        <span class="tag2 l"><em>リフォーム前</em></span>
+        <span class="tag2 r"><em>リフォーム後</em></span>
+        <span class="bar"></span>
+        <span class="knob">‹›</span>
+      </div>
       <div class="how"><b>◀</b>青い丸をつまんで、左右に動かしてください<b>▶</b></div>
-      <p class="cap2">どちらも<b>iPhoneで実際に動かしているところ</b>です。つまみを左右に動かして、見比べてみてください。</p>
+      <p class="cap2 sp">どちらも<b>iPhoneで実際に動かしているところ</b>です。つまみを左右に動かして、見比べてみてください。</p>
+      <p class="cap2 pc">どちらも<b>パソコンで開いたところ</b>です。つまみを左右に動かして、見比べてみてください。</p>
     </div>
 
     <h3 class="mid up">作り替える前と、いま</h3>
@@ -795,23 +806,26 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   // ── ビフォーアフターの仕切り ──
   var ba=document.getElementById('ba');
   if(ba){
-    var fr=document.getElementById('baFrame'), drag=false, touched=false;
-    var tagL=ba.querySelector('.tag2.l'), tagR=ba.querySelector('.tag2.r');
+    // スマホ用（動画）とパソコン用（画面写真）の2枚。表に出ている方をつまむ
+    var frames=[].slice.call(ba.querySelectorAll('.frame')), drag=false, touched=false;
+    var tagsL=ba.querySelectorAll('.tag2.l'), tagsR=ba.querySelectorAll('.tag2.r');
     function set(pct){
       pct=Math.max(0,Math.min(100,pct));
       ba.style.setProperty('--x', pct+'%');
       // 隠れている側の札は消す（出たままだと嘘になる）
-      if(tagL) tagL.style.opacity = pct < 26 ? 0 : 1;
-      if(tagR) tagR.style.opacity = pct > 74 ? 0 : 1;
+      [].forEach.call(tagsL,function(t){t.style.opacity = pct < 26 ? 0 : 1;});
+      [].forEach.call(tagsR,function(t){t.style.opacity = pct > 74 ? 0 : 1;});
     }
-    function fromEvent(e){
-      var r=fr.getBoundingClientRect();
-      var x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
-      set(x/r.width*100); touched=true;
-    }
-    fr.addEventListener('pointerdown',function(e){drag=true;fr.setPointerCapture&&fr.setPointerCapture(e.pointerId);fromEvent(e);});
-    fr.addEventListener('pointermove',function(e){if(drag)fromEvent(e);});
-    ['pointerup','pointercancel','pointerleave'].forEach(function(t){fr.addEventListener(t,function(){drag=false;});});
+    frames.forEach(function(fr){
+      function fromEvent(e){
+        var r=fr.getBoundingClientRect();
+        var x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+        set(x/r.width*100); touched=true;
+      }
+      fr.addEventListener('pointerdown',function(e){drag=true;fr.setPointerCapture&&fr.setPointerCapture(e.pointerId);fromEvent(e);});
+      fr.addEventListener('pointermove',function(e){if(drag)fromEvent(e);});
+      ['pointerup','pointercancel','pointerleave'].forEach(function(t){fr.addEventListener(t,function(){drag=false;});});
+    });
     set(50);
     // はじめて画面に入った時に、少しだけ自分から動いて「動かせる」と分かるようにする
     if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion:reduce)').matches){
