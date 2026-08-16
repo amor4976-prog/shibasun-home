@@ -400,9 +400,14 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .itami{grid-template-columns:76px 1fr;gap:22px}
   .card{padding:30px 28px}
   .hitotsu{padding:30px 26px}
-  /* 人物は回り込ませたまま、その段落の中に収める（はみ出して下に空きを作らせない） */
-  section > p:has(> .hito){display:flow-root}
-  .hito{width:140px;margin:0 0 4px 24px}
+  /* 人物は文章の横に並べる。回り込みだと文章より背が高くなり、下に空きの帯ができる */
+  section > p:has(> .hito){display:grid;grid-template-columns:1fr 132px;gap:0 26px;align-items:start;
+    margin-top:0!important;position:relative}
+  /* 人物は見出しの高さまで引き上げて、文章の脇に寄り添わせる（宙に浮かせない） */
+  .hito{float:none;width:132px;margin:-62px 0 0;grid-column:2;grid-row:1;align-self:start}
+  .hbody{grid-column:1;grid-row:1;display:block;padding-top:2px}
+  /* 値段の枠は横いっぱいにしない（中身が少ないので間延びする） */
+  .pk{max-width:620px;margin-left:auto;margin-right:auto}
   /* ボタンは横いっぱいに伸ばさない（幅いっぱいの黒帯は品がない） */
   .gonav{display:inline-block;min-width:360px;width:auto;padding:17px 44px;margin:26px auto 0}
   .hitotsu,.card,.pk{text-align:center}
@@ -413,8 +418,9 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .hitotsu{padding:34px 30px}
   .card{padding:26px 28px}
   /* 節と節の間を詰める（回り込みの空きが出過ぎていた） */
-  section{padding:60px 0}
-  .hitotsu{margin-top:34px}
+  section{padding:48px 0}
+  .hitotsu{margin-top:30px}
+  h2{margin-top:16px}
   .topc{padding:22px 24px}
 }
 @media(min-width:1240px){
@@ -513,7 +519,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <h2 class="up" style="margin-top:22px"><span class="tag">01</span>こんなことに、なっていませんか</h2>
     <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">
       <img class="hito" src="img/hp-reform/shacho.png" alt="" loading="lazy" width="520" height="520">
-      ホームページの見た目の話ではありません。<b>いま、仕事につながっているか</b>という話です。</p>
+      <span class="hbody">ホームページの見た目の話ではありません。<b>いま、仕事につながっているか</b>という話です。</span></p>
 
     <div class="checks up">
       <div class="chk"><i class="bx"></i><span>最近、<b class="shu">資料請求が月5件も来ない</b>。ゼロの月もある</span></div>
@@ -595,7 +601,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <h2 class="up" style="margin-top:22px"><span class="tag">03</span>正直な価格でやっています</h2>
     <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">
       <img class="hito" src="img/hp-reform/annai_c2.png" alt="" loading="lazy" width="520" height="519">
-      あとから「これは別料金です」と申し上げないために、<b>入るものを先に全部書いておきます</b>。</p>
+      <span class="hbody">あとから「これは別料金です」と申し上げないために、<b>入るものを先に全部書いておきます</b>。</span></p>
 
     <div class="pk up">
       <div class="lb">全面リフォーム（標準8ページ）</div>
