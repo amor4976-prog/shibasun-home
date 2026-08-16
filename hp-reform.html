@@ -383,11 +383,11 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .pcl-sub{font-size:15px;font-weight:500;line-height:2;letter-spacing:.05em;color:var(--ink);margin:0}
   .pcl-foot{font-size:12px;line-height:2.05;color:var(--gray);margin:20px 0 0}
   /* 中央：スマートフォンと同じ1列。紙のように浮かせる */
-  .wrap{max-width:470px;margin:0 0 0 calc(50% - 250px);padding:0 22px;position:relative;z-index:2;
+  .wrap{max-width:434px;margin:0 0 0 calc(50% - 250px);padding:0 22px;position:relative;z-index:2;
     background:#fbfaf8;box-shadow:0 0 44px rgba(0,0,0,.09)}
-  .paper{left:calc(50% - 250px);right:auto;width:470px}
+  .paper{left:calc(50% - 250px);right:auto;width:434px}
   /* 右：白いカードの案内（参考サイトと同じ・角丸と淡い影） */
-  .pcr{display:flex;position:fixed;top:0;bottom:0;left:calc(50% + 240px);right:0;z-index:2;
+  .pcr{display:flex;position:fixed;top:0;bottom:0;left:calc(50% + 204px);right:0;z-index:2;
     align-items:center;padding:0 clamp(26px,3.4vw,72px)}
   .pcr-in{width:100%;max-width:318px}
   .pcr-nav{display:flex;flex-direction:column;gap:9px}
@@ -411,7 +411,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .pcr-tel:hover{box-shadow:0 3px 18px rgba(0,0,0,.16)}
   .pcr-n{font-size:10.5px;line-height:1.95;color:#a3a3a1;margin:24px 0 0}
   /* 黒い帯は中央列の外に置いてあるので、列の位置に合わせる（横に飛び出さないように） */
-  .cta{margin-left:calc(50% - 250px);width:470px;padding-left:22px;padding-right:22px}
+  .cta{margin-left:calc(50% - 250px);width:434px;padding-left:22px;padding-right:22px}
   /* 左に同じ一文を大きく出しているので、中央では重ねない */
   .hero .lead{display:none}
   .hero{padding-bottom:6px}
@@ -425,11 +425,11 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .topc{display:none}
 }
 @media(min-width:1500px){
-  .wrap{margin-left:calc(50% - 290px);max-width:500px}
-  .cta{margin-left:calc(50% - 290px);width:500px}
-  .paper{left:calc(50% - 290px);width:500px}
-  .pcl{width:calc(50% - 290px)}
-  .pcr{left:calc(50% + 240px)}
+  .wrap{margin-left:calc(50% - 300px)}
+  .cta{margin-left:calc(50% - 300px)}
+  .paper{left:calc(50% - 300px)}
+  .pcl{width:calc(50% - 300px)}
+  .pcr{left:calc(50% + 160px)}
 }
 @media(min-width:820px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
 .ba .cap2{font-size:13.5px;line-height:1.75;color:var(--gray);margin-top:8px;text-align:center}
