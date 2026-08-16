@@ -373,14 +373,15 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   body{padding-bottom:0;background:#f2f1ee}
   /* 左：白地に主役を大きく置き、下に題字（参考サイトと同じ組み方） */
   .pcl{display:flex;position:fixed;top:0;bottom:0;left:0;width:calc(50% - 250px);z-index:0;
-    align-items:center;justify-content:flex-end;background:#fff;padding:0 clamp(24px,3.4vw,64px)}
-  .pcl-in{display:flex;flex-direction:column;align-items:flex-start;gap:30px;max-width:340px}
-  .pcl-ph{width:clamp(178px,15.5vw,268px);height:auto;display:block;border:1px solid #e7e5e0;
-    box-shadow:0 22px 54px rgba(0,0,0,.15)}
-  .pcl-cap{margin:0}
-  .pcl-en{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.34em;color:#a3a3a1;margin:0 0 10px}
-  .pcl-jp{font-size:clamp(24px,2.1vw,31px);font-weight:500;letter-spacing:.1em;line-height:1.5;color:var(--ink);margin:0}
-  .pcl-sub{font-size:12.5px;line-height:2;color:var(--gray);margin:14px 0 0}
+    align-items:center;justify-content:flex-end;background:#fff;padding:0 clamp(26px,3.6vw,72px)}
+  .pcl-in{max-width:400px}
+  .pcl-en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:#b3b2af;margin:0 0 26px}
+  .pcl-big{font-size:clamp(23px,2.5vw,35px);font-weight:400;letter-spacing:.09em;line-height:1.85;
+    color:var(--ink);margin:0;text-wrap:balance}
+  .pcl-big b{font-weight:600;color:var(--ao)}
+  .pcl-rule{width:52px;height:1px;background:var(--ink);margin:32px 0}
+  .pcl-sub{font-size:15px;font-weight:500;line-height:2;letter-spacing:.05em;color:var(--ink);margin:0}
+  .pcl-foot{font-size:12px;line-height:2.05;color:var(--gray);margin:20px 0 0}
   /* 中央：スマートフォンと同じ1列。紙のように浮かせる */
   .wrap{max-width:470px;margin:0 0 0 calc(50% - 250px);padding:0 22px;position:relative;z-index:2;
     background:#fbfaf8;box-shadow:0 0 44px rgba(0,0,0,.09)}
@@ -409,6 +410,9 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .pcr-tel b{font-family:'Jost',sans-serif;font-size:14px;font-weight:400;letter-spacing:.06em}
   .pcr-tel:hover{box-shadow:0 3px 18px rgba(0,0,0,.16)}
   .pcr-n{font-size:10.5px;line-height:1.95;color:#a3a3a1;margin:24px 0 0}
+  /* 左に同じ一文を大きく出しているので、中央では重ねない */
+  .hero .lead{display:none}
+  .hero{padding-bottom:6px}
   /* 中央列は電話の幅なので、見比べもiPhoneの録画に戻す */
   .ba{max-width:390px}
   .ba .sp{display:block}
@@ -461,13 +465,11 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 <!-- パソコンだけ：左に大きな写真、右にいつでも押せる案内 -->
 <div class="pcl" aria-hidden="true">
     <div class="pcl-in">
-      <video class="pcl-ph" src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg"
-             autoplay muted loop playsinline preload="metadata" width="800" height="1420"></video>
-      <div class="pcl-cap">
-        <p class="pcl-en">SHEET HP</p>
-        <p class="pcl-jp">ホームページの<br>リフォーム</p>
-        <p class="pcl-sub">奈良の工務店が、自社のホームページを<br>作り替えたのと同じ手順で。</p>
-      </div>
+      <p class="pcl-en">SHEET HP　／　しくみ設計室</p>
+      <p class="pcl-big">築十五年の家は<br>リフォームするのに、<br><b>ホームページは<br>十年そのまま。</b></p>
+      <div class="pcl-rule"></div>
+      <p class="pcl-sub">全部を建て替えなくても、<br>傷んだところから直せます。</p>
+      <p class="pcl-foot">奈良の工務店が、自社のホームページを<br>作り替えたのと同じ手順で。</p>
     </div>
   </div>
 <aside class="pcr" aria-label="ページの案内">
