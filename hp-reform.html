@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ホームページのリフォーム｜シバ・サンホーム しくみ設計室</title>
-<meta name="description" content="全部を建て替えなくても、傷んだところから直せます。奈良の工務店が自社のホームページを作り替えた手つきで、他府県の工務店さんのホームページをリフォームします。現況調査は無料。">
+<meta name="description" content="全部を建て替えなくても、傷んだところから直せます。奈良の工務店が自社のホームページを作り替えたのと同じ手順で、他府県の工務店さんのホームページをリフォームします。現況調査は無料。">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
@@ -362,6 +362,47 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 .ba .how b{color:var(--ao);font-weight:500}
 .ba .pc{display:none}
 .ba .frame.pc{aspect-ratio:960/600}
+
+/* ── パソコンの幅を使う（1000px以上） ───────────────────────
+   本文の1行は伸ばしすぎない。空いた幅は「並べる」ことに使う。 */
+@media(min-width:1000px){
+  .wrap{max-width:1100px;padding:0 40px}
+  section{padding:74px 0}
+  h2{font-size:27px}
+  /* 読み幅の上限。長すぎる行は読みにくい */
+  .hero .lead{max-width:700px;font-size:15.5px}
+  section > p{max-width:820px}
+  /* 01 困りごとの一覧は2列に */
+  .checks{grid-template-columns:1fr 1fr}
+  .chk{padding:19px 20px}
+  .chk span{font-size:15px}
+  /* 02 見比べ */
+  .ba{max-width:980px}
+  /* 03 入るもの：1行に収まる幅にする */
+  .inc{grid-template-columns:1fr 1fr;column-gap:48px}
+  .inc li{font-size:14.5px}
+  .pk{padding:34px 30px}
+  /* 04 面談のあとの流れは横に3つ */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;border-top:0;margin-top:26px}
+  .step{display:block;border-top:1px solid var(--ink);border-bottom:0;padding:18px 0 0}
+  .step .w{margin-bottom:8px;padding-top:0}
+  /* 予約の枠は広く使う */
+  .rsv{padding:30px 28px}
+  .rsv .times{grid-template-columns:repeat(4,1fr)}
+  .rsv .f.two{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+  /* 傷みの一覧・比較表 */
+  .itami{grid-template-columns:76px 1fr;gap:22px}
+  .card{padding:30px 28px}
+  .hitotsu{padding:30px 26px}
+  /* 回り込ませた人物が、次の枠に食い込まないようにする */
+  .hito{width:150px;margin:0 -6px 10px 20px}
+  .pk,.checks,.itamis,.ba,.tbl,.steps,.rsv{clear:both}
+  .topc{padding:22px 24px}
+}
+@media(min-width:1240px){
+  .wrap{max-width:1180px}
+  .ba{max-width:1040px}
+}
 @media(min-width:820px){.ba{max-width:860px}.ba .sp{display:none}.ba .frame.pc{display:block}.ba p.cap2.pc{display:block}}
 .ba .cap2{font-size:13.5px;line-height:1.75;color:var(--gray);margin-top:8px;text-align:center}
 .ba .cap2 b{color:var(--ink);font-weight:500}
@@ -444,7 +485,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <div class="cap">
       <div class="no up">SHEET HP</div>
       <h1 class="up d1">ホームページの<span class="nb">リフォーム</span></h1>
-      <p class="lead up d2">築十五年の家はリフォームするのに、ホームページは十年そのまま——という会社さんへ。<b>全部を建て替えなくても、傷んだところから直せます。</b>奈良の工務店が、自分の会社のホームページを作り替えた手つきで、<span class="nb">他府県</span>の工務店さんのお手伝いをしています。</p>
+      <p class="lead up d2">築十五年の家はリフォームするのに、ホームページは十年そのまま——という会社さんへ。<b>全部を建て替えなくても、傷んだところから直せます。</b>奈良の工務店が、自社のホームページを作り替えたのと同じ手順で、<span class="nb">他府県</span>の工務店さんのお手伝いをしています。</p>
     </div>
   </div>
 
@@ -481,8 +522,8 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 
   <section>
     <div class="rule"></div>
-    <h2 class="up" style="margin-top:22px"><span class="tag">02</span>うちも、全部そうでした</h2>
-    <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">いま並べたものは、ぜんぶ<b>去年までのうちの話</b>です。ホームページは十年ほど、置いてあるだけでした。そこで一から作り直しました。変わったのは、こういうところです。</p>
+    <h2 class="up" style="margin-top:22px"><span class="tag">02</span>私どもも、全部そうでした</h2>
+    <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">ここに並べたものは、すべて<b>去年までの私どもの話</b>です。ホームページは十年ほど、ただ置いてあるだけでした。そこで一から作り替えました。変わったのは、こういうところです。</p>
 
     <div class="ba up" id="ba">
       <div class="frame sp" id="baFrame">
@@ -507,7 +548,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     </div>
 
     <h3 class="mid up">作り替える前と、いま</h3>
-    <p class="up" style="font-size:15px;color:#333;line-height:1.8;margin-top:8px">うちのホームページも、置いてあるだけでした。</p>
+    <p class="up" style="font-size:15px;color:#333;line-height:1.8;margin-top:8px">数で見ると、変わったのはこの二つです。</p>
 
     <div class="cmp2 up">
       <div class="rw">
@@ -527,8 +568,8 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
         </div>
       </div>
     </div>
-    <p class="up" style="font-size:13px;color:#5e5d5b;margin-top:12px">※自社サイトの実測値です。公開して17日間の数字なので、これから先も同じ調子とは限りません。</p>
-    <p class="up" style="font-size:14.5px;color:#2b2b29;margin-top:16px">特別なことはしていません。<b>同じ手順を、御社のホームページでやるだけ</b>です。</p>
+    <p class="up" style="font-size:13px;color:#5e5d5b;margin-top:12px">※私どものサイトの実測値です。公開して17日間の数字なので、これから先も同じ調子とは限りません。</p>
+    <p class="up" style="font-size:14.5px;color:#2b2b29;margin-top:16px">特別なことはしていません。<b>同じ手順を、御社のホームページで行うだけ</b>です。</p>
   </section>
 
   <section>
@@ -553,7 +594,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
       <li>いまのページの引っ越し（転送100本まで）</li>
       <li>アクセス解析の設置と、検索への登録</li>
       <li>公開までの作業と、公開前の直し2回</li>
-      <li>原稿づくり（御社の話をこちらで文章にします）</li>
+      <li>原稿づくり（御社のお話を、私どもが文章にします）</li>
     </ul>
     <p class="up" style="font-size:13px;color:#5e5d5b;margin-top:12px">※公開後の更新と管理をお任せいただく場合は、維持管理費として月2万円（月2回までの更新・コラム1本・不具合の対応）。写真の撮り直しが要るときだけ、写真家の費用を実費でいただきます。</p>
 
@@ -568,7 +609,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 
     <h3 class="mid up">面談のあとの流れ</h3>
     <div class="steps up">
-      <div class="step"><span class="w">1｜面談</span><p>オンラインで30分。<b>お話をうかがう／ご質問にお答えする</b>だけです。調査書の中身もここでご説明します</p></div>
+      <div class="step"><span class="w">1｜面談</span><p>画面をつないで30分。<b>お話をうかがう／ご質問にお答えする</b>だけです。調査書の中身もここでご説明します</p></div>
       <div class="step"><span class="w">2｜ご提案</span><p>どこを直すとよいか、<b>いくらかかるか（お見積り）</b>をお出しします。ここまで費用はかかりません</p></div>
       <div class="step"><span class="w">3｜作成</span><p>ご依頼をいただいてから、<b>4〜6週間</b>で公開まで。御社の出番は3回だけです</p></div>
     </div>
@@ -576,12 +617,12 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <div class="senmu up">
       <div class="top">
         <img src="img/shikumi/senmu.jpg" alt="専務取締役 柴部文嘉" loading="lazy" width="400" height="400">
-        <div class="nm"><small>お話しするのは、この人間です</small>専務取締役　柴部 文嘉<span style="display:block;font-size:11.5px;color:#5e5d5b;font-weight:400;margin-top:4px">株式会社シバ・サンホーム／しくみ設計室</span></div>
+        <div class="nm"><small>ご相談をお受けするのは、私です</small>専務取締役　柴部 文嘉<span style="display:block;font-size:11.5px;color:#5e5d5b;font-weight:400;margin-top:4px">株式会社シバ・サンホーム／しくみ設計室</span></div>
       </div>
       <ul>
-        <li>奈良で注文住宅を建てている工務店の専務です。大工ではなく、<b>段取りと数字のほう</b>を見ています</li>
-        <li>このホームページも、社内の業務システムも、<b>外に頼まず自分たちで作りました</b></li>
-        <li>ご相談は<b>私が直接お話しします</b>。担当者が代わることはありません</li>
+        <li>奈良で注文住宅を建てている工務店の専務です。大工ではなく、<b>段取りと数字</b>を見ています</li>
+        <li>このホームページも、社内の業務の仕組みも、<b>私どもで作りました</b></li>
+        <li>ご相談は<b>私が直接お受けします</b>。担当者が代わることはありません</li>
       </ul>
     </div>
 
@@ -599,7 +640,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 </div>
 
 <div class="cta">
-  <h2 class="up">まずは、現況調査だけでもどうぞ。</h2>
+  <h2 class="up">まずは、現況調査だけでもお役立てください。</h2>
   <p class="up d1">費用はかかりません。読んで捨てていただいてかまいません。お電話でも承ります。</p>
   <div class="row up d2">
     <a href="tel:0742813948">電話で聞く　0742-81-3948</a>
