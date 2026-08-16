@@ -400,9 +400,21 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .itami{grid-template-columns:76px 1fr;gap:22px}
   .card{padding:30px 28px}
   .hitotsu{padding:30px 26px}
-  /* 回り込ませた人物が、次の枠に食い込まないようにする */
-  .hito{width:150px;margin:0 -6px 10px 20px}
-  .pk,.checks,.itamis,.ba,.tbl,.steps,.rsv{clear:both}
+  /* 人物は回り込ませたまま、その段落の中に収める（はみ出して下に空きを作らせない） */
+  section > p:has(> .hito){display:flow-root}
+  .hito{width:140px;margin:0 0 4px 24px}
+  /* ボタンは横いっぱいに伸ばさない（幅いっぱいの黒帯は品がない） */
+  .gonav{display:inline-block;min-width:360px;width:auto;padding:17px 44px;margin:26px auto 0}
+  .hitotsu,.card,.pk{text-align:center}
+  .card{text-align:left}
+  /* 枠を軽くする。罫線だらけの表に見せない */
+  .checks{background:transparent;border:0;gap:0;border-top:1px solid var(--ink);column-gap:44px}
+  .chk{border-bottom:1px solid var(--line);padding:15px 2px}
+  .hitotsu{padding:34px 30px}
+  .card{padding:26px 28px}
+  /* 節と節の間を詰める（回り込みの空きが出過ぎていた） */
+  section{padding:60px 0}
+  .hitotsu{margin-top:34px}
   .topc{padding:22px 24px}
 }
 @media(min-width:1240px){
