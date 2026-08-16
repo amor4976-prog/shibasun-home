@@ -374,7 +374,10 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   /* 左：白地に主役を大きく置き、下に題字（参考サイトと同じ組み方） */
   .pcl{display:flex;position:fixed;top:0;bottom:0;left:0;width:calc(50% - 250px);z-index:0;
     align-items:center;justify-content:flex-end;background:#fff;padding:0 clamp(26px,3.6vw,72px)}
-  .pcl-in{max-width:400px}
+  .pcl-in{max-width:400px;position:relative}
+  .pclp{opacity:0;visibility:hidden;transition:opacity .55s ease;position:absolute;left:0;top:0;width:100%}
+  .pclp.on{opacity:1;visibility:visible;position:relative}
+  @media(prefers-reduced-motion:reduce){.pclp{transition:none}}
   .pcl-en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:#b3b2af;margin:0 0 26px}
   .pcl-big{font-size:clamp(22px,2.35vw,32px);font-weight:400;letter-spacing:.07em;line-height:1.8;
     color:var(--ink);margin:0;text-wrap:balance}
@@ -469,10 +472,34 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 <div class="pcl" aria-hidden="true">
     <div class="pcl-in">
       <p class="pcl-en">SHEET HP　／　しくみ設計室</p>
-      <p class="pcl-big">月5件資料請求が<br>来なければ<br><b>ホームページ<br>リフォームしませんか？</b></p>
-      <div class="pcl-rule"></div>
-      <p class="pcl-sub">奈良の工務店が、自分の会社の<br>ホームページを作り替えました。</p>
-      <p class="pcl-foot">同じ手順を、他府県の工務店さんの<br>ホームページで行っています。</p>
+
+      <div class="pclp on" data-for="top">
+        <p class="pcl-big">月5件資料請求が<br>来なければ<br><b>ホームページ<br>リフォームしませんか？</b></p>
+        <div class="pcl-rule"></div>
+        <p class="pcl-sub">奈良の工務店が、自分の会社の<br>ホームページを作り替えました。</p>
+        <p class="pcl-foot">同じ手順を、他府県の工務店さんの<br>ホームページで行っています。</p>
+      </div>
+
+      <div class="pclp" data-for="c02">
+        <p class="pcl-big">私どもも、<br>月1〜2件でした。<br><b>作り替えたら<br>17日で9件。</b></p>
+        <div class="pcl-rule"></div>
+        <p class="pcl-sub">ブログは二年止まったまま。<br>いまは毎週3本。</p>
+        <p class="pcl-foot">私どものサイトの実測値です。公開して<br>17日間の数字なので、これから先も<br>同じ調子とは限りません。</p>
+      </div>
+
+      <div class="pclp" data-for="c03">
+        <p class="pcl-big">全面リフォーム<br><b>50万円ポッキリ</b><br>（税別）</p>
+        <div class="pcl-rule"></div>
+        <p class="pcl-sub">お支払いは<br>着手時20万円／完成時30万円。</p>
+        <p class="pcl-foot">あとから「これは別料金です」と<br>申し上げないために、入るものを<br>先に全部書いておきます。</p>
+      </div>
+
+      <div class="pclp" data-for="soudan">
+        <p class="pcl-big">現況調査は<br><b>無料です。</b><br>まずは30分。</p>
+        <div class="pcl-rule"></div>
+        <p class="pcl-sub">画面をつないで30分。<br>直すと効きそうな箇所をお伝えします。</p>
+        <p class="pcl-foot">費用はかかりません。<br>その場で売り込むこともいたしません。</p>
+      </div>
     </div>
   </div>
 <aside class="pcr" aria-label="ページの案内">
@@ -896,6 +923,41 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
         try{document.execCommand('copy')}catch(e){}document.body.removeChild(i);done();}
     });
   }
+
+  // ── パソコンの左の文字を、見ている節に合わせて入れ替える ──
+  (function(){
+    var panels=[].slice.call(document.querySelectorAll('.pclp'));
+    if(!panels.length || !('IntersectionObserver' in window)) return;
+    var map={c02:'c02', c03:'c03', soudan:'soudan'};
+    var order=['top','c02','c03','soudan'];
+    var now='top';
+    function show(key){
+      if(key===now) return;
+      now=key;
+      panels.forEach(function(p){ p.classList.toggle('on', p.dataset.for===key); });
+    }
+    var targets=[];
+    ['c02','c03','soudan'].forEach(function(id){ var e=document.getElementById(id); if(e) targets.push(e); });
+    var io=new IntersectionObserver(function(es){
+      // 画面の上半分に入っている節のうち、いちばん下のものを採用する
+      var key='top';
+      order.forEach(function(k){
+        if(k==='top') return;
+        var e=document.getElementById(k); if(!e) return;
+        if(e.getBoundingClientRect().top < window.innerHeight*0.55) key=k;
+      });
+      show(key);
+    },{threshold:[0,.01,.25,.5,.75,1], rootMargin:'-45% 0px -45% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+    addEventListener('scroll',function(){
+      var key='top';
+      ['c02','c03','soudan'].forEach(function(k){
+        var e=document.getElementById(k); if(!e) return;
+        if(e.getBoundingClientRect().top < window.innerHeight*0.55) key=k;
+      });
+      show(key);
+    },{passive:true});
+  })();
 
   // ── ビフォーアフターの仕切り ──
   var ba=document.getElementById('ba');
