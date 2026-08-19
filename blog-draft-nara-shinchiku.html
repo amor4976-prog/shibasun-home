@@ -45,6 +45,17 @@
   ]
 }
 </script>
+<style>
+.sumfig{border:1px solid var(--linec,#e8e8e6);margin:22px 0 6px}
+.sumfig .row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 16px;border-bottom:1px solid var(--linec,#e8e8e6)}
+.sumfig .row:nth-child(odd){background:var(--pale,#f6f6f5)}
+.sumfig .nm{font-weight:700;font-size:14px;white-space:nowrap}
+.sumfig .nt{font-size:11.5px;color:var(--gray,#767674);text-align:right;line-height:1.8}
+.sumfig .plus{padding:2px 16px;font-family:'Jost',sans-serif;color:var(--gray,#767674);font-size:13px;border-bottom:1px solid var(--linec,#e8e8e6);background:none!important}
+.sumfig .total{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;border-top:2px solid var(--ink,#1a1a1a);font-weight:700}
+.sumfig .total .en2{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;color:var(--gray,#767674);font-weight:400}
+.sumcap{font-size:11.5px;color:var(--gray,#767674);font-weight:300;margin:8px 0 26px;line-height:1.9}
+</style>
 </head>
 <body>
 
@@ -67,14 +78,18 @@
   <h2>新築の総額は、4つでできています</h2>
   <p>新築の費用は、ひとつの数字ではありません。<br>
   次の4つを足したものが、本当の総額です。</p>
-  <ul>
-    <li><b>建物の本体価格</b>：家そのもの。内装・設備を含むかは会社によって違います</li>
-    <li><b>諸費用</b>：登記・住宅ローン手数料・税金・火災保険など</li>
-    <li><b>外構費</b>：駐車場・門まわり・植栽など</li>
-    <li><b>土地代</b>：土地をお持ちでない場合</li>
-  </ul>
-  <p>広告に大きく書かれるのは、たいてい本体価格だけ。<br>
-  あとの3つが「あとから膨らんだ」の正体です。</p>
+
+  <div class="sumfig" role="img" aria-label="新築の総額＝本体価格＋諸費用＋外構費＋土地代">
+    <div class="row"><span class="nm">① 建物の本体価格</span><span class="nt">家そのもの。内装・設備を<br>含むかは会社で違う</span></div>
+    <div class="plus">＋</div>
+    <div class="row"><span class="nm">② 諸費用</span><span class="nt">登記・ローン手数料・税金・火災保険</span></div>
+    <div class="plus">＋</div>
+    <div class="row"><span class="nm">③ 外構費</span><span class="nt">駐車場・門まわり・植栽</span></div>
+    <div class="plus">＋</div>
+    <div class="row"><span class="nm">④ 土地代</span><span class="nt">土地をお持ちでない場合</span></div>
+    <div class="total"><span>本当の総額</span><span class="en2">TOTAL</span></div>
+  </div>
+  <p class="sumcap">広告に大きく書かれるのは、たいてい①だけ。②③④が「あとから膨らんだ」の正体です。</p>
 
   <div class="point">大切なのは、<b>総額の目安を最初に出してもらうこと</b>。<br>
   シバ・サンホームでは、諸費用・外構の目安まで含めてご提示します。</div>
