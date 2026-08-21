@@ -54,6 +54,11 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .cat-field input,.cat-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
 .cat-field input:focus,.cat-field textarea:focus{outline:none;border-color:var(--ink)}
 .cat-row2{display:grid;grid-template-columns:1fr 1.6fr;gap:12px}
+.cat-choice{display:flex;flex-wrap:wrap;gap:8px}
+.cat-choice label{display:inline-block;margin:0}
+.cat-choice input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.cat-choice span{display:inline-block;white-space:nowrap;border:1px solid var(--linec);background:#fff;color:#454543;padding:8px 14px;font-size:12px;letter-spacing:.08em;cursor:pointer;transition:all .2s}
+.cat-choice input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
 .cat-submit{width:100%;margin-top:10px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
 .cat-submit:disabled{opacity:.4;cursor:default}
 .cat-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.06em;font-weight:300;text-align:center;line-height:1.9}
@@ -107,6 +112,21 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
             <input name="address" required autocomplete="street-address" placeholder="奈良市北之庄町41-1">
           </div>
         </div>
+        <div class="cat-field">
+          <label>シバ・サンホームを何で知りましたか<span style="color:var(--gray);font-size:10px;margin-left:6px;letter-spacing:.06em">任意・1つお選びください</span></label>
+          <div class="cat-choice">
+            <label><input type="radio" name="known" value="Google検索"><span>Google検索</span></label>
+            <label><input type="radio" name="known" value="インスタグラム"><span>インスタグラム</span></label>
+            <label><input type="radio" name="known" value="YouTube"><span>YouTube</span></label>
+            <label><input type="radio" name="known" value="知人の紹介"><span>知人の紹介</span></label>
+            <label><input type="radio" name="known" value="通りがかり（看板・現場）"><span>通りがかり（看板・現場）</span></label>
+            <label><input type="radio" name="known" value="スーモ"><span>スーモ</span></label>
+            <label><input type="radio" name="known" value="タウンライフ"><span>タウンライフ</span></label>
+            <label><input type="radio" name="known" value="ポスティングチラシ"><span>ポスティングチラシ</span></label>
+            <label><input type="radio" name="known" value="雑誌"><span>雑誌</span></label>
+            <label><input type="radio" name="known" value="その他"><span>その他</span></label>
+          </div>
+        </div>
         <div class="cat-field"><label>ご質問・ご要望</label><textarea name="message" rows="3" placeholder="例：平屋に興味があります／土地から探しています（任意）"></textarea></div>
         <button class="cat-submit" type="submit">無料で資料を請求する</button>
         <p class="cat-note">いただいた情報は資料送付・ご連絡のみに使用します。<br>しつこい営業は一切いたしません。</p>
@@ -133,7 +153,8 @@ const catApp=document.getElementById('cat-app');
 document.getElementById('cat-form').addEventListener('submit',async e=>{
   e.preventDefault();const f=e.target;const btn=f.querySelector('.cat-submit');
   btn.disabled=true;btn.textContent='送信中…';
-  const payload={customerName:f.name.value.trim(),customerKana:f.kana.value.trim()||undefined,customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,postalCode:f.postal.value.trim()||undefined,address:f.address.value.trim()||undefined,message:f.message.value.trim()||undefined};
+  const known=f.querySelector('input[name="known"]:checked');
+  const payload={customerName:f.name.value.trim(),customerKana:f.kana.value.trim()||undefined,customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,postalCode:f.postal.value.trim()||undefined,address:f.address.value.trim()||undefined,knownChannel:known?known.value:undefined,message:f.message.value.trim()||undefined};
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/catalog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     const data=await r.json().catch(()=>({}));
