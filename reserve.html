@@ -172,13 +172,17 @@ function rsvRender(){
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選択OK</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
+      <div class="rsv-field"><label>シバ・サンホームを何で知りましたか<span style="color:var(--gray);font-size:10px;margin-left:6px">任意・1つ</span></label>
+        <div class="topic-chips known-chips">${['Google検索','インスタグラム','YouTube','知人の紹介','通りがかり（看板・現場）','スーモ','タウンライフ','ポスティングチラシ','雑誌','その他'].map(t=>`<button type="button" class="tchip kchip" data-k="${t}">${t}</button>`).join('')}</div>
+      </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
       <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
     </form>`;
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
-  rsvApp.querySelectorAll('.tchip:not(.mchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  rsvApp.querySelectorAll('.kchip').forEach(b=>b.addEventListener('click',()=>{const was=b.classList.contains('on');rsvApp.querySelectorAll('.kchip').forEach(x=>x.classList.remove('on'));if(!was)b.classList.add('on')}));
   rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
   document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
 }
@@ -186,12 +190,13 @@ async function rsvSubmit(e){
   e.preventDefault();const f=e.target;
   if(!rsvSlot){alert('ご希望の時間を選択してください');return}
   const btn=f.querySelector('.rsv-submit');btn.disabled=true;btn.textContent='送信中…';
-  const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip)')].map(c=>c.dataset.t);
+  const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip):not(.kchip)')].map(c=>c.dataset.t);
+  const knownEl=rsvApp.querySelector('.kchip.on');const known=knownEl?knownEl.dataset.k:undefined;
   const methodEl=rsvApp.querySelector('.mchip.on');
   const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
-  const msg=[`【相談方法】${methodLabel}`,`【ご住所】${f.address.value.trim()}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  const msg=[`【相談方法】${methodLabel}`,`【ご住所】${f.address.value.trim()}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
-    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,message:msg})});
+    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'予約に失敗しました');
     rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===rsvSlot);const fd=fmtDate(sel.date);
