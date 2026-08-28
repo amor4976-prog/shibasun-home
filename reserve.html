@@ -204,8 +204,14 @@ async function rsvSubmit(e){
   }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
 }
 function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
+/* 相談会ページ（event.html）から ?slot=◯◯ で来た時、その枠を選んだ状態で開く。
+   枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
+let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
 async function rsvLoad(){
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];if(!rsvDone&&!rsvFormDirty())rsvRender();}
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];
+    if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
+      if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
+    if(!rsvDone&&!rsvFormDirty())rsvRender();}
   catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
 }
 rsvLoad();setInterval(rsvLoad,60000);

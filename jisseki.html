@@ -80,6 +80,19 @@ footer a{color:#c2c2c0} footer .copy{opacity:.5;margin-top:12px;font-size:10px}
 .fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em}
 .fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)} .fc-reserve{background:var(--ink);color:#fff}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+
+/* 次に見るページ（検討中の人が行き来しやすいように・2026-08-28）。
+   ※フォームのページ（catalog / reserve）には付けない＝別の出口を見せない */
+.nextnav{border-top:1px solid var(--linec);margin-top:64px;padding-top:26px}
+.nextnav .nl{font-size:10px;letter-spacing:.3em;color:var(--gray);text-transform:uppercase;margin-bottom:14px}
+.nextnav ul{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--linec);border-top:1px solid var(--linec);border-bottom:1px solid var(--linec)}
+@media(min-width:760px){.nextnav ul{grid-template-columns:1fr 1fr}}
+.nextnav li{background:#fff}
+.nextnav a{display:flex;align-items:baseline;gap:12px;padding:18px 4px;color:var(--ink);text-decoration:none}
+.nextnav a:hover{opacity:.62}
+.nextnav .t{font-size:14px;font-weight:500;letter-spacing:.06em;white-space:nowrap}
+.nextnav .s{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.7}
+.nextnav .ar{margin-left:auto;font-size:12px;color:var(--gray)}
 </style>
 </head>
 <body>
@@ -212,6 +225,14 @@ footer a{color:#c2c2c0} footer .copy{opacity:.5;margin-top:12px;font-size:10px}
   </a>
   <div class="cline"><hr></div>
 </section>
+
+<div class="nextnav">
+  <div class="nl">Next</div>
+  <ul>
+    <li><a href="products.html"><span class="t">価格を見る</span><span class="s">この家はいくらで建つのか</span><span class="ar">→</span></a></li>
+    <li><a href="kengaku.html"><span class="t">OB様邸を見学する</span><span class="s">写真ではなく実物を見てみる</span><span class="ar">→</span></a></li>
+  </ul>
+</div>
 
 <section class="cta">
   <h2>実際に見て、確かめてください。</h2>

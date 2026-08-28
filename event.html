@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <!--
-  ▼▼ 専務へ：相談会は「随時・予約制」なので日程の記入は不要です ▼▼
-  ・お知らせ欄の黄色マーカー（class="fillin"）を最新情報に更新してください（新着順に <li> を足す／古いものは消してOK）
-  ・キャンペーンや休業案内などもお知らせ欄に書けます
+  個別無料相談会ページ。
+  「直近のご予約可能日」は、シバグラムの空き枠から自動で出しています（手で日付を書かない）。
+  ・取得先: /api/public/slots?type=visit  ・予約は reserve.html の1本だけを通す（二重取り防止）
+  ・枠が取れない/0件のときは日付を出さず、問い合わせの1行だけを出す
 -->
 <head>
 <meta charset="UTF-8">
@@ -64,6 +65,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .eventcard .body{padding:26px 24px}
 .einfo{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--linec)}
 .einfo .row{display:grid;grid-template-columns:100px 1fr;gap:10px;padding:13px 4px;border-bottom:1px solid var(--linec);font-size:13.5px}
+/* スマホでは2列にしない（列が狭いと「日時を」のような孤立行が出るため・2026-08-28） */
+@media(max-width:560px){.einfo .row{grid-template-columns:1fr;gap:3px}.einfo .row .k{padding-top:0}}
 .einfo .row .k{color:var(--gray);font-size:12px;letter-spacing:.1em;padding-top:2px}
 .einfo .row .v{font-weight:500}
 .ebtns{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:22px auto 0}
@@ -71,6 +74,29 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .ebtn-fill{background:var(--gold);color:#fff}
 .ebtn-line{border:1px solid var(--ink)}
 .enote{font-size:11px;color:var(--gray);font-weight:300;text-align:center;margin-top:12px}
+
+/* 直近のご予約可能日。見せ方はトップ・予約ページと同じもの（横にスライドする日付カード→時間）を
+   そのまま使う。ここで独自の見た目を作らない（2026-08-28 専務「今のTOPページの見せ方からなんで変えるのよ」）*/
+.slotbox{border:1px solid var(--linec);background:#fff;padding:26px 20px;margin-top:16px}
+.slotbox .sh{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em;padding-bottom:16px;border-bottom:1px solid var(--linec);margin-bottom:20px}
+.rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
+.date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;
+  border:1px solid var(--linec);background:#fff;transition:all .2s}
+.date-chip .d{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;line-height:1.3}
+.date-chip .w{font-size:10px;color:var(--gray);letter-spacing:.1em}
+.date-chip.on{background:var(--ink);border-color:var(--ink)}
+.date-chip.on .d,.date-chip.on .w{color:#fff}
+.slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+@media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
+.slot-btn{display:block;padding:13px 6px;text-align:center;border:1px solid var(--linec);background:#fff;
+  font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;color:var(--ink);text-decoration:none;
+  font-family:'Jost','Noto Sans JP',sans-serif}
+.slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-btn:hover{background:var(--ink);color:#fff}
+.slot-btn:hover small{color:#bdbdbb}
+.slotbox .sfall{font-size:12.5px;font-weight:300;color:#555553;line-height:2.05;padding-top:18px}
+@media(min-width:600px){.slotbox br.sp{display:none}}
 
 /* できること */
 .benefits{display:grid;grid-template-columns:1fr;gap:12px}
@@ -149,8 +175,14 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
           <div class="row"><div class="k">所要時間</div><div class="v">約60分（ご相談内容により前後します）</div></div>
           <div class="row"><div class="k">方法</div><div class="v">ご来店、またはオンライン（Web）</div></div>
           <div class="row"><div class="k">対象</div><div class="v">これから家づくりを考える方ならどなたでも（土地・予算が未定でもOK）</div></div>
-          <div class="row"><div class="k">ご予約</div><div class="v">下のボタン、またはお電話（0120-154-483）から</div></div>
+          <div class="row"><div class="k">ご予約</div><div class="v">下のボタン、またはお電話（<span style="white-space:nowrap">0120-154-483</span>）から</div></div>
         </div>
+        <div class="slotbox">
+          <div class="sh">直近のご予約可能日</div>
+          <div id="ev-app"></div>
+          <p class="sfall" id="ev-fall">ご希望の日時をお知らせください。<br class="sp">折り返し、空いているお時間をご案内します。土日・平日、夕方も承ります。</p>
+        </div>
+
         <div class="ebtns">
           <a class="ebtn ebtn-fill" href="reserve.html">来店を予約する</a>
           <a class="ebtn ebtn-line" href="tel:0120154483">電話で聞く（0120-154-483）</a>
@@ -158,6 +190,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         <p class="enote">※ お一組ずつの個別対応です。周りを気にせず、ゆっくりご相談いただけます。</p>
       </div>
     </div>
+
+
   </section>
 
   <!-- 相談会でできること -->
@@ -187,8 +221,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <section class="sec">
     <div class="sec-h"><div class="en">News</div><h2>お知らせ</h2></div>
     <ul class="news">
-      <li><span class="date">2026.07.27</span><span><span class="tag">お知らせ</span>夏季休業は8月10日（月）から16日（日）です。17日（月）から通常どおり営業します。</span></li>
-      <li><span class="date">2026.07.25</span><span><span class="tag">実例</span>建築実例を14邸に更新しました。<a href="jisseki.html" style="border-bottom:1px solid var(--gold)">こちら</a></span></li>
+      <!-- ▼ 新しいお知らせは、この下に <li> を足してください（新着が上）。古いものは消してOKです。
+           ・過ぎた日付のお知らせは必ず消すこと（「終わった催しかな」と思われて離脱の原因になります）
+           ・軒数・枚数などの件数はお客様に見せない方針なので書かないでください -->
+      <li><span class="date">2026.07.25</span><span><span class="tag">実例</span>建築実例のページを更新しました。<a href="jisseki.html" style="border-bottom:1px solid var(--gold)">こちら</a></span></li>
     </ul>
   </section>
 
@@ -221,6 +257,48 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 {"@type":"Question","name":"オンラインでも相談できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。ご来店のほか、オンライン（Web）でのご相談も可能です。ご都合に合わせてお選びいただけます。"}},
 {"@type":"Question","name":"土地や予算が決まっていなくても参加できますか？","acceptedAnswer":{"@type":"Answer","text":"もちろんです。土地さがしや資金計画など、いちばん最初の段階からご相談いただけます。しつこい営業はいたしません。"}}
 ]}
+</script>
+<script>
+/* 直近のご予約可能日。見せ方も処理もトップ・予約ページと同じものを流用している。
+   ここでは「見せて、選んでもらう」だけ。予約を確定するのは reserve.html の1本だけなので、
+   ここから枠が二重に押さえられることはない。 */
+(function(){
+  var API='https://shibagram.onrender.com';
+  var app=document.getElementById('ev-app'), fall=document.getElementById('ev-fall');
+  if(!app) return;
+  var slots=[], cur=null;
+  function fmtDate(s){var p=s.split('-').map(Number),dt=new Date(p[0],p[1]-1,p[2]);
+    return{md:p[1]+'/'+p[2], w:['日','月','火','水','木','金','土'][dt.getDay()]};}
+  function render(){
+    var dates=[]; slots.forEach(function(s){if(dates.indexOf(s.date)<0)dates.push(s.date);});
+    if(!dates.length){ app.innerHTML=''; return; }
+    if(!cur||dates.indexOf(cur)<0) cur=dates[0];
+    var day=slots.filter(function(s){return s.date===cur;});
+    app.innerHTML=
+      '<div class="rsv-step-label">1. 日付を選ぶ</div>'+
+      '<div class="date-scroll">'+dates.map(function(d){var f=fmtDate(d);
+        return '<button type="button" class="date-chip'+(d===cur?' on':'')+'" data-date="'+d+'">'+
+               '<div class="d">'+f.md+'</div><div class="w">'+f.w+'</div></button>';}).join('')+'</div>'+
+      '<div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>'+
+      '<div class="slot-grid">'+day.map(function(s){
+        return '<a class="slot-btn" href="reserve.html?slot='+encodeURIComponent(s.id)+'">'+
+               s.startTime+'<small>◎ ご予約いただけます</small></a>';}).join('')+'</div>';
+    app.querySelectorAll('.date-chip').forEach(function(b){
+      b.addEventListener('click',function(){cur=b.dataset.date;render();});});
+  }
+  fetch(API+'/api/public/slots?type=visit').then(function(r){if(!r.ok)throw 0;return r.json();})
+  .then(function(data){
+    var today=new Date(); today.setHours(0,0,0,0);
+    slots=(data.slots||[]).filter(function(s){
+      var p=s.date.split('-').map(Number);
+      return s.status==='open' && (s.availableCount===undefined||s.availableCount>0)
+             && new Date(p[0],p[1]-1,p[2])>=today;      /* 過ぎた日は出さない */
+    });
+    if(!slots.length) return;                            /* 0件なら何も出さない＝下の1行だけ残る */
+    render();
+    if(fall) fall.textContent='時間を押すと、その枠で予約の画面が開きます。上記以外の日時もご相談ください。';
+  }).catch(function(){});
+})();
 </script>
 <script src="site.js?v=20260816a" defer></script>
 </body>

@@ -1444,12 +1444,20 @@ function rsvFormDirty(){
   if(!f)return false;
   return !!(rsvSlot||f.name.value||f.phone.value||f.email.value||f.message.value);
 }
+/* 相談会ページ（event.html）から ?slot=◯◯ で来た時、その枠を選んだ状態で開く。
+   枠を押さえるのは送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
+let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
 async function rsvLoad(){
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');
     if(!r.ok)throw 0;
     const data=await r.json();
     rsvSlots=data.slots||[];
+    if(slotFromUrl){
+      const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
+      if(t){rsvDate=t.date;rsvSlot=t.id;}
+      slotFromUrl=null;
+    }
     if(!rsvDone&&!rsvFormDirty())rsvRender(); // 入力中・予約完了後は画面を消さない
   }catch{
     // 一度も取得できていない時だけフォールバック（取得済みの枠は保持）

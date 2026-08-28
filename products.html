@@ -151,6 +151,19 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .sim-monthly b span{font-family:'Jost',sans-serif;font-size:26px;color:var(--gold,#a08a5f);font-weight:500;margin:0 2px}
 .sim-cta{display:flex;align-items:center;justify-content:center;margin-top:16px;padding:15px;background:var(--gold,#a08a5f);color:#fff;font-size:13px;letter-spacing:.1em;border-radius:2px}
 .sim-cta:hover{filter:brightness(.95)}
+
+/* 次に見るページ（検討中の人が行き来しやすいように・2026-08-28）。
+   ※フォームのページ（catalog / reserve）には付けない＝別の出口を見せない */
+.nextnav{border-top:1px solid var(--linec);margin-top:64px;padding-top:26px}
+.nextnav .nl{font-size:10px;letter-spacing:.3em;color:var(--gray);text-transform:uppercase;margin-bottom:14px}
+.nextnav ul{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--linec);border-top:1px solid var(--linec);border-bottom:1px solid var(--linec)}
+@media(min-width:760px){.nextnav ul{grid-template-columns:1fr 1fr}}
+.nextnav li{background:#fff}
+.nextnav a{display:flex;align-items:baseline;gap:12px;padding:18px 4px;color:var(--ink);text-decoration:none}
+.nextnav a:hover{opacity:.62}
+.nextnav .t{font-size:14px;font-weight:500;letter-spacing:.06em;white-space:nowrap}
+.nextnav .s{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.7}
+.nextnav .ar{margin-left:auto;font-size:12px;color:var(--gray)}
 </style>
 <section class="sec" id="sim">
   <div class="label"><span class="en">Simulator</span><small>かんたん価格シミュレーター</small></div>
@@ -245,6 +258,14 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <h2>性能は、裏切らない。</h2>
     <p>大手ハウスメーカー水準の高性能を、すべての住まいで標準に。性能を落とさず価格を抑える——それが「コスパがいい」と選ばれる理由です。</p>
   </div>
+</div>
+
+<div class="nextnav">
+  <div class="nl">Next</div>
+  <ul>
+    <li><a href="spec.html"><span class="t">性能を見る</span><span class="s">この価格に何が入っているのか</span><span class="ar">→</span></a></li>
+    <li><a href="jisseki.html"><span class="t">実例を見る</span><span class="s">同じ価格帯で建った家を見る</span><span class="ar">→</span></a></li>
+  </ul>
 </div>
 
 <div class="cta">
