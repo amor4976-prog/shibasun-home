@@ -78,6 +78,9 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 /* 直近のご予約可能日。見せ方はトップ・予約ページと同じもの（横にスライドする日付カード→時間）を
    そのまま使う。ここで独自の見た目を作らない（2026-08-28 専務「今のTOPページの見せ方からなんで変えるのよ」）*/
 .slotbox{border:1px solid var(--linec);background:#fff;padding:26px 20px;margin-top:16px}
+/* スマホでは横の余白を詰める。詰めないと時間ボタンがトップページより狭くなり、
+   「◎」だけが次の行に落ちる（2026-08-28に実測） */
+@media(max-width:560px){.slotbox{padding:22px 12px}}
 .slotbox .sh{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em;padding-bottom:16px;border-bottom:1px solid var(--linec);margin-bottom:20px}
 .rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
 .date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
