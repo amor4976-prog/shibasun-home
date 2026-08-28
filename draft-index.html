@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- 専務の確認用ページ（2026-08-28 導線改善の下書きまとめ）。
+     検索には出ません。確認が済んだら、この draft-*.html は全部消します。 -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>【確認用】導線改善の下書きまとめ｜シバ・サンホーム</title>
+<meta name="theme-color" content="#1c1c1a">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--linec:#e8e8e6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f6f6f5;line-height:1.95;letter-spacing:.04em;line-break:strict;overflow-wrap:break-word}
+/* 語の途中で行またぎしないように（site.js と同じ仕組み。このページは site.js を読まないので直に書く） */
+body,h1,h2,h3,h4,p,li,div,td,th{word-break:auto-phrase}
+h1,h2,h3,h4,.t,.gh{text-wrap:balance}
+p,li,.d,.gw,.note{text-wrap:pretty}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
+header{display:flex;align-items:center;padding:16px 22px;background:#fff;border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.whead{padding:44px 24px 4px;text-align:center}
+.whead .en{font-size:11px;font-weight:500}
+.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.4vw,29px);font-weight:500;letter-spacing:.06em;margin:10px 0 14px;line-height:1.7}
+.whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
+.wrap{max-width:760px;margin:0 auto;padding:24px 20px 70px}
+.grp{margin-top:36px}
+.grp>.gh{font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;font-weight:500;letter-spacing:.05em;padding-bottom:11px;border-bottom:1px solid var(--ink)}
+.grp>.gw{font-size:12.5px;font-weight:300;color:#555553;line-height:2.05;margin-top:12px}
+.item{display:block;border:1px solid var(--linec);background:#fff;padding:20px 19px;margin-top:13px;transition:border-color .3s}
+.item:hover{border-color:var(--ink)}
+.item .t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;letter-spacing:.04em;line-height:1.75}
+.item .d{font-size:12.5px;font-weight:300;color:#555553;line-height:2.05;margin-top:7px}
+.item .go{display:inline-block;margin-top:12px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.2em;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.pick{border:1px solid var(--ink)}
+.pick .tag{display:inline-block;font-size:10.5px;letter-spacing:.12em;background:var(--ink);color:#fff;padding:3px 10px;margin-bottom:9px}
+.note{border-left:2px solid var(--ink);padding:2px 0 2px 15px;margin:26px 0 0;font-size:12.5px;font-weight:300;line-height:2.05;color:#3c3c3a}
+footer{background:#161614;color:#939391;padding:34px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+</header>
+
+<div class="whead">
+  <div class="en">Draft</div>
+  <h1>導線改善の下書き、<br>ご確認をお願いします</h1>
+  <p>8月27日の週次分析で見つかった取りこぼしへの手当てです。<br>まだどれも本番には出していません。OKをいただいてから差し替えます。</p>
+</div>
+
+<div class="wrap">
+
+  <div class="grp">
+    <div class="gh">1. コラムから資料請求への道を太くする</div>
+    <div class="gw">記事は読まれているのに、そのまま帰る方が多いのが分かりました。とくに補助金の記事は平均76秒と、いちばん読まれています。<br>
+    そこで「読み終わってから来店を予約する」より手前に、<b>まず資料を見る</b>という一歩を足しました。記事の途中に1本、記事の終わりに1本です。来店予約は今までどおり残しています。</div>
+
+    <a class="item" href="draft-hojokin-cta.html">
+      <div class="t">2026年の住宅補助金（補助金の記事）</div>
+      <div class="d">途中の箱：「うちの家は、この補助金の対象になる？」→ 標準仕様が載った資料へ。終わりの箱も、資料を先頭にしました。</div>
+      <div class="go">下書きを見る</div>
+    </a>
+    <a class="item" href="draft-yosan-cta.html">
+      <div class="t">注文住宅の予算の決め方（予算の記事）</div>
+      <div class="d">途中の箱：「総額の内訳は、資料で見るのがいちばん早いです」。価格表と資金計画ガイドへつなぎました。</div>
+      <div class="go">下書きを見る</div>
+    </a>
+    <a class="item" href="draft-tsubo-cta.html">
+      <div class="t">奈良の坪単価（坪単価の記事）</div>
+      <div class="d">途中の箱：「坪単価だけでは分からない総額を、数字で載せています」。他社さんの見積もりと見比べる材料として案内しています。</div>
+      <div class="go">下書きを見る</div>
+    </a>
+  </div>
+
+  <div class="grp">
+    <div class="gh">2. コラム一覧に、資料請求の出口をつくる</div>
+    <div class="gw">一覧のページには、資料請求へ行ける場所が1か所もありませんでした。<br>
+    一覧のいちばん下に、資料の中身（価格表・実例集・仕様・資金計画ガイド）を並べた箱を足しています。<br>
+    あわせて、同じ写真が3枚のカードで重なっていたので、2枚を別の写真に差し替えました。</div>
+    <a class="item" href="draft-blog-list.html">
+      <div class="t">家づくりのブログ（一覧）</div>
+      <div class="d">いちばん下までスクロールしてご覧ください。写真は「後悔しないために」の記事＝明るいキッチン、「YouTube はじめました」の記事＝上棟の構造写真に変えています。</div>
+      <div class="go">下書きを見る</div>
+    </a>
+  </div>
+
+  <div class="grp">
+    <div class="gh">3. 個別無料相談会のページ ─ どちらか選んでください</div>
+    <div class="gw">いま日付らしい記述が「8月10日からの夏季休業」だけで、すでに過ぎています。開いた方が「終わった催しかな」と受け取っている可能性があります。<br>
+    勝手に日付はつくっていません。<b>考え方の違う2案</b>をご用意したので、どちらかをお選びください。<br>
+    どちらの案でも、過ぎた夏季休業のお知らせは消してあります。</div>
+
+    <a class="item pick" href="draft-event-a.html">
+      <span class="tag">A案</span>
+      <div class="t">日付を書かない ─「いつでもご予約OK」を前面に</div>
+      <div class="d">見出しのすぐ下で「決まった開催日はありません。ご都合のよい日に、お一組ずつ承ります。」と言い切ります。<br>
+      よいところ：放っておいても古くなりません。手間ゼロです。<br>
+      弱いところ：「今週やっている」という切迫感は出ません。</div>
+      <div class="go">A案を見る</div>
+    </a>
+    <a class="item pick" href="draft-event-b.html">
+      <span class="tag">B案</span>
+      <div class="t">「直近のご予約可能日」の欄をつくる（いまは空）</div>
+      <div class="d">専務が空き枠を書き込む欄です。書けば「9月6日（土）10:00 / 13:00 / 15:30」のように並びます。<br>
+      いまは空にしてあり、空のときは日付を一切出さず「ご希望の日時をお知らせください」だけが出ます。<br>
+      よいところ：書き込めばいちばん強い。弱いところ：<b>書いた日付が過ぎたら消す手間</b>がかかります。放置すると今より悪くなります。</div>
+      <div class="go">B案を見る</div>
+    </a>
+  </div>
+
+  <div class="note">
+    ご意見は、えいちゃん（LINE）にそのまま返していただければ拾います。<br>
+    「A案で」「ここの言い回しを変えて」など、一言で大丈夫です。<br>
+    OKをいただいたら本番に反映して、この確認用ページと下書きは消します。
+  </div>
+
+</div>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>確認用ページ（検索には出ません）</div>
+</footer>
+
+</body>
+</html>
