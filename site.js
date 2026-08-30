@@ -16,7 +16,8 @@ const GA_ID = 'G-REFN8K7K95';  // 現行shibasun.jpと同じGA4プロパティ�
 // 主要導線（大きく表示）— 引き算：8項目に厳選
 const NAV = [
   { href: 'index.html',    label: 'ホーム',     en: 'Home' },
-  { href: 'iezukuri.html', label: '私たちの家づくり', en: 'Our Home Building' },
+  { href: 'concept.html',  label: 'コンセプトブック', en: 'Concept Book' },
+    { href: 'iezukuri.html', label: '私たちの家づくり', en: 'Our Home Building' },
   { href: 'jisseki.html',  label: '建築実例',   en: 'Works' },
   { href: 'kengaku.html',  label: 'OB様邸見学',  en: "Owner's House" },
   { href: 'products.html', label: '商品・価格', en: 'Products' },
