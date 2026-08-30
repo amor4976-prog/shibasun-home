@@ -156,7 +156,9 @@ header.scrolled .head-cta{color:var(--ink)}
 @media(min-width:760px){.pr-card{flex:0 0 238px}}
 .pr-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#2a2a28}
 .pr-card .pn{display:block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.24em;margin:12px 0 3px;color:rgba(255,255,255,.65)}
-.pr-card .pt{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.04em;line-height:1.65}
+.pr-card .pt{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.04em;line-height:1.65;min-height:3.3em}
+/* 文字の箱を常に2行ぶん確保する。8枚のうち14文字の2枚だけが折り返し、
+   その2枚が高さを決めるので、残りの下に半端な余白が出ていた（2026-08-29 専務指摘）*/
 .pr-scroll.dragging{cursor:grabbing}
 @media(hover:hover){.pr-scroll{cursor:grab}}
 .pr-more{display:inline-block;margin-top:30px;font-size:11.5px;letter-spacing:.14em;color:#fff;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:3px}
@@ -310,7 +312,8 @@ section{padding:58px 22px}
   color:#fff;transition:opacity .45s ease,transform .45s ease;
 }
 .work .cap .area{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.3em;opacity:.85}
-.work .cap h3{font-size:13px;font-weight:400;letter-spacing:.08em;margin-top:3px;line-height:1.6}
+.work .cap h3{font-size:13px;font-weight:400;letter-spacing:.08em;margin-top:3px;line-height:1.6;min-height:3.2em}
+/* 同じ理由で、帯の高さも常に2行ぶん。1行の札だけ帯が薄くなって悪目立ちしていた */
 .work .plus{position:absolute;top:14px;right:14px;width:30px;height:30px;border:1px solid rgba(255,255,255,.6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Jost',sans-serif;font-size:15px;opacity:0;transition:opacity .45s ease}
 @media(min-width:820px){
   .works-scroll{cursor:grab}
