@@ -146,17 +146,20 @@ header.scrolled .head-cta{color:var(--ink)}
 .vow br.sp{display:inline}
 @media(min-width:520px){.vow br.sp{display:none}}
 .concept .cc-last{margin-top:38px!important;font-size:clamp(15px,4.2vw,19px)!important;letter-spacing:.08em;color:#fff!important}
-.concept .cn-tile{margin-top:52px}
-.concept .cn-tile::after{background:linear-gradient(to top,rgba(20,20,18,.72),rgba(20,20,18,.10) 60%)}
-/* こだわりへの入口タイル（ひかり型：写真タイルで別ページへ振り分け） */
-.cn-tile{position:relative;display:block;margin-top:44px;overflow:hidden;aspect-ratio:16/9}
-@media(min-width:600px){.cn-tile{aspect-ratio:2/1}}
-.cn-tile img{width:100%;height:100%;object-fit:cover}
-.cn-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,20,18,.58),rgba(20,20,18,.06) 55%)}
-.cn-tile .ct-cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:#fff;text-align:left;display:block}
-.cn-tile .ct-cap .en{display:block;font-size:9.5px;letter-spacing:.3em;opacity:.85}
-.cn-tile .ct-t{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(18px,4.8vw,24px);font-weight:600;letter-spacing:.08em;margin-top:7px}
-.cn-tile .ct-s{display:block;font-size:11.5px;letter-spacing:.1em;margin-top:6px;opacity:.92}
+/* こだわり＝理由カードの横スライド（意味のない1枚写真タイルをやめた・2026-08-30 専務指示） */
+.promise{margin-top:64px}
+.pr-en{display:block;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:.3em;color:rgba(255,255,255,.7);text-transform:uppercase}
+.concept .pr-title{margin:10px 0 0!important;font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(17px,4.6vw,22px)!important;font-weight:600;letter-spacing:.08em;line-height:1.6!important;color:#fff!important}
+.pr-scroll{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-top:26px;padding:2px 2px 6px;scrollbar-width:none}
+.pr-scroll::-webkit-scrollbar{display:none}
+.pr-card{flex:0 0 60%;max-width:238px;scroll-snap-align:center;display:block;text-align:left;color:#fff}
+@media(min-width:760px){.pr-card{flex:0 0 238px}}
+.pr-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#2a2a28}
+.pr-card .pn{display:block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.24em;margin:12px 0 3px;color:rgba(255,255,255,.65)}
+.pr-card .pt{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.04em;line-height:1.65}
+.pr-scroll.dragging{cursor:grabbing}
+@media(hover:hover){.pr-scroll{cursor:grab}}
+.pr-more{display:inline-block;margin-top:30px;font-size:11.5px;letter-spacing:.14em;color:#fff;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:3px}
 /* 選ばれる理由 01-08 */
 .reasons .reason-list{max-width:760px;margin:8px auto 0}
 .reason{display:flex;gap:16px;padding:26px 2px;border-top:1px solid var(--linec)}
@@ -986,14 +989,21 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       <div class="vow"><span class="vn en">03</span><p>それを、正直な価格で。</p></div>
     </div>
     <p class="cc-last fade">ぜんぶ、「家族のいい毎日」のために。</p>
-    <a class="cn-tile fade" href="iezukuri.html">
-      <img src="img/works/g03.jpg" alt="私たちのこだわり" loading="lazy">
-      <span class="ct-cap">
-        <span class="en">Our Promise</span>
-        <span class="ct-t">私たちのこだわり</span>
-        <span class="ct-s">選ばれる理由 01 − 08 を見る →</span>
-      </span>
-    </a>
+    <div class="promise fade">
+      <span class="en pr-en">Our Promise</span>
+      <p class="pr-title">私たちのこだわり</p>
+      <div class="pr-scroll" id="promiseScroll">
+        <a class="pr-card" href="iezukuri.html#r01"><img src="img/promise/01.jpg" alt="カウンターに並んで座る子どもたち" loading="lazy" decoding="async"><span class="pn">01</span><span class="pt">とことん、親身に。</span></a>
+        <a class="pr-card" href="iezukuri.html#r02"><img src="img/promise/02.jpg" alt="木の格子で仕切ったLDK" loading="lazy" decoding="async"><span class="pn">02</span><span class="pt">自分たちらしい家を、自由に。</span></a>
+        <a class="pr-card" href="iezukuri.html#r03"><img src="img/promise/03.jpg" alt="ダイニングを走る子ども" loading="lazy" decoding="async"><span class="pn">03</span><span class="pt">一年中、心地いい。</span></a>
+        <a class="pr-card" href="iezukuri.html#r04"><img src="img/promise/04.jpg" alt="庭のブランコで遊ぶ子どもたち" loading="lazy" decoding="async"><span class="pn">04</span><span class="pt">暮らしを、圧迫しない。</span></a>
+        <a class="pr-card" href="iezukuri.html#r05"><img src="img/promise/05.jpg" alt="構造の現場" loading="lazy" decoding="async"><span class="pn">05</span><span class="pt">建てるのは、地元の職人です。</span></a>
+        <a class="pr-card" href="iezukuri.html#r06"><img src="img/promise/06.jpg" alt="白いダイニング" loading="lazy" decoding="async"><span class="pn">06</span><span class="pt">いいものを、正直な価格で。</span></a>
+        <a class="pr-card" href="iezukuri.html#r07"><img src="img/promise/07.jpg" alt="玄関前で自転車の練習" loading="lazy" decoding="async"><span class="pn">07</span><span class="pt">お引き渡しは、始まりです。</span></a>
+        <a class="pr-card" href="iezukuri.html#r08"><img src="img/promise/08.jpg" alt="工事中の現場" loading="lazy" decoding="async"><span class="pn">08</span><span class="pt">建てている間も、ずっと。</span></a>
+      </div>
+      <a class="pr-more" href="iezukuri.html">選ばれる理由 01 − 08 をすべて見る →</a>
+    </div>
   </div>
 </section>
 <script>
@@ -1068,6 +1078,16 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');paused=true;});
   window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
   window.addEventListener('pointerup',function(){if(!down)return;down=false;s.classList.remove('dragging');paused=false;goTo(cur());});
+  s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
+})();
+// こだわりカードもPCでドラッグで送れるように（自動送りはしない）
+(function(){
+  var s=document.getElementById('promiseScroll');
+  if(!s)return;
+  var down=false,moved=false,sx=0,sl=0;
+  s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');});
+  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
+  window.addEventListener('pointerup',function(){if(!down)return;down=false;s.classList.remove('dragging');});
   s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
 })();
 </script>
