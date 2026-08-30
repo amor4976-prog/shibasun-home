@@ -173,7 +173,7 @@ function rsvRender(){
       <div class="rsv-field"><label>ご相談方法</label>
         <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
-      <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選択OK</span></label>
+      <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>シバ・サンホームを何で知りましたか<span style="color:var(--gray);font-size:10px;margin-left:6px">任意・1つ</span></label>
@@ -220,6 +220,6 @@ async function rsvLoad(){
 }
 rsvLoad();setInterval(rsvLoad,60000);
 </script>
-<script src="site.js?v=20260830d" defer></script>
+<script src="site.js?v=20260830e" defer></script>
 </body>
 </html>

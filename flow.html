@@ -40,6 +40,9 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .whead .en{font-size:11px;color:var(--gold);font-weight:500}
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,38px);font-weight:500;letter-spacing:.08em;margin:10px 0 16px}
 .whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:660px;margin:0 auto;line-height:2.1}
+/* 文字だけのページだったので、上に1枚入れる（2026-08-30 専務指摘）*/
+.evhero{width:100%;aspect-ratio:16/9;object-fit:cover;margin-top:30px;background:#ededeb}
+@media(min-width:900px){.evhero{aspect-ratio:21/9;max-height:520px}}
 
 .wrap{max-width:880px;margin:0 auto;padding:20px 22px}
 
@@ -113,12 +116,14 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <h1>家づくりの進め方</h1>
   <p>「何から始めればいいの？」という方も大丈夫。ご相談から土地探し、総額のお見積り、お引き渡し、その後のアフターまで。シバ・サンホームの家づくりを9つのステップでご紹介します。</p>
   <div class="assure">
-    <span>土地さがしから相談OK</span>
-    <span>予算が未定でもOK</span>
+    <span>土地さがしから相談できます</span>
+    <span>予算が未定でも大丈夫</span>
     <span>来店・オンライン相談</span>
     <span>しつこい営業なし</span>
   </div>
 </div>
+
+<img class="evhero" src="img/spec/spec-kouzo.jpg" srcset="img/sp/spec-kouzo.jpg 900w, img/spec/spec-kouzo.jpg 2000w" sizes="100vw" alt="建てている途中の構造。家づくりの進め方" loading="lazy" decoding="async">
 
 <div class="wrap">
 
@@ -219,7 +224,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <div class="cta">
   <h2 class="gothic">まずは、話を聞くだけでも。</h2>
-  <p>資金計画・土地探しのご相談はすべて無料。来店もオンラインもOKです。</p>
+  <p>資金計画・土地探しのご相談はすべて無料。ご来店でも、オンラインでも承ります。</p>
   <div class="cbtns">
     <a class="cbtn cbtn-fill" href="reserve.html">来店を予約する</a>
     <a class="cbtn cbtn-gold" href="catalog.html">カタログ資料請求（無料）</a>
@@ -258,6 +263,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 {"@type":"Question","name":"完成までどのくらいかかりますか？","acceptedAnswer":{"@type":"Answer","text":"ご相談からお引き渡しまで、目安としておよそ8〜12ヶ月です。土地探しやプラン内容により前後します。"}}
 ]}
 </script>
-<script src="site.js?v=20260830d" defer></script>
+<script src="site.js?v=20260830e" defer></script>
 </body>
 </html>

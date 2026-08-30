@@ -245,7 +245,7 @@ const NAV_CV = [
         // 資料請求は、いちばん気軽な申し込みなのに入口が細かった。
         // 資料請求ページ自身と、予約・アフターの各ページには足さない。
         const rsv = bar.querySelector('.fc-reserve');
-        const noDoc = ['catalog.html', 'reserve.html', 'reserve-after.html'];
+        const noDoc = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.html'];  // アフターはお住まいの方向けなので資料請求は出さない
         if (rsv && noDoc.indexOf(here) < 0 && !bar.querySelector('.fc-doc')) {
           const doc = document.createElement('a');
           doc.className = 'fc-doc'; doc.href = 'catalog.html';
