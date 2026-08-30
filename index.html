@@ -111,7 +111,9 @@ header.scrolled .head-cta{color:var(--ink)}
 .hero-area{margin-top:18px;font-size:11px;letter-spacing:.08em;opacity:.78;line-height:1.7}
 /* 信頼バッジ帯 */
 .trustbar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linec);border-bottom:1px solid var(--linec)}
-@media(min-width:760px){.trustbar{grid-template-columns:repeat(4,1fr)}}
+/* 3つなので、スマホは最後の1つ（性能）を横いっぱいに置く */
+.trustbar .tb:last-child{grid-column:1/-1}
+@media(min-width:760px){.trustbar{grid-template-columns:repeat(3,1fr)}.trustbar .tb:last-child{grid-column:auto}}
 .trustbar .tb{background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:18px 8px;text-align:center}
 .trustbar .tb-v{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(15px,4.2vw,18px);font-weight:600;letter-spacing:.03em;line-height:1.3}
 .trustbar .tb-c{font-size:10.5px;letter-spacing:.04em;color:var(--gray);line-height:1.4}
@@ -872,8 +874,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 <div class="trustbar">
   <div class="tb"><span class="tb-v">570棟以上</span><span class="tb-c">これまでの施工実績</span></div>
   <div class="tb"><span class="tb-v">2,095万円〜</span><span class="tb-c">30坪の本体価格（税込）</span></div>
-  <div class="tb"><span class="tb-v">耐震等級3</span><span class="tb-c">許容応力度計算認定が標準</span></div>
-  <div class="tb"><span class="tb-v">断熱等級6</span><span class="tb-c">UA値0.4水準が標準</span></div>
+  <div class="tb"><span class="tb-v">耐震等級3／断熱等級6</span><span class="tb-c">安心と快適にこだわった性能が標準</span></div>
 </div>
 
 <!-- 見学会・相談会（イベントを上に＝集客サイトの型） -->
