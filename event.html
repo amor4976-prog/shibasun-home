@@ -49,8 +49,12 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 /* 文字だけのページだったので、相談の様子を1枚入れる（2026-08-30。直帰86%・滞在7.7秒だった）*/
 .evhero{width:100%;aspect-ratio:16/9;object-fit:cover;margin-top:30px;background:#ededeb}
 @media(min-width:900px){.evhero{aspect-ratio:21/9;max-height:520px}}
-.assure{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
-.assure span{font-size:12px;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold);color:#555555;padding:8px 16px;border-radius:30px;background:#f4f4f3}
+/* 幅がまちまちだと1個ずつ折り返してガタつく（2026-08-30 専務指摘）。
+   2列の等幅にして、数が奇数なら最後だけ横いっぱいに置く */
+.assure{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:24px;max-width:430px;margin-left:auto;margin-right:auto}
+.assure span:nth-child(odd):last-child{grid-column:1/-1}
+@media(min-width:620px){.assure{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:none}}
+.assure span{display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;font-size:12px;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold);color:#555555;padding:8px 16px;border-radius:30px;background:#f4f4f3}
 
 .wrap{max-width:900px;margin:0 auto;padding:20px 22px}
 .editnote{max-width:900px;margin:18px auto 0;padding:0 22px}
@@ -158,7 +162,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <p>土地さがし・お金のこと・間取り・性能まで、お一組ずつ個別にうかがいます。<br>何から聞けばいいか分からない段階で大丈夫です。</p>
   <div class="assure">
     <span>参加無料</span>
-    <span>予約制（お一組ずつ）</span>
+    <span>お一組ずつの予約制</span>
     <span>来店・オンライン</span>
     <span>お子様連れ歓迎</span>
     <span>しつこい営業なし</span>

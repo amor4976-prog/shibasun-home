@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>家づくりの進め方・流れ｜奈良の注文住宅・株式会社シバ・サンホーム</title>
-<meta name="description" content="奈良の工務店シバ・サンホームの家づくりの進め方を9ステップでご紹介。ご相談・資金計画・土地探しから、プラン・総額お見積り、ご契約、仕様決め、着工、お引き渡し、アフターまで。土地なし・予算未定・はじめての方も大丈夫。来店もオンライン相談も可能です。">
+<meta name="description" content="奈良の工務店シバ・サンホームの家づくりの進め方を10のステップでご紹介。ご相談・資金計画・土地探しから、プラン・総額お見積り、パートナー申込、仕様決め、ご契約、着工、お引き渡し、アフターまで。土地なし・予算未定・はじめての方も大丈夫。来店もオンライン相談も可能です。">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#1c1c1a">
 <link rel="canonical" href="https://www.shibasun.jp/flow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="株式会社シバ・サンホーム">
 <meta property="og:title" content="家づくりの進め方・流れ｜株式会社シバ・サンホーム">
-<meta property="og:description" content="ご相談から土地探し・総額見積り・お引き渡し・アフターまで。奈良の工務店シバ・サンホームの家づくり9ステップ。">
+<meta property="og:description" content="ご相談から土地探し・総額見積り・お引き渡し・アフターまで。奈良の工務店シバ・サンホームの家づくり10のステップ。">
 <meta property="og:url" content="https://www.shibasun.jp/flow">
 <meta property="og:image" content="https://www.shibasun.jp/img/og-image.jpg">
 <meta property="og:locale" content="ja_JP">
@@ -47,8 +47,12 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .wrap{max-width:880px;margin:0 auto;padding:20px 22px}
 
 /* 安心バッジ */
-.assure{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
-.assure span{font-size:12px;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold);color:#555555;padding:8px 16px;border-radius:30px;background:#f4f4f3}
+/* 幅がまちまちだと1個ずつ折り返してガタつく（2026-08-30 専務指摘）。
+   2列の等幅にして、数が奇数なら最後だけ横いっぱいに置く */
+.assure{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:24px;max-width:430px;margin-left:auto;margin-right:auto}
+.assure span:nth-child(odd):last-child{grid-column:1/-1}
+@media(min-width:620px){.assure{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:none}}
+.assure span{display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;font-size:12px;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold);color:#555555;padding:8px 16px;border-radius:30px;background:#f4f4f3}
 
 /* ステップ */
 .steps{margin-top:40px;position:relative}
@@ -115,11 +119,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="whead">
   <div class="en">How We Build</div>
   <h1>家づくりの進め方</h1>
-  <p>「何から始めればいいの？」という方も大丈夫。ご相談から土地探し、総額のお見積り、お引き渡し、その後のアフターまで。シバ・サンホームの家づくりを9つのステップでご紹介します。</p>
+  <p>「何から始めればいいの？」という方も大丈夫。ご相談から土地探し、総額のお見積り、お引き渡し、その後のアフターまで。シバ・サンホームの家づくりを10のステップでご紹介します。</p>
   <div class="assure">
-    <span>土地さがしから相談できます</span>
-    <span>予算が未定でも大丈夫</span>
-    <span>来店・オンライン相談</span>
+    <span>土地さがしから</span>
+    <span>予算が未定でも</span>
+    <span>来店・オンライン</span>
     <span>しつこい営業なし</span>
   </div>
 </div>
@@ -152,26 +156,31 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     </div>
     <div class="step">
       <div class="dot">05</div>
-      <h3>ご契約</h3>
-      <p>プランと総額にご納得いただけたら、ご契約へ。契約後に金額がどんどん増えていく…ということがないよう、最初にしっかり総額をお出しします。</p>
+      <h3>パートナー申込</h3>
+      <p>プランと総額にご納得いただけたら、パートナー申込です。ここから、シバ・サンホームと一緒に、詳細の打ち合わせへ進みます。</p>
     </div>
     <div class="step">
       <div class="dot">06</div>
       <h3>詳細打ち合わせ・仕様決め</h3>
       <p>キッチン・床材・クロス・照明・外壁などを、一つずつ決めていきます。コーディネーターといっしょに、「自分たちらしい家」をかたちにしていく、いちばん楽しい時間です。</p>
     </div>
-    <div class="step">
+    <div class="step acc">
       <div class="dot">07</div>
+      <h3>ご契約<span class="tag">金額が確定してから</span></h3>
+      <p>仕様と最終のお見積りが決まってから、工事請負契約を結びます。<b>契約したあとに金額がどんどん増えていく</b>、ということがない進め方です。</p>
+    </div>
+    <div class="step">
+      <div class="dot">08</div>
       <h3>着工・上棟</h3>
       <p>地鎮祭のあと、いよいよ工事スタート。専属の職人による責任施工で、ていねいに建てていきます。工事中の現場見学も歓迎しています。</p>
     </div>
     <div class="step">
-      <div class="dot">08</div>
+      <div class="dot">09</div>
       <h3>完成・お引き渡し</h3>
       <p>社内検査とお施主様の立ち会い確認のうえ、お引き渡し。設備の使い方やお手入れ方法もご説明します。いよいよ、新しい暮らしのはじまりです。</p>
     </div>
     <div class="step acc">
-      <div class="dot">09</div>
+      <div class="dot">10</div>
       <h3>アフター・定期点検</h3>
       <p>住みはじめてからが、本当のお付き合い。定期点検と保証で、永くサポートします。困ったときはいつでもご相談ください。</p>
       <span class="pt"><a href="after.html" style="color:#555555;border-bottom:1px solid var(--gold)">アフターメンテナンス・保証について →</a></span>
@@ -245,16 +254,17 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </nav>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"HowTo","name":"シバ・サンホームの家づくりの進め方","description":"奈良の工務店シバ・サンホームで注文住宅を建てる流れを9ステップで紹介します。","step":[
+{"@context":"https://schema.org","@type":"HowTo","name":"シバ・サンホームの家づくりの進め方","description":"奈良の工務店シバ・サンホームで注文住宅を建てる流れを10のステップで紹介します。","step":[
 {"@type":"HowToStep","position":1,"name":"ご相談・お問い合わせ","text":"資金計画や土地探しのことから無料でご相談。来店・オンライン可。"},
 {"@type":"HowToStep","position":2,"name":"資金計画・予算決め","text":"無理のない返済額から、土地代・諸費用も含めた総額を整理します。"},
 {"@type":"HowToStep","position":3,"name":"土地さがし・敷地調査","text":"地元ネットワークで土地を提案し、日当たり・地盤・法規制を調査します。"},
 {"@type":"HowToStep","position":4,"name":"プラン・お見積り","text":"間取りプランを作成し、諸費用・外構まで含めた総額で見積りを提示します。"},
-{"@type":"HowToStep","position":5,"name":"ご契約","text":"プランと総額にご納得のうえご契約。後から大きく増えない進め方です。"},
+{"@type":"HowToStep","position":5,"name":"パートナー申込","text":"プランと総額にご納得いただけたら、パートナー申込。詳細の打ち合わせへ進みます。"},
 {"@type":"HowToStep","position":6,"name":"詳細打ち合わせ・仕様決め","text":"キッチン・床材・照明・外壁などをコーディネーターと一緒に決めます。"},
-{"@type":"HowToStep","position":7,"name":"着工・上棟","text":"地鎮祭のあと工事開始。専属職人による責任施工。現場見学も歓迎。"},
-{"@type":"HowToStep","position":8,"name":"完成・お引き渡し","text":"検査・立会い確認のうえお引き渡し。設備の使い方もご説明します。"},
-{"@type":"HowToStep","position":9,"name":"アフター・定期点検","text":"定期点検と保証で、住みはじめてからも永くサポートします。"}
+{"@type":"HowToStep","position":7,"name":"ご契約","text":"仕様と最終見積りが決まってから工事請負契約。後から大きく増えない進め方です。"},
+{"@type":"HowToStep","position":8,"name":"着工・上棟","text":"地鎮祭のあと工事開始。専属職人による責任施工。現場見学も歓迎。"},
+{"@type":"HowToStep","position":9,"name":"完成・お引き渡し","text":"検査・立会い確認のうえお引き渡し。設備の使い方もご説明します。"},
+{"@type":"HowToStep","position":10,"name":"アフター・定期点検","text":"定期点検と保証で、住みはじめてからも永くサポートします。"}
 ]}
 </script>
 <script type="application/ld+json">
