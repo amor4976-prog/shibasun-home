@@ -109,6 +109,13 @@ const NAV_CV = [
   p,li,.lead,.sub,.note,.sim-note,.rsv-note,.enote,.pickhint{text-wrap:pretty}
   /* ここで囲んだ語は絶対に途中で折り返さない */
   /* ⚠️ページ側の「span{display:block}」を必ず打ち消す。効かないと語が単独行になる（2026-07-26に実例ページで発生） */
+  /* 文中のリンクは「押せる」と分かる形にする（2026-08-30 専務指摘。
+     下線が細いだけだと本文の強調線と見分けがつかなかった）
+     白地 = .tlink（黒い下線＋少し太い文字）／写真の上 = .plink（白い下線＋文字の影） */
+  .tlink{color:var(--ink,#1a1a1a);font-weight:500;border-bottom:1.5px solid currentColor;padding-bottom:2px;transition:.2s}
+  .tlink:hover{background:#efeeeb}
+  .plink{color:#fff;font-weight:500;letter-spacing:.06em;border-bottom:1.5px solid rgba(255,255,255,.92);
+    padding-bottom:3px;text-shadow:0 1px 10px rgba(0,0,0,.5),0 0 24px rgba(0,0,0,.3)}
   .nb{display:inline!important;white-space:nowrap}
   .no,.rank{white-space:nowrap}`;
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);

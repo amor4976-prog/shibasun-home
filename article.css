@@ -137,5 +137,5 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 /* 本文の中のリンクは、リンクだと分かるようにする。
    これが無いと黒い本文と見分けがつかず、押せることに気づかれない（2026-08-30 専務指摘）*/
 .article a:not([class]),.article .body a:not([class]){
-  color:var(--ink);border-bottom:1px solid #9c9c9a;padding-bottom:1px;transition:.2s}
-.article a:not([class]):hover{border-bottom-color:var(--ink);background:#efeeeb}
+  color:var(--ink);font-weight:500;border-bottom:1.5px solid var(--ink);padding-bottom:2px;transition:.2s}
+.article a:not([class]):hover{background:#efeeeb}
