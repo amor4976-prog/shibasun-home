@@ -144,6 +144,34 @@ const NAV_CV = [
     });
   })();
 
+  // ---- 記号が行頭に来ないようにする ----
+  // 「2026年の住宅補助金／｜奈良で家を建てる人」のように、区切りの「｜」が
+  // 次の行の頭に落ちると、置き忘れた記号に見える（2026-08-30 コラム一覧で発生）。
+  // 直前の1文字とくっつけて折り返させない。
+  (function kigouAtama(){
+    const re = /.[｜|]/g;
+    const skip = 'script,style,textarea,code,pre,title,.nb';
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        if (!n.nodeValue || !/[｜|]/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        return n.parentElement && n.parentElement.closest(skip) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const targets = []; let n;
+    while ((n = w.nextNode())) targets.push(n);
+    targets.forEach(node => {
+      const frag = document.createDocumentFragment();
+      let last = 0; const s = node.nodeValue; re.lastIndex = 0; let m;
+      while ((m = re.exec(s))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        const sp = document.createElement('span'); sp.className = 'nb'; sp.textContent = m[0];
+        frag.appendChild(sp); last = m.index + m[0].length;
+      }
+      if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  })();
+
   // ---- ロゴ画像の差し替え（LOGO_SRC が設定されていれば） ----
   if (LOGO_SRC) {
     document.querySelectorAll('a.logo').forEach(a => {

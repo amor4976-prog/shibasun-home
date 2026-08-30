@@ -266,7 +266,7 @@ section{padding:58px 22px}
 .perf-cta:hover{background:#fff;color:var(--ink)}
 
 /* 全幅フォトバンド（セクションの区切り＝余白の呼吸。写真は差し替え可） */
-.photoband{position:relative;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden}
+.photoband{display:block;color:inherit;position:relative;width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;background-repeat:no-repeat;overflow:hidden}
 /* PCは横長になりすぎて写真の上下が切れるので、高さを確保して切り取りを浅くする */
 @media(min-width:760px){.photoband{aspect-ratio:16/9;max-height:820px}}
 @media(min-width:1500px){.photoband{aspect-ratio:2.2/1;max-height:880px}}
@@ -289,6 +289,8 @@ section{padding:58px 22px}
 .photoband .pbcap .en,.photoband .pbcap .jp{font-size:10.5px;letter-spacing:.3em;opacity:.92}
 .photoband .pbcap .t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.4vw,32px);font-weight:500;letter-spacing:.08em;line-height:1.55;margin-top:9px;text-wrap:balance}
 .photoband .pbcap .t span{white-space:nowrap}
+/* 帯を飾りで終わらせず、いちばん長く読まれている性能ページへ送る（2026-08-30）*/
+.photoband .pblink{margin-top:14px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.08em;color:#fff;display:inline-block;border-bottom:1px solid rgba(255,255,255,.8);padding-bottom:5px;text-shadow:0 1px 8px rgba(0,0,0,.35)}
 @media(min-width:760px){.photoband .pbcap{left:6vw;bottom:40px}}
 .photoband.ph{background:#e9e9e7}
 .photoband.ph::after{display:none}
@@ -1137,9 +1139,9 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </section>
 
 <!-- ▼専務へ：全幅フォトバンド②（つくり手・現場）。写真は差し替え可 -->
-<div class="photoband bg-sp" style="--bg:url('img/spec/spec-kouzo.jpg');--bg-sp:url('img/sp/spec-kouzo.jpg')">
-  <div class="pbcap"><div class="jp">つくり手</div><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div></div>
-</div>
+<a class="photoband bg-sp" href="spec.html" style="--bg:url('img/spec/spec-kouzo.jpg');--bg-sp:url('img/sp/spec-kouzo.jpg')">
+  <div class="pbcap"><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div><div class="pblink">性能のことを見る →</div></div>
+</a>
 
 
 <section class="yt" id="youtube">
@@ -1617,6 +1619,6 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   },{once:true});
 });
 </script>
-<script src="site.js?v=20260830a" defer></script>
+<script src="site.js?v=20260830b" defer></script>
 </body>
 </html>
