@@ -554,6 +554,8 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 /* ===== YouTube ===== */
 .yt{background:#161614;color:#fff}
 .yt .label .en{color:#fff}
+/* YouTube公式ロゴ（白一色版。暗い背景なので赤だと文字が沈む） */
+.yt .label .yt-logo{height:14px;width:auto;display:block}
 .yt .label::after{background:rgba(255,255,255,.6)}
 .yt .label small{color:#939391}
 .yt-grid{display:grid;gap:40px;max-width:1040px;margin:0 auto}
@@ -564,8 +566,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .yt p{font-size:13px;font-weight:300;line-height:2.3;color:#c4c4c2;margin-bottom:26px}
 /* YouTubeの数字。暗い背景なので白で（2026-08-30 専務指示）*/
 .yt .ytstat{display:flex;flex-wrap:wrap;gap:10px 26px;margin:20px 0 26px}
-.yt .ytstat span{display:flex;flex-direction:column;gap:3px;font-size:11px;letter-spacing:.1em;color:#a9a9a7}
-.yt .ytstat b{font-family:'Jost',sans-serif;font-size:23px;font-weight:400;letter-spacing:.02em;color:#fff}
+.yt .ytstat span{display:flex;flex-direction:column;gap:4px;white-space:nowrap}
+.yt .ytstat em{font-style:normal;font-size:11px;letter-spacing:.1em;color:#a9a9a7}
+.yt .ytstat b{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;letter-spacing:.02em;color:#fff}
+.yt .ytasof{font-size:10px;letter-spacing:.08em;color:#7d7d7b;margin:-14px 0 26px}
 .yt-btn{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.6);padding:13px 26px;font-size:11px;letter-spacing:.24em;transition:all .3s}
 .yt-btn:hover{background:#fff;color:var(--ink)}
 .yt-sub{display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.1em;color:#939391;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:color .3s}
@@ -880,10 +884,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 
 <!-- 信頼の数字（FV直下＝勝ちサイト共通の型） -->
 <div class="trustbar">
-  <div class="tb"><span class="tb-v">地元奈良に根付き57年</span><span class="tb-c">創業1969年</span></div>
-  <div class="tb"><span class="tb-v">職人にこだわり累計570棟</span><span class="tb-c">専属職人が責任施工</span></div>
+  <div class="tb"><span class="tb-v">地元の職人がつくる</span><span class="tb-c">奈良で57年・専属チーム</span></div>
   <div class="tb"><span class="tb-v">30坪 2,095万円〜</span><span class="tb-c">本体価格（税込）</span></div>
   <div class="tb"><span class="tb-v">安心快適な高性能</span><span class="tb-c">耐震等級3／断熱等級6</span></div>
+  <a class="tb" href="#youtube"><span class="tb-v">家づくりYouTube発信中</span><span class="tb-c">登録1.12万人・321万回再生</span></a>
 </div>
 
 <!-- 見学会・相談会（イベントを上に＝集客サイトの型） -->
@@ -1154,7 +1158,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 
 <section class="yt" id="youtube">
   <div class="inner">
-    <div class="label"><span class="en">YouTube</span><small>社長のチャンネル</small></div>
+    <div class="label"><span class="en"><img class="yt-logo" src="img/youtube-white.svg" alt="YouTube" width="63" height="14"></span><small>社長のチャンネル</small></div>
     <div class="yt-grid">
       <div class="yt-thumbs fade">
         <button class="yt-thumb" type="button" data-vid="PXi34b0cv7k" aria-label="付けて後悔しやすい設備10選 を再生"><img src="https://i.ytimg.com/vi/PXi34b0cv7k/hqdefault.jpg" alt="付けて後悔しやすい設備10選" loading="lazy"><span class="play" aria-hidden="true">▶</span></button>
@@ -1165,7 +1169,8 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       <div class="fade">
         <h2>失敗しない家づくりを、大工社長が本音で語る。</h2>
         <p>建築歴43年の大工社長が、家づくりで後悔しないための知識を発信しています。会社の雰囲気も、私たちの考え方も、まずは動画でご覧ください。</p>
-        <div class="ytstat"><span><b>320万回</b>これまでの再生</span><span><b>1.1万人</b>チャンネル登録</span><span><b>111本</b>公開した動画</span></div>
+        <div class="ytstat"><span><em>累計総再生回数</em><b>3,211,599回</b></span><span><em>チャンネル登録者数</em><b>11,200人</b></span></div>
+        <p class="ytasof">2026年8月時点</p>
         <a class="yt-btn" href="lessons.html">動画をもっと見る →</a>
         <a class="yt-sub" href="https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg" target="_blank" rel="noopener">YouTubeチャンネルへ →</a>
       </div>
