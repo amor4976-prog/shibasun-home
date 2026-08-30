@@ -59,12 +59,22 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .sec-h h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,25px);font-weight:500;letter-spacing:.06em;margin-top:8px}
 .sec-h p{font-size:12.5px;color:var(--gray);font-weight:300;margin-top:10px}
 
-.worry{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:640px){.worry{grid-template-columns:1fr 1fr}}
-.wcard{border:1px solid var(--linec);padding:22px 22px 24px}
-.wcard .q{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14.5px;font-weight:500;letter-spacing:.02em;color:var(--ink);margin-bottom:10px;padding-left:24px;position:relative;line-height:1.6}
-.wcard .q::before{content:"“";position:absolute;left:0;top:-2px;font-family:'Jost',sans-serif;font-size:22px;color:#c9c9c7;line-height:1}
+/* 不安カード。文字だけだと読まれないので写真を上に置く（2026-08-30 専務指摘） */
+.worry{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:700px){.worry{grid-template-columns:repeat(3,1fr)}}
+.wcard{border:1px solid var(--linec);background:#fff;overflow:hidden;display:flex;flex-direction:column}
+.wcard img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#ededeb}
+@media(min-width:700px){.wcard img{aspect-ratio:4/3}}
+.wcard .in{padding:20px 20px 22px}
+.wcard .q{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14.5px;font-weight:500;letter-spacing:.02em;color:var(--ink);margin-bottom:9px;line-height:1.6}
 .wcard p{font-size:12.5px;font-weight:300;color:#353533;line-height:1.95}
+
+/* 見てみる（回遊）。文字を足さずに写真だけで next を出す */
+.seemore{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.seemore a{display:block;border:1px solid var(--linec);background:#fff;overflow:hidden}
+.seemore img{width:100%;aspect-ratio:3/2;object-fit:cover;background:#ededeb;transition:.4s}
+.seemore a:hover img{opacity:.82}
+.seemore span{display:block;padding:13px 8px;white-space:nowrap;text-align:center;font-family:'Zen Kaku Gothic New',sans-serif;font-size:12.5px;font-weight:500;letter-spacing:.06em}
 
 .vid{max-width:760px;margin:0 auto}
 .vid .frame{position:relative;width:100%;aspect-ratio:16/9;background:#161614;border:1px solid var(--linec);overflow:hidden}
@@ -85,6 +95,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .s3 p{font-size:12px;font-weight:300;color:#353533;line-height:1.9;margin-bottom:16px}
 .s3 a{margin-top:auto;font-size:12px;letter-spacing:.14em;border:1px solid var(--ink);padding:11px 20px;transition:.3s;width:100%}
 .s3 a.fill{background:var(--ink);color:#fff}
+.telnote{text-align:center;font-size:12px;font-weight:300;color:var(--gray);margin-top:18px;letter-spacing:.04em}
+.telnote a{font-family:'Jost',sans-serif;letter-spacing:.1em;color:var(--ink);border-bottom:1px solid var(--linec)}
 .s3 a:hover{background:var(--ink);color:#fff}
 
 .faq details{border-bottom:1px solid var(--linec)}
@@ -123,7 +135,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="whead">
   <div class="en">For Beginners</div>
   <h1>はじめての家づくりでも、<br>大丈夫。</h1>
-  <p>「何から始めればいいの？」——ほとんどの方が、その一歩から始まります。土地さがしも、お金のことも、いちばん最初から一緒に考えます。奈良の工務店シバ・サンホームが、親子二代で、正直に。</p>
+  <p>「何から始めればいいの？」から、ご一緒します。<br>土地さがしも、お金のことも、いちばん最初から。</p>
   <div class="assure">
     <span>土地さがしから</span>
     <span>予算が未定でもOK</span>
@@ -140,12 +152,77 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <section class="sec">
     <div class="sec-h"><div class="en">Your Worries</div><h2>その不安、すべて解けます。</h2><p>はじめての方から、よくうかがう声です。</p></div>
     <div class="worry">
-      <div class="wcard"><div class="q">何から始めればいいか、わからない</div><p>「家を建てようかな」で十分です。まず一度お会いして、今の状況をうかがう所から。むずかしい順番は、こちらでご案内します。</p></div>
-      <div class="wcard"><div class="q">土地を持っていない</div><p>地元ネットワークで、土地さがしからお手伝いします。建物とのトータル予算で選べるのが、工務店の強みです。</p></div>
-      <div class="wcard"><div class="q">お金・予算が不安</div><p>「いくらの家が建てられる？」を、無理のない月々の返済額から一緒に整理します。予算が決まっていなくて大丈夫です。</p></div>
-      <div class="wcard"><div class="q">性能や専門用語が難しい</div><p>耐震・断熱・気密…むずかしい言葉は使わず、「だから暮らしがどう良いか」で、分かりやすくご説明します。</p></div>
-      <div class="wcard"><div class="q">しつこい営業が怖い</div><p>派手な広告も、追いかける営業もしません。ご自身のペースでどうぞ。それが、私たちのやり方です。</p></div>
-      <div class="wcard"><div class="q">まだ見学・情報集めだけ</div><p>もちろん歓迎です。建てると決めていなくて大丈夫。実例や動画を見るだけでも、暮らしのイメージが近づきます。</p></div>
+      <div class="wcard">
+        <img src="img/life/03.jpg" alt="ダイニングで打ち合わせをする様子" loading="lazy">
+        <div class="in">
+          <div class="q">何から始めればいいか、わからない</div>
+          <p>「家を建てようかな」の段階で大丈夫です。今の状況をうかがって、進む順番はこちらでご案内します。</p>
+        </div>
+      </div>
+      <div class="wcard">
+        <img src="img/life/05.jpg" alt="家の前で過ごす家族" loading="lazy">
+        <div class="in">
+          <div class="q">土地が、まだ決まっていない</div>
+          <p>土地さがしからお手伝いします。建物と合わせた総額で選べるのが、工務店の強みです。</p>
+        </div>
+      </div>
+      <div class="wcard">
+        <img src="img/jisseki/case01/01.jpg" alt="シバ・サンホームが建てた住まいの外観" loading="lazy">
+        <div class="in">
+          <div class="q">お金のことが、いちばん不安</div>
+          <p>本体価格2,095万円〜（税込・延床30坪）。無理のない月々の返済額から整理します。諸費用・外構・土地は別途です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- はじめの一歩 -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">First Step</div><h2>はじめの一歩は、3つだけ。</h2><p>どれも無料です。気軽なものから順に並べています。</p></div>
+    <div class="steps3">
+      <div class="s3"><div class="n">1</div><h3>LINEで聞く</h3><p>「まだ何も決まっていません」の一言で大丈夫です。ご都合のいい時間にどうぞ。</p><a class="fill" href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEで聞く</a></div>
+      <div class="s3"><div class="n">2</div><h3>資料を見る</h3><p>価格・実例・性能の資料を、まずは手元で。ご自分のペースで読めます。</p><a href="catalog.html">カタログ資料請求</a></div>
+      <div class="s3"><div class="n">3</div><h3>来店を予約する</h3><p>土地・お金・間取りまで、お一組ずつ個別に。オンラインでのご相談もできます。</p><a href="reserve.html">来店を予約する</a></div>
+    </div>
+    <p class="telnote">お電話でも承ります　<a href="tel:0120154483">0120-154-483</a>（9:00-18:00／水曜定休）</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec faq">
+    <div class="sec-h"><div class="en">FAQ</div><h2>はじめての、よくある質問</h2></div>
+    <details>
+      <summary>本当にまだ何も決まっていませんが、行っていいですか？</summary>
+      <div class="ans">もちろんです。「家を建てようかな」と思った段階で大丈夫。土地さがしや資金計画といった、いちばん最初のことから一緒に考えます。費用はかかりません。</div>
+    </details>
+    <details>
+      <summary>予算が少なくても建てられますか？</summary>
+      <div class="ans">まず、無理のない月々の返済額から整理します。土地代・諸費用も含めた総額で考えるので、後から大きく増えない進め方です。ご予算に合わせたご提案をします。</div>
+    </details>
+    <details>
+      <summary>話を聞いたら、しつこく営業されませんか？</summary>
+      <div class="ans">一切いたしません。派手な広告も、追いかける営業もしないのが私たちの方針です。ご自身のペースで、じっくりご検討ください。</div>
+    </details>
+    <details>
+      <summary>性能の話が難しくて、ついていけるか心配です。</summary>
+      <div class="ans">耐震・断熱・気密といった言葉は使わずに、「だから暮らしがどう変わるか」でご説明します。数値そのものは<a href="spec.html" style="color:var(--ink);border-bottom:1px solid var(--linec)">性能のページ</a>にすべて出しています。</div>
+    </details>
+    <details>
+      <summary>まだ見学や情報集めの段階でも行っていいですか？</summary>
+      <div class="ans">はい。建てると決めていなくて大丈夫です。実例や資料をご覧いただくだけでも、暮らしのイメージが近づきます。</div>
+    </details>
+    <details>
+      <summary>家づくりは、完成までどのくらいかかりますか？</summary>
+      <div class="ans">最初のお打ち合わせからお引き渡しまで、目安としておよそ8〜12ヶ月です。土地さがしから始める場合や、プランの内容によって前後します。<a href="flow.html" style="color:var(--ink);border-bottom:1px solid var(--linec)">家づくりの進め方</a>もご覧ください。</div>
+    </details>
+  </section>
+
+  <!-- 見てみる -->
+  <section class="sec">
+    <div class="sec-h"><div class="en">Look</div><h2>まずは、見てみる。</h2></div>
+    <div class="seemore">
+      <a href="jisseki.html"><img src="img/jisseki/c01_gaikan.jpg" alt="建築実例" loading="lazy"><span>建築実例</span></a>
+      <a href="kengaku.html"><img src="img/promise/06.jpg" alt="OB様邸の見学" loading="lazy"><span>OB様邸見学</span></a>
+      <a href="products.html"><img src="img/work-open.jpg" alt="価格とプラン" loading="lazy"><span>価格とプラン</span></a>
     </div>
   </section>
 
@@ -165,37 +242,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- はじめの一歩 -->
-  <section class="sec">
-    <div class="sec-h"><div class="en">First Step</div><h2>はじめの一歩は、3つだけ。</h2><p>どれも無料です。ご自身に合うものからどうぞ。</p></div>
-    <div class="steps3">
-      <div class="s3"><div class="n">1</div><h3>来店を予約する</h3><p>土地・お金・間取りまで、お一組ずつ個別に。来店もオンラインもOKです。</p><a class="fill" href="reserve.html">来店を予約する</a></div>
-      <div class="s3"><div class="n">2</div><h3>電話で聞く</h3><p>「まだ何も決まってないけど…」の一本で大丈夫。受付9:00-18:00／水曜定休。</p><a href="tel:0120154483">0120-154-483</a></div>
-      <div class="s3"><div class="n">3</div><h3>資料を見る</h3><p>価格・実例・性能の資料を、まずは手元で。気軽に集めたい方に。</p><a href="catalog.html">カタログ資料請求</a></div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="sec faq">
-    <div class="sec-h"><div class="en">FAQ</div><h2>はじめての、よくある質問</h2></div>
-    <details>
-      <summary>本当にまだ何も決まっていませんが、行っていいですか？</summary>
-      <div class="ans">もちろんです。「家を建てようかな」と思った段階で大丈夫。土地さがしや資金計画といった、いちばん最初のことから一緒に考えます。費用はかかりません。</div>
-    </details>
-    <details>
-      <summary>予算が少なくても建てられますか？</summary>
-      <div class="ans">まず、無理のない月々の返済額から整理します。土地代・諸費用も含めた総額で考えるので、後から大きく増えない進め方です。ご予算に合わせたご提案をします。</div>
-    </details>
-    <details>
-      <summary>話を聞いたら、しつこく営業されませんか？</summary>
-      <div class="ans">一切いたしません。派手な広告も、追いかける営業もしないのが私たちの方針です。ご自身のペースで、じっくりご検討ください。</div>
-    </details>
-    <details>
-      <summary>家づくりは、完成までどのくらいかかりますか？</summary>
-      <div class="ans">最初のお打ち合わせからお引き渡しまで、目安としておよそ8〜12ヶ月です。土地さがしから始める場合や、プランの内容によって前後します。<a href="flow.html" style="color:var(--ink);border-bottom:1px solid var(--linec)">家づくりの進め方</a>もご覧ください。</div>
-    </details>
   </section>
 
 </div>
@@ -229,6 +275,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 {"@type":"Question","name":"完成までどのくらいかかりますか？","acceptedAnswer":{"@type":"Answer","text":"最初のお打ち合わせからお引き渡しまで、目安としておよそ8〜12ヶ月です。土地さがしやプラン内容により前後します。"}}
 ]}
 </script>
-<script src="site.js?v=20260816a" defer></script>
+<script src="site.js?v=20260830a" defer></script>
 </body>
 </html>

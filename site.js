@@ -47,6 +47,9 @@ const NAV_CV = [
   const css = `
   /* 日本語の改行（全ページ共通） */
   /* ① 禁則：行頭に「、。ー っ ）」」が来ないようにする */
+  /* ⓪ iPhoneの自動文字拡大を止める。これが無いと実機だけ文字が1.8倍になり
+     「まじめにつ／くる品質。」のような語中改行が起きる（2026-08-30 専務がiPhone7で発見） */
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   body{line-break:strict;overflow-wrap:break-word}
   h1,h2,h3,h4,p,li,dt,dd,figcaption,span{line-break:strict}
   /* ② 語の途中で改行しない（「無料。し／つこい営業」を防ぐ）
@@ -116,7 +119,7 @@ const NAV_CV = [
     'お問い合わせ','立ち上がり','マーク付き','部屋どうし','ひと続き','わがまま','おおよそ','しがちな',
     '自由度','見た目','落として','落とさず','落とし','を通じて','として','という','により','による',
     '明るさ','ぜひ','部屋','にくく','によって','間に合わ',
-    '日当たり','ようへき','にとって','なければ','ふさがって','詰まって','はらみ','水抜き穴'];
+    '土地さがし','日当たり','ようへき','にとって','なければ','ふさがって','詰まって','はらみ','水抜き穴'];
   (function nobreak(){
     const re = new RegExp('(' + NOBREAK.sort((a,b)=>b.length-a.length).join('|') + ')', 'g');
     const skip = 'script,style,textarea,code,pre,title,.nb';

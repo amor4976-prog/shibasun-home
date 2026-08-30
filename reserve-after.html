@@ -48,6 +48,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;border:1px solid var(--linec);background:#fff;transition:all .2s}
 .date-chip .d{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;line-height:1.3}
 .date-chip .w{font-size:10px;color:var(--gray);letter-spacing:.1em}
+.date-chip.nofree{opacity:.45}
 .date-chip.on{background:var(--ink);border-color:var(--ink)}
 .date-chip.on .d,.date-chip.on .w{color:#fff}
 .slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
@@ -151,12 +152,15 @@ function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-
 function rsvRender(){
   const dates=[...new Set(rsvSlots.map(s=>s.date))];
   if(!dates.length){rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
-  if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates[0];
+  // 空きのある日を最初に出す。満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる
+  // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
+  const rsvOpenDates=new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date));
+  if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates.find(d=>rsvOpenDates.has(d))||dates[0];
   const daySlots=rsvSlots.filter(s=>s.date===rsvDate);
   if(rsvSlot&&!daySlots.some(s=>s.id===rsvSlot))rsvSlot=null;
   rsvApp.innerHTML=`
     <div class="rsv-step-label">1. 日付を選ぶ</div>
-    <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}</div></button>`}).join('')}</div>
+    <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}${rsvOpenDates.has(d)?'':' nofree'}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}${rsvOpenDates.has(d)?'':' 満'}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
     <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
     <form id="rsv-form">
@@ -197,6 +201,6 @@ async function rsvLoad(){
 }
 rsvLoad();setInterval(rsvLoad,60000);
 </script>
-<script src="site.js?v=20260816a" defer></script>
+<script src="site.js?v=20260830a" defer></script>
 </body>
 </html>
