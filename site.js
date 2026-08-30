@@ -124,7 +124,11 @@ const NAV_CV = [
   .tlink:hover{background:#efeeeb}
   .plink{color:#fff;font-weight:500;letter-spacing:.06em;border-bottom:1.5px solid rgba(255,255,255,.92);
     padding-bottom:3px;text-shadow:0 1px 10px rgba(0,0,0,.5),0 0 24px rgba(0,0,0,.3)}
-  .nb{display:inline!important;white-space:nowrap}
+  /* .nb はページ側の span への装飾（枠・背景）を絶対に拾わない。
+     拾うと「土地さがし」だけ二重の枠に見える（2026-08-30 /flow で発生） */
+  .nb{display:inline!important;white-space:nowrap;border:0!important;background:none!important;
+    padding:0!important;margin:0!important;border-radius:0!important;box-shadow:none!important;
+    color:inherit!important;font:inherit!important;letter-spacing:inherit!important}
   .no,.rank{white-space:nowrap}`;
   const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
