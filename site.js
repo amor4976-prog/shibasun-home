@@ -90,6 +90,14 @@ const NAV_CV = [
   .nav-tel small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:10px;letter-spacing:.16em;color:#9b978f;margin-top:4px}
   .logo-img{height:30px;width:auto;display:block}
   .fixed-cta.three{grid-template-columns:repeat(3,1fr)!important}
+  /* 資料請求を下の固定バーに入れる。いちばん軽い申し込みなのに月29回しか
+     ページに届いていなかった（2026-08-30） */
+  .fixed-cta.four{grid-template-columns:repeat(4,1fr)!important}
+  .fixed-cta.four a{font-size:11.5px!important;letter-spacing:.04em!important;padding:0 2px}
+  .fixed-cta.four .fc-line{gap:3px}
+  .fixed-cta .fc-doc{display:flex;align-items:center;justify-content:center;background:#fff;color:var(--ink,#1a1a1a);
+    font-family:'Noto Sans JP',sans-serif;text-decoration:none;border-right:1px solid var(--linec,#e8e8e6)}
+  .fixed-cta .fc-doc:hover{background:#fafaf8}
   .fixed-cta .fc-line{display:flex;align-items:center;justify-content:center;gap:5px;background:#fff;color:var(--ink,#1a1a1a);font-family:'Noto Sans JP',sans-serif;font-size:12px;letter-spacing:.14em;text-decoration:none;border-right:1px solid var(--linec,#e8e8e6)}
   .fixed-cta .fc-line .lw{font-family:'Jost',sans-serif;font-weight:600;letter-spacing:.04em;font-size:13px;color:#06c755}
   .fixed-cta .fc-line:hover{background:#fafaf8}
@@ -227,13 +235,26 @@ const NAV_CV = [
       return a;
     };
     if (bar) {
-      // 下の固定バーを「電話｜LINE｜来店予約」の3分割にする（写真の上に浮かせない）
+      // 下の固定バーを「電話｜LINE｜資料請求｜来店予約」にする（写真の上に浮かせない）
       if (!bar.querySelector('.fc-line')) {
-        bar.classList.add('three');
         const tel = bar.querySelector('.fc-tel');
         const line = mkLine('fc-line');
         if (tel && tel.nextSibling) bar.insertBefore(line, tel.nextSibling);
         else bar.appendChild(line);
+
+        // 資料請求は、いちばん気軽な申し込みなのに入口が細かった。
+        // 資料請求ページ自身と、予約・アフターの各ページには足さない。
+        const rsv = bar.querySelector('.fc-reserve');
+        const noDoc = ['catalog.html', 'reserve.html', 'reserve-after.html'];
+        if (rsv && noDoc.indexOf(here) < 0 && !bar.querySelector('.fc-doc')) {
+          const doc = document.createElement('a');
+          doc.className = 'fc-doc'; doc.href = 'catalog.html';
+          doc.textContent = '資料請求';
+          bar.insertBefore(doc, rsv);
+          bar.classList.add('four');
+        } else {
+          bar.classList.add('three');
+        }
       }
     } else {
       document.body.appendChild(mkLine('line-fab'));
