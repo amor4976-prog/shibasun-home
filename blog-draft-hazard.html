@@ -31,6 +31,10 @@
 .budget-rows div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 2px;border-bottom:1px solid #f0f0ee;font-size:13.5px}
 .budget-rows div b{font-weight:500}
 .budget-rows div small{font-size:11.5px;color:var(--gray);font-weight:300;text-align:right}
+@media (max-width:430px){
+  .budget-rows div{flex-direction:column;align-items:flex-start;gap:1px}
+  .budget-rows div small{text-align:left;white-space:normal}
+}
 .steps-fig{display:grid;gap:0}
 .steps-fig .st{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:baseline;padding:14px 2px;border-bottom:1px solid #f0f0ee}
 .steps-fig .st:last-child{border-bottom:none}
@@ -107,8 +111,8 @@
     <div class="steps-fig">
       <div class="st"><span class="no">01</span><span><b>ハザードマップポータルを開く</b><small>国土交通省のサイトです。「重ねるハザードマップ」に土地の住所を入れます。</small></span></div>
       <div class="st"><span class="no">02</span><span><b>洪水と土砂災害を見る</b><small>色が付いていたら、凡例で「何m」なのかまで確認します。</small></span></div>
-      <div class="st"><span class="no">03</span><span><b>土地の成り立ちを見る</b><small>地形分類という項目です。盛土や昔の川筋かどうかが分かります。</small></span></div>
-      <div class="st"><span class="no">04</span><span><b>市町村の地図も見る</b><small>「わがまちハザードマップ」から、その市町村がつくった詳しい地図に行けます。</small></span></div>
+      <div class="st"><span class="no">03</span><span><b>土地の成り立ちを見る</b><small>地形分類という項目です。盛土か、昔の川筋かが分かります。</small></span></div>
+      <div class="st"><span class="no">04</span><span><b>市町村の地図も見る</b><small>「わがまちハザードマップ」から、詳しい地図に行けます。</small></span></div>
       <div class="st"><span class="no">05</span><span><b>現地で高さを見る</b><small>周りの家より低くないか、近くに水路がないか。地図で分からないのはここだけです。</small></span></div>
     </div>
   </div>
@@ -135,7 +139,8 @@
   昔、川が流れていた場所（旧河道）なのか。</p>
 
   <p>ここは、地盤の強さと液状化のしやすさに直結します。<br>
-  つまり、地盤改良にいくらかかるかの話にもつながります。<br>
+  つまり、<br>
+  地盤改良にいくらかかるかの話にもつながります。<br>
   奈良盆地は水田を造成した住宅地が多いので、なおさら見ておく価値があります。</p>
 
   <div class="point">洪水の色が付いていなくても、地形分類で<b>「旧河道」</b>と出ることがあります。<br>
@@ -148,7 +153,8 @@
   ただ、少ないことと、無いことは違います。</p>
 
   <p>川は氾濫します。<br>
-  大和川の水系は、これまで何度も水害の記録があります。<br>
+  大和川の水系は、<br>
+  これまで何度も水害の記録があります。<br>
   県も市町村も、浸水想定区域図を公開しています。</p>
 
   <p>地震もあります。<br>
@@ -200,7 +206,7 @@
     <li>洪水・土砂災害に加えて、「土地の成り立ち」まで見る</li>
     <li>市町村の詳しい地図も見ておく</li>
     <li>最後は現地で、周りとの高さを自分の目で見る</li>
-    <li>色が付いていても、想定が分かれば家の造り方で備えられる</li>
+    <li>色が付いていても、想定が分かれば備えられる</li>
   </ul>
 
   <div class="cta-inline">
