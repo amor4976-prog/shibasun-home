@@ -42,6 +42,11 @@
 .ktbl td:first-child,.ktbl th:first-child{text-align:left;white-space:nowrap;width:1%}
 .ktbl tbody tr:nth-child(odd){background:#fafaf9}
 .ktbl .em{font-weight:500}
+.bar{margin:6px 0 0}
+.bar svg{width:100%;height:auto;display:block}
+.bimg{margin:26px 0}
+.bimg img{width:100%;display:block;border:1px solid var(--linec,#e8e8e6)}
+.bimg figcaption{font-size:11.5px;color:var(--gray,#767674);font-weight:300;margin-top:8px;letter-spacing:.03em}
 @media (max-width:430px){
   .budget-rows div{flex-direction:column;align-items:flex-start;gap:1px}
   .budget-rows div small{text-align:left;white-space:normal}
@@ -92,6 +97,8 @@
   <p class="lead">2026年9月1日、フラット35の金利が発表されました。<br>
   最低金利は<b>3.460％</b>。<br>
   いまの制度になった2017年10月以降で、最も高い水準です。</p>
+
+  <figure class="bimg"><img src="img/jisseki/case02/02.jpg" srcset="img/jisseki/case02/thumb/02.jpg 640w, img/jisseki/case02/02.jpg 1600w" sizes="(max-width:760px) 100vw, 720px" alt="庭に面した大きな窓のあるリビング" loading="lazy"><figcaption>この家を建てるのに、月々いくら払うのか。<br>同じ家でも、借りる月が違えば金額が変わります。</figcaption></figure>
 
   <p>先月は3.290％でした。<br>
   ひと月で0.17％上がっています。</p>
@@ -158,6 +165,31 @@
     </table>
     <div class="budget-total"><span>35年・元利均等・ボーナス払いなしで計算</span></div>
   </div>
+
+
+  <div class="fig">
+    <div class="fh">Graph ／ 当初5年の月々（3,000万円・35年）</div>
+    <div class="bar">
+      <svg viewBox="0 0 640 200" role="img" aria-label="当初5年の月々の比較。引き下げなし123,293円、ZEH水準110,655円、子育てとZEHと長期優良で106,606円">
+        <g font-family="'Zen Kaku Gothic New',sans-serif" font-size="14" fill="#1a1a1a">
+          <text x="0" y="26">引き下げなし</text>
+          <rect x="0" y="36" width="580" height="22" fill="#1a1a1a" opacity="0.28"></rect>
+          <text x="588" y="53" font-size="14" font-weight="500">123,293円</text>
+
+          <text x="0" y="98">ZEH水準</text>
+          <rect x="0" y="108" width="520" height="22" fill="#1a1a1a"></rect>
+          <text x="528" y="125" font-size="14" font-weight="500">110,655円</text>
+
+          <text x="0" y="170">子育て＋ZEH＋長期優良</text>
+          <rect x="0" y="180" width="501" height="22" fill="#1a1a1a"></rect>
+          <text x="509" y="197" font-size="14" font-weight="500">106,606円</text>
+        </g>
+      </svg>
+    </div>
+    <div class="budget-total"><span>棒の長さは月々の返済額。短いほど負担が軽い</span></div>
+  </div>
+
+  <figure class="bimg"><img src="img/blog/samui_dannetsu.jpg" srcset="img/blog/thumb/samui_dannetsu.jpg 640w, img/blog/samui_dannetsu.jpg 1600w" sizes="(max-width:760px) 100vw, 720px" alt="施工中の壁に吹き付けられた断熱材" loading="lazy"><figcaption>壁の中の断熱材。ここが基準を超えると、金利が引き下げられます。<br>見えなくなる部分が、返済額に効いてくるということです。</figcaption></figure>
 
   <p>ZEH水準にするだけで、月12,638円。<br>
   5年で76万円です。</p>
@@ -279,6 +311,8 @@
   <p>今月の金利で月々がいくらになるのか。<br>
   性能を上げると、いくら引けるのか。<br>
   総額に何が入っていて、何が入っていないのか。</p>
+
+  <figure class="bimg"><img src="img/blog/kinri_shiraberu.jpg" srcset="img/blog/thumb/kinri_shiraberu.jpg 640w, img/blog/kinri_shiraberu.jpg 1600w" sizes="(max-width:760px) 100vw, 720px" alt="資料を見ながら話し合う夫婦" loading="lazy"><figcaption>金利も制度も、毎月のように変わります。<br>ご夫婦だけで追いかけるのは大変です。</figcaption></figure>
 
   <p>建てたあと35年、返済は続きます。<br>
   そのあいだずっと付き合う相手として、<br>
