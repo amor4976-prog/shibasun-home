@@ -66,6 +66,14 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .cat-done .mark{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
 .cat-done h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin-bottom:14px}
 .cat-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
+/* 完了画面だけに置く来店予約（フォームの手前には出さない＝別の出口を見せない） */
+.done-next{margin-top:34px;padding-top:26px;border-top:1px solid var(--linec)}
+.done-lead{font-size:13px!important;font-weight:400!important;color:var(--ink)!important;line-height:2.1!important;margin-bottom:18px}
+.done-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:26px;
+  padding:16px 30px;background:var(--ink);color:#fff;font-size:13px;letter-spacing:.14em;
+  font-family:'Zen Kaku Gothic New',sans-serif;font-weight:500;transition:opacity .2s}
+.done-cta:hover{opacity:.82}
+.done-note{margin-top:12px;font-size:11.5px!important;color:var(--gray)!important;line-height:1.9!important}
 footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em}
 footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
 footer a{color:#c2c2c0}footer a:hover{color:#fff}
@@ -159,7 +167,13 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'送信に失敗しました');
     if(window.gtag)window.gtag('event','generate_lead',{method:'catalog'});
-    catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求ありがとうございます</h3><p>担当の柴部より、資料のお届けとご連絡を差し上げます。<br>少々お待ちくださいませ。</p></div>`;
+    catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求ありがとうございます</h3><p>担当の柴部より、資料のお届けとご連絡を差し上げます。<br>少々お待ちくださいませ。</p>`
+      + `<div class="done-next"><p class="done-lead">より詳細にお話を聞きたい方<br>オンライン・ご来店<br>お打合せの予約ができます</p>`
+      + `<a class="done-cta" href="reserve.html" data-go="reserve">日時を選んで予約する（無料）</a>`
+      + `<p class="done-note">所要は約60分です。</p></div></div>`;
+    // 完了画面からの来店予約はGA4で追える（フォームの手前には出さない＝出口を作らない）
+    var dc=catApp.querySelector('.done-cta');
+    if(dc)dc.addEventListener('click',function(){if(window.gtag)window.gtag('event','catalog_done_reserve')});
   }catch(err){
     btn.disabled=false;btn.textContent='無料で資料を請求する';
     alert('送信できませんでした。\nお手数ですが 0120-154-483 までお電話いただくか、時間をおいて再度お試しください。');
