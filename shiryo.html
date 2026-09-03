@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!--
+  資料請求いただいた方に、メールでお送りするページ。
+  検索には出さない（noindex）。フォームを通らずに読まれると資料請求が減るため。
+  中身は PR資料_2026-09/PR資料.pdf と同じ。原価・粗利・競合比較は載せない。
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>シバサンホームのご案内｜奈良の注文住宅</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1a1a1a">
+<meta property="og:title" content="シバサンホームのご案内">
+<meta property="og:description" content="奈良の工務店シバサンホームの、性能・価格・実例のご案内です。">
+<meta property="og:image" content="https://www.shibasun.jp/img/shiryo/p01_cover.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--line:#e8e8e6;--bg:#fbfbfa}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* サイト共通と同じ改行制御（site.js を読まないページなので、ここに同じものを置く）
+   これが無いと「家をつ／くる」「必要になりま／す」のように語の途中で切れる */
+body{line-break:strict;overflow-wrap:break-word}
+h1,h2,h3,h4,p,li,dt,dd,figcaption,span{line-break:strict}
+body,h1,h2,h3,h4,p,li,dt,dd,figcaption,summary,button,td,th,blockquote{word-break:auto-phrase}
+h1,h2,h3,h4{text-wrap:balance}
+p,li,dd,dt,figcaption,td,th,summary{text-wrap:pretty}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#e9e8e6;
+  line-height:1.9;letter-spacing:.04em}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.en{font-family:'Jost',sans-serif;letter-spacing:.26em;text-transform:uppercase}
+.gothic{font-family:'Zen Kaku Gothic New',sans-serif}
+.nb{white-space:nowrap}
+
+/* ── 縦スクロール本体 ─────────────────────── */
+.deck{max-width:560px;margin:0 auto;background:var(--bg)}
+.s{position:relative;padding:44px 26px 46px;border-top:1px solid var(--line)}
+.s:first-child{border-top:0}
+.s.pad0{padding:0;border-top:0}
+
+/* ── 上の目次（ずっと出る） ───────────────── */
+.bar{position:fixed;top:0;left:0;right:0;z-index:30;
+  padding:env(safe-area-inset-top) 0 0;background:rgba(251,251,250,.97);
+  border-bottom:1px solid var(--line);backdrop-filter:saturate(180%) blur(10px)}
+.bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;gap:10px;padding:11px 18px}
+.bar .en{font-size:10.5px;font-weight:500;white-space:nowrap}
+.bar nav{display:flex;gap:3px}
+.bar a{font-size:11px;font-weight:400;color:var(--gray);padding:5px 8px;white-space:nowrap;
+  font-family:'Zen Kaku Gothic New',sans-serif;letter-spacing:.02em}
+.bar a.on{color:var(--ink);border-bottom:1.5px solid var(--ink)}
+.prog{position:fixed;top:0;left:0;z-index:31;height:2px;background:var(--ink);width:0}
+body{padding-top:calc(44px + env(safe-area-inset-top))}
+.top{padding-top:0}
+
+/* ── 下に置く固定の予約ボタン ─────────────── */
+.fix{position:fixed;left:0;right:0;bottom:0;z-index:32;background:var(--ink);color:#fff;
+  padding:13px 18px calc(13px + env(safe-area-inset-bottom));text-align:center;
+  font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.06em;
+  transform:translateY(100%);transition:transform .32s ease}
+.fix.on{transform:none}
+.fix small{font-weight:300;font-size:10.5px;opacity:.72;letter-spacing:.03em}
+
+/* ── 中身 ─────────────────────────────── */
+.lbl{font-size:10px;font-weight:500;letter-spacing:.3em;color:var(--gray);
+  font-family:'Jost',sans-serif;text-transform:uppercase}
+h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:22px;font-weight:500;
+  line-height:1.65;letter-spacing:.02em;margin:10px 0 18px}
+h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15.5px;font-weight:500;
+  line-height:1.7;margin-bottom:7px}
+p{font-size:13.5px;font-weight:300;line-height:2.05;color:#3a3a38}
+.hr{height:1px;background:var(--line);margin:22px 0}
+.photo{width:calc(100% + 52px);margin-left:-26px;margin-bottom:22px}
+.photo img{width:100%;height:190px;object-fit:cover}
+.item{margin-bottom:20px}
+.item .n{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.24em;color:var(--gray);display:block;margin-bottom:5px}
+.note{font-size:10.5px;line-height:1.85;color:var(--gray);font-weight:300;margin-top:16px}
+
+/* 表紙・裏 */
+.cover{position:relative;color:#fff;height:100dvh;min-height:560px}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.62) 100%)}
+.cover .in{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 30px calc(64px + env(safe-area-inset-bottom))}
+.cover .mk{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.34em;margin-bottom:auto;
+  padding-top:calc(72px + env(safe-area-inset-top))}
+.cover h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:27px;font-weight:500;
+  line-height:1.72;letter-spacing:.03em;margin-bottom:14px}
+.cover .sub{font-size:12.5px;font-weight:300;letter-spacing:.1em;opacity:.92}
+
+/* 数値 */
+.nums{display:flex;gap:10px;margin:4px 0 20px}
+.nums div{flex:1;border:1px solid var(--line);background:#fff;padding:14px 6px;text-align:center}
+.nums b{display:block;font-family:'Jost',sans-serif;font-size:27px;font-weight:400;line-height:1.1}
+.nums span{display:block;font-size:10px;color:var(--gray);margin-top:6px;letter-spacing:.08em}
+
+/* 表 */
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font-size:10px;font-weight:500;color:var(--gray);letter-spacing:.06em}
+td:first-child,th:first-child{text-align:left;width:1%;white-space:nowrap}
+tbody tr:nth-child(odd){background:#f4f4f2}
+td b{font-family:'Jost',sans-serif;font-size:15px;font-weight:400}
+td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-spacing:0}
+
+/* 質問カード */
+.qa{background:#fff;border:1px solid var(--line);padding:18px 18px 16px;margin-top:4px}
+.qa li{list-style:none;font-size:12.5px;font-weight:300;line-height:1.95;padding-left:22px;position:relative;margin-bottom:11px}
+.qa li:last-child{margin-bottom:0}
+.qa li i{position:absolute;left:0;top:0;font-style:normal;font-family:'Jost',sans-serif;color:var(--gray);font-size:11px}
+
+/* 実例 */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:20px}
+.grid figure{position:relative}
+.grid img{width:100%;height:104px;object-fit:cover}
+.grid figcaption{position:absolute;left:7px;bottom:6px;color:#fff;font-family:'Jost',sans-serif;
+  font-size:9.5px;letter-spacing:.2em;text-shadow:0 1px 5px rgba(0,0,0,.65)}
+
+/* 点検 */
+.chk{display:flex;gap:5px;margin:8px 0 16px}
+.chk div{flex:1;border:1px solid var(--line);background:#fff;padding:9px 2px;text-align:center;font-size:9.5px;color:var(--gray);letter-spacing:0}
+.chk b{display:block;font-family:'Jost',sans-serif;font-size:15px;color:var(--ink);font-weight:400}
+.hoshou li{list-style:none;font-size:12px;font-weight:300;padding:8px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:10px}
+.hoshou li span:last-child{white-space:nowrap;color:var(--gray)}
+
+/* 最後 */
+.cta{display:block;text-align:center;padding:15px;margin-bottom:9px;font-size:13.5px;font-weight:500;
+  font-family:'Zen Kaku Gothic New',sans-serif;letter-spacing:.06em}
+.cta.main{background:var(--ink);color:#fff}
+.cta.sub{border:1px solid var(--ink)}
+.cta.line{border:1px solid #06c755;color:#06c755}
+.cta small{display:block;font-size:10px;font-weight:300;letter-spacing:.04em;margin-top:3px;opacity:.72}
+.sign{font-size:11px;line-height:1.95;color:var(--gray);font-weight:300;margin-top:22px;text-align:center}
+
+/* 下へ、の合図 */
+.hint{position:absolute;right:26px;bottom:calc(26px + env(safe-area-inset-bottom));z-index:20;
+  color:#fff;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.26em;display:flex;align-items:center;gap:8px}
+.hint{flex-direction:column;right:50%;transform:translateX(50%);gap:9px}
+.hint em{font-style:normal;width:1px;height:26px;background:#fff;display:block;animation:sw 1.9s ease-in-out infinite}
+@keyframes sw{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(7px);opacity:1}}
+
+
+/* ── 予約フォーム（reserve.html と同じ見た目） ── */
+.rsv-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:var(--gray);margin-top:14px}
+.rsv-after{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.9;margin-top:12px}
+.rsv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7da06f;animation:pulse 2s infinite}
+.reserve-box{border:1px solid var(--linec);padding:30px 20px}
+.rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
+.date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;border:1px solid var(--linec);background:#fff;transition:all .2s}
+.date-chip .d{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;line-height:1.3}
+.date-chip .w{font-size:10px;color:var(--gray);letter-spacing:.1em}
+.date-chip.nofree{opacity:.45}
+.date-chip.on{background:var(--ink);border-color:var(--ink)}
+.date-chip.on .d,.date-chip.on .w{color:#fff}
+.slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+.slot-grid{grid-template-columns:repeat(3,1fr)}
+.slot-btn{padding:13px 6px;text-align:center;border:1px solid var(--linec);background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
+.slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-btn.full{color:var(--gray);background:var(--pale);cursor:default;pointer-events:none}
+.slot-btn.full small{color:var(--gray)}
+.slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slot-btn.on small{color:#d8c49a}
+.rsv-field{margin-top:22px}
+.rsv-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
+.rsv-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
+.rsv-field input,.rsv-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
+.rsv-field input:focus,.rsv-field textarea:focus{outline:none;border-color:var(--ink)}
+.topic-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tchip{border:1px solid var(--linec);background:#fff;color:#454543;font-family:inherit;font-size:12.5px;letter-spacing:.04em;padding:9px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.tchip:hover{border-color:var(--gold)}
+.tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rsv-submit{width:100%;margin-top:28px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.rsv-submit:disabled{opacity:.4;cursor:default}
+.rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
+.rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
+.rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
+.rsv-done{text-align:center;padding:36px 10px}
+.rsv-done .mark{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
+.rsv-done h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin-bottom:14px}
+.rsv-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
+.reserve-box{border:1px solid var(--line);background:#fff;padding:22px 18px}
+.alt{margin-top:22px}
+@media (min-width:760px){body{background:#eceae7}.deck{box-shadow:0 1px 40px rgba(0,0,0,.07)}}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+<div class="bar" id="bar"><div class="in">
+  <span class="en">Shiba Sun Home</span>
+  <nav><a href="#spec">性能</a><a href="#price">価格</a><a href="#works">実例</a><a href="#contact">予約</a></nav>
+</div></div>
+
+<div class="deck" id="deck">
+
+  <!-- 01 表紙 -->
+  <section class="s pad0 cover top" data-dark>
+    <img src="img/shiryo/p01_cover.jpg" alt="奈良で建てた家の外観">
+    <div class="veil"></div>
+    <div class="in">
+      <div class="mk">SHIBA SUN HOME</div>
+      <h1>いい家で、いい毎日を。<br>確かな品質を、<span class="nb">正直な価格で。</span></h1>
+      <div class="sub">奈良の注文住宅　シバサンホーム</div>
+    </div>
+    <div class="hint"><em></em>SCROLL</div>
+  </section>
+
+  <!-- 02 私たちについて -->
+  <section class="s">
+    <div class="photo"><img src="img/shiryo/p02_about.jpg" alt="打合せのテーブル"></div>
+    <span class="lbl">About us</span>
+    <h2>大工が始めた工務店です。</h2>
+    <p>シバサンホームは、大工が始めた工務店です。家をつくる側から始まった会社です。</p>
+    <p style="margin-top:14px">モットーは、いい家で、いい毎日を。いい家とは、家族がいい毎日を暮らせる家のこと。どれだけ立派で高性能な家でも、家計を圧迫して窮屈になるなら、いい家とは呼べません。</p>
+    <p style="margin-top:14px">安心して暮らせる確かな性能。地元の職人がつくる品質。それを、正直な価格で。</p>
+    <div class="hr"></div>
+    <ul class="hoshou">
+      <li><span>創業</span><span>1969年（前身：大工工事業）</span></li>
+      <li><span>設立</span><span>2006年12月28日</span></li>
+      <li><span>施工実績</span><span>570棟以上</span></li>
+      <li><span>所在地</span><span>奈良県奈良市北之庄町41-1</span></li>
+    </ul>
+  </section>
+
+  <!-- 03 理由 01-02 -->
+  <section class="s">
+    <div class="photo"><img src="img/shiryo/p03_r01.jpg" alt="カウンターに並んで座る子どもたち"></div>
+    <span class="lbl">Reasons</span>
+    <h2>選ばれる理由</h2>
+    <div class="item"><span class="n">01</span><h3>とことん、親身に。</h3>
+      <p>叶えたいことも、迷っていることも、ぜんぶ話してください。ひとつずつ、一緒に答えを見つけます。家族に寄り添って家づくりを全力でサポートします。</p></div>
+    <div class="item"><span class="n">02</span><h3>自分たちらしい家を、自由に。</h3>
+      <p>「こんな暮らしがしたい」を、カタチにできる自由設計。性能とコストのバランスを考えぬいた標準仕様。家族にとって、ベストな家づくりが叶います。</p></div>
+  </section>
+
+  <!-- 04 理由 03-04 -->
+  <section class="s">
+    <div class="photo"><img src="img/shiryo/p04_r04.jpg" alt="明るいリビング"></div>
+    <span class="lbl">Reasons</span>
+    <h2>選ばれる理由</h2>
+    <div class="item"><span class="n">03</span><h3>一年中、心地いい。</h3>
+      <p>夏は涼しく、冬はあたたかい。高い断熱性能で、少ない冷暖房でも一年中快適。だから光熱費もグッと抑えられます。性能のよさは、これからの家計をずっと守ってくれます。</p></div>
+    <div class="item"><span class="n">04</span><h3>暮らしを、圧迫しない。</h3>
+      <p>どんなに立派な家でも、ローンで日々の暮らしが窮屈になっては、いい家とは言えません。私たちは建てる前に、その先の家計まで見すえた計画を一緒に考えます。家を建てたあとにこそ、家族の思い出を重ねてほしいから。</p></div>
+  </section>
+
+  <!-- 05 理由 05-06 -->
+  <section class="s">
+    <div class="photo"><img src="img/shiryo/p05_r07.jpg" alt="造作の効いた室内"></div>
+    <span class="lbl">Reasons</span>
+    <h2>選ばれる理由</h2>
+    <div class="item"><span class="n">05</span><h3>建てるのは、地元の職人です。</h3>
+      <p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。入るのは、<span class="nb">一業種につき</span>一社だけ。毎回同じ顔ぶれです。</p></div>
+    <div class="item"><span class="n">06</span><h3>いいものを、正直な価格で。</h3>
+      <p>広告を打つより、釘を打つ。派手な展示場も、大量の広告もありません。かけるお金は、宣伝ではなく家そのものに。<br><br>そして、金額は隠しません。家づくりは家の本体価格だけではなく、さまざまな諸経費が必要になります。後で予算が圧迫されないように、家づくりにかかる全てのお金をお伝えします。</p></div>
+  </section>
+
+  <!-- 06 理由 07-08 -->
+  <section class="s">
+    <div class="photo"><img src="img/shiryo/p09_after.jpg" alt="引き渡したあとの住まい"></div>
+    <span class="lbl">Reasons</span>
+    <h2>選ばれる理由</h2>
+    <div class="item"><span class="n">07</span><h3>お引き渡しは、始まりです。</h3>
+      <p>長く安心して住み継げる家を、長期優良住宅の基準でつくります。お引き渡しはゴールではなく、お付き合いの始まり。点検やメンテナンスで、これからの暮らしを地元の<span class="nb">工務店として</span>見守り続けます。</p></div>
+    <div class="item"><span class="n">08</span><h3>建てている間も、ずっと。</h3>
+      <p>現場の写真と、工事の週報が届きます。見に行けない週も、家がどこまで進んだかが分かります。スマホで見られて、専用ページに全部残ります。</p></div>
+  </section>
+
+  <!-- 07 性能 -->
+  <section class="s" id="spec">
+    <div class="photo"><img src="img/shiryo/p06_spec.jpg" alt="吹き抜けのある居間"></div>
+    <span class="lbl">Performance</span>
+    <h2>夏は涼しく、冬あたたか。</h2>
+    <div class="nums">
+      <div><b>6</b><span>断熱等級</span></div>
+      <div><b>0.4</b><span>UA値</span></div>
+      <div><b>0.2</b><span>C値</span></div>
+    </div>
+    <p>壁も屋根も吹付ウレタンでびっしり断熱（断熱等級6・HEAT20 G2）。同時にすき間もふさぐので、気密もC値0.2。部屋ごとの温度差が小さく、エアコンにも家計にもやさしい。</p>
+    <p style="margin-top:14px">耐震等級3。全棟で構造計算（許容応力度計算）を行い、一棟ずつ強さを確かめます。長期優良住宅の基準でつくります。</p>
+    <p class="note">※ 数値はNEST・ARCH基準の参考値です。GLAMPは一部仕様が異なります。性能値は<span class="nb">間取りにより</span>変動します。</p>
+  </section>
+
+  <!-- 08 3つの質問 -->
+  <section class="s">
+    <span class="lbl">Check</span>
+    <h2>他社と比べるときに、<br>この3つを聞いてみてください。</h2>
+    <ol class="qa">
+      <li><i>1</i>その耐震等級3は、壁量計算ですか、許容応力度計算ですか。</li>
+      <li><i>2</i>その等級3は、標準ですか、オプションですか。</li>
+      <li><i>3</i>この家のUA値を出してもらえますか。</li>
+    </ol>
+    <p style="margin-top:18px">シバサンホームは、3つともその場でお答えします。</p>
+  </section>
+
+  <!-- 09 価格 -->
+  <section class="s" id="price">
+    <span class="lbl">Price</span>
+    <h2>価格は、隠しません。</h2>
+    <table>
+      <thead><tr><th>シリーズ</th><th>基準</th><th>坪単価</th><th>本体価格</th></tr></thead>
+      <tbody>
+        <tr><td>NEST<small>セミオーダー</small></td><td>30坪・2階</td><td><b>63.5</b>万</td><td><b>1,905</b>万</td></tr>
+        <tr><td>NEST FLAT<small>平屋</small></td><td>24坪</td><td><b>71.5</b>万</td><td><b>1,716</b>万</td></tr>
+        <tr><td>ARCH<small>建築家による自由設計</small></td><td>30坪・2階</td><td><b>75.0</b>万</td><td><b>2,250</b>万</td></tr>
+        <tr><td>ARCH FLAT<small>平屋</small></td><td>24坪</td><td><b>83.0</b>万</td><td><b>1,992</b>万</td></tr>
+        <tr><td>GLAMP</td><td>要相談</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:18px">本体価格は税別です。家づくりは家の本体価格だけではなく、さまざまな諸経費が必要になります。後で予算が圧迫されないように、家づくりにかかる全てのお金をお伝えします。</p>
+    <p class="note">※ 坪単価・本体価格は基準の坪数での目安です。間取り・<span class="nb">仕様により</span>変わります。</p>
+  </section>
+
+  <!-- 10 実例 -->
+  <section class="s" id="works">
+    <span class="lbl">Works</span>
+    <h2>奈良で、建てた家。</h2>
+    <div class="grid">
+      <figure><img src="img/shiryo/p08_a_nest.jpg" alt="NESTの実例"><figcaption>NEST</figcaption></figure>
+      <figure><img src="img/shiryo/p08_b_nest.jpg" alt="NESTの実例"><figcaption>NEST</figcaption></figure>
+      <figure><img src="img/shiryo/p08_c_nest.jpg" alt="NESTの実例"><figcaption>NEST</figcaption></figure>
+      <figure><img src="img/shiryo/p08_d_nest.jpg" alt="NESTの実例"><figcaption>NEST</figcaption></figure>
+      <figure><img src="img/shiryo/p08_f_arch.jpg" alt="ARCHの実例"><figcaption>ARCH</figcaption></figure>
+      <figure><img src="img/shiryo/p08_e_glamp.jpg" alt="GLAMPの実例"><figcaption>GLAMP</figcaption></figure>
+    </div>
+    <div class="item"><h3>NEST</h3><p>セミオーダー。自由度の高いプランから選んで、暮らしに合わせて整える家。</p></div>
+    <div class="item"><h3>ARCH</h3><p>建築家による自由設計。</p></div>
+    <div class="item"><h3>GLAMP</h3><p>遊びをプラスした家。要相談。</p></div>
+    <a class="cta sub" href="https://www.shibasun.jp/jisseki" target="_blank" rel="noopener">実例をもっと見る</a>
+  </section>
+
+  <!-- 11 点検・保証 -->
+  <section class="s">
+    <span class="lbl">After</span>
+    <h2>お引き渡しは、始まりです。</h2>
+    <h3 style="margin-top:4px">定期点検</h3>
+    <div class="chk">
+      <div><b>3</b>ヶ月</div><div><b>6</b>ヶ月</div><div><b>1</b>年</div>
+      <div><b>2</b>年</div><div><b>5</b>年</div><div><b>10</b>年</div>
+    </div>
+    <p>10年目以降も継続して、住まいを見守ります。</p>
+    <div class="hr"></div>
+    <h3>保証</h3>
+    <ul class="hoshou">
+      <li><span>構造</span><span>10年</span></li>
+      <li><span>雨漏り（防水）</span><span>10年</span></li>
+      <li><span>地盤</span><span>20年（5,000万円を上限）</span></li>
+      <li><span>防蟻（シロアリ）</span><span>5年（最長10年）</span></li>
+    </ul>
+  </section>
+
+  <!-- 12 予約（写真） -->
+  <section class="s pad0 cover" style="height:auto;min-height:0" data-dark>
+    <img src="img/shiryo/p10_close.jpg" alt="完成した家" style="position:static;height:300px">
+    <div class="veil"></div>
+    <div class="in" style="position:absolute;inset:0;padding:0 30px 26px">
+      <div class="mk" style="padding-top:0;margin-bottom:auto"></div>
+      <h1 style="font-size:22px;margin-bottom:6px">まずは、<br>話を聞いてみませんか。</h1>
+      <p style="color:rgba(255,255,255,.92);font-size:12.5px">資金計画・土地さがしから、お気軽にどうぞ。</p>
+    </div>
+  </section>
+
+  <!-- 13 予約フォーム -->
+  <section class="s" id="contact" style="border-top:0">
+    <span class="lbl">Reserve</span>
+    <h2>ご来店・オンライン相談のご予約</h2>
+    <p style="margin-bottom:18px">ご相談・資金計画・見学のご予約は、すべて無料です。約60分。遠方の方やお忙しい方は、オンライン相談も承ります。</p>
+    <div class="reserve-box">
+      <div id="rsv-app"><div class="rsv-msg">空き状況を確認しています…</div></div>
+      <div class="rsv-note">所要時間は約60分・お子様連れ歓迎・オンライン相談も可能です</div>
+    </div>
+    <div class="alt">
+      <a class="cta sub" href="tel:0120154483">電話で聞く　0120-154-483<small>9:00-18:00／水曜定休</small></a>
+      <a class="cta line" href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEで聞く</a>
+    </div>
+    <div class="sign">株式会社シバ・サンホーム<br>奈良県奈良市北之庄町41-1<br>shibasun.jp</div>
+  </section>
+
+</div>
+
+<a class="fix" id="fix" href="#contact">来店・オンライン相談のご予約　<small>約60分・無料</small></a>
+
+<script>
+(function(){
+  var bar=document.getElementById('bar'),prog=document.getElementById('prog'),
+      fix=document.getElementById('fix'),links=[].slice.call(bar.querySelectorAll('a')),
+      secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}),
+      hint=document.querySelector('.hint'),marks={},cur=null;
+
+  function paint(){
+    var y=scrollY,h=document.body.scrollHeight-innerHeight,r=h>0?y/h:0;
+    prog.style.width=(r*100)+'%';
+    if(hint)hint.style.opacity=y>40?0:1;
+    fix.classList.toggle('on',y>innerHeight*0.9);
+    // いま画面のまん中にある章に、目次の線をつける
+    var mid=y+innerHeight*0.42,hit=null;
+    secs.forEach(function(el,k){if(el&&el.offsetTop<=mid)hit=k});
+    if(hit!==cur){cur=hit;links.forEach(function(a,k){a.classList.toggle('on',k===hit)})}
+    // どこまで読まれたか
+    [25,50,75,100].forEach(function(p){
+      if(r*100>=p&&!marks[p]){marks[p]=1;if(window.gtag)gtag('event','shiryo_read',{depth:p})}
+    });
+  }
+  var tick=false;
+  addEventListener('scroll',function(){
+    if(tick)return;tick=true;requestAnimationFrame(function(){tick=false;paint()});
+  },{passive:true});
+  addEventListener('resize',paint);paint();
+})();
+</script>
+<script>
+const SHIBAGRAM_API='https://shibagram.onrender.com';
+const rsvApp=document.getElementById('rsv-app');
+let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
+function rsvFallback(){rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
+function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
+function rsvRender(){
+  const dates=[...new Set(rsvSlots.map(s=>s.date))];
+  if(!dates.length){rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
+  // 空きのある日を最初に出す。満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる
+  // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
+  const rsvOpenDates=new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date));
+  if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates.find(d=>rsvOpenDates.has(d))||dates[0];
+  const daySlots=rsvSlots.filter(s=>s.date===rsvDate);
+  if(rsvSlot&&!daySlots.some(s=>s.id===rsvSlot))rsvSlot=null;
+  rsvApp.innerHTML=`
+    <div class="rsv-step-label">1. 日付を選ぶ</div>
+    <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}${rsvOpenDates.has(d)?'':' nofree'}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}${rsvOpenDates.has(d)?'':' 満'}</div></button>`}).join('')}</div>
+    <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
+    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
+    <form id="rsv-form">
+      <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
+      <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
+      <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
+      <div class="rsv-field"><label>ご住所<em>必須</em></label><input name="address" required autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
+      <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
+      <div class="rsv-field"><label>ご相談方法</label>
+        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
+        <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>シバサンホームを何で知りましたか<span style="color:var(--gray);font-size:10px;margin-left:6px">任意・1つ</span></label>
+        <div class="topic-chips known-chips">${['Google検索','AI検索（ChatGPTなど）','インスタグラム','YouTube','知人の紹介','通りがかり（看板・現場）','スーモ','ポスティングチラシ','雑誌','その他'].map(t=>`<button type="button" class="tchip kchip" data-k="${t}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
+      <button class="rsv-submit" type="submit">この日時で予約する</button>
+      <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
+    </form>`;
+  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
+  rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  rsvApp.querySelectorAll('.kchip').forEach(b=>b.addEventListener('click',()=>{const was=b.classList.contains('on');rsvApp.querySelectorAll('.kchip').forEach(x=>x.classList.remove('on'));if(!was)b.classList.add('on')}));
+  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+  document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
+}
+async function rsvSubmit(e){
+  e.preventDefault();const f=e.target;
+  if(!rsvSlot){alert('ご希望の時間を選択してください');return}
+  const btn=f.querySelector('.rsv-submit');btn.disabled=true;btn.textContent='送信中…';
+  const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip):not(.kchip)')].map(c=>c.dataset.t);
+  const knownEl=rsvApp.querySelector('.kchip.on');const known=knownEl?knownEl.dataset.k:undefined;
+  const methodEl=rsvApp.querySelector('.mchip.on');
+  const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
+  const msg=['【入口】資料ページ',`【相談方法】${methodLabel}`,`【ご住所】${f.address.value.trim()}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  try{
+    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(data.error||'予約に失敗しました');
+    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve',source:'shiryo'});const sel=rsvSlots.find(s=>s.id===rsvSlot);const fd=fmtDate(sel.date);
+    rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
+  }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
+}
+function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
+/* 相談会ページ（event.html）から ?slot=◯◯ で来た時、その枠を選んだ状態で開く。
+   枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
+let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
+async function rsvLoad(){
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];
+    if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
+      if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
+    if(!rsvDone&&!rsvFormDirty())rsvRender();}
+  catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
+}
+rsvLoad();setInterval(rsvLoad,60000);
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-REFN8K7K95"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-REFN8K7K95',{page_title:'資料'});</script>
+</body>
+</html>
