@@ -121,6 +121,33 @@ p{font-size:13.5px;font-weight:300;line-height:2.05;color:#3a3a38}
 .nums b{display:block;font-family:'Jost',sans-serif;font-size:27px;font-weight:400;line-height:1.1}
 .nums span{display:block;font-size:10px;color:var(--gray);margin-top:6px;letter-spacing:.08em}
 
+/* 坪数スライダー（products.html と同じ計算） */
+.sim{border:1px solid var(--line);background:#fff;padding:20px 18px}
+.sim .kind{display:flex;gap:8px;margin-bottom:20px}
+.sim .kind button{flex:1;padding:12px 6px;border:1px solid var(--line);background:#fff;
+  font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;color:var(--ink);cursor:pointer;transition:.2s}
+.sim .kind button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sim .tlabel{display:flex;align-items:baseline;justify-content:space-between;
+  font-size:11px;letter-spacing:.1em;color:var(--gray);margin-bottom:9px}
+.sim .tlabel b{font-family:'Jost',sans-serif;font-size:22px;font-weight:400;color:var(--ink);letter-spacing:.04em}
+.sim .tlabel b em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:12px;margin-left:3px}
+.sim input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;
+  background:var(--line);outline:none;margin:0 0 4px}
+.sim input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+  width:28px;height:28px;border-radius:50%;background:var(--ink);cursor:pointer;border:0}
+.sim input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;
+  background:var(--ink);cursor:pointer;border:0}
+.sim .ends{display:flex;justify-content:space-between;font-size:10px;color:var(--gray);
+  font-family:'Jost',sans-serif;letter-spacing:.1em}
+.sim .out{background:#f4f4f2;text-align:center;padding:22px 14px;margin-top:20px}
+.sim .out .cap{font-size:11px;letter-spacing:.12em;color:var(--gray)}
+.sim .out .yen{font-family:'Jost',sans-serif;font-size:44px;font-weight:400;line-height:1.1;margin:6px 0 2px}
+.sim .out .yen em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:16px;margin-left:4px}
+.sim .out .sub{font-size:11px;color:var(--gray)}
+.sim .out .mon{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:12.5px;letter-spacing:.03em}
+.sim .out .mon b{font-family:'Jost',sans-serif;font-size:22px;font-weight:400;margin:0 3px}
+
 /* 表 */
 table{width:100%;border-collapse:collapse;font-size:12px}
 th,td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
@@ -245,7 +272,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
       <a href="#about" data-go="about"><span class="n">01</span><span class="t"><b>私たちについて</b><span>大工が始めた工務店です</span></span><span class="go"></span></a>
       <a href="#reasons" data-go="reasons"><span class="n">02</span><span class="t"><b>選ばれる理由</b><span>8つ</span></span><span class="go"></span></a>
       <a href="#spec" data-go="spec"><span class="n">03</span><span class="t"><b>性能</b><span>断熱等級6・耐震等級3が標準</span></span><span class="go"></span></a>
-      <a href="#price" data-go="price"><span class="n">04</span><span class="t"><b>価格</b><span>坪単価と、30坪の本体価格</span></span><span class="go"></span></a>
+      <a href="#price" data-go="price"><span class="n">04</span><span class="t"><b>価格</b><span>坪数を動かして目安を出す</span></span><span class="go"></span></a>
       <a href="#works" data-go="works"><span class="n">05</span><span class="t"><b>施工事例</b><span>写真で見る</span></span><span class="go"></span></a>
       <a href="#after" data-go="after"><span class="n">06</span><span class="t"><b>お引き渡しのあと</b><span>点検と保証</span></span><span class="go"></span></a>
       <a href="#contact" data-go="contact"><span class="n">07</span><span class="t"><b>ご予約</b><span>ご来店・オンライン相談</span></span><span class="go"></span></a>
@@ -321,9 +348,9 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
     <div class="nums">
       <div><b>6</b><span>断熱等級</span></div>
       <div><b>0.4</b><span>UA値</span></div>
-      <div><b>0.2</b><span>C値</span></div>
+      <div><b>0.5</b><span>C値</span></div>
     </div>
-    <p>壁も屋根も吹付ウレタンでびっしり断熱（断熱等級6・HEAT20 G2）。同時にすき間もふさぐので、気密もC値0.2。部屋ごとの温度差が小さく、エアコンにも家計にもやさしい。</p>
+    <p>壁も屋根も吹付ウレタンでびっしり断熱（断熱等級6・HEAT20 G2）。同時にすき間もふさぐので、気密もC値0.5以下。部屋ごとの温度差が小さく、エアコンにも家計にもやさしい。</p>
     <p style="margin-top:14px">耐震等級3。全棟で構造計算（許容応力度計算）を行い、一棟ずつ強さを確かめます。長期優良住宅の基準でつくります。</p>
     <p class="note">※ 数値はNEST・ARCH基準の参考値です。GLAMPは一部仕様が異なります。性能値は<span class="nb">間取りにより</span>変動します。</p>
   </section>
@@ -332,18 +359,23 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   <section class="s" id="price">
     <span class="lbl">Price</span>
     <h2>価格は、隠しません。</h2>
-    <table>
-      <thead><tr><th>シリーズ</th><th>基準</th><th>坪単価</th><th>本体価格</th></tr></thead>
-      <tbody>
-        <tr><td>NEST<small>セミオーダー</small></td><td>30坪・2階</td><td><b>63.5</b>万</td><td><b>1,905</b>万</td></tr>
-        <tr><td>NEST FLAT<small>平屋</small></td><td>24坪</td><td><b>71.5</b>万</td><td><b>1,716</b>万</td></tr>
-        <tr><td>ARCH<small>建築家による自由設計</small></td><td>30坪・2階</td><td><b>75.0</b>万</td><td><b>2,250</b>万</td></tr>
-        <tr><td>ARCH FLAT<small>平屋</small></td><td>24坪</td><td><b>83.0</b>万</td><td><b>1,992</b>万</td></tr>
-        <tr><td>GLAMP</td><td>要相談</td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:18px">本体価格は税別です。家づくりは家の本体価格だけではなく、さまざまな諸経費が必要になります。後で予算が圧迫されないように、家づくりにかかる全てのお金をお伝えします。</p>
-    <p class="note">※ 坪単価・本体価格は基準の坪数での目安です。間取り・<span class="nb">仕様により</span>変わります。</p>
+    <p style="margin-bottom:18px">坪数を動かすと、本体価格の目安が出ます。セミオーダーのNESTの場合です。</p>
+    <div class="sim">
+      <div class="kind" id="simKind">
+        <button type="button" data-t="2f" class="on">2階建て</button>
+        <button type="button" data-t="flat">平屋</button>
+      </div>
+      <div class="tlabel"><span>延床面積</span><b id="simTsubo">30<em>坪</em></b></div>
+      <input type="range" id="simRange" min="30" max="45" step="1" value="30" aria-label="延床面積（坪）">
+      <div class="ends"><span id="simMin">30</span><span>45</span></div>
+      <div class="out">
+        <div class="cap">本体価格の目安（税込）</div>
+        <div class="yen"><span id="simPrice">2,097</span><em>万円</em></div>
+        <div class="sub">坪単価 <span id="simUnit">69.9</span>万円 × <span id="simT2">30</span>坪</div>
+        <div class="mon">住宅ローンなら、月々 <b id="simMon">5.9</b>万円</div>
+      </div>
+    </div>
+    <p class="note">※ 本体価格の目安です（税込・内装・設備・照明込み）。家づくりは家の本体価格だけではなく、さまざまな諸経費が必要になります。後で予算が圧迫されないように、家づくりにかかる全てのお金をお伝えします。<br>※ 月々は35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。金利・借入額・頭金・土地代により変わります。<br>※ 坪数・仕様により変わります。</p>
   </section>
 
   <!-- 10 施工事例 -->
@@ -359,7 +391,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
       <img src="img/shiryo/works/w06_nest.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
       <img src="img/shiryo/works/w07_nest.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
       <img src="img/shiryo/works/w08_nest.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
-      <img src="img/shiryo/works/w09_arch.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
+      <img src="img/shiryo/works/w09_gaikan.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
       <img src="img/shiryo/works/w10_glamp.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
       <img src="img/shiryo/works/w11_glamp.jpg" alt="奈良で建てた家" loading="lazy" decoding="async">
     </div>
@@ -448,6 +480,34 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
       if(window.gtag)gtag('event','shiryo_jump',{section:a.dataset.go});
     });
   });
+  // 坪数スライダー（products.html と同じ単価・同じ計算）
+  (function(){
+    var TAN={'2f':69.9,'flat':78.7}, MIN={'2f':30,'flat':24}, kind='2f', tsubo=30;
+    var R=0.01/12, N=420, F=R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
+    function calc(){
+      var u=TAN[kind], total=u*tsubo;
+      document.getElementById('simUnit').textContent=u;
+      document.getElementById('simTsubo').innerHTML=tsubo+'<em>坪</em>';
+      document.getElementById('simT2').textContent=tsubo;
+      document.getElementById('simPrice').textContent=Math.round(total).toLocaleString('ja-JP');
+      document.getElementById('simMon').textContent=(total*F).toFixed(1);
+    }
+    document.querySelectorAll('#simKind button').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('#simKind button').forEach(function(x){x.classList.remove('on')});
+        b.classList.add('on'); kind=b.dataset.t;
+        var r=document.getElementById('simRange');
+        r.min=MIN[kind]; document.getElementById('simMin').textContent=MIN[kind];
+        if(tsubo<MIN[kind]){tsubo=MIN[kind];r.value=tsubo}
+        calc();
+        if(window.gtag)gtag('event','shiryo_sim',{kind:kind,tsubo:tsubo});
+      });
+    });
+    var r=document.getElementById('simRange');
+    r.addEventListener('input',function(e){tsubo=+e.target.value;calc()});
+    r.addEventListener('change',function(){if(window.gtag)gtag('event','shiryo_sim',{kind:kind,tsubo:tsubo})});
+    calc();
+  })();
   addEventListener('resize',paint);paint();
 })();
 </script>
