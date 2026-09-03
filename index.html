@@ -457,9 +457,35 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .spec-card h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin:10px 0 22px}
 .spec-card .price{font-family:'Jost',sans-serif;font-size:clamp(36px,9vw,52px);font-weight:300;letter-spacing:.02em}
 .spec-card .price small{font-size:.36em;letter-spacing:.16em;color:var(--gray)}
-.spec-card .price-ex{margin-top:14px;padding-top:14px;border-top:1px solid var(--linec);font-size:12.5px;font-weight:300;color:var(--gray);line-height:2.1}
+.spec-card .price-ex{margin-top:14px;padding-top:14px;border-top:1px solid var(--linec);font-size:11px;font-weight:300;color:var(--gray);line-height:1.85;letter-spacing:.02em}
 .spec-card .price-ex b{font-weight:500;color:var(--ink)}
 .price-two{margin-top:4px}
+/* 坪数スライダー（shiryo.html・products.html と同じ単価・同じ計算） */
+.price-lead{font-size:12.5px;font-weight:300;line-height:2;color:#3a3a38;margin:0 0 16px}
+.tsim{border:1px solid var(--linec);background:#fff;padding:20px 18px}
+.tsim-kind{display:flex;gap:8px;margin-bottom:20px}
+.tsim-kind button{flex:1;padding:12px 6px;border:1px solid #d6d6d3;background:#fff;
+  font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;letter-spacing:.04em;color:var(--ink);cursor:pointer;transition:all .2s}
+.tsim-kind button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tsim-lab{display:flex;align-items:baseline;justify-content:space-between;
+  font-size:11px;letter-spacing:.1em;color:var(--gray);margin-bottom:9px}
+.tsim-lab b{font-family:'Jost',sans-serif;font-size:22px;font-weight:400;color:var(--ink);letter-spacing:.04em}
+.tsim-lab b em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:12px;margin-left:3px}
+.tsim input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;
+  background:#d6d6d3;outline:none;margin:0 0 4px}
+.tsim input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+  width:28px;height:28px;border-radius:50%;background:var(--ink);cursor:pointer;border:0}
+.tsim input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;
+  background:var(--ink);cursor:pointer;border:0}
+.tsim-ends{display:flex;justify-content:space-between;font-size:10px;color:var(--gray);
+  font-family:'Jost',sans-serif;letter-spacing:.1em}
+.tsim-out{background:var(--pale);text-align:center;padding:22px 14px;margin-top:20px}
+.tsim-out .cap{font-size:11px;letter-spacing:.12em;color:var(--gray)}
+.tsim-out .yen{font-family:'Jost',sans-serif;font-size:clamp(34px,8.6vw,46px);font-weight:300;letter-spacing:.02em;line-height:1.25;margin-top:6px}
+.tsim-out .yen em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:.34em;letter-spacing:.14em;margin-left:4px;color:var(--gray)}
+.tsim-out .sub{font-size:11.5px;letter-spacing:.06em;color:var(--gray);margin-top:6px}
+.tsim-out .mon{font-size:12.5px;letter-spacing:.04em;margin-top:12px;padding-top:12px;border-top:1px solid var(--linec)}
+.tsim-out .mon b{font-family:'Jost',sans-serif;font-size:1.5em;font-weight:400;letter-spacing:.02em}
 .pt-row{display:flex;align-items:baseline;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--linec)}
 .pt-row:first-child{border-top:1px solid var(--linec)}
 .pt-t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;letter-spacing:.1em}
@@ -604,8 +630,8 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif;
 }
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
-.slot-btn.full{color:var(--gray);background:var(--pale);cursor:default;pointer-events:none}
-.slot-btn.full small{color:var(--gray)}
+.slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
+.slot-btn.full small{color:#a8a8a6}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .slot-btn.on small{color:#bdbdbb}
 .rsv-field{margin-top:22px}
@@ -1123,18 +1149,31 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       <div class="spec-card fade">
         <div class="jp">価格</div>
         <h3>価格を、かくさない。</h3>
-        <div class="price-two">
-          <div class="pt-row"><span class="pt-t">2階建て<small class="pt-k">本体価格</small></span><span class="pt-v">2,095<small>万円〜</small><small class="pt-tax">税込</small></span></div>
-          <div class="pt-row"><span class="pt-t">平屋<small class="pt-k">本体価格</small></span><span class="pt-v">1,888<small>万円〜</small><small class="pt-tax">税込</small></span></div>
+        <p class="price-lead">坪数を動かすと、本体価格の目安が出ます。セミオーダーのNESTの場合です。</p>
+        <div class="tsim">
+          <div class="tsim-kind" id="tsKind">
+            <button type="button" data-t="2f" class="on">2階建て</button>
+            <button type="button" data-t="flat">平屋</button>
+          </div>
+          <div class="tsim-lab"><span>延床面積</span><b id="tsTsubo">30<em>坪</em></b></div>
+          <input type="range" id="tsRange" min="30" max="45" step="1" value="30" aria-label="延床面積（坪）">
+          <div class="tsim-ends"><span id="tsMin">30</span><span>45</span></div>
+          <div class="tsim-out">
+            <div class="cap">本体価格の目安（税込）</div>
+            <div class="yen"><span id="tsPrice">2,097</span><em>万円</em></div>
+            <div class="sub">坪単価 <span id="tsUnit">69.9</span>万円 × <span id="tsT2">30</span>坪</div>
+            <div class="mon">住宅ローンなら、月々 <b id="tsMon">5.9</b>万円</div>
+          </div>
         </div>
         <div class="price-ex">
-          ※ 上の金額は<b>本体価格</b>です。<b>諸費用・外構・土地は別途</b>かかります。総額の目安も最初にご提示します。<br>
+          ※ 上の金額は<b>本体価格</b>です（税込・内装・設備・照明込み）。<b>諸費用・外構・土地は別途</b>かかります。総額の目安も最初にご提示します。<br>
+          ※ 月々は35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。<br>
           <a class="price-more" href="products.html">価格・プランの詳しい内訳を見る →</a>
         </div>
       </div>
       <div class="spec-card fade">
         <div class="jp">標準仕様</div>
-        <h3>この性能が、標準です。</h3>
+        <h3>安心で快適に暮らせる標準仕様</h3>
         <ul class="spec-list">
           <li><span>耐震</span><span>耐震等級3（全棟・許容応力度計算）</span></li>
           <li><span>断熱</span><span>断熱等級6（HEAT20 G2相当）／UA値 0.4〜0.46</span></li>
@@ -1634,5 +1673,37 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
 });
 </script>
 <script src="site.js?v=20260830f" defer></script>
+<script>
+// 坪数スライダー（shiryo.html・products.html と同じ単価・同じ計算）
+(function(){
+  var r=document.getElementById('tsRange'); if(!r)return;
+  // 掛け算は丸めない単価で（公開している総額と合わせる。69.9は表示用の丸め値で、
+  // それで掛けると30坪が2,097万円になり価格ページの2,095万円とずれる）
+  var TAN={'2f':69.85,'flat':78.7}, SHOW={'2f':69.9,'flat':78.7};
+  var MIN={'2f':30,'flat':24}, kind='2f', tsubo=30;
+  var R=0.01/12, N=420, F=R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
+  function calc(){
+    var u=TAN[kind], total=u*tsubo;
+    document.getElementById('tsUnit').textContent=SHOW[kind];
+    document.getElementById('tsTsubo').innerHTML=tsubo+'<em>坪</em>';
+    document.getElementById('tsT2').textContent=tsubo;
+    document.getElementById('tsPrice').textContent=Math.floor(total).toLocaleString('ja-JP');
+    document.getElementById('tsMon').textContent=(total*F).toFixed(1);
+  }
+  document.querySelectorAll('#tsKind button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('#tsKind button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on'); kind=b.dataset.t;
+      r.min=MIN[kind]; document.getElementById('tsMin').textContent=MIN[kind];
+      if(tsubo<MIN[kind]){tsubo=MIN[kind];r.value=tsubo}
+      calc();
+      if(window.gtag)gtag('event','top_sim',{kind:kind,tsubo:tsubo});
+    });
+  });
+  r.addEventListener('input',function(e){tsubo=+e.target.value;calc()});
+  r.addEventListener('change',function(){if(window.gtag)gtag('event','top_sim',{kind:kind,tsubo:tsubo})});
+  calc();
+})();
+</script>
 </body>
 </html>

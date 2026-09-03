@@ -62,7 +62,7 @@ a{text-decoration:none;color:inherit}
 body{padding-top:calc(44px + env(safe-area-inset-top))}
 .top{padding-top:0}
 /* 上の帯のぶんだけ低くする。これが無いと下の「SCROLL」が画面からはみ出る */
-.cover.top{height:calc(100dvh - 44px - env(safe-area-inset-top));min-height:520px}
+.cover.top{height:auto;aspect-ratio:1200/1250;min-height:0}
 
 /* ── 下に置く固定の予約ボタン ─────────────── */
 .fix{position:fixed;left:0;right:0;bottom:0;z-index:32;background:var(--ink);color:#fff;
@@ -106,14 +106,27 @@ p{font-size:13.5px;font-weight:300;line-height:2.05;color:#3a3a38}
 .cover{position:relative;color:#fff;height:100dvh;min-height:560px}
 .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.62) 100%)}
-.cover.top .veil{background:linear-gradient(180deg,rgba(0,0,0,.46) 0%,rgba(0,0,0,.24) 46%,rgba(0,0,0,.30) 100%)}
+.cover.top .veil{background:linear-gradient(180deg,rgba(0,0,0,.26) 0%,rgba(0,0,0,.10) 46%,rgba(0,0,0,.20) 100%)}
+
 .cover .in{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
   padding:0 30px calc(64px + env(safe-area-inset-bottom))}
 .cover .mk{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.34em;margin-bottom:auto;
   padding-top:calc(72px + env(safe-area-inset-top))}
 .cover h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:27px;font-weight:500;
   line-height:1.72;letter-spacing:.03em;margin-bottom:14px}
+/* 表紙だけ：主役は「5分でわかる、シバサンホーム」。キャッチは添え書きにする */
+.cover.top .in{display:block;padding:calc(20px + env(safe-area-inset-top)) 30px 0}
+.cover.top h1{font-size:15px;font-weight:400;line-height:1.9;letter-spacing:.04em;
+  margin-bottom:14px;opacity:.88}
+/* 主役は白い枠で囲む */
+.cover.top .subbox{border:2px solid #fff;padding:20px 12px;text-align:center}
+.cover.top .sub{font-family:'Zen Kaku Gothic New',sans-serif;font-size:19px;font-weight:600;
+  letter-spacing:.01em;opacity:1;line-height:1.5}
 .cover .sub{font-size:12.5px;font-weight:300;letter-spacing:.1em;opacity:.92}
+
+/* ごあいさつの専務の写真 */
+.me{float:right;width:42%;margin:2px 0 10px 16px}
+.me img{width:100%;height:auto;display:block}
 
 /* 数値 */
 .nums{display:flex;gap:10px;margin:4px 0 20px}
@@ -213,8 +226,8 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
 .slot-grid{grid-template-columns:repeat(3,1fr)}
 .slot-btn{padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
-.slot-btn.full{color:var(--gray);background:var(--pale);cursor:default;pointer-events:none}
-.slot-btn.full small{color:var(--gray)}
+.slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
+.slot-btn.full small{color:#a8a8a6}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .slot-btn.on small{color:#d8c49a}
 .rsv-field{margin-top:22px}
@@ -254,10 +267,11 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   <section class="s pad0 cover top" data-dark>
     <img src="img/shiryo/p01_cover.jpg" alt="青空と、奈良で建てた家の外観">
     <div class="veil"></div>
-    <div class="in" style="justify-content:flex-start;padding-top:calc(72px + env(safe-area-inset-top))">
-      <div class="mk" style="padding-top:0;margin-bottom:22px">SHIBA SUN HOME</div>
+    <div class="in">
       <h1>いい家で、いい毎日を。<br>確かな品質を、<span class="nb">正直な価格で。</span></h1>
-      <div class="sub">5分でわかる、シバサンホーム</div>
+      <div class="subbox">
+        <div class="sub">5分でわかるシバサンホーム紹介</div>
+      </div>
     </div>
     <div class="hint"><em></em>SCROLL</div>
   </section>
@@ -265,7 +279,8 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   <!-- 02 はじめに -->
   <section class="s">
     <span class="lbl">Introduction</span>
-    <h2>5分でわかる、<br>シバサンホーム。</h2>
+    <h2>ごあいさつ</h2>
+    <div class="me"><img src="img/shiryo/p02_senmu.jpg" alt="専務取締役 柴部文嘉"></div>
     <p>弊社にご興味を持っていただき、<span class="nb">ありがとうございます。</span>専務取締役の柴部です。</p>
     <p style="margin-top:14px">このページに、シバサンホームのことを5分で分かるようにまとめました。下から選ぶと、その章へ進みます。</p>
     <div class="toc">
