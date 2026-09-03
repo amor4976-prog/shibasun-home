@@ -21,7 +21,8 @@
 <style>
 :root{--ink:#1a1a1a;--gray:#767674;--line:#e8e8e6;--bg:#fbfbfa}
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+.s[id]{scroll-margin-top:46px}
 /* サイト共通と同じ改行制御（site.js を読まないページなので、ここに同じものを置く）
    これが無いと「家をつ／くる」「必要になりま／す」のように語の途中で切れる */
 body{line-break:strict;overflow-wrap:break-word}
@@ -79,12 +80,21 @@ p{font-size:13.5px;font-weight:300;line-height:2.05;color:#3a3a38}
 .photo img{width:100%;height:190px;object-fit:cover}
 .item{margin-bottom:20px}
 .item .n{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.24em;color:var(--gray);display:block;margin-bottom:5px}
-.toc{border-top:1px solid var(--line);margin-top:20px}
-.toc li{list-style:none;border-bottom:1px solid var(--line);padding:12px 2px;display:flex;
-  align-items:baseline;gap:10px;font-size:13px;font-weight:400;
-  font-family:'Zen Kaku Gothic New',sans-serif}
-.toc li b{font-weight:500;white-space:nowrap}
-.toc li span{font-size:11.5px;font-weight:300;color:var(--gray);letter-spacing:.02em}
+/* 目次のボタン。写真は入れない（並べると安く見える）。字と余白だけで押せると分かる形に */
+.toc{margin-top:22px;display:flex;flex-direction:column;gap:7px}
+.toc a{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);
+  padding:15px 16px 15px 15px;position:relative;transition:border-color .2s,transform .12s}
+.toc a:active{transform:scale(.985);border-color:#b7b5b1}
+.toc .n{font-family:'Jost',sans-serif;font-size:10.5px;letter-spacing:.2em;color:#b7b5b1;
+  flex:0 0 auto;padding-top:2px}
+.toc .t{flex:1 1 auto;min-width:0}
+.toc .t b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;
+  font-weight:500;line-height:1.6;letter-spacing:.02em}
+.toc .t span{display:block;font-size:11.5px;font-weight:300;color:var(--gray);
+  line-height:1.7;margin-top:2px;letter-spacing:.02em}
+.toc .go{flex:0 0 auto;width:7px;height:7px;border-right:1px solid #b7b5b1;
+  border-bottom:1px solid #b7b5b1;transform:rotate(-45deg);margin-right:2px}
+@media (hover:hover){.toc a:hover{border-color:var(--ink)}.toc a:hover .go{border-color:var(--ink)}}
 .note{font-size:10.5px;line-height:1.85;color:var(--gray);font-weight:300;margin-top:16px}
 
 /* 表紙・裏 */
@@ -223,20 +233,20 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
     <span class="lbl">Introduction</span>
     <h2>5分でわかる、<br>シバサンホーム。</h2>
     <p>弊社にご興味を持っていただき、<span class="nb">ありがとうございます。</span>専務取締役の柴部です。</p>
-    <p style="margin-top:14px">このページに、シバサンホームのことを5分で分かるようにまとめました。気になるところは、上の目次から直接ご覧いただけます。</p>
-    <ul class="toc">
-      <li><b>私たちについて</b><span>大工が始めた工務店です</span></li>
-      <li><b>選ばれる理由</b><span>8つ</span></li>
-      <li><b>性能</b><span>断熱等級6・耐震等級3が標準</span></li>
-      <li><b>価格</b><span>坪単価と、30坪の本体価格</span></li>
-      <li><b>建築実例</b><span>奈良で建てた家</span></li>
-      <li><b>お引き渡しのあと</b><span>点検と保証</span></li>
-      <li><b>ご予約</b><span>ご来店・オンライン相談</span></li>
-    </ul>
+    <p style="margin-top:14px">このページに、シバサンホームのことを5分で分かるようにまとめました。下から選ぶと、その章へ進みます。</p>
+    <div class="toc">
+      <a href="#about" data-go="about"><span class="n">01</span><span class="t"><b>私たちについて</b><span>大工が始めた工務店です</span></span><span class="go"></span></a>
+      <a href="#reasons" data-go="reasons"><span class="n">02</span><span class="t"><b>選ばれる理由</b><span>8つ</span></span><span class="go"></span></a>
+      <a href="#spec" data-go="spec"><span class="n">03</span><span class="t"><b>性能</b><span>断熱等級6・耐震等級3が標準</span></span><span class="go"></span></a>
+      <a href="#price" data-go="price"><span class="n">04</span><span class="t"><b>価格</b><span>坪単価と、30坪の本体価格</span></span><span class="go"></span></a>
+      <a href="#works" data-go="works"><span class="n">05</span><span class="t"><b>建築実例</b><span>奈良で建てた家</span></span><span class="go"></span></a>
+      <a href="#after" data-go="after"><span class="n">06</span><span class="t"><b>お引き渡しのあと</b><span>点検と保証</span></span><span class="go"></span></a>
+      <a href="#contact" data-go="contact"><span class="n">07</span><span class="t"><b>ご予約</b><span>ご来店・オンライン相談</span></span><span class="go"></span></a>
+    </div>
   </section>
 
   <!-- 02 私たちについて -->
-  <section class="s">
+  <section class="s" id="about">
     <div class="photo"><img src="img/shiryo/p02_about.jpg" alt="打合せのテーブル"></div>
     <span class="lbl">About us</span>
     <h2>大工が始めた工務店です。</h2>
@@ -253,7 +263,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   </section>
 
   <!-- 03 理由 01-02 -->
-  <section class="s">
+  <section class="s" id="reasons">
     <div class="photo"><img src="img/shiryo/p03_r01.jpg" alt="カウンターに並んで座る子どもたち"></div>
     <span class="lbl">Reasons</span>
     <h2>選ばれる理由</h2>
@@ -360,7 +370,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   </section>
 
   <!-- 11 点検・保証 -->
-  <section class="s">
+  <section class="s" id="after">
     <span class="lbl">After</span>
     <h2>お引き渡しは、始まりです。</h2>
     <h3 style="margin-top:4px">定期点検</h3>
@@ -435,6 +445,12 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   addEventListener('scroll',function(){
     if(tick)return;tick=true;requestAnimationFrame(function(){tick=false;paint()});
   },{passive:true});
+  // どの章を選んだかを残す。お客様が何を気にしているかが分かる
+  document.querySelectorAll('.toc a[data-go]').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(window.gtag)gtag('event','shiryo_jump',{section:a.dataset.go});
+    });
+  });
   addEventListener('resize',paint);paint();
 })();
 </script>
