@@ -1047,6 +1047,24 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
       ['pointerup','pointercancel','pointerleave'].forEach(function(t){fr.addEventListener(t,function(){drag=false;});});
     });
     set(50);
+    // 動画は「表に出ている方だけ」を鳴らす。隠れている方は止める（スマホで再生枠が足りず、
+    // 前側だけ止まったまま＝写真が出ていないように見える事故が起きたため・2026-09-04）
+    function ugokasu(){
+      frames.forEach(function(fr){
+        var deteru = fr.offsetParent !== null;
+        [].forEach.call(fr.querySelectorAll('video'), function(v){
+          if(deteru){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
+          else { try{ v.pause(); }catch(e){} }
+        });
+      });
+    }
+    ugokasu();
+    window.addEventListener('resize', ugokasu);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(en){ if(en.isIntersecting) ugokasu(); });
+      },{threshold:.2}).observe(ba);
+    }
     // はじめて画面に入った時に、少しだけ自分から動いて「動かせる」と分かるようにする
     if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion:reduce)').matches){
       var io=new IntersectionObserver(function(es){
