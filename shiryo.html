@@ -125,7 +125,7 @@ p{font-size:13.5px;font-weight:300;line-height:2.05;color:#3a3a38}
 .cover .sub{font-size:12.5px;font-weight:300;letter-spacing:.1em;opacity:.92}
 
 /* ごあいさつ：専務の写真を右に置き、見出しと本文が左に回り込む */
-.me{float:right;width:37%;margin:40px 0 10px 16px}
+.me{float:right;width:40%;margin:40px 0 10px 16px}
 .me img{width:100%;height:auto;display:block}
 
 /* 数値 */
@@ -222,8 +222,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
 .date-chip.nofree{opacity:.45}
 .date-chip.on{background:var(--ink);border-color:var(--ink)}
 .date-chip.on .d,.date-chip.on .w{color:#fff}
-.slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
-.slot-grid{grid-template-columns:repeat(3,1fr)}
+.slot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
 .slot-btn{padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
 .slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
@@ -281,16 +280,16 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
     <span class="lbl">Introduction</span>
     <div class="me"><img src="img/shiryo/p02_senmu34.jpg" alt="専務取締役 柴部文嘉"></div>
     <h2>ごあいさつ</h2>
-    <p>弊社にご興味を持っていただき、<span class="nb">ありがとうございます。</span>専務取締役の柴部です。</p>
-    <p style="margin-top:14px">このページに、シバサンホームのことを5分で分かるようにまとめました。下から選ぶと、その章へ進みます。</p>
+    <p>弊社にご興味を持っていただき<span class="nb">ありがとうございます。</span></p>
+    <p style="margin-top:14px">専務取締役の柴部です。</p>
+    <p style="margin-top:14px">私たちシバサンホームのことが5分で分かるようにまとめました。<span class="nb">ぜひご覧ください。</span></p>
     <div class="toc">
-      <a href="#about" data-go="about"><span class="n">01</span><span class="t"><b>私たちについて</b><span>大工が始めた工務店です</span></span><span class="go"></span></a>
-      <a href="#reasons" data-go="reasons"><span class="n">02</span><span class="t"><b>選ばれる理由</b><span>8つ</span></span><span class="go"></span></a>
-      <a href="#spec" data-go="spec"><span class="n">03</span><span class="t"><b>性能</b><span>断熱等級6・耐震等級3が標準</span></span><span class="go"></span></a>
-      <a href="#price" data-go="price"><span class="n">04</span><span class="t"><b>価格</b><span>坪数を動かして目安を出す</span></span><span class="go"></span></a>
-      <a href="#works" data-go="works"><span class="n">05</span><span class="t"><b>施工事例</b><span>写真で見る</span></span><span class="go"></span></a>
-      <a href="#after" data-go="after"><span class="n">06</span><span class="t"><b>お引き渡しのあと</b><span>点検と保証</span></span><span class="go"></span></a>
-      <a href="#contact" data-go="contact"><span class="n">07</span><span class="t"><b>ご予約</b><span>ご来店・オンライン相談</span></span><span class="go"></span></a>
+      <a href="#about" data-go="about"><span class="n">01</span><span class="t"><b>私たちについて</b><span>創業1969年の地元密着工務店</span></span><span class="go"></span></a>
+      <a href="#reasons" data-go="reasons"><span class="n">02</span><span class="t"><b>選ばれる理由</b><span>性能・価格・腕利き地元職人・保証サポート</span></span><span class="go"></span></a>
+      <a href="#spec" data-go="spec"><span class="n">03</span><span class="t"><b>安心で快適な標準性能</b><span>耐震等級3・断熱等級6・気密C値0.5基準が標準</span></span><span class="go"></span></a>
+      <a href="#price" data-go="price"><span class="n">04</span><span class="t"><b>価格</b><span>坪69.9万円・30坪2,097万円（税込）</span></span><span class="go"></span></a>
+      <a href="#works" data-go="works"><span class="n">05</span><span class="t"><b>施工事例</b><span>LIXILメンバーズコンテスト受賞</span></span><span class="go"></span></a>
+      <a href="#after" data-go="after"><span class="n">06</span><span class="t"><b>保証アフターサポート</b><span>充実の保証・スマホ簡単点検予約</span></span><span class="go"></span></a>
     </div>
   </section>
 
@@ -298,10 +297,11 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   <section class="s" id="about">
     <div class="photo"><img src="img/shiryo/p02_about.jpg" alt="打合せのテーブル"></div>
     <span class="lbl">About us</span>
-    <h2>大工が始めた工務店です。</h2>
-    <p>シバサンホームは、大工が始めた工務店です。家をつくる側から始まった会社です。</p>
-    <p style="margin-top:14px">モットーは、いい家で、いい毎日を。いい家とは、家族がいい毎日を暮らせる家のこと。どれだけ立派で高性能な家でも、家計を圧迫して窮屈になるなら、いい家とは呼べません。</p>
-    <p style="margin-top:14px">安心して暮らせる確かな性能。地元の職人がつくる品質。それを、正直な価格で。</p>
+    <h2>正直にまっとうに家づくり</h2>
+    <p>いい家で、いい毎日を。<br>いい家とは、<span class="nb">家族がいい毎日を暮らせる家のこと。</span></p>
+    <p style="margin-top:14px">どれだけ立派で高性能な家でも<br>家計を圧迫して窮屈になるなら<br>いい家とは呼べません。</p>
+    <p style="margin-top:14px">安心して暮らせる確かな性能。<br>地元の職人が<span class="nb">つくる品質。</span></p>
+    <p style="margin-top:14px">それを、正直な価格で。</p>
     <div class="hr"></div>
     <ul class="hoshou">
       <li><span>創業</span><span>1969年（前身：大工工事業）</span></li>
@@ -315,7 +315,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   <section class="s" id="reasons">
     <div class="photo"><img src="img/shiryo/p03_r01.jpg" alt="カウンターに並んで座る子どもたち"></div>
     <span class="lbl">Reasons</span>
-    <h2>選ばれる理由</h2>
+    <h2>家族の家づくりに<br>とことん寄り添います。</h2>
     <div class="item"><span class="n">01</span><h3>とことん、親身に。</h3>
       <p>叶えたいことも、迷っていることも、ぜんぶ話してください。ひとつずつ、一緒に答えを見つけます。家族に寄り添って家づくりを全力でサポートします。</p></div>
     <div class="item"><span class="n">02</span><h3>自分たちらしい家を、自由に。</h3>
@@ -326,33 +326,33 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   <section class="s">
     <div class="photo"><img src="img/shiryo/p04_r04.jpg" alt="明るいリビング"></div>
     <span class="lbl">Reasons</span>
-    <h2>選ばれる理由</h2>
+    <h2>安心で快適な性能を<br>確かな技術でつくります。</h2>
     <div class="item"><span class="n">03</span><h3>一年中、心地いい。</h3>
       <p>夏は涼しく、冬はあたたかい。高い断熱性能で、少ない冷暖房でも一年中快適。だから光熱費もグッと抑えられます。性能のよさは、これからの家計をずっと守ってくれます。</p></div>
-    <div class="item"><span class="n">04</span><h3>暮らしを、圧迫しない。</h3>
-      <p>どんなに立派な家でも、ローンで日々の暮らしが窮屈になっては、いい家とは言えません。私たちは建てる前に、その先の家計まで見すえた計画を一緒に考えます。家を建てたあとにこそ、家族の思い出を重ねてほしいから。</p></div>
+    <div class="item"><span class="n">04</span><h3>建てるのは、地元の職人です。</h3>
+      <p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。入るのは、<span class="nb">一業種につき</span>一社だけ。毎回同じ顔ぶれです。</p></div>
   </section>
 
   <!-- 05 理由 05-06 -->
   <section class="s">
     <div class="photo"><img src="img/shiryo/p05_r07.jpg" alt="造作の効いた室内"></div>
     <span class="lbl">Reasons</span>
-    <h2>選ばれる理由</h2>
-    <div class="item"><span class="n">05</span><h3>建てるのは、地元の職人です。</h3>
-      <p>シバサンホームの家をつくるのは、この土地で長年腕を磨いてきた職人たち。家の品質は、壁の中や床の下、住んでから見えなくなる場所で決まります。そこにこそ手を抜けないのは、現場を知るつくり手だからです。入るのは、<span class="nb">一業種につき</span>一社だけ。毎回同じ顔ぶれです。</p></div>
-    <div class="item"><span class="n">06</span><h3>いいものを、正直な価格で。</h3>
-      <p>広告を打つより、釘を打つ。派手な展示場も、大量の広告もありません。かけるお金は、宣伝ではなく家そのものに。<br><br>そして、金額は隠しません。家づくりは家の本体価格だけではなく、さまざまな諸経費が必要になります。後で予算が圧迫されないように、家づくりにかかる全てのお金をお伝えします。</p></div>
+    <h2>いい家を適正な価格で</h2>
+    <div class="item"><span class="n">05</span><h3>いいものを、正直な価格で。</h3>
+      <p>広告を打つより、釘を打つ。派手な展示場も、大量の広告もありません。かけるお金は、宣伝ではなく家そのものに。<br><br>そして、金額は隠しません。</p></div>
+    <div class="item"><span class="n">06</span><h3>暮らしを、圧迫しない。</h3>
+      <p>どんなに立派な家でも、ローンで日々の暮らしが窮屈になっては、いい家とは言えません。私たちは建てる前に、その先の家計まで見すえた計画を一緒に考えます。家を建てたあとにこそ、家族の思い出を重ねてほしいから。</p></div>
   </section>
 
   <!-- 06 理由 07-08 -->
   <section class="s">
     <div class="photo"><img src="img/shiryo/p09_after.jpg" alt="引き渡したあとの住まい"></div>
     <span class="lbl">Reasons</span>
-    <h2>選ばれる理由</h2>
-    <div class="item"><span class="n">07</span><h3>お引き渡しは、始まりです。</h3>
-      <p>長く安心して住み継げる家を、長期優良住宅の基準でつくります。お引き渡しはゴールではなく、お付き合いの始まり。点検やメンテナンスで、これからの暮らしを地元の<span class="nb">工務店として</span>見守り続けます。</p></div>
-    <div class="item"><span class="n">08</span><h3>建てている間も、ずっと。</h3>
+    <h2>工事中も完成後も<br>安心のサポート</h2>
+    <div class="item"><span class="n">07</span><h3>建てている間も、ずっと。</h3>
       <p>現場の写真と、工事の週報が届きます。見に行けない週も、家がどこまで進んだかが分かります。スマホで見られて、専用ページに全部残ります。</p></div>
+    <div class="item"><span class="n">08</span><h3>お引き渡しは、始まりです。</h3>
+      <p>お引き渡しはゴールではなく、お付き合いの始まり。点検やメンテナンスで、これからの暮らしを地元の<span class="nb">工務店として</span>見守り続けます。</p></div>
   </section>
 
   <!-- 07 性能 -->
