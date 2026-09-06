@@ -40,6 +40,9 @@ const NAV_CV = [
   { href: 'catalog.html',  label: '資料請求' },
 ];
 
+// 資料請求のボタンを出さないページ。アフターはお住まいの方向けなので出さない。
+const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.html'];
+
 (function () {
   const here = (location.pathname.split('/').pop() || 'index.html');
 
@@ -101,6 +104,21 @@ const NAV_CV = [
   .fixed-cta .fc-line{display:flex;align-items:center;justify-content:center;gap:5px;background:#fff;color:var(--ink,#1a1a1a);font-family:'Noto Sans JP',sans-serif;font-size:12px;letter-spacing:.14em;text-decoration:none;border-right:1px solid var(--linec,#e8e8e6)}
   .fixed-cta .fc-line .lw{font-family:'Jost',sans-serif;font-weight:600;letter-spacing:.04em;font-size:13px;color:#06c755}
   .fixed-cta .fc-line:hover{background:#fafaf8}
+  /* PCには資料請求の常設ボタンが無かった。下の追従バーは900px未満だけで消える。
+     PCの人は、ハンバーガーを開くかページの一番下まで下りないと資料請求に行けない
+     （8/1〜9/5でPC366人・スマホ328人。ほぼ半分がPC）。ヘッダーに置く。 */
+  .head-right{display:flex;align-items:center;gap:20px;margin-left:auto}
+  .head-doc{display:none}
+  @media(min-width:900px){
+    .head-doc{display:inline-flex;align-items:center;justify-content:center;
+      padding:9px 18px;border:1px solid currentColor;
+      font-family:'Noto Sans JP',sans-serif;font-size:11px;letter-spacing:.2em;
+      text-decoration:none;color:var(--ink,#1a1a1a);transition:background .3s,color .3s,border-color .3s}
+    .head-doc:hover{background:var(--ink,#1a1a1a);color:#fff;border-color:var(--ink,#1a1a1a)}
+    /* トップは写真の上に透明のヘッダーが乗る。下ろすまでは白抜き */
+    #header:not(.scrolled) .head-doc{color:#fff;border-color:#fff}
+    #header:not(.scrolled) .head-doc:hover{background:#fff;color:var(--ink,#1a1a1a)}
+  }
   .line-fab{position:fixed;right:16px;bottom:74px;z-index:150;display:inline-flex;align-items:center;gap:6px;height:46px;padding:0 17px;border-radius:24px;background:#06c755;box-shadow:0 4px 14px rgba(0,0,0,.22);color:#fff;font-family:'Noto Sans JP',sans-serif;font-size:12.5px;letter-spacing:.04em;font-weight:500;text-decoration:none;white-space:nowrap}
   .line-fab .lw{font-family:'Jost',sans-serif;font-weight:700;letter-spacing:.02em}
   .line-fab:hover{filter:brightness(.96)}
@@ -208,7 +226,20 @@ const NAV_CV = [
   btn.className = 'nav-toggle';
   btn.setAttribute('aria-label', 'メニューを開く');
   btn.innerHTML = '<span></span><span></span><span></span>';
-  header.appendChild(btn);
+
+  // ヘッダーの右側をひとまとめにする（資料請求＋ハンバーガー）。
+  // 資料請求ページ自身と、予約・アフターの各ページには出さない（下の追従バーと同じ決め）。
+  const right = document.createElement('div');
+  right.className = 'head-right';
+  if (NO_DOC.indexOf(here) < 0) {
+    const hd = document.createElement('a');
+    hd.className = 'head-doc';
+    hd.href = 'catalog.html';
+    hd.textContent = '資料請求';
+    right.appendChild(hd);
+  }
+  right.appendChild(btn);
+  header.appendChild(right);
 
   const ov = document.createElement('nav');
   ov.className = 'nav-overlay';
@@ -249,7 +280,7 @@ const NAV_CV = [
         // 資料請求は、いちばん気軽な申し込みなのに入口が細かった。
         // 資料請求ページ自身と、予約・アフターの各ページには足さない。
         const rsv = bar.querySelector('.fc-reserve');
-        const noDoc = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.html'];  // アフターはお住まいの方向けなので資料請求は出さない
+        const noDoc = NO_DOC;
         if (rsv && noDoc.indexOf(here) < 0 && !bar.querySelector('.fc-doc')) {
           const doc = document.createElement('a');
           doc.className = 'fc-doc'; doc.href = 'catalog.html';
