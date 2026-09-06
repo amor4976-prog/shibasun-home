@@ -194,6 +194,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .nextnav .t{font-size:14px;font-weight:500;letter-spacing:.06em;white-space:nowrap}
 .nextnav .s{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.7}
 .nextnav .ar{margin-left:auto;font-size:12px;color:var(--gray)}
+
+/* 見学会：写真（2026-09-07 専務「画像も増やして」。邸は全部別・古賀様邸は使わない） */
+.bcard .bph{width:calc(100% + 40px);max-width:none;height:auto;margin:-18px -20px 14px;aspect-ratio:4/3;object-fit:cover;display:block;background:#e9e6e0}
+.kband{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:1040px;margin:0 auto;padding:0 20px}
+.kband img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:#e9e6e0}
+@media(min-width:760px){.kband{gap:4px}}
 </style>
 <script type="application/ld+json">
 {
@@ -280,6 +286,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <span>お子様連れ歓迎</span>
 </div>
 
+<div class="kband">
+  <img src="img/kengaku/top1.jpg" alt="暮らしている家のLDK" loading="lazy" decoding="async" width="1400" height="933">
+  <img src="img/kengaku/top2.jpg" alt="ダイニングと窓辺の緑" loading="lazy" decoding="async" width="1400" height="935">
+</div>
+
 <p class="lead">きれいに整えられた展示場の家ではなく、家族が日々を過ごす“等身大の家”。収納の使いかた、夏と冬の体感、住んでみての本音まで——カタログでは分からないことが、そこにあります。ご見学をご希望の方は、下のフォームからお気軽にご応募ください。</p>
 
 <!-- メモ：まずは「見学できます／応募はこちら」の入口ページ（特定の家は出さない）。OB様邸の写真が集まったら「見学できるお家」の紹介カードを後から追加できる（写真は img/ に）。今は写真ゼロでも成立する構成。 -->
@@ -301,12 +312,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <section class="sec">
     <div class="sec-h"><div class="en">Good</div><h2>見学すると、こんないいこと。</h2><p>暮らしている家だからこそ、見て・聞いて・体感できることがあります。</p></div>
     <div class="benefits">
-      <div class="bcard"><img class="bico" src="img/icons/good-shuno.svg" alt="" onerror="this.style.display='none'"><div class="bn">01</div><h3>収納と片づけやすさ</h3><p>どこに何をしまうか。実際の生活道具が入った状態の収納は、いちばん参考になります。</p></div>
-      <div class="bcard"><img class="bico" src="img/icons/good-dousen.svg" alt="" onerror="this.style.display='none'"><div class="bn">02</div><h3>家事ラクな動線</h3><p>キッチン・洗面・物干しのつながり。毎日の動きやすさを体で確かめられます。</p></div>
-      <div class="bcard"><img class="bico" src="img/icons/good-ene.svg" alt="" onerror="this.style.display='none'"><div class="bn">03</div><h3>光熱費・住み心地</h3><p>「電気代はどれくらい？」「結露は？」など、暮らしのリアルな数字や感想を聞けます。</p></div>
-      <div class="bcard"><img class="bico" src="img/icons/good-madori.svg" alt="" onerror="this.style.display='none'"><div class="bn">04</div><h3>間取りの工夫</h3><p>視線の抜け、家族の距離感、コンセントの位置まで。住んで気づいた工夫が満載です。</p></div>
-      <div class="bcard"><img class="bico" src="img/icons/good-mokume.svg" alt="" onerror="this.style.display='none'"><div class="bn">05</div><h3>素材の経年変化</h3><p>無垢材や塗り壁が、時間とともにどう味わいを増すか。実物でご確認いただけます。</p></div>
-      <div class="bcard"><img class="bico" src="img/icons/good-koe.svg" alt="" onerror="this.style.display='none'"><div class="bn">06</div><h3>建てた人の感想</h3><p>シバサンホームで建てて、実際どうだったか。第三者の率直な声がいちばんの判断材料です。</p></div>
+      <div class="bcard"><img class="bph" src="img/kengaku/shuno.jpg" alt="造作棚のある収納" loading="lazy" decoding="async" width="1400" height="933"><div class="bn">01</div><h3>収納と片づけやすさ</h3><p>どこに何をしまうか。実際の生活道具が入った状態の収納は、いちばん参考になります。</p></div>
+      <div class="bcard"><img class="bph" src="img/kengaku/dousen.jpg" alt="キッチンから洗面へつながる動線" loading="lazy" decoding="async" width="1400" height="933"><div class="bn">02</div><h3>家事ラクな動線</h3><p>キッチン・洗面・物干しのつながり。毎日の動きやすさを体で確かめられます。</p></div>
+      <div class="bcard"><img class="bph" src="img/kengaku/ene.jpg" alt="大きな窓のあるリビング" loading="lazy" decoding="async" width="1400" height="933"><div class="bn">03</div><h3>光熱費・住み心地</h3><p>「電気代はどれくらい？」「結露は？」など、暮らしのリアルな数字や感想を聞けます。</p></div>
+      <div class="bcard"><img class="bph" src="img/kengaku/madori.jpg" alt="吹き抜けとリビング階段" loading="lazy" decoding="async" width="1400" height="933"><div class="bn">04</div><h3>間取りの工夫</h3><p>視線の抜け、家族の距離感、コンセントの位置まで。住んで気づいた工夫が満載です。</p></div>
+      <div class="bcard"><img class="bph" src="img/kengaku/sozai.jpg" alt="木の天井" loading="lazy" decoding="async" width="1400" height="933"><div class="bn">05</div><h3>素材の経年変化</h3><p>無垢材や塗り壁が、時間とともにどう味わいを増すか。実物でご確認いただけます。</p></div>
+      <div class="bcard"><img class="bph" src="img/kengaku/koe.jpg" alt="庭に面したダイニング" loading="lazy" decoding="async" width="1400" height="933"><div class="bn">06</div><h3>建てた人の感想</h3><p>シバサンホームで建てて、実際どうだったか。第三者の率直な声がいちばんの判断材料です。</p></div>
     </div>
   </section>
 
