@@ -43,7 +43,7 @@
 <body>
 
 <header>
-  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="logo" href="/"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
 </header>
 
 <div class="nf">
@@ -55,13 +55,13 @@
   <div class="go" id="go"></div>
 
   <nav class="links">
-    <a href="jisseki.html"><span class="en">Works</span><span class="ja">建築実例</span><span class="sub">実際に建てた家を、写真と価格で</span></a>
-    <a href="products.html"><span class="en">Price</span><span class="ja">商品と価格</span><span class="sub">坪単価と総額をそのまま掲載</span></a>
-    <a href="spec.html"><span class="en">Spec</span><span class="ja">性能・標準仕様</span><span class="sub">耐震等級3・断熱等級6が標準</span></a>
-    <a href="hajimete.html"><span class="en">First</span><span class="ja">はじめての方へ</span><span class="sub">何から始めればいいか</span></a>
-    <a href="company.html"><span class="en">Company</span><span class="ja">会社案内</span><span class="sub">私たちのこと</span></a>
-    <a href="blog.html"><span class="en">Blog</span><span class="ja">家づくりのブログ</span><span class="sub">以前の記事もこちらに</span></a>
-    <a href="reserve.html"><span class="en">Reserve</span><span class="ja">来店予約・無料相談</span><span class="sub">オンラインでもできます</span></a>
+    <a href="/jisseki"><span class="en">Works</span><span class="ja">建築実例</span><span class="sub">実際に建てた家を、写真と価格で</span></a>
+    <a href="/products"><span class="en">Price</span><span class="ja">商品と価格</span><span class="sub">坪単価と総額をそのまま掲載</span></a>
+    <a href="/spec"><span class="en">Spec</span><span class="ja">性能・標準仕様</span><span class="sub">耐震等級3・断熱等級6が標準</span></a>
+    <a href="/hajimete"><span class="en">First</span><span class="ja">はじめての方へ</span><span class="sub">何から始めればいいか</span></a>
+    <a href="/company"><span class="en">Company</span><span class="ja">会社案内</span><span class="sub">私たちのこと</span></a>
+    <a href="/blog"><span class="en">Blog</span><span class="ja">家づくりのブログ</span><span class="sub">以前の記事もこちらに</span></a>
+    <a href="/reserve"><span class="en">Reserve</span><span class="ja">来店予約・無料相談</span><span class="sub">オンラインでもできます</span></a>
   </nav>
 
   <p class="tel">お急ぎの方は、お電話でどうぞ。<b>0120-154-483</b>受付 9:00-18:00／水曜定休</p>
@@ -70,7 +70,7 @@
 <footer>
   <div class="fl">SHIBA SUN HOME</div>
   <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
-  <div style="margin-top:10px"><a href="index.html">トップへ戻る</a></div>
+  <div style="margin-top:10px"><a href="/">トップへ戻る</a></div>
   <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
 </footer>
 
@@ -80,21 +80,21 @@
    置き場所だったときの受け皿。対応表は _redirects と同じ中身にしておくこと。 */
 (function(){
   var MAP = [
-    [/^\/(about_us|concept|reason|media|recruit)(\/|$)/, 'company.html'],
-    [/^\/(staff|carpenter)(\/|$)/,                      'members.html'],
-    [/^\/(case|voice)(\/|$)/,                           'jisseki.html'],
-    [/^\/hajimemashite(\/|$)/,                          'hajimete.html'],
-    [/^\/lineup(\/|$)/,                                 'products.html'],
-    [/^\/(after|after_follow)(\/|$)/,                   'after.html'],
-    [/^\/(event|news)(\/|$)/,                           'event.html'],
-    [/^\/(contact|soudan|consultation)(\/|$)/,          'reserve.html'],
-    [/^\/blog_adviser(\/|$)/,                           'blog.html'],
-    [/^\/works(\.html|\/|$)/,                           'jisseki.html']
+    [/^\/(about_us|concept|reason|media|recruit)(\/|$)/, 'company'],
+    [/^\/(staff|carpenter)(\/|$)/,                      'members'],
+    [/^\/(case|voice)(\/|$)/,                           'jisseki'],
+    [/^\/hajimemashite(\/|$)/,                          'hajimete'],
+    [/^\/lineup(\/|$)/,                                 'products'],
+    [/^\/(after|after_follow)(\/|$)/,                   'after'],
+    [/^\/(event|news)(\/|$)/,                           'event'],
+    [/^\/(contact|soudan|consultation)(\/|$)/,          'reserve'],
+    [/^\/blog_adviser(\/|$)/,                           'blog'],
+    [/^\/works(\.html|\/|$)/,                           'jisseki']
   ];
   var LABEL = {
-    'company.html':'会社案内', 'members.html':'私たちのこと', 'jisseki.html':'建築実例',
-    'hajimete.html':'はじめての方へ', 'products.html':'商品と価格', 'after.html':'アフター・保証',
-    'event.html':'お知らせ・個別相談会', 'reserve.html':'来店予約・無料相談', 'blog.html':'家づくりのブログ'
+    'company':'会社案内', 'members':'私たちのこと', 'jisseki':'建築実例',
+    'hajimete':'はじめての方へ', 'products':'商品と価格', 'after':'アフター・保証',
+    'event':'お知らせ・個別相談会', 'reserve':'来店予約・無料相談', 'blog':'家づくりのブログ'
   };
 
   /* サブフォルダ配信（例 /shibasun-home/…）でも判定できるよう、土台の部分を取り除く */
@@ -116,7 +116,7 @@
 </script>
 <nav class="fixed-cta">
   <a class="fc-tel" href="tel:0120154483">電話で相談</a>
-  <a class="fc-reserve" href="reserve.html">来店予約</a>
+  <a class="fc-reserve" href="/reserve">来店予約</a>
 </nav>
 <script src="site.js?v=20260830h" defer></script>
 </body>

@@ -84,12 +84,55 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fc-reserve{background:var(--ink);color:#fff}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ContactPage",
+   "@id": "https://www.shibasun.jp/catalog#webpage",
+   "url": "https://www.shibasun.jp/catalog",
+   "name": "カタログ資料請求（無料）｜シバサンホーム",
+   "description": "坪単価・商品ラインアップ・施工事例をまとめた資料を無料でお届け。メールか郵送を選べる。",
+   "inLanguage": "ja",
+   "isPartOf": {
+    "@id": "https://www.shibasun.jp/#website"
+   },
+   "about": {
+    "@id": "https://www.shibasun.jp/#business"
+   },
+   "potentialAction": {
+    "@type": "RequestAction",
+    "name": "カタログ資料請求",
+    "target": "https://www.shibasun.jp/catalog"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "ホーム",
+     "item": "https://www.shibasun.jp/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "資料請求",
+     "item": "https://www.shibasun.jp/catalog"
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
 <header>
-  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
-  <a class="back en" href="index.html">← Home</a>
+  <a class="logo" href="/"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="back en" href="/">← Home</a>
 </header>
 
 <div class="whead">
@@ -153,7 +196,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <footer>
   <div class="fl">SHIBA SUN HOME</div>
   <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
-  <div style="margin-top:10px"><a href="index.html">トップへ戻る</a></div>
+  <div style="margin-top:10px"><a href="/">トップへ戻る</a></div>
   <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
 </footer>
 
@@ -229,7 +272,7 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
     if(window.gtag)window.gtag('event','generate_lead',{method:'catalog'});
     catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求ありがとうございます</h3><p>担当の柴部より、${recvNow()==='メール'?'ご記入のメールアドレスへ資料をお送りします':'ご記入のご住所へ資料をお送りします'}。<br>少々お待ちくださいませ。</p>`
       + `<div class="done-next"><p class="done-lead">より詳細にお話を聞きたい方<br>オンライン・ご来店<br>お打合せの予約ができます</p>`
-      + `<a class="done-cta" href="reserve.html" data-go="reserve">日時を選んで予約する（無料）</a>`
+      + `<a class="done-cta" href="/reserve" data-go="reserve">日時を選んで予約する（無料）</a>`
       + `<p class="done-note">所要は約60分です。</p></div></div>`;
     // 完了画面からの来店予約はGA4で追える（フォームの手前には出さない＝出口を作らない）
     var dc=catApp.querySelector('.done-cta');

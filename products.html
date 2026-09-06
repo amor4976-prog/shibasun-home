@@ -98,11 +98,64 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 @media(min-width:760px){.spec-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://www.shibasun.jp/products#webpage",
+   "url": "https://www.shibasun.jp/products",
+   "name": "商品ラインアップ・価格｜シバサンホーム",
+   "description": "シバサンホームの商品と価格。坪単価69.9万円〜（税込）。耐震等級3（許容応力度計算）・断熱等級6（UA値0.4・HEAT20 G2相当）・C値0.5以下が標準。",
+   "inLanguage": "ja",
+   "isPartOf": {
+    "@id": "https://www.shibasun.jp/#website"
+   },
+   "about": {
+    "@id": "https://www.shibasun.jp/#business"
+   },
+   "mainEntity": {
+    "@type": "Offer",
+    "name": "注文住宅 NEST",
+    "priceSpecification": {
+     "@type": "UnitPriceSpecification",
+     "price": 699000,
+     "priceCurrency": "JPY",
+     "unitText": "坪",
+     "valueAddedTaxIncluded": true
+    },
+    "offeredBy": {
+     "@id": "https://www.shibasun.jp/#business"
+    },
+    "areaServed": "奈良県"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "ホーム",
+     "item": "https://www.shibasun.jp/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "商品・価格",
+     "item": "https://www.shibasun.jp/products"
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 
 <header>
-  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="logo" href="/"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
 </header>
 
 <div class="whead">
@@ -128,7 +181,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   </div>
   <p class="lnote"><b>設計スタイル</b>：<b>NEST</b>＝自由度の高いセミオーダー／<b>ARCH</b>＝建築家による自由設計。暮らし方とご予算に合わせて選べます。</p>
   <p class="lnote">※ 表示はすべて税込・本体価格の目安です（諸費用・外構費は別途）。延床面積や仕様により変動します。詳しい仕様書とお見積りは、ご来店の際にご案内します。</p>
-  <p class="lnote">平屋をお考えの方は、<a href="blog-hiraya.html" style="color:inherit;text-decoration:underline">奈良で平屋を建てる価格と間取りの解説</a>もご覧ください。</p>
+  <p class="lnote">平屋をお考えの方は、<a href="/blog-hiraya" style="color:inherit;text-decoration:underline">奈良で平屋を建てる価格と間取りの解説</a>もご覧ください。</p>
 </section>
 
 <style>
@@ -193,7 +246,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <div class="sim-monthly">住宅ローンなら、月々 <b>約 <span id="simMonthly">5.9</span></b> 万円〜の目安</div>
     </div>
     <p class="sim-note">※ あくまで<b>本体価格</b>の目安です（税込・内装・設備・照明込み）。<b>諸費用・外構費・土地代・消費税の一部は別途</b>。延床面積や仕様により変動し、GLAMPは要相談です。<br>※ 月々はこの本体価格を<b>住宅ローン（35年・年1.0%・元利均等・ボーナス払いなし）</b>で借りた場合の試算例です。金利・借入額・頭金・諸費用・土地代により変わります。<br>くわしい「総額」と無理のない返済計画は、ご来店の際にその場でお出しします。</p>
-    <a class="sim-cta" href="reserve.html">総額のお見積りを、来店予約で聞く →</a>
+    <a class="sim-cta" href="/reserve">総額のお見積りを、来店予約で聞く →</a>
   </div>
 </section>
 <script>
@@ -226,6 +279,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   calc();
 })();
 </script>
+
+<div data-cta="doc"></div>
 
 <section class="spec sec" style="max-width:none;padding-left:0;padding-right:0">
   <div style="max-width:1040px;margin:0 auto;padding:0 20px">
@@ -264,8 +319,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="nextnav">
   <div class="nl">Next</div>
   <ul>
-    <li><a href="spec.html"><span class="t">性能を見る</span><span class="s">この価格に何が入っているのか</span><span class="ar">→</span></a></li>
-    <li><a href="jisseki.html"><span class="t">実例を見る</span><span class="s">同じ価格帯で建った家を見る</span><span class="ar">→</span></a></li>
+    <li><a href="/spec"><span class="t">性能を見る</span><span class="s">この価格に何が入っているのか</span><span class="ar">→</span></a></li>
+    <li><a href="/jisseki"><span class="t">実例を見る</span><span class="s">同じ価格帯で建った家を見る</span><span class="ar">→</span></a></li>
   </ul>
 </div>
 
@@ -273,22 +328,22 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <h2 class="gothic">価格も仕様も、まずは資料で。</h2>
   <p>詳しい価格表・仕様書は、無料の資料でお届けします。</p>
   <div class="cbtns">
-    <a class="cbtn cbtn-gold" href="catalog.html">カタログ資料請求（無料）</a>
-    <a class="cbtn cbtn-fill" href="reserve.html">来店を予約する</a>
-    <a class="cbtn cbtn-line" href="jisseki.html">建築実例を見る</a>
+    <a class="cbtn cbtn-gold" href="/catalog">カタログ資料請求（無料）</a>
+    <a class="cbtn cbtn-fill" href="/reserve">来店を予約する</a>
+    <a class="cbtn cbtn-line" href="/jisseki">建築実例を見る</a>
   </div>
 </div>
 
 <footer>
   <div class="fl">SHIBA SUN HOME</div>
   <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
-  <div style="margin-top:10px"><a href="index.html">トップへ戻る</a></div>
+  <div style="margin-top:10px"><a href="/">トップへ戻る</a></div>
   <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
 </footer>
 
 <nav class="fixed-cta">
   <a class="fc-tel" href="tel:0120154483">電話で聞く</a>
-  <a class="fc-reserve" href="reserve.html">来店予約</a>
+  <a class="fc-reserve" href="/reserve">来店予約</a>
 </nav>
 <script src="site.js?v=20260830h" defer></script>
 </body>

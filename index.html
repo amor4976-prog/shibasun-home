@@ -773,106 +773,241 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 <!-- ===== 構造化データ（Google・AI検索対策） ===== -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "GeneralContractor",
+   "@id": "https://www.shibasun.jp/#business",
+   "name": "シバサンホーム",
+   "legalName": "株式会社シバ・サンホーム",
+   "alternateName": [
+    "株式会社シバ・サンホーム",
+    "シバ・サンホーム",
+    "SHIBA SUN HOME"
+   ],
+   "description": "奈良で新築・注文住宅を手がける工務店。現場に立つ大工歴43年の社長と、暮らしに寄り添う二代目が、親子二代で正直につくる。セミオーダーから建築家による自由設計まで。坪単価69.9万円〜（税込）の適正価格で、耐震等級3（許容応力度計算）・断熱等級6の性能を標準にする。",
+   "url": "https://www.shibasun.jp/",
+   "image": "https://www.shibasun.jp/img/hero.jpg",
+   "logo": "https://www.shibasun.jp/img/logo/mark-black.png",
+   "telephone": "+81-742-81-3948",
+   "priceRange": "¥¥",
+   "currenciesAccepted": "JPY",
+   "address": {
+    "@type": "PostalAddress",
+    "postalCode": "630-8451",
+    "addressRegion": "奈良県",
+    "addressLocality": "奈良市",
+    "streetAddress": "北之庄町41-1",
+    "addressCountry": "JP"
+   },
+   "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 34.6685,
+    "longitude": 135.8226
+   },
+   "areaServed": [
     {
-      "@type": "GeneralContractor",
-      "@id": "https://www.shibasun.jp/#business",
-      "name": "シバサンホーム",
-      "legalName": "株式会社シバ・サンホーム",
-      "alternateName": ["株式会社シバ・サンホーム", "シバ・サンホーム", "SHIBA SUN HOME"],
-      "description": "奈良で新築・注文住宅を手がける工務店。現場に立つ大工歴43年の社長と、暮らしに寄り添う二代目が、親子二代で正直につくる。セミオーダーから建築家による自由設計まで。坪単価69.9万円〜（税込）の適正価格で、耐震等級3（許容応力度計算）・断熱等級6の性能を標準にする。",
-      "url": "https://www.shibasun.jp/",
-      "image": "https://www.shibasun.jp/img/hero.jpg",
-      "logo": "https://www.shibasun.jp/img/hero.jpg",
-      "telephone": "+81-742-81-3948",
-      "priceRange": "¥¥",
-      "currenciesAccepted": "JPY",
-      "address": {
-        "@type": "PostalAddress",
-        "postalCode": "630-8451",
-        "addressRegion": "奈良県",
-        "addressLocality": "奈良市",
-        "streetAddress": "北之庄町41-1",
-        "addressCountry": "JP"
-      },
-      "geo": { "@type": "GeoCoordinates", "latitude": 34.6685, "longitude": 135.8226 },
-      "areaServed": [
-        { "@type": "City", "name": "奈良市" },
-        { "@type": "City", "name": "大和郡山市" },
-        { "@type": "City", "name": "天理市" },
-        { "@type": "City", "name": "桜井市" },
-        { "@type": "City", "name": "生駒市" },
-        { "@type": "AdministrativeArea", "name": "奈良県" }
-      ],
-      "openingHoursSpecification": [{
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "09:00", "closes": "18:00"
-      }],
-      "founder": {
-        "@type": "Person",
-        "name": "柴部崇",
-        "jobTitle": "代表取締役・大工社長",
-        "description": "建築歴43年。大工としてこの道ひと筋に、新築550棟以上を手がける。"
-      },
-      "knowsAbout": ["新築一戸建て", "注文住宅", "平屋住宅", "自然素材の家", "セミオーダー住宅", "高気密・高断熱", "耐震等級3", "土地探し"],
-      "slogan": "本当の良い家って、なんだろう。",
-      "sameAs": ["https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg", "https://www.instagram.com/shibasunhome", "https://maps.google.com/?cid=649541672625628096"],
-      "makesOffer": {
-        "@type": "Offer",
-        "priceCurrency": "JPY",
-        "price": "6985000",
-        "description": "自由設計の注文住宅。坪単価698,500円〜（税込・本体・内装・設備。諸費用・外構は別途）",
-        "itemOffered": { "@type": "Service", "name": "注文住宅の設計・施工" }
-      }
+     "@type": "City",
+     "name": "奈良市"
     },
     {
-      "@type": "WebSite",
-      "@id": "https://www.shibasun.jp/#website",
-      "url": "https://www.shibasun.jp/",
-      "name": "シバサンホーム",
-      "legalName": "株式会社シバ・サンホーム",
-      "inLanguage": "ja",
-      "publisher": { "@id": "https://www.shibasun.jp/#business" }
+     "@type": "City",
+     "name": "大和郡山市"
     },
     {
-      "@type": "FAQPage",
-      "@id": "https://www.shibasun.jp/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "奈良で注文住宅を建てる場合の坪単価はいくらですか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "シバサンホームの注文住宅は坪単価69.9万円〜（税込）です。延床30坪なら本体価格2,095万円〜（税込・内装・設備・照明込み）が目安です。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示します。" }
-        },
-        {
-          "@type": "Question",
-          "name": "シバサンホームの対応エリアはどこですか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "奈良市・大和郡山市・天理市・桜井市・生駒市を中心に、奈良県全域で対応しています。" }
-        },
-        {
-          "@type": "Question",
-          "name": "大手ハウスメーカーとの違いは何ですか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "広告費や中間マージンをかけず、大工社長のもと専属の職人チーム「チームシバサン会」が直接施工するため、同じ品質でもコストを抑えられます。下請け任せにせず、つくり手の顔が見える責任施工が、いちばんの違いです。" }
-        },
-        {
-          "@type": "Question",
-          "name": "住宅の性能はどのくらいですか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "耐震等級3（全棟・許容応力度計算）、断熱等級6（HEAT20 G2相当）、UA値0.4〜0.46、C値0.5以下を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています（NEST・ARCHの場合）。" }
-        },
-        {
-          "@type": "Question",
-          "name": "土地を持っていなくても相談できますか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。" }
-        },
-        {
-          "@type": "Question",
-          "name": "相談は無料ですか？しつこい営業はありませんか？",
-          "acceptedAnswer": { "@type": "Answer", "text": "ご相談・資金計画・見学のご予約はすべて無料です。私たちは、一組ずつ誠実にお付き合いすることを大切にしています。しつこい営業は一切いたしません。" }
-        }
-      ]
+     "@type": "City",
+     "name": "天理市"
+    },
+    {
+     "@type": "City",
+     "name": "桜井市"
+    },
+    {
+     "@type": "City",
+     "name": "生駒市"
+    },
+    {
+     "@type": "AdministrativeArea",
+     "name": "奈良県"
     }
-  ]
+   ],
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+     ],
+     "opens": "09:00",
+     "closes": "18:00"
+    }
+   ],
+   "founder": {
+    "@type": "Person",
+    "@id": "https://www.shibasun.jp/members#shibabe-takashi",
+    "name": "柴部崇",
+    "alternateName": [
+     "柴部 崇",
+     "しばべ たかし",
+     "大工社長しばさん"
+    ],
+    "jobTitle": "代表取締役・大工棟梁・二級建築士",
+    "description": "18歳で大工の道に入り、建築歴43年。新築570棟以上を手がける。子供の頃から大工である父の背中を見て育ち、自らも大工に。著書『奈良で家を建てるなら』（エル書房、2014年）。YouTube「大工社長しばさんの家づくりチャンネル」で家づくりの本音を発信している。",
+    "worksFor": {
+     "@id": "https://www.shibasun.jp/#business"
+    },
+    "url": "https://www.shibasun.jp/members",
+    "sameAs": [
+     "https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg"
+    ],
+    "knowsAbout": [
+     "木造軸組工法",
+     "注文住宅",
+     "大工工事",
+     "耐震",
+     "断熱"
+    ]
+   },
+   "knowsAbout": [
+    "新築一戸建て",
+    "注文住宅",
+    "平屋住宅",
+    "自然素材の家",
+    "セミオーダー住宅",
+    "高気密・高断熱",
+    "耐震等級3",
+    "土地探し"
+   ],
+   "slogan": "本当の良い家って、なんだろう。",
+   "sameAs": [
+    "https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg",
+    "https://www.instagram.com/shibasunhome",
+    "https://maps.google.com/?cid=649541672625628096"
+   ],
+   "makesOffer": {
+    "@type": "Offer",
+    "priceCurrency": "JPY",
+    "price": "6985000",
+    "description": "自由設計の注文住宅。坪単価698,500円〜（税込・本体・内装・設備。諸費用・外構は別途）",
+    "itemOffered": {
+     "@type": "Service",
+     "name": "注文住宅の設計・施工"
+    }
+   },
+   "employee": [
+    {
+     "@id": "https://www.shibasun.jp/members#shibabe-yasuhiro"
+    }
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://www.shibasun.jp/#website",
+   "url": "https://www.shibasun.jp/",
+   "name": "シバサンホーム",
+   "legalName": "株式会社シバ・サンホーム",
+   "inLanguage": "ja",
+   "publisher": {
+    "@id": "https://www.shibasun.jp/#business"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://www.shibasun.jp/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "奈良で注文住宅を建てる場合の坪単価はいくらですか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "シバサンホームの注文住宅は坪単価69.9万円〜（税込）です。延床30坪なら本体価格2,095万円〜（税込・内装・設備・照明込み）が目安です。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示します。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "シバサンホームの対応エリアはどこですか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "奈良市・大和郡山市・天理市・桜井市・生駒市を中心に、奈良県全域で対応しています。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "大手ハウスメーカーとの違いは何ですか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "広告費や中間マージンをかけず、大工社長のもと専属の職人チーム「チームシバサン会」が直接施工するため、同じ品質でもコストを抑えられます。下請け任せにせず、つくり手の顔が見える責任施工が、いちばんの違いです。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "住宅の性能はどのくらいですか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "耐震等級3（全棟・許容応力度計算）、断熱等級6（HEAT20 G2相当）、UA値0.4〜0.46、C値0.5以下を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています（NEST・ARCHの場合）。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "土地を持っていなくても相談できますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "相談は無料ですか？しつこい営業はありませんか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "ご相談・資金計画・見学のご予約はすべて無料です。私たちは、一組ずつ誠実にお付き合いすることを大切にしています。しつこい営業は一切いたしません。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "Book",
+   "@id": "https://www.shibasun.jp/#book-nara",
+   "name": "奈良で家を建てるなら",
+   "author": {
+    "@id": "https://www.shibasun.jp/members#shibabe-takashi"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "エル書房"
+   },
+   "datePublished": "2014-12",
+   "isbn": "9784434201486",
+   "numberOfPages": 213,
+   "inLanguage": "ja",
+   "about": "奈良で子育て家族のための家づくり。大工の父から受け継いだ思い、家族が幸せになる間取り、職人のこだわり。"
+  },
+  {
+   "@type": "Person",
+   "@id": "https://www.shibasun.jp/members#shibabe-yasuhiro",
+   "name": "柴部文嘉",
+   "alternateName": [
+    "柴部 文嘉",
+    "しばべ やすひろ"
+   ],
+   "jobTitle": "専務取締役",
+   "worksFor": {
+    "@id": "https://www.shibasun.jp/#business"
+   },
+   "url": "https://www.shibasun.jp/members",
+   "description": "奈良市出身。お客様の窓口として、家づくりの最初から最後まで伴走する。土地さがしやお金のことなど、はじめの不安にも正直に答える。モットーは「スピード・誠実さ・楽しさ」。",
+   "knowsAbout": [
+    "資金計画",
+    "土地探し",
+    "注文住宅の進め方",
+    "アフターサービス"
+   ]
+  }
+ ]
 }
 </script>
 </head>
@@ -900,10 +1035,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <p>確かな品質を、正直な価格で。</p>
     <div class="hero-cta">
       <a class="hbtn hbtn-fill js-reserve" href="#reserve">来店予約</a>
-      <a class="hbtn hbtn-line" href="catalog.html">資料請求（無料）</a>
+      <a class="hbtn hbtn-line" href="/catalog">資料請求（無料）</a>
     </div>
     <div class="hero-area">奈良県全域対応　｜　総額提示の明朗価格</div>
-    <a class="hero-first" href="hajimete.html">はじめての方はこちら →</a>
+    <a class="hero-first" href="/hajimete">はじめての方はこちら →</a>
   </div>
   <div class="hero-scroll en">Scroll</div>
 </div>
@@ -921,7 +1056,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   <div class="inner">
     <div class="label"><span class="en">Event</span><small>見学会・相談会</small></div>
     <div class="evcards">
-      <a class="evcard fade" href="kengaku.html">
+      <a class="evcard fade" href="/kengaku">
         <span class="tag">見学会</span>
         <div class="ph"><img src="img/work-exterior.jpg" srcset="img/sp/work-exterior.jpg 900w, img/work-exterior.jpg 2000w" sizes="(max-width:820px) 100vw, 900px" alt="OB様邸見学会" loading="lazy"></div>
         <div class="bd">
@@ -930,7 +1065,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
           <span class="more">見学を申し込む →</span>
         </div>
       </a>
-      <a class="evcard fade" href="event.html">
+      <a class="evcard fade" href="/event">
         <span class="tag">無料</span>
         <div class="ph"><img src="img/ev-soudan.jpg" srcset="img/sp/ev-soudan.jpg 900w, img/ev-soudan.jpg 2000w" sizes="(max-width:820px) 100vw, 900px" alt="個別相談会" loading="lazy"></div>
         <div class="bd">
@@ -948,43 +1083,43 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   <div class="inner">
     <div class="label"><span class="en">Works</span><small>施工事例</small></div>
     <div class="works-scroll" id="worksScroll">
-      <a class="work fade" href="jisseki-case12.html">
+      <a class="work fade" href="/jisseki-case12">
         <img src="img/jisseki/case12/thumb/03.jpg" srcset="img/jisseki/case12/thumb/03.jpg 640w, img/jisseki/case12/03.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 丸いテーブルの正面に大きな窓。外の緑を景色に" loading="eager" decoding="async">
         <div class="cap"><h3>丸いテーブルの正面に大きな窓。外の緑を景色に</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case13.html">
+      <a class="work fade" href="/jisseki-case13">
         <img src="img/jisseki/case13/thumb/03.jpg" srcset="img/jisseki/case13/thumb/03.jpg 640w, img/jisseki/case13/03.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 木を張った天井の下に、黒いキッチン" loading="eager" decoding="async">
         <div class="cap"><h3>木を張った天井の下に、黒いキッチン</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case03.html">
+      <a class="work fade" href="/jisseki-case03">
         <img src="img/jisseki/case03/thumb/02.jpg" srcset="img/jisseki/case03/thumb/02.jpg 640w, img/jisseki/case03/02.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 勾配天井とシーリングファン。上に抜ける居間" loading="lazy" decoding="async">
         <div class="cap"><h3>勾配天井とシーリングファン。上に抜ける居間</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case05.html">
+      <a class="work fade" href="/jisseki-case05">
         <img src="img/jisseki/case05/thumb/05.jpg" srcset="img/jisseki/case05/thumb/05.jpg 640w, img/jisseki/case05/05.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 踏み板だけの階段。光と視線が下まで抜ける" loading="lazy" decoding="async">
         <div class="cap"><h3>踏み板だけの階段。光と視線が下まで抜ける</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case09.html">
+      <a class="work fade" href="/jisseki-case09">
         <img src="img/jisseki/case09/thumb/05.jpg" srcset="img/jisseki/case09/thumb/05.jpg 640w, img/jisseki/case09/05.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 吹き抜けのダイニング。二階と気配がつながる" loading="lazy" decoding="async">
         <div class="cap"><h3>吹き抜けのダイニング。二階と気配がつながる</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case07.html">
+      <a class="work fade" href="/jisseki-case07">
         <img src="img/jisseki/case07/thumb/01.jpg" srcset="img/jisseki/case07/thumb/01.jpg 640w, img/jisseki/case07/01.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 白い壁で囲んだ中庭に、オリーブを一本" loading="lazy" decoding="async">
         <div class="cap"><h3>白い壁で囲んだ中庭に、オリーブを一本</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case06.html">
+      <a class="work fade" href="/jisseki-case06">
         <img src="img/jisseki/case06/thumb/05.jpg" srcset="img/jisseki/case06/thumb/05.jpg 640w, img/jisseki/case06/05.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 壁一面の長いカウンター。家族が並んで使える" loading="lazy" decoding="async">
         <div class="cap"><h3>壁一面の長いカウンター。家族が並んで使える</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case11.html">
+      <a class="work fade" href="/jisseki-case11">
         <img src="img/jisseki/case11/thumb/01.jpg" srcset="img/jisseki/case11/thumb/01.jpg 640w, img/jisseki/case11/01.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 石を張った外壁に、木の玄関ドア" loading="lazy" decoding="async">
         <div class="cap"><h3>石を張った外壁に、木の玄関ドア</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case01.html">
+      <a class="work fade" href="/jisseki-case01">
         <img src="img/jisseki/case01/thumb/08.jpg" srcset="img/jisseki/case01/thumb/08.jpg 640w, img/jisseki/case01/08.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 天井の木格子と、光が抜ける階段" loading="lazy" decoding="async">
         <div class="cap"><h3>天井の木格子と、光が抜ける階段</h3></div>
       </a>
-      <a class="work fade" href="jisseki-case02.html">
+      <a class="work fade" href="/jisseki-case02">
         <img src="img/jisseki/case02/thumb/07.jpg" srcset="img/jisseki/case02/thumb/07.jpg 640w, img/jisseki/case02/07.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 木のカウンターに、モザイクタイルの造作洗面" loading="lazy" decoding="async">
         <div class="cap"><h3>木のカウンターに、モザイクタイルの造作洗面</h3></div>
       </a>
@@ -993,7 +1128,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     
     </div>
     <div class="works-dots" id="worksDots"></div>
-    <a class="works-more fade" href="jisseki.html">建築実例をすべて見る</a>
+    <a class="works-more fade" href="/jisseki">建築実例をすべて見る</a>
   </div>
 </section>
 
@@ -1020,7 +1155,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     </ul>
     <div class="sd-btns">
       <a class="fill js-reserve" href="#reserve">日時を選んで予約する（無料）</a>
-      <a class="line" href="event.html">開催中の相談会を見る</a>
+      <a class="line" href="/event">開催中の相談会を見る</a>
     </div>
     <div class="sd-tel">お電話でもご予約いただけます<b>0120-154-483</b>受付 9:00-18:00／水曜定休</div>
   </div>
@@ -1043,16 +1178,16 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
       <span class="en pr-en">Our Promise</span>
       <p class="pr-title">私たちのこだわり</p>
       <div class="pr-scroll" id="promiseScroll">
-        <a class="pr-card" href="iezukuri.html#r01"><img src="img/promise/01.jpg" alt="カウンターに並んで座る子どもたち" loading="lazy" decoding="async"><span class="pn">01</span><span class="pt">とことん、親身に。</span></a>
-        <a class="pr-card" href="iezukuri.html#r02"><img src="img/promise/02.jpg" alt="木の格子で仕切ったLDK" loading="lazy" decoding="async"><span class="pn">02</span><span class="pt">自分たちらしい家を、自由に。</span></a>
-        <a class="pr-card" href="iezukuri.html#r03"><img src="img/promise/03.jpg" alt="ダイニングを走る子ども" loading="lazy" decoding="async"><span class="pn">03</span><span class="pt">一年中、心地いい。</span></a>
-        <a class="pr-card" href="iezukuri.html#r04"><img src="img/promise/04.jpg" alt="庭のブランコで遊ぶ子どもたち" loading="lazy" decoding="async"><span class="pn">04</span><span class="pt">暮らしを、圧迫しない。</span></a>
-        <a class="pr-card" href="iezukuri.html#r05"><img src="img/promise/05.jpg" alt="構造の現場" loading="lazy" decoding="async"><span class="pn">05</span><span class="pt">建てるのは、地元の職人です。</span></a>
-        <a class="pr-card" href="iezukuri.html#r06"><img src="img/promise/06.jpg" alt="白いダイニング" loading="lazy" decoding="async"><span class="pn">06</span><span class="pt">いいものを、正直な価格で。</span></a>
-        <a class="pr-card" href="iezukuri.html#r07"><img src="img/promise/07.jpg" alt="玄関前で自転車の練習" loading="lazy" decoding="async"><span class="pn">07</span><span class="pt">お引き渡しは、始まりです。</span></a>
-        <a class="pr-card" href="iezukuri.html#r08"><img src="img/promise/08.jpg" alt="工事中の現場" loading="lazy" decoding="async"><span class="pn">08</span><span class="pt">建てている間も、ずっと。</span></a>
+        <a class="pr-card" href="/iezukuri#r01"><img src="img/promise/01.jpg" alt="カウンターに並んで座る子どもたち" loading="lazy" decoding="async"><span class="pn">01</span><span class="pt">とことん、親身に。</span></a>
+        <a class="pr-card" href="/iezukuri#r02"><img src="img/promise/02.jpg" alt="木の格子で仕切ったLDK" loading="lazy" decoding="async"><span class="pn">02</span><span class="pt">自分たちらしい家を、自由に。</span></a>
+        <a class="pr-card" href="/iezukuri#r03"><img src="img/promise/03.jpg" alt="ダイニングを走る子ども" loading="lazy" decoding="async"><span class="pn">03</span><span class="pt">一年中、心地いい。</span></a>
+        <a class="pr-card" href="/iezukuri#r04"><img src="img/promise/04.jpg" alt="庭のブランコで遊ぶ子どもたち" loading="lazy" decoding="async"><span class="pn">04</span><span class="pt">暮らしを、圧迫しない。</span></a>
+        <a class="pr-card" href="/iezukuri#r05"><img src="img/promise/05.jpg" alt="構造の現場" loading="lazy" decoding="async"><span class="pn">05</span><span class="pt">建てるのは、地元の職人です。</span></a>
+        <a class="pr-card" href="/iezukuri#r06"><img src="img/promise/06.jpg" alt="白いダイニング" loading="lazy" decoding="async"><span class="pn">06</span><span class="pt">いいものを、正直な価格で。</span></a>
+        <a class="pr-card" href="/iezukuri#r07"><img src="img/promise/07.jpg" alt="玄関前で自転車の練習" loading="lazy" decoding="async"><span class="pn">07</span><span class="pt">お引き渡しは、始まりです。</span></a>
+        <a class="pr-card" href="/iezukuri#r08"><img src="img/promise/08.jpg" alt="工事中の現場" loading="lazy" decoding="async"><span class="pn">08</span><span class="pt">建てている間も、ずっと。</span></a>
       </div>
-      <a class="pr-more" href="iezukuri.html">選ばれる理由 01 − 08 をすべて見る →</a>
+      <a class="pr-more" href="/iezukuri">選ばれる理由 01 − 08 をすべて見る →</a>
     </div>
   </div>
 </section>
@@ -1168,7 +1303,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         <div class="price-ex">
           ※ 上の金額は<b>本体価格</b>です（税込・内装・設備・照明込み）。<b>諸費用・外構・土地は別途</b>かかります。総額の目安も最初にご提示します。<br>
           ※ 月々は35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。<br>
-          <a class="price-more" href="products.html">価格・プランの詳しい内訳を見る →</a>
+          <a class="price-more" href="/products">価格・プランの詳しい内訳を見る →</a>
         </div>
       </div>
       <div class="spec-card fade">
@@ -1190,7 +1325,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </section>
 
 <!-- ▼専務へ：全幅フォトバンド②（つくり手・現場）。写真は差し替え可 -->
-<a class="photoband bg-sp" href="spec.html" style="--bg:url('img/spec/spec-kouzo.jpg');--bg-sp:url('img/sp/spec-kouzo.jpg')">
+<a class="photoband bg-sp" href="/spec" style="--bg:url('img/spec/spec-kouzo.jpg');--bg-sp:url('img/sp/spec-kouzo.jpg')">
   <div class="pbcap"><div class="t"><span>見えない所こそ、</span><span>ていねいに。</span></div><div class="pblink">性能のことを見る →</div></div>
 </a>
 
@@ -1210,7 +1345,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         <p>建築歴43年の大工社長が、家づくりで後悔しないための知識を発信しています。会社の雰囲気も、私たちの考え方も、まずは動画でご覧ください。</p>
         <div class="ytstat"><span><em>累計総再生回数</em><b>3,211,599回</b></span><span><em>チャンネル登録者数</em><b>11,200人</b></span></div>
         <p class="ytasof">2026年8月時点</p>
-        <a class="yt-btn" href="lessons.html">動画をもっと見る →</a>
+        <a class="yt-btn" href="/lessons">動画をもっと見る →</a>
         <a class="yt-sub" href="https://www.youtube.com/channel/UC4XwoZ806Ga4STcg5WoO3zg" target="_blank" rel="noopener">YouTubeチャンネルへ →</a>
       </div>
     </div>
@@ -1357,24 +1492,24 @@ else setupLifeBand();
     <div class="cl-lead">家づくりのお役立ち情報</div>
     <h2 class="cl-h">コラム</h2>
     <div class="cl-list">
-      <a class="cl-item fade" href="blog-jiban.html">
+      <a class="cl-item fade" href="/blog-jiban">
         <span class="th"><img src="img/blog/jiban_sarachi.jpg" alt="更地になった土地" loading="lazy" decoding="async"></span>
         <span><span class="kind">お金</span><span class="t">地盤改良のお金。土地を買う前に知っておくこと</span></span>
       </a>
-      <a class="cl-item fade" href="blog-kinri.html">
+      <a class="cl-item fade" href="/blog-kinri">
         <span class="th"><img src="img/blog/kinri_biru.jpg" alt="オフィスビルが並ぶ街並み" loading="lazy" decoding="async"></span>
         <span><span class="kind">お金</span><span class="t">フラット35が3.46％に。いまの制度で最も高い水準です</span></span>
       </a>
-      <a class="cl-item fade" href="blog-natsu.html">
+      <a class="cl-item fade" href="/blog-natsu">
         <span class="th"><img src="img/blog/natsu_sudare.jpg" alt="窓の外側に立てかけたすだれ" loading="lazy" decoding="async"></span>
         <span><span class="kind">暮らし</span><span class="t">「2階が暑い」には理由がある。夏に涼しい家の条件</span></span>
       </a>
-      <a class="cl-item fade" href="blog-inu.html">
+      <a class="cl-item fade" href="/blog-inu">
         <span class="th"><img src="https://i.ytimg.com/vi/qMYlnH4Ipmw/hqdefault.jpg" alt="犬と暮らす新築の家" loading="lazy" decoding="async"><span class="play">▶</span></span>
         <span><span class="kind">動画つき</span><span class="t">犬と暮らす新築の家。採用したい7つのポイント</span></span>
       </a>
     </div>
-    <a class="cl-more" href="blog.html">コラムをさらに見る<span>›</span></a>
+    <a class="cl-more" href="/blog">コラムをさらに見る<span>›</span></a>
   </div>
 </section>
 
@@ -1403,7 +1538,7 @@ else setupLifeBand();
     <p>見学・ご来店のご予約は、すべて無料です。</p>
     <div class="btns">
       <a class="cbtn cbtn-fill js-reserve" href="#">来店を予約する</a>
-      <a class="cbtn cbtn-cat" href="catalog.html">カタログ資料請求（無料）</a>
+      <a class="cbtn cbtn-cat" href="/catalog">カタログ資料請求（無料）</a>
       <a class="cbtn cbtn-line" href="#" onclick="return false">LINEで聞く</a>
     </div>
     <a class="tel" href="tel:0120154483">0120-154-483<small>受付 9:00 - 18:00（水曜定休）</small></a>
@@ -1415,21 +1550,21 @@ else setupLifeBand();
     <div class="fl">SHIBA SUN HOME</div>
     <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
     <nav>
-      <a href="event.html">無料相談会・お知らせ</a>
-      <a href="kengaku.html">OB様邸見学</a>
-      <a href="jisseki.html">建築実例</a>
-      <a href="products.html">商品・価格</a>
-      <a href="spec.html">性能・標準仕様</a>
-      <a href="flow.html">家づくりの進め方</a>
-      <a href="company.html">会社案内</a>
-      <a href="after.html">アフター・保証</a>
-      <a href="reform.html">リフォーム</a>
-      <a href="blog.html">ブログ</a>
+      <a href="/event">無料相談会・お知らせ</a>
+      <a href="/kengaku">OB様邸見学</a>
+      <a href="/jisseki">建築実例</a>
+      <a href="/products">商品・価格</a>
+      <a href="/spec">性能・標準仕様</a>
+      <a href="/flow">家づくりの進め方</a>
+      <a href="/company">会社案内</a>
+      <a href="/after">アフター・保証</a>
+      <a href="/reform">リフォーム</a>
+      <a href="/blog">ブログ</a>
       <a href="#youtube">YouTube</a>
       <a href="#reviews">お客様の声</a>
       <a href="#faq">よくある質問</a>
-      <a href="catalog.html">資料請求</a>
-      <a href="reserve.html">来店予約</a>
+      <a href="/catalog">資料請求</a>
+      <a href="/reserve">来店予約</a>
       <a href="#contact">お問い合わせ</a>
     </nav>
     <div class="fsocial">

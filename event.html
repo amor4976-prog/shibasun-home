@@ -152,8 +152,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <body>
 
 <header>
-  <a class="logo" href="index.html"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
-  <a class="back en" href="index.html">← Home</a>
+  <a class="logo" href="/"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+  <a class="back en" href="/">← Home</a>
 </header>
 
 <div class="whead">
@@ -196,7 +196,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         </div>
 
         <div class="ebtns">
-          <a class="ebtn ebtn-fill" href="reserve.html">来店を予約する</a>
+          <a class="ebtn ebtn-fill" href="/reserve">来店を予約する</a>
           <a class="ebtn ebtn-line" href="tel:0120154483">電話で聞く（0120-154-483）</a>
         </div>
         <p class="enote">※ お一組ずつの個別対応です。周りを気にせず、ゆっくりご相談いただけます。</p>
@@ -236,7 +236,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <!-- ▼ 新しいお知らせは、この下に <li> を足してください（新着が上）。古いものは消してOKです。
            ・過ぎた日付のお知らせは必ず消すこと（「終わった催しかな」と思われて離脱の原因になります）
            ・軒数・枚数などの件数はお客様に見せない方針なので書かないでください -->
-      <li><span class="date">2026.07.25</span><span><span class="tag">実例</span>建築実例のページを更新しました。<a href="jisseki.html" style="border-bottom:1px solid var(--gold)">こちら</a></span></li>
+      <li><span class="date">2026.07.25</span><span><span class="tag">実例</span>建築実例のページを更新しました。<a href="/jisseki" style="border-bottom:1px solid var(--gold)">こちら</a></span></li>
     </ul>
   </section>
 
@@ -246,21 +246,21 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <h2 class="gothic">まずは、話を聞くだけでも。</h2>
   <p>個別無料相談会のご予約はお気軽に。ご来店でも、オンラインでも承ります。</p>
   <div class="cbtns">
-    <a class="cbtn cbtn-fill" href="reserve.html">来店を予約する</a>
-    <a class="cbtn cbtn-gold" href="catalog.html">カタログ資料請求（無料）</a>
+    <a class="cbtn cbtn-fill" href="/reserve">来店を予約する</a>
+    <a class="cbtn cbtn-gold" href="/catalog">カタログ資料請求（無料）</a>
   </div>
 </div>
 
 <footer>
   <div class="fl">SHIBA SUN HOME</div>
   <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
-  <div style="margin-top:10px"><a href="index.html">トップへ戻る</a></div>
+  <div style="margin-top:10px"><a href="/">トップへ戻る</a></div>
   <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
 </footer>
 
 <nav class="fixed-cta">
   <a class="fc-tel" href="tel:0120154483">電話で聞く</a>
-  <a class="fc-reserve" href="reserve.html">来店を予約</a>
+  <a class="fc-reserve" href="/reserve">来店を予約</a>
 </nav>
 
 <script type="application/ld+json">
@@ -293,7 +293,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
                '<div class="d">'+f.md+'</div><div class="w">'+f.w+'</div></button>';}).join('')+'</div>'+
       '<div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>'+
       '<div class="slot-grid">'+day.map(function(s){
-        return '<a class="slot-btn" href="reserve.html?slot='+encodeURIComponent(s.id)+'">'+
+        return '<a class="slot-btn" href="/reserve?slot='+encodeURIComponent(s.id)+'">'+
                s.startTime+'<small>◎ ご予約いただけます</small></a>';}).join('')+'</div>';
     app.querySelectorAll('.date-chip').forEach(function(b){
       b.addEventListener('click',function(){cur=b.dataset.date;render();});});

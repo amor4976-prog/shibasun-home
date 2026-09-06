@@ -44,7 +44,11 @@ const NAV_CV = [
 const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.html'];
 
 (function () {
-  const here = (location.pathname.split('/').pop() || 'index.html');
+  // 現在ページの鍵。/catalog・/catalog.html・/event/ のどれで開いても同じ 'xxx.html' 形にそろえる。
+  // （2026-09-06 サイト内リンクを拡張子なしに統一した。NAV等の比較はこの形のまま）
+  const here = ((location.pathname.replace(/\/+$/, '').split('/').pop() || 'index').replace(/\.html$/, '')) + '.html';
+  // 出力するURLは拡張子なし（canonical・sitemap と同じ形）
+  const clean = h => h === 'index.html' ? '/' : '/' + h.replace(/\.html$/, '');
 
   // ---- 共通CSS（1ファイルで全ページに適用） ----
   const css = `
@@ -104,6 +108,22 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   .fixed-cta .fc-line{display:flex;align-items:center;justify-content:center;gap:5px;background:#fff;color:var(--ink,#1a1a1a);font-family:'Noto Sans JP',sans-serif;font-size:12px;letter-spacing:.14em;text-decoration:none;border-right:1px solid var(--linec,#e8e8e6)}
   .fixed-cta .fc-line .lw{font-family:'Jost',sans-serif;font-weight:600;letter-spacing:.04em;font-size:13px;color:#06c755}
   .fixed-cta .fc-line:hover{background:#fafaf8}
+  /* ページの途中に置く資料請求への道。
+     資料請求のリンクは各ページの一番下にしか無く、そこまで下りた人しか押せなかった。
+     7/30〜9/5で 会社案内149人→2回・代表紹介95人→0回・実例76人→1回・性能35人→0回。 */
+  .mid-cta{max-width:560px;margin:56px auto;padding:30px 24px;text-align:center;
+    border-top:1px solid var(--linec,#e8e8e6);border-bottom:1px solid var(--linec,#e8e8e6)}
+  .mid-cta .mc-en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;
+    color:var(--gray,#767674);text-transform:uppercase}
+  .mid-cta p{font-size:13px;font-weight:300;line-height:2;color:var(--ink,#1a1a1a);margin:10px 0 18px}
+  .mid-cta a{display:inline-flex;align-items:center;justify-content:center;min-width:290px;
+    padding:15px 24px;background:var(--ink,#1a1a1a);color:#fff;font-family:'Noto Sans JP',sans-serif;
+    font-size:12.5px;letter-spacing:.16em;text-decoration:none;transition:opacity .25s}
+  .mid-cta a:hover{opacity:.82}
+  @media(max-width:480px){
+    .mid-cta{margin:44px auto;padding:26px 20px}
+    .mid-cta a{min-width:0;width:100%}
+  }
   /* PCには資料請求の常設ボタンが無かった。下の追従バーは900px未満だけで消える。
      PCの人は、ハンバーガーを開くかページの一番下まで下りないと資料請求に行けない
      （8/1〜9/5でPC366人・スマホ328人。ほぼ半分がPC）。ヘッダーに置く。 */
@@ -234,7 +254,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   if (NO_DOC.indexOf(here) < 0) {
     const hd = document.createElement('a');
     hd.className = 'head-doc';
-    hd.href = 'catalog.html';
+    hd.href = '/catalog';
     hd.textContent = '資料請求';
     right.appendChild(hd);
   }
@@ -246,16 +266,27 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   ov.setAttribute('aria-label', 'メインメニュー');
   const cur = h => h === here ? 'cur' : '';
   ov.innerHTML = '<div class="nav-inner">' +
-    NAV.map(p => `<a href="${p.href}" class="${cur(p.href)}"><span class="nj">${p.label}</span><span class="ne">${p.en}</span></a>`).join('') +
-    `<div class="nav-cv">` + NAV_CV.map(p => `<a href="${p.href}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
+    NAV.map(p => `<a href="${clean(p.href)}" class="${cur(p.href)}"><span class="nj">${p.label}</span><span class="ne">${p.en}</span></a>`).join('') +
+    `<div class="nav-cv">` + NAV_CV.map(p => `<a href="${clean(p.href)}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
     `<div class="nav-sub-h">そのほか</div>` +
-    `<div class="nav-sub">` + NAV_SUB.map(p => `<a href="${p.href}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
+    `<div class="nav-sub">` + NAV_SUB.map(p => `<a href="${clean(p.href)}" class="${cur(p.href)}">${p.label}</a>`).join('') + `</div>` +
     `<a class="nav-tel" href="tel:${TEL}">${TEL_DISP}<small>受付 9:00-18:00（水曜定休）</small></a></div>`;
   document.body.appendChild(ov);
 
   btn.addEventListener('click', () => document.body.classList.toggle('nav-open'));
   ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('a')) document.body.classList.remove('nav-open'); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') document.body.classList.remove('nav-open'); });
+
+
+  // ---- ページの途中の資料請求（<div data-cta="doc"></div> を置いた所に出る）----
+  document.querySelectorAll('[data-cta="doc"]').forEach(function (el) {
+    if (NO_DOC.indexOf(here) >= 0) { el.remove(); return; }   // 資料請求・予約・アフターには出さない
+    el.className = 'mid-cta';
+    el.innerHTML =
+      '<div class="mc-en">Catalog</div>' +
+      '<p>坪単価・商品ラインアップ・施工事例をまとめた資料を<b>無料</b>でお届けします。</p>' +
+      '<a href="/catalog">カタログ資料請求（無料）</a>';
+  });
 
   // ---- LINE フローティングボタン（LINE_URL を設定したときだけ表示）----
   if (LINE_URL) {
@@ -283,7 +314,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
         const noDoc = NO_DOC;
         if (rsv && noDoc.indexOf(here) < 0 && !bar.querySelector('.fc-doc')) {
           const doc = document.createElement('a');
-          doc.className = 'fc-doc'; doc.href = 'catalog.html';
+          doc.className = 'fc-doc'; doc.href = '/catalog';
           doc.textContent = '資料請求';
           bar.insertBefore(doc, rsv);
           bar.classList.add('four');
@@ -309,10 +340,10 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
 
   // ---- フッターにプライバシーポリシーをひっそり追加（全ページ共通）----
   document.querySelectorAll('footer').forEach(f => {
-    if (f.querySelector('a[href="privacy.html"]')) return;
+    if (f.querySelector('a[href="privacy.html"],a[href="/privacy"]')) return;
     const d = document.createElement('div');
     d.style.cssText = 'margin-top:12px;font-size:10px;letter-spacing:.1em;opacity:.55';
-    d.innerHTML = '<a href="privacy.html" style="color:inherit">プライバシーポリシー</a>';
+    d.innerHTML = '<a href="/privacy" style="color:inherit">プライバシーポリシー</a>';
     f.appendChild(d);
   });
 
