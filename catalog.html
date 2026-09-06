@@ -118,10 +118,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         </div>
         <div class="cat-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
         <div class="cat-field"><label>フリガナ</label><input name="kana" autocomplete="off" placeholder="シバ タロウ（任意）"></div>
-        <div class="cat-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
+        <div class="cat-field"><label>お電話番号<em class="req">任意</em></label><input name="phone" type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
         <div class="cat-field" id="f-mail"><label>メールアドレス<em class="req">必須</em></label><input name="email" type="email" required autocomplete="email" placeholder="shiba@example.com"></div>
         <div class="cat-field" id="f-addr">
-          <label>ご住所<em class="req">任意</em><span class="addr-hint" style="color:var(--gray);font-size:10px;margin-left:6px">郵送をお選びの場合のお届け先です。番地までご記入ください</span></label>
+          <label>ご住所<em class="req">任意</em><span class="addr-hint" style="color:var(--gray);font-size:10px;margin-left:6px">郵送をお選びの場合のお届け先です</span></label>
           <div class="cat-row2">
             <input name="postal" inputmode="numeric" autocomplete="postal-code" placeholder="〒630-8451">
             <input name="address" autocomplete="street-address" placeholder="奈良市北之庄町41-1">
@@ -182,14 +182,43 @@ function applyRecv(){
   fm.querySelector('.req').textContent=mail?'必須':'任意';
   fa.querySelector('.req').textContent=mail?'任意':'必須';
   email.placeholder=mail?'shiba@example.com':'任意';
-  fa.querySelector('.addr-hint').textContent=mail?'郵送をお選びの場合のお届け先です。番地までご記入ください':'資料のお届け先です。番地までご記入ください';
+  fa.querySelector('.addr-hint').textContent=mail?'郵送をお選びの場合のお届け先です':'郵便番号を入れると町名まで入ります。番地までご記入ください';
 }
+// 郵便番号を入れたら住所を出す（zipcloud。鍵不要・失敗しても手打ちできる）
+// 前に自動で入れたぶんだけ入れ替える。お客様が書いた番地は消さない。
+var zipLast='';
+var zipEl=document.querySelector('[name="postal"]'), addrEl=document.querySelector('[name="address"]');
+zipEl.addEventListener('input',function(){
+  var z=zipEl.value.replace(/[^0-9]/g,'');
+  if(z.length!==7)return;
+  fetch('https://zipcloud.ibsnet.co.jp/api/search?zipcode='+z)
+    .then(function(r){return r.json()})
+    .then(function(d){
+      if(!d||d.status!==200||!d.results||!d.results.length)return;
+      var a=d.results[0], base=a.address1+a.address2+a.address3;
+      var cur=addrEl.value;
+      if(!cur){addrEl.value=base}
+      else if(zipLast&&cur.indexOf(zipLast)===0){addrEl.value=base+cur.slice(zipLast.length)}
+      else return;
+      zipLast=base;
+      if(document.activeElement===zipEl)addrEl.focus();
+    })
+    .catch(function(){/* つながらなければ手打ちのまま */});
+});
+
 Array.prototype.forEach.call(document.querySelectorAll('input[name="recv"]'),function(el){
   el.addEventListener('change',applyRecv);
 });
 applyRecv();
 document.getElementById('cat-form').addEventListener('submit',async e=>{
   e.preventDefault();const f=e.target;const btn=f.querySelector('.cat-submit');
+  // 電話番号を任意にしたので、連絡先がひとつも無いまま送れないようにする
+  if(!f.phone.value.trim()&&!f.email.value.trim()){
+    f.email.setCustomValidity('お電話番号かメールアドレスのどちらかをご記入ください');
+    f.email.reportValidity();
+    f.email.setCustomValidity('');
+    return;
+  }
   btn.disabled=true;btn.textContent='送信中…';
   const known=f.querySelector('input[name="known"]:checked');
   const payload={customerName:f.name.value.trim(),customerKana:f.kana.value.trim()||undefined,customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,postalCode:f.postal.value.trim()||undefined,address:f.address.value.trim()||undefined,knownChannel:known?known.value:undefined,message:(function(){var m=f.message.value.trim();return '【受け取り方】'+recvNow()+(m?'\n'+m:'')})()};
