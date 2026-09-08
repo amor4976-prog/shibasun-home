@@ -111,6 +111,21 @@ header.scrolled .head-cta{color:var(--ink)}
 .hero-area{margin-top:18px;font-size:11px;letter-spacing:.08em;opacity:.78;line-height:1.7}
 /* 信頼バッジ帯 */
 .trustbar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linec);border-bottom:1px solid var(--linec)}
+/* 特長ブロック */
+.feat{background:#fff;border-bottom:1px solid var(--linec);padding:26px 16px 22px}
+.feat-head{text-align:center;margin-bottom:16px}
+.feat-head .en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gray)}
+.feat-head p{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(14px,3.9vw,18px);font-weight:500;letter-spacing:.06em;line-height:1.7;margin-top:6px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:1040px;margin:0 auto}
+.ft{display:flex;flex-direction:column;gap:4px;border:1px solid var(--linec);padding:14px 12px 12px;position:relative;color:var(--ink);text-decoration:none;background:#fff}
+.ft::after{content:"→";position:absolute;right:10px;bottom:8px;font-family:'Jost',sans-serif;font-size:11px;color:var(--gray)}
+.ft-k{font-size:10px;letter-spacing:.2em;color:var(--gray)}
+.ft b{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(13.5px,3.9vw,17px);font-weight:600;letter-spacing:.02em;line-height:1.4}
+.ft small{font-size:10.5px;letter-spacing:.03em;color:#555;line-height:1.5;padding-right:14px}
+.nb{white-space:nowrap}
+br.sp{display:inline}
+@media(min-width:760px){.feat{padding:34px 24px 30px}.feat-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.ft{padding:18px 16px 16px}br.sp{display:none}}
+
 /* 3つなので、スマホは最後の1つ（性能）を横いっぱいに置く */
 @media(min-width:760px){.trustbar{grid-template-columns:repeat(4,1fr)}}
 .trustbar .tb{background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:18px 6px;text-align:center}
@@ -1043,13 +1058,16 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   <div class="hero-scroll en">Scroll</div>
 </div>
 
-<!-- 信頼の数字（FV直下＝勝ちサイト共通の型） -->
-<div class="trustbar">
-  <div class="tb"><span class="tb-v">地元の職人がつくる</span><span class="tb-c">奈良で57年・専属チーム</span></div>
-  <div class="tb"><span class="tb-v">30坪 2,095万円〜</span><span class="tb-c">本体価格（税込）</span></div>
-  <div class="tb"><span class="tb-v">安心快適な高性能</span><span class="tb-c">耐震等級3／断熱等級6</span></div>
-  <a class="tb" href="#youtube"><span class="tb-v">家づくりYouTube発信中</span><span class="tb-c">登録1.12万人・321万回再生</span></a>
-</div>
+<!-- 特長（写真の直後＝性能・価格・つくる人への入口） -->
+<section class="feat" id="feat">
+  <div class="feat-head"><span class="en">Features</span><p>価格を、かくさない。<br class="sp">安心で快適に暮らせる標準仕様。</p></div>
+  <div class="feat-grid">
+    <a class="ft" href="/spec#taishin"><span class="ft-k">耐震</span><b>耐震等級3が標準</b><small>全棟で構造計算</small></a>
+    <a class="ft" href="/spec#dannetsu"><span class="ft-k">断熱・気密</span><b>断熱等級6・<span class="nb">C値0.5以下</span></b><small>部屋ごとの温度差が小さい</small></a>
+    <a class="ft" href="/products"><span class="ft-k">価格</span><b>30坪 2,095万円〜</b><small>本体価格（税込）</small></a>
+    <a class="ft" href="/members"><span class="ft-k">つくる人</span><b>地元の大工がつくる</b><small>奈良で57年・親子二代</small></a>
+  </div>
+</section>
 
 <!-- 見学会・相談会（イベントを上に＝集客サイトの型） -->
 <section class="evsec" id="event">
@@ -1295,7 +1313,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
           <div class="tsim-ends"><span id="tsMin">30</span><span>45</span></div>
           <div class="tsim-out">
             <div class="cap">本体価格の目安（税込）</div>
-            <div class="yen"><span id="tsPrice">2,097</span><em>万円</em></div>
+            <div class="yen"><span id="tsPrice">2,095</span><em>万円</em></div>
             <div class="sub">坪単価 <span id="tsUnit">69.9</span>万円 × <span id="tsT2">30</span>坪</div>
             <div class="mon">住宅ローンなら、月々 <b id="tsMon">5.9</b>万円</div>
           </div>

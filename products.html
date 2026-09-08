@@ -241,7 +241,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     </div>
     <div class="sim-result">
       <div class="sim-label">本体価格の目安</div>
-      <div class="sim-price">約 <span id="simPrice">2,097</span><small>万円</small></div>
+      <div class="sim-price">約 <span id="simPrice">2,095</span><small>万円</small></div>
       <div class="sim-unit">坪単価 <span id="simUnit">69.9</span>万円（税込）× <span id="simT2">30</span>坪</div>
       <div class="sim-monthly">住宅ローンなら、月々 <b>約 <span id="simMonthly">5.9</span></b> 万円〜の目安</div>
     </div>
@@ -251,15 +251,19 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </section>
 <script>
 (function(){
-  var PRICE={nest:{'2f':69.9,'flat':78.7},arch:{'2f':82.5,'flat':91.3}};
+  // ⚠️NESTの掛け算は丸めない単価 69.85 で（税別63.5万×1.1）。
+  //   表示の69.9で掛けると30坪が2,097万円になり、上の商品表とページ見出しの
+  //   「2,095万円〜」とずれる（2026-09-08 専務指摘）。表示だけ SHOW の丸めた値を出す
+  var PRICE={nest:{'2f':69.85,'flat':78.7},arch:{'2f':82.5,'flat':91.3}};
+  var SHOW ={nest:{'2f':69.9,'flat':78.7},arch:{'2f':82.5,'flat':91.3}};
   var sS='nest',sT='2f',sN=30;
-  function fmt(n){return Math.round(n).toLocaleString('ja-JP');}
+  function fmt(n){return Math.floor(n).toLocaleString('ja-JP');}
   // 月々目安：本体価格を 35年・年1.0%・元利均等で借入れた場合（万円/月）
   var R=0.01/12, N=420, FACTOR=R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
   function calc(){
     var u=PRICE[sS][sT];
     var total=u*sN; // 本体価格（万円）
-    document.getElementById('simUnit').textContent=u;
+    document.getElementById('simUnit').textContent=SHOW[sS][sT];
     document.getElementById('simTsubo').textContent=sN;
     document.getElementById('simT2').textContent=sN;
     document.getElementById('simPrice').textContent=fmt(total);
