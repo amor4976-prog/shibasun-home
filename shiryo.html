@@ -498,6 +498,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   // 坪数スライダー（products.html と同じ単価・同じ計算）
   (function(){
     // 掛け算は丸めない単価で（価格ページと同じ。69.9は表示用の丸め値。69.9×30だと2,097になりずれる）
+    // 端数は切り捨て。Math.roundだと30坪が2,096万円になり、商品表の2,095万円〜とずれる（2026-09-10 専務指摘）
     var TAN={'2f':69.85,'flat':78.7}, SHOW={'2f':69.9,'flat':78.7}, MIN={'2f':30,'flat':24}, kind='2f', tsubo=30;
     var R=0.01/12, N=420, F=R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
     function calc(){
@@ -505,7 +506,7 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
       document.getElementById('simUnit').textContent=SHOW[kind];
       document.getElementById('simTsubo').innerHTML=tsubo+'<em>坪</em>';
       document.getElementById('simT2').textContent=tsubo;
-      document.getElementById('simPrice').textContent=Math.round(total).toLocaleString('ja-JP');
+      document.getElementById('simPrice').textContent=Math.floor(total).toLocaleString('ja-JP');
       document.getElementById('simMon').textContent=(total*F).toFixed(1);
     }
     document.querySelectorAll('#simKind button').forEach(function(b){

@@ -201,6 +201,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .kband img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:#e9e6e0}
 @media(min-width:760px){.kband{gap:4px}}
 </style>
+<!-- ⚠️Eventの型は使わない。見学会は「随時開催・予約制」で開催日が無く、
+     Eventには startDate が必須のため Search Console でエラーになる（2026-09-10 通知）。
+     日付を決めた見学会をやる時だけ、その日付を startDate に入れて Event を足す。 -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -219,22 +222,21 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     "@id": "https://www.shibasun.jp/#business"
    },
    "mainEntity": {
-    "@type": "Event",
+    "@type": "Service",
     "name": "OB様邸 見学会",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "isAccessibleForFree": true,
-    "organizer": {
+    "serviceType": "住宅見学会",
+    "provider": {
      "@id": "https://www.shibasun.jp/#business"
     },
-    "location": {
-     "@type": "Place",
-     "name": "奈良県内のOB様邸（応募後にご案内）",
-     "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "奈良県",
-      "addressCountry": "JP"
-     }
+    "areaServed": {
+     "@type": "AdministrativeArea",
+     "name": "奈良県"
+    },
+    "offers": {
+     "@type": "Offer",
+     "price": "0",
+     "priceCurrency": "JPY",
+     "availability": "https://schema.org/InStock"
     },
     "description": "シバサンホームで建てたお客様のお住まいを見学。随時受付。",
     "url": "https://www.shibasun.jp/kengaku"
