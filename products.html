@@ -97,6 +97,15 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}.fc-reserve{background:var(--ink);color:#fff}
 @media(min-width:760px){.spec-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+
+/* 実例の帯（nara-shi と同じ） */
+.works{max-width:1040px;margin:0 auto}
+.strip{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;--bh:220px}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{flex:0 0 auto;margin:0;background:#e9e6e0}
+.strip img{display:block;height:var(--bh);width:auto;max-width:none}
+@media(min-width:760px){.strip{--bh:300px}}
+.works .more{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:.08em;border-bottom:1px solid var(--ink);padding-bottom:2px}
 </style>
 <script type="application/ld+json">
 {
@@ -183,6 +192,21 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <p class="lnote">※ 表示はすべて税込・本体価格の目安です（諸費用・外構費は別途）。延床面積や仕様により変動します。詳しい仕様書とお見積りは、ご来店の際にご案内します。</p>
   <p class="lnote">平屋をお考えの方は、<a href="/blog-hiraya" style="color:inherit;text-decoration:underline">奈良で平屋を建てる価格と間取りの解説</a>もご覧ください。</p>
 </section>
+<section class="sec" style="background:var(--pale);max-width:none">
+  <div class="works">
+    <div class="label"><span class="en">Works</span><small>この価格帯で建った家</small></div>
+    <div class="strip">
+      <figure><img src="img/shiryo/works/w06_washitsu.jpg" alt="リビング" loading="lazy" decoding="async" width="900" height="599"></figure>
+      <figure><img src="img/shiryo/works/w02_kitchen.jpg" alt="キッチン" loading="lazy" decoding="async" width="900" height="600"></figure>
+      <figure><img src="img/shiryo/works/w09_gaikan2.jpg" alt="黒い外壁の家" loading="lazy" decoding="async" width="900" height="599"></figure>
+      <figure><img src="img/shiryo/works/w07_fukinuke.jpg" alt="吹き抜けのリビング" loading="lazy" decoding="async" width="900" height="600"></figure>
+      <figure><img src="img/shiryo/works/w11_nakaniwa.jpg" alt="中庭" loading="lazy" decoding="async" width="900" height="600"></figure>
+      <figure><img src="img/shiryo/works/w05_dining.jpg" alt="ダイニング" loading="lazy" decoding="async" width="900" height="599"></figure>
+    </div>
+    <a class="more" href="/jisseki">建築実例をすべて見る →</a>
+  </div>
+</section>
+
 
 <style>
 .sim-box{max-width:560px;margin:0 auto;border:1px solid var(--linec,#e3e0da);padding:26px 22px;border-radius:3px}

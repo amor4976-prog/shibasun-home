@@ -27,6 +27,8 @@ const NAV = [
 ];
 // そのほか（控えめに・小さく）— 消さずにたたむ
 const NAV_SUB = [
+  { href: 'quality.html',  label: '構造・性能' },
+  { href: 'nara.html',     label: '奈良で建てる' },
   { href: 'nara-shi.html', label: '奈良市で建てる' },
   { href: 'hajimete.html', label: 'はじめての方へ' },
   { href: 'lessons.html',  label: '後悔しない家づくり（動画）' },
@@ -112,11 +114,29 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   /* ページの途中に置く資料請求への道。
      資料請求のリンクは各ページの一番下にしか無く、そこまで下りた人しか押せなかった。
      7/30〜9/5で 会社案内149人→2回・代表紹介95人→0回・実例76人→1回・性能35人→0回。 */
-  .mid-cta{max-width:560px;margin:56px auto;padding:30px 24px;text-align:center;
+  .mid-cta{max-width:760px;margin:48px auto;padding:26px 20px;text-align:center;
     border-top:1px solid var(--linec,#e8e8e6);border-bottom:1px solid var(--linec,#e8e8e6)}
+  /* 2026-09-11 専務：カタログの写真が上・ボタンが下・スマホで見やすい正方形っぽい枠（BESSの冊子写真＋積水の簡潔さ） */
+  .mid-cta .mc-in{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;max-width:360px;margin:0 auto}
+  .mid-cta .mc-img{width:168px;height:168px;aspect-ratio:1/1;object-fit:cover;display:block;background:#f6f6f5}
+  .mid-cta .mc-tx{margin-top:14px}
+  .mid-cta .mc-in p{margin:6px 0 0;font-size:12.5px;line-height:1.9}
+  .mid-cta .mc-in a{width:100%;min-width:0;margin-top:14px}
+  .mid-cta .mc-t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:500;letter-spacing:.06em;line-height:1.6;margin-top:6px}
+  /* PC＝積水ハウスの型：左に写真、右に見出し・一文・ボタン（2026-09-11 専務） */
+  @media(min-width:760px){
+    .mid-cta{padding:0;border:1px solid var(--linec,#e8e8e6);border-top-width:1px;border-bottom-width:1px}
+    .mid-cta .mc-in{display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto auto;max-width:none;gap:0;text-align:left;align-items:center}
+    .mid-cta .mc-img{width:300px;height:300px;grid-column:1;grid-row:1/3}
+    .mid-cta .mc-tx{margin:0;padding:34px 40px 0;grid-column:2;grid-row:1;align-self:end}
+    .mid-cta .mc-t{font-size:22px;margin-top:8px}
+    .mid-cta .mc-in p{font-size:13.5px;margin-top:10px}
+    .mid-cta .mc-in a{width:auto;min-width:290px;margin:18px 40px 34px;grid-column:2;grid-row:2;align-self:start;justify-self:start}
+  }
   .mid-cta .mc-en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;
     color:var(--gray,#767674);text-transform:uppercase}
   .mid-cta p{font-size:13px;font-weight:300;line-height:2;color:var(--ink,#1a1a1a);margin:10px 0 18px}
+  .mid-cta .mc-in a{width:100%;min-width:0}
   .mid-cta a{display:inline-flex;align-items:center;justify-content:center;min-width:290px;
     padding:15px 24px;background:var(--ink,#1a1a1a);color:#fff;font-family:'Noto Sans JP',sans-serif;
     font-size:12.5px;letter-spacing:.16em;text-decoration:none;transition:opacity .25s}
@@ -284,9 +304,13 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     if (NO_DOC.indexOf(here) >= 0) { el.remove(); return; }   // 資料請求・予約・アフターには出さない
     el.className = 'mid-cta';
     el.innerHTML =
-      '<div class="mc-en">Catalog</div>' +
-      '<p>坪単価・商品ラインアップ・施工事例をまとめた資料を<b>無料</b>でお届けします。</p>' +
-      '<a href="/catalog">カタログ資料請求（無料）</a>';
+      '<div class="mc-in">' +
+        '<img class="mc-img" src="img/catalog/set-square.jpg" alt="シバサンホームの資料" loading="lazy" decoding="async">' +
+        '<div class="mc-tx"><div class="mc-en">Catalog</div>' +
+        '<h3 class="mc-t">価格も仕様も、まずは資料で。</h3>' +
+        '<p>坪単価・商品ラインアップ・施工事例をまとめた資料を<b>無料</b>でお届けします。</p></div>' +
+        '<a href="/catalog">カタログ資料請求（無料）</a>' +
+      '</div>';
   });
 
   // ---- LINE フローティングボタン（LINE_URL を設定したときだけ表示）----
