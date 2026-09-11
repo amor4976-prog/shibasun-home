@@ -110,11 +110,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .pos{max-width:1040px;margin:26px auto 0;display:grid;grid-template-columns:minmax(0,1fr);gap:1px;background:var(--linec);border:1px solid var(--linec)}
 .pi{background:#fff;padding:20px 18px 18px}
 .pi .pic-i{width:32px;height:32px;display:block;margin-bottom:10px}
-.ph2{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ph2{display:block}.ph2 .v{display:flex;align-items:baseline;gap:10px;margin-top:8px;white-space:nowrap}
 .ph2 .k{font-size:12px;letter-spacing:.16em;color:var(--gray)}
 .ph2 b{font-family:'Jost',sans-serif;font-weight:400;font-size:38px;line-height:1;letter-spacing:.01em}
 .ph2 b small{font-size:13px;margin-left:2px;font-family:'Noto Sans JP',sans-serif}
-.ph2 .u{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;margin-left:auto}
+.ph2 .u{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;color:var(--ink)}
 .bar{display:flex;gap:3px;margin-top:12px;height:8px}
 .bar i{flex:1;background:#e6e3dd;border-radius:1px}
 .bar i.on{background:var(--ink)}
@@ -293,10 +293,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <section class="sec" style="padding-top:8px">
   <div class="pos">
-    <div class="pi"><div class="ph2"><span class="k">坪単価</span><b>69.9<small>万円〜</small></b><span class="u">税込</span></div><p>本体価格・税込。内装・設備・照明込み。<span class="nb">延床30坪</span>なら<span class="nb">本体価格2,095万円〜</span>です。諸費用・外構・土地は別途で、<span class="nb">総額の目安</span>も最初にお伝えします。</p></div>
-    <div class="pi"><img class="pic-i" src="img/quality/icon-taishin.png" alt=""><div class="ph2"><span class="k">耐震等級</span><b>3</b><span class="u">国の最高等級</span></div><div class="bar"><i></i><i></i><i class="on"></i></div><div class="bl"><span>1</span><span>2</span><span>3</span></div><p>消防署・警察署など、災害時の拠点になる建物と同じ強さの基準です。全棟で構造計算をして確かめます。</p></div>
-    <div class="pi"><img class="pic-i" src="img/quality/icon-dannetsu.png" alt=""><div class="ph2"><span class="k">断熱等級</span><b>6</b><span class="u">7段階の上から2番目</span></div><div class="bar"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div><div class="bl"><span>1</span><span></span><span></span><span>4</span><span></span><span>6</span><span>7</span></div><p>HEAT20 G2相当。冬の朝でも家の中が<span class="nb">おおむね13℃</span>を下回らない目安です。</p></div>
-    <div class="pi"><img class="pic-i" src="img/quality/icon-kimitsu.png" alt=""><div class="ph2"><span class="k">すき間（C値）</span><b>0.5<small>以下</small></b><span class="u">家じゅうで名刺1枚分</span></div><p>家全体のすき間を集めると、30坪の家で<span class="nb">約50平方センチ</span>。名刺1枚と同じ広さです。</p></div>
+    <div class="pi"><div class="ph2"><span class="k">坪単価</span><div class="v"><b>69.9<small>万円〜</small></b><span class="u">税込</span></div></div><p>本体価格・税込。内装・設備・照明込み。<span class="nb">延床30坪</span>なら<span class="nb">本体価格2,095万円〜</span>です。諸費用・外構・土地は別途で、<span class="nb">総額の目安</span>も最初にお伝えします。</p></div>
+    <div class="pi"><img class="pic-i" src="img/quality/icon-taishin.png" alt=""><div class="ph2"><span class="k">耐震等級</span><div class="v"><b>3</b><span class="u">国の最高等級</span></div></div><div class="bar"><i></i><i></i><i class="on"></i></div><div class="bl"><span>1</span><span>2</span><span>3</span></div><p>消防署・警察署など、災害時の拠点になる建物と同じ強さの基準です。全棟で構造計算をして確かめます。</p></div>
+    <div class="pi"><img class="pic-i" src="img/quality/icon-dannetsu.png" alt=""><div class="ph2"><span class="k">断熱等級</span><div class="v"><b>6</b><span class="u">7段階の上から2番目</span></div></div><div class="bar"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div><div class="bl"><span>1</span><span></span><span></span><span>4</span><span></span><span>6</span><span>7</span></div><p>HEAT20 G2相当。冬の朝でも家の中が<span class="nb">おおむね13℃</span>を下回らない目安です。</p></div>
+    <div class="pi"><img class="pic-i" src="img/quality/icon-kimitsu.png" alt=""><div class="ph2"><span class="k">すき間（C値）</span><div class="v"><b>0.5<small>以下</small></b><span class="u">家じゅうで名刺1枚分</span></div></div><p>家全体のすき間を集めると、30坪の家で<span class="nb">約50平方センチ</span>。名刺1枚と同じ広さです。</p></div>
   </div>
 </section>
 
@@ -411,6 +411,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <a class="fc-tel" href="tel:0120154483">電話で相談</a>
   <a class="fc-reserve" href="/reserve">来店予約</a>
 </nav>
-<script src="site.js?v=20260907a" defer></script>
+<script src="site.js?v=20260912b" defer></script>
 </body>
 </html>

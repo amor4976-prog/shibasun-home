@@ -40,7 +40,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
 .whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
 /* 資料の中身プレビュー */
-.kit{max-width:640px;margin:24px auto 0;padding:0 20px}
+.kit{max-width:640px;margin:24px auto 0;padding:0 20px}.kit-img{width:100%;height:auto;display:block;margin:6px auto 22px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.10))}@media(min-width:760px){.kit{max-width:900px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}.kit-img{margin:0}}
 .kit-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--linec)}
 .kit-row:last-child{border-bottom:none}
 .kit-ic{flex:0 0 30px;font-family:'Jost',sans-serif;color:var(--gold);font-size:13px;font-weight:500}
@@ -83,7 +83,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}
 .fc-reserve{background:var(--ink);color:#fff}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
-</style>
+.nb{white-space:nowrap}</style>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -142,10 +142,13 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </div>
 
 <div class="kit">
+  <img class="kit-img" src="img/catalog/set-cut.webp" alt="シバサンホームの資料" width="900" height="535" decoding="async">
+  <div class="kit-rows">
   <div class="kit-row"><span class="kit-ic">01</span><div><b>商品ラインアップ＆価格表</b><br><span>NEST／ARCH／FLAT の坪単価・総額の目安（税込）</span></div></div>
   <div class="kit-row"><span class="kit-ic">02</span><div><b>施工事例集</b><br><span>外観・LDK・キッチンなど実例写真</span></div></div>
-  <div class="kit-row"><span class="kit-ic">03</span><div><b>性能と標準仕様のご案内</b><br><span>耐震等級3（許容応力度計算認定）・高断熱・高気密の標準仕様</span></div></div>
+  <div class="kit-row"><span class="kit-ic">03</span><div><b>性能と標準仕様のご案内</b><br><span>耐震等級3（許容応力度計算認定）・高断熱・<span class="nb">高気密の標準仕様</span></span></div></div>
   <div class="kit-row"><span class="kit-ic">04</span><div><b>家づくりの進め方・資金計画ガイド</b><br><span>土地探しからお引き渡しまでの流れ</span></div></div>
+  </div>
 </div>
 
 <div class="wrap">
@@ -283,6 +286,6 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
   }
 });
 </script>
-<script src="site.js?v=20260830h" defer></script>
+<script src="site.js?v=20260912b" defer></script>
 </body>
 </html>

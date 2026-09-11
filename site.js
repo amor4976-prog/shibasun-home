@@ -118,7 +118,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     border-top:1px solid var(--linec,#e8e8e6);border-bottom:1px solid var(--linec,#e8e8e6)}
   /* 2026-09-11 専務：カタログの写真が上・ボタンが下・スマホで見やすい正方形っぽい枠（BESSの冊子写真＋積水の簡潔さ） */
   .mid-cta .mc-in{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;max-width:360px;margin:0 auto}
-  .mid-cta .mc-img{width:168px;height:168px;aspect-ratio:1/1;object-fit:cover;display:block;background:#f6f6f5}
+  .mid-cta .mc-img{width:220px;height:auto;display:block;filter:drop-shadow(0 8px 14px rgba(0,0,0,.10))}
   .mid-cta .mc-tx{margin-top:14px}
   .mid-cta .mc-in p{margin:6px 0 0;font-size:12.5px;line-height:1.9}
   .mid-cta .mc-in a{width:100%;min-width:0;margin-top:14px}
@@ -127,7 +127,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   @media(min-width:760px){
     .mid-cta{padding:0;border:1px solid var(--linec,#e8e8e6);border-top-width:1px;border-bottom-width:1px}
     .mid-cta .mc-in{display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto auto;max-width:none;gap:0;text-align:left;align-items:center}
-    .mid-cta .mc-img{width:300px;height:300px;grid-column:1;grid-row:1/3}
+    .mid-cta .mc-img{width:300px;grid-column:1;grid-row:1/3;align-self:center}
     .mid-cta .mc-tx{margin:0;padding:34px 40px 0;grid-column:2;grid-row:1;align-self:end}
     .mid-cta .mc-t{font-size:22px;margin-top:8px}
     .mid-cta .mc-in p{font-size:13.5px;margin-top:10px}
@@ -305,7 +305,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     el.className = 'mid-cta';
     el.innerHTML =
       '<div class="mc-in">' +
-        '<img class="mc-img" src="img/catalog/set-square.jpg" alt="シバサンホームの資料" loading="lazy" decoding="async">' +
+        '<img class="mc-img" src="img/catalog/set-cut.webp" width="900" height="535" alt="シバサンホームの資料" loading="lazy" decoding="async">' +
         '<div class="mc-tx"><div class="mc-en">Catalog</div>' +
         '<h3 class="mc-t">価格も仕様も、まずは資料で。</h3>' +
         '<p>坪単価・商品ラインアップ・施工事例をまとめた資料を<b>無料</b>でお届けします。</p></div>' +
