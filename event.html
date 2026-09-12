@@ -2,22 +2,23 @@
 <html lang="ja">
 <!--
   個別無料相談会ページ。
-  「直近のご予約可能日」は、シバグラムの空き枠から自動で出しています（手で日付を書かない）。
-  ・取得先: /api/public/slots?type=visit  ・予約は reserve.html の1本だけを通す（二重取り防止）
-  ・枠が取れない/0件のときは日付を出さず、問い合わせの1行だけを出す
+  予約枠は index.html（トップ #reserve）とまったく同じものを置いている。
+  ・空き枠の取得: /api/public/slots?type=visit&includeFull=1
+  ・予約の確定  : /api/public/reserve（このページで完結する。/reserve へは飛ばさない）
+  ・見た目も処理も index.html と同じにしておくこと（2026-09-13 専務指示）
 -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>個別無料相談会／お知らせ｜シバサンホーム</title>
-<meta name="description" content="奈良の工務店シバサンホームの個別無料相談会。土地さがし・資金計画・間取り・価格・性能など、家づくりの疑問を一つずつ個別にご相談いただけます。予約制・参加無料・ご来店でもオンラインでも。しつこい営業はいたしません。お子様連れ歓迎。奈良市・大和郡山市ほか。">
+<title>奈良の個別無料相談会｜シバサンホーム</title>
+<meta name="description" content="奈良の工務店シバサンホームの個別無料相談会。予約制で、土地さがし・資金計画・間取り・価格・性能のご相談を承ります。ご来店でもオンラインでも。所要は約60分、しつこい営業はいたしません。">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#1c1c1a">
 <link rel="canonical" href="https://www.shibasun.jp/event">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="シバサンホーム">
-<meta property="og:title" content="個別無料相談会／お知らせ｜シバサンホーム">
-<meta property="og:description" content="土地・お金・間取り・性能…家づくりの疑問を個別に相談できる無料の会。ご予約制・ご来店でもオンラインでも。">
+<meta property="og:title" content="奈良の個別無料相談会｜シバサンホーム">
+<meta property="og:description" content="奈良の工務店シバサンホームの個別無料相談会。予約制で、土地さがし・資金計画・間取り・価格・性能のご相談を承ります。ご来店でもオンラインでも。所要は約60分、しつこい営業はいたしません。">
 <meta property="og:url" content="https://www.shibasun.jp/event">
 <meta property="og:image" content="https://www.shibasun.jp/img/og-image.jpg">
 <meta property="og:locale" content="ja_JP">
@@ -57,64 +58,69 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .assure span{display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;font-size:12px;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold);color:#555555;padding:8px 16px;border-radius:30px;background:#f4f4f3}
 
 .wrap{max-width:900px;margin:0 auto;padding:20px 22px}
-.editnote{max-width:900px;margin:18px auto 0;padding:0 22px}
-.editnote div{background:#fff7e6;border:1px dashed var(--gold);color:#8a7340;font-size:11.5px;font-weight:300;line-height:1.8;padding:12px 16px;letter-spacing:.04em}
-.fillin{background:#fff7e6;border-bottom:1px dashed var(--gold);color:#8a7340;padding:0 6px;font-weight:500}
 
 .sec{margin-top:46px}
 .sec-h{text-align:center;margin-bottom:24px}
 .sec-h .en{font-size:11px;color:var(--gold);font-weight:500}
 .sec-h h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,25px);font-weight:500;letter-spacing:.07em;margin-top:8px}
 
-/* 相談会カード */
-.eventcard{border:1px solid var(--ink);overflow:hidden}
-.eventcard .ribbon{background:var(--ink);color:#fff;text-align:center;padding:10px;font-size:12px;letter-spacing:.16em;font-family:'Noto Sans JP',sans-serif}
-.eventcard .body{padding:26px 24px}
-.einfo{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--linec)}
-.einfo .row{display:grid;grid-template-columns:100px 1fr;gap:10px;padding:13px 4px;border-bottom:1px solid var(--linec);font-size:13.5px}
-/* スマホでは2列にしない（列が狭いと「日時を」のような孤立行が出るため・2026-08-28） */
-@media(max-width:560px){.einfo .row{grid-template-columns:1fr;gap:3px}.einfo .row .k{padding-top:0}}
-.einfo .row .k{color:var(--gray);font-size:12px;letter-spacing:.1em;padding-top:2px}
-.einfo .row .v{font-weight:500}
-.ebtns{display:flex;flex-direction:column;gap:10px;max-width:380px;margin:22px auto 0}
-.ebtn{display:flex;align-items:center;justify-content:center;padding:15px;font-size:13px;letter-spacing:.14em}
-.ebtn-fill{background:var(--gold);color:#fff}
-.ebtn-line{border:1px solid var(--ink)}
-.enote{font-size:11px;color:var(--gray);font-weight:300;text-align:center;margin-top:12px}
 
-/* 直近のご予約可能日。見せ方はトップ・予約ページと同じもの（横にスライドする日付カード→時間）を
-   そのまま使う。ここで独自の見た目を作らない（2026-08-28 専務「今のTOPページの見せ方からなんで変えるのよ」）*/
-.slotbox{border:1px solid var(--linec);background:#fff;padding:26px 20px;margin-top:16px}
-/* スマホでは横の余白を詰める。詰めないと時間ボタンがトップページより狭くなり、
-   「◎」だけが次の行に落ちる（2026-08-28に実測） */
-@media(max-width:560px){.slotbox{padding:22px 12px}}
-.slotbox .sh{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em;padding-bottom:16px;border-bottom:1px solid var(--linec);margin-bottom:20px}
+/* 予約枠。トップページ（index.html #reserve）とまったく同じものを持ってきている。
+   ここで独自の見た目・独自の処理を作らない（2026-09-13 専務「個別相談会はトップページの予約枠を使え」）*/
+.rsvbox{border:1px solid var(--linec);background:#fff;padding:34px 22px;max-width:640px;margin:0 auto}
+@media(max-width:560px){.rsvbox{padding:26px 14px}}
 .rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
 .date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
 .date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;
   border:1px solid var(--linec);background:#fff;transition:all .2s}
 .date-chip .d{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;line-height:1.3}
 .date-chip .w{font-size:10px;color:var(--gray);letter-spacing:.1em}
+.date-chip.nofree{opacity:.45}
 .date-chip.on{background:var(--ink);border-color:var(--ink)}
 .date-chip.on .d,.date-chip.on .w{color:#fff}
 .slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
 @media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
-.slot-btn{display:block;padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;
-  font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;color:var(--ink);text-decoration:none;
-  font-family:'Jost','Noto Sans JP',sans-serif}
+.slot-btn{padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;
+  font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
-.slot-btn:hover{background:var(--ink);color:#fff}
-.slot-btn:hover small{color:#bdbdbb}
-.slotbox .sfall{font-size:12.5px;font-weight:300;color:#555553;line-height:2.05;padding-top:18px}
-@media(min-width:600px){.slotbox br.sp{display:none}}
+.slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
+.slot-btn.full small{color:#a8a8a6}
+.slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slot-btn.on small{color:#bdbdbb}
+.topic-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tchip{border:1px solid var(--linec);background:#fff;color:#454543;font-family:inherit;font-size:12.5px;letter-spacing:.04em;padding:9px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.tchip:hover{border-color:var(--gold)}
+.tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rsv-field{margin-top:22px}
+.rsv-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
+.rsv-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
+.rsv-field input,.rsv-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;
+  font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
+.rsv-field input:focus,.rsv-field textarea:focus{outline:none;border-color:var(--ink)}
+.rsv-submit{width:100%;margin-top:28px;padding:17px;background:var(--ink);color:#fff;border:none;
+  font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.rsv-submit:disabled{opacity:.4;cursor:default}
+.rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
+.rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
+.rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
+.rsv-done{text-align:center;padding:36px 10px}
+.rsv-done .mark{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
+.rsv-done h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin-bottom:14px}
+.rsv-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
+.rsv-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:var(--gray);margin-top:10px}
+.rsv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7da06f;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.rsv-lead{max-width:640px;margin:0 auto 26px;text-align:center;font-size:13.5px;font-weight:300;line-height:2.3;color:#454543}
+.rsv-tel{max-width:640px;margin:16px auto 0;text-align:center;font-size:12px;font-weight:300;color:var(--gray)}
+.rsv-tel a{border-bottom:1px solid var(--linec);color:var(--ink)}
 
 /* できること */
 .benefits{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:680px){.benefits{grid-template-columns:1fr 1fr}}
-.bcard{border:1px solid var(--linec);padding:18px 20px}
-.bcard .bn{font-family:'Jost',sans-serif;font-size:12px;color:var(--gold);letter-spacing:.12em}
-.bcard h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;margin:6px 0 6px}
-.bcard p{font-size:12.5px;font-weight:300;color:#353533;line-height:1.95}
+.bcard{border:1px solid var(--linec);background:#fff;padding:20px;display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;row-gap:6px;align-items:center}
+.bcard .bi{width:32px;height:32px;display:block;opacity:.85}
+.bcard h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;font-weight:500;margin:0}
+.bcard p{grid-column:2;font-size:12.5px;font-weight:300;color:#353533;line-height:1.95}
 
 /* 流れ */
 .steps3{display:grid;grid-template-columns:1fr;gap:12px}
@@ -124,12 +130,6 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .s3 h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;margin-bottom:6px}
 .s3 p{font-size:12px;font-weight:300;color:#353533;line-height:1.9}
 
-/* お知らせ */
-.news{border-top:1px solid var(--linec)}
-.news li{list-style:none;display:grid;grid-template-columns:110px 1fr;gap:14px;padding:16px 4px;border-bottom:1px solid var(--linec);font-size:13.5px;font-weight:300;align-items:baseline}
-@media(max-width:560px){.news li{grid-template-columns:1fr;gap:3px}}
-.news .date{font-family:'Jost',sans-serif;color:var(--gray);font-size:12px;letter-spacing:.08em}
-.news .tag{display:inline-block;font-size:10px;color:#fff;background:var(--gold);padding:2px 8px;border-radius:2px;margin-right:8px;letter-spacing:.04em}
 
 .cta{text-align:center;padding:54px 24px 20px}
 .cta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:500;letter-spacing:.08em;margin-bottom:8px}
@@ -176,46 +176,31 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <div class="wrap">
 
-  <!-- 相談会について -->
-  <section class="sec">
-    <div class="sec-h"><div class="en">About</div><h2>個別無料相談会について</h2></div>
-    <div class="eventcard">
-      <div class="ribbon">随時受付中・ご予約制</div>
-      <div class="body">
-        <div class="einfo">
-          <div class="row"><div class="k">参加費</div><div class="v">無料</div></div>
-          <div class="row"><div class="k">所要時間</div><div class="v">約60分（ご相談内容により前後します）</div></div>
-          <div class="row"><div class="k">方法</div><div class="v">ご来店、またはオンライン（Web）</div></div>
-          <div class="row"><div class="k">対象</div><div class="v">これから家づくりを考える方ならどなたでも（土地・予算が未定でも大丈夫です）</div></div>
-          <div class="row"><div class="k">ご予約</div><div class="v">下のボタン、またはお電話（<span style="white-space:nowrap">0120-154-483</span>）から</div></div>
-        </div>
-        <div class="slotbox">
-          <div class="sh">直近のご予約可能日</div>
-          <div id="ev-app"></div>
-          <p class="sfall" id="ev-fall">ご希望の日時をお知らせください。<br class="sp">折り返し、空いているお時間をご案内します。土日・平日、夕方も承ります。</p>
-        </div>
-
-        <div class="ebtns">
-          <a class="ebtn ebtn-fill" href="/reserve">来店を予約する</a>
-          <a class="ebtn ebtn-line" href="tel:0120154483">電話で聞く（0120-154-483）</a>
-        </div>
-        <p class="enote">※ お一組ずつの個別対応です。周りを気にせず、ゆっくりご相談いただけます。</p>
-      </div>
+  <!-- ご予約。枠・処理はトップページ（index.html #reserve）と同じものを使う -->
+  <section class="sec" id="yoyaku">
+    <div class="sec-h"><div class="en">Reserve</div><h2>ご予約</h2></div>
+    <p class="rsv-lead">
+      来店もオンラインも無料。<span class="nb">しつこい営業</span>はいたしません。<br>
+      下のカレンダーは<b>現在の空き状況</b>です。<span class="nb">ご希望の日時</span>をお選びください。<br>
+      <span class="rsv-live">空き状況はリアルタイムで更新されています</span>
+    </p>
+    <div class="rsvbox">
+      <div id="rsv-app"><div class="rsv-msg">空き状況を確認しています…</div></div>
+      <div class="rsv-note">所要時間は約60分・お子様連れ歓迎。オンラインでも承ります</div>
     </div>
-
-
+    <p class="rsv-tel">お電話でも承ります <a href="tel:0120154483">0120-154-483</a>（9:00-18:00／水曜定休）</p>
   </section>
 
   <!-- 相談会でできること -->
   <section class="sec">
     <div class="sec-h"><div class="en">Topics</div><h2>こんなこと、相談できます</h2></div>
     <div class="benefits">
-      <div class="bcard"><div class="bn">01</div><h3>土地さがし</h3><p>土地をお持ちでなくても大丈夫。地元・奈良のネットワークで、ご希望に合う土地探しからお手伝いします。</p></div>
-      <div class="bcard"><div class="bn">02</div><h3>資金計画・予算</h3><p>「いくらの家が建てられる？」を、無理のない返済額から一緒に整理します。予算が未定でも大丈夫。</p></div>
-      <div class="bcard"><div class="bn">03</div><h3>住宅ローン</h3><p>ローンの選び方や月々の目安など、お金まわりの不安を分かりやすくご説明します。</p></div>
-      <div class="bcard"><div class="bn">04</div><h3>間取り・プラン</h3><p>家事ラクの動線、収納、家族の暮らし方に合わせた間取りのご相談を承ります。</p></div>
-      <div class="bcard"><div class="bn">05</div><h3>価格・お見積り</h3><p>本体だけでなく、諸費用・外構まで含めた「総額」での考え方をご説明します。</p></div>
-      <div class="bcard"><div class="bn">06</div><h3>性能・仕様</h3><p>耐震・断熱・気密など、見えない部分の標準仕様についてもお気軽にどうぞ。</p></div>
+      <div class="bcard"><img class="bi" src="img/quality/icon-tochi.png" alt="" width="160" height="160" loading="lazy" decoding="async"><h3>土地さがし</h3><p>土地をお持ちでなくても大丈夫。地元・奈良のネットワークで、ご希望に合う土地探しからお手伝いします。</p></div>
+      <div class="bcard"><img class="bi" src="img/quality/icon-shikin.png" alt="" width="160" height="160" loading="lazy" decoding="async"><h3>資金計画・予算</h3><p>「いくらの家が建てられる？」を、無理のない返済額から一緒に整理します。予算が未定でも大丈夫。</p></div>
+      <div class="bcard"><img class="bi" src="img/quality/icon-loan.png" alt="" width="160" height="160" loading="lazy" decoding="async"><h3>住宅ローン</h3><p>ローンの選び方や月々の目安など、お金まわりの不安を分かりやすくご説明します。</p></div>
+      <div class="bcard"><img class="bi" src="img/quality/icon-madori.png" alt="" width="160" height="160" loading="lazy" decoding="async"><h3>間取り・プラン</h3><p>家事ラクの動線、収納、家族の暮らし方に合わせた間取りのご相談を承ります。</p></div>
+      <div class="bcard"><img class="bi" src="img/quality/icon-kakaku.png" alt="" width="160" height="160" loading="lazy" decoding="async"><h3>価格・お見積り</h3><p>本体だけでなく、諸費用・外構まで含めた「総額」での考え方をご説明します。</p></div>
+      <div class="bcard"><img class="bi" src="img/quality/icon-seino.png" alt="" width="160" height="160" loading="lazy" decoding="async"><h3>性能・仕様</h3><p>耐震・断熱・気密など、見えない<span class="nb">部分の標準仕様</span>についてもお気軽にどうぞ。</p></div>
     </div>
   </section>
 
@@ -229,24 +214,13 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     </div>
   </section>
 
-  <!-- お知らせ -->
-  <section class="sec">
-    <div class="sec-h"><div class="en">News</div><h2>お知らせ</h2></div>
-    <ul class="news">
-      <!-- ▼ 新しいお知らせは、この下に <li> を足してください（新着が上）。古いものは消してOKです。
-           ・過ぎた日付のお知らせは必ず消すこと（「終わった催しかな」と思われて離脱の原因になります）
-           ・軒数・枚数などの件数はお客様に見せない方針なので書かないでください -->
-      <li><span class="date">2026.07.25</span><span><span class="tag">実例</span>建築実例のページを更新しました。<a href="/jisseki" style="border-bottom:1px solid var(--gold)">こちら</a></span></li>
-    </ul>
-  </section>
-
 </div>
 
 <div class="cta">
-  <h2 class="gothic">まずは、話を聞くだけでも。</h2>
+  <h2 class="gothic">まずは具体的な話を<br>聞いてみませんか？</h2>
   <p>個別無料相談会のご予約はお気軽に。ご来店でも、オンラインでも承ります。</p>
   <div class="cbtns">
-    <a class="cbtn cbtn-fill" href="/reserve">来店を予約する</a>
+    <a class="cbtn cbtn-fill" href="#yoyaku">来店を予約する</a>
     <a class="cbtn cbtn-gold" href="/catalog">カタログ資料請求（無料）</a>
   </div>
 </div>
@@ -260,7 +234,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <nav class="fixed-cta">
   <a class="fc-tel" href="tel:0120154483">電話で聞く</a>
-  <a class="fc-reserve" href="/reserve">来店を予約</a>
+  <a class="fc-reserve" href="#yoyaku">来店を予約</a>
 </nav>
 
 <script type="application/ld+json">
@@ -271,46 +245,117 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 ]}
 </script>
 <script>
-/* 直近のご予約可能日。見せ方も処理もトップ・予約ページと同じものを流用している。
-   ここでは「見せて、選んでもらう」だけ。予約を確定するのは reserve.html の1本だけなので、
-   ここから枠が二重に押さえられることはない。 */
-(function(){
-  var API='https://shibagram.onrender.com';
-  var app=document.getElementById('ev-app'), fall=document.getElementById('ev-fall');
-  if(!app) return;
-  var slots=[], cur=null;
-  function fmtDate(s){var p=s.split('-').map(Number),dt=new Date(p[0],p[1]-1,p[2]);
-    return{md:p[1]+'/'+p[2], w:['日','月','火','水','木','金','土'][dt.getDay()]};}
-  function render(){
-    var dates=[]; slots.forEach(function(s){if(dates.indexOf(s.date)<0)dates.push(s.date);});
-    if(!dates.length){ app.innerHTML=''; return; }
-    if(!cur||dates.indexOf(cur)<0) cur=dates[0];
-    var day=slots.filter(function(s){return s.date===cur;});
-    app.innerHTML=
-      '<div class="rsv-step-label">1. 日付を選ぶ</div>'+
-      '<div class="date-scroll">'+dates.map(function(d){var f=fmtDate(d);
-        return '<button type="button" class="date-chip'+(d===cur?' on':'')+'" data-date="'+d+'">'+
-               '<div class="d">'+f.md+'</div><div class="w">'+f.w+'</div></button>';}).join('')+'</div>'+
-      '<div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>'+
-      '<div class="slot-grid">'+day.map(function(s){
-        return '<a class="slot-btn" href="/reserve?slot='+encodeURIComponent(s.id)+'">'+
-               s.startTime+'<small>◎ ご予約いただけます</small></a>';}).join('')+'</div>';
-    app.querySelectorAll('.date-chip').forEach(function(b){
-      b.addEventListener('click',function(){cur=b.dataset.date;render();});});
+/* 来店予約。トップページ（index.html #reserve）とまったく同じ処理をそのまま使っている。
+   直す時は必ず両方を同じにする（2026-09-13 専務「個別相談会はトップページの予約枠を使え」）*/
+const SHIBAGRAM_API='https://shibagram.onrender.com';
+const rsvApp=document.getElementById('rsv-app');
+let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
+
+function rsvFallback(){
+  rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';
+}
+function fmtDate(s){
+  const[y,m,d]=s.split('-').map(Number);
+  const dt=new Date(y,m-1,d);
+  return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};
+}
+function rsvRender(){
+  const dates=[...new Set(rsvSlots.map(s=>s.date))];
+  if(!dates.length){
+    rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';
+    return;
   }
-  fetch(API+'/api/public/slots?type=visit').then(function(r){if(!r.ok)throw 0;return r.json();})
-  .then(function(data){
-    var today=new Date(); today.setHours(0,0,0,0);
-    slots=(data.slots||[]).filter(function(s){
-      var p=s.date.split('-').map(Number);
-      return s.status==='open' && (s.availableCount===undefined||s.availableCount>0)
-             && new Date(p[0],p[1]-1,p[2])>=today;      /* 過ぎた日は出さない */
-    });
-    if(!slots.length) return;                            /* 0件なら何も出さない＝下の1行だけ残る */
-    render();
-    if(fall) fall.textContent='時間を押すと、その枠で予約の画面が開きます。上記以外の日時もご相談ください。';
-  }).catch(function(){});
-})();
+  // 空きのある日を最初に出す（満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる）
+  const rsvOpenDates=new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date));
+  if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates.find(d=>rsvOpenDates.has(d))||dates[0];
+  const daySlots=rsvSlots.filter(s=>s.date===rsvDate);
+  if(rsvSlot&&!daySlots.some(s=>s.id===rsvSlot))rsvSlot=null;
+  rsvApp.innerHTML=`
+    <div class="rsv-step-label">1. 日付を選ぶ</div>
+    <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);
+      return`<button type="button" class="date-chip${d===rsvDate?' on':''}${rsvOpenDates.has(d)?'':' nofree'}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}${rsvOpenDates.has(d)?'':' 満'}</div></button>`}).join('')}</div>
+    <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
+    <div class="slot-grid">${daySlots.map(s=>
+      `<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
+    <form id="rsv-form">
+      <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
+      <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
+      <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
+      <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
+      <div class="rsv-field"><label>ご相談方法</label>
+        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
+        <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
+      </div>
+      <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
+      <button class="rsv-submit" type="submit">この日時で予約する</button>
+    </form>`;
+  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
+  rsvApp.querySelectorAll('.tchip:not(.mchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+  document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
+}
+async function rsvSubmit(e){
+  e.preventDefault();
+  const f=e.target;
+  if(!rsvSlot){alert('ご希望の時間を選択してください');return}
+  const btn=f.querySelector('.rsv-submit');
+  btn.disabled=true;btn.textContent='送信中…';
+  const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip)')].map(c=>c.dataset.t);
+  const methodEl=rsvApp.querySelector('.mchip.on');
+  const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
+  const msg=[`【相談方法】${methodLabel}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  try{
+    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        slotId:rsvSlot,reservationType:'visit',
+        customerName:f.name.value.trim(),
+        customerPhone:f.phone.value.trim(),
+        customerEmail:f.email.value.trim()||undefined,
+        message:msg,
+      })});
+    const data=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(data.error||'予約に失敗しました');
+    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});
+    const sel=rsvSlots.find(s=>s.id===rsvSlot);const fd=fmtDate(sel.date);
+    rsvApp.innerHTML=`<div class="rsv-done">
+      <div class="mark">Reserved</div>
+      <h3>ご予約ありがとうございます</h3>
+      <p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p>
+    </div>`;
+  }catch(err){
+    btn.disabled=false;btn.textContent='この日時で予約する';
+    alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');
+    rsvLoad();
+  }
+}
+function rsvFormDirty(){
+  const f=document.getElementById('rsv-form');
+  if(!f)return false;
+  return !!(rsvSlot||f.name.value||f.phone.value||f.email.value||f.message.value);
+}
+let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
+async function rsvLoad(){
+  try{
+    const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');
+    if(!r.ok)throw 0;
+    const data=await r.json();
+    rsvSlots=data.slots||[];
+    if(slotFromUrl){
+      const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
+      if(t){rsvDate=t.date;rsvSlot=t.id;}
+      slotFromUrl=null;
+    }
+    if(!rsvDone&&!rsvFormDirty())rsvRender(); // 入力中・予約完了後は画面を消さない
+  }catch{
+    if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();
+  }
+}
+rsvLoad();
+setInterval(rsvLoad,60000); // 1分ごとに空き状況を更新
 </script>
 <script src="site.js?v=20260913a" defer></script>
 </body>
