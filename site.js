@@ -30,6 +30,7 @@ const NAV_SUB = [
   { href: 'quality.html',  label: '構造・性能' },
   { href: 'nara.html',     label: '奈良で建てる' },
   { href: 'nara-shi.html', label: '奈良市で建てる' },
+  { href: 'hiraya.html',   label: '奈良で平屋を建てる' },
   { href: 'faq.html',      label: 'よくある質問' },
   { href: 'hajimete.html', label: 'はじめての方へ' },
   { href: 'lessons.html',  label: '後悔しない家づくり（動画）' },
