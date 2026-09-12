@@ -1,0 +1,43 @@
+<!doctype html><meta charset="utf-8">
+<!-- 390pxの実測用の入れ物。画面なしChromeは500px未満にならないので、iframe越しに測る。
+     使い方は tools/kaigyo_measure.sh から。単体で開くときは
+     /_kaigyo/kaigyo_iframe.html?p=<測るページ>&t=<保存名> -->
+<style>html,body{margin:0}iframe{width:390px;height:9000px;border:0;display:block}</style>
+<iframe id="f"></iframe>
+<script>
+const q=new URLSearchParams(location.search);
+const f=document.getElementById('f'); f.src=q.get('p'); const tag=q.get('t');
+f.onload=()=>setTimeout(run,3500);
+function run(){
+  const D=f.contentDocument;
+  // 測る対象。バッジと本文が同じ親に入っていると誤検出するので、入れ子は親だけ数える
+  const SEL='h1,h2,h3,h4,p,li,td,th,figcaption';
+  const done=new Set(), out=[];
+  D.querySelectorAll('details').forEach(d=>d.open=true);
+  D.querySelectorAll(SEL).forEach(el=>{
+    if(el.closest('header,footer,.fixed-cta,nav,script,style'))return;
+    if(done.has(el))return;
+    let a=el.parentElement, nested=false;
+    while(a){ if(done.has(a)){nested=true;break;} a=a.parentElement; }
+    if(!(el.innerText||'').trim())return;
+    done.add(el); if(nested)return;
+    const walk=D.createTreeWalker(el,NodeFilter.SHOW_TEXT); const chars=[]; let n;
+    while((n=walk.nextNode())){const s=n.nodeValue;
+      for(let i=0;i<s.length;i++){ if(s[i]==='\n')continue;
+        const r=D.createRange(); r.setStart(n,i); r.setEnd(n,i+1);
+        const w=r.getBoundingClientRect();
+        if(w.width===0&&w.height===0)continue;
+        chars.push({c:s[i],top:w.top,bottom:w.bottom,left:w.left});}}
+    if(!chars.length)return;
+    // 同じ行かどうかは縦の重なりで決める（字の大きさが違うと上端では判定できない）
+    const rows=[]; let cur=null;
+    chars.forEach(ch=>{ if(cur===null||ch.top>=cur.b-2){cur={b:ch.bottom,items:[ch]};rows.push(cur);}
+      else{cur.items.push(ch);cur.b=Math.max(cur.b,ch.bottom);} });
+    out.push({p:tag,w:390,tag:el.tagName.toLowerCase(),
+      // 行頭の空白はHTMLの字下げぶん。残すと検査の位置がずれるので落とす
+      lines:rows.map(L=>{L.items.sort((a,b)=>a.left-b.left);return L.items.map(x=>x.c).join('').trim();}).filter(x=>x.trim())});
+  });
+  fetch('http://127.0.0.1:8768/'+tag,{method:'POST',body:JSON.stringify(out)})
+    .then(r=>r.text()).then(()=>{document.title='DONE '+out.length+' sw'+D.documentElement.scrollWidth;});
+}
+</script>
