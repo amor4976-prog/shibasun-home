@@ -175,7 +175,7 @@ function rsvRender(){
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
       <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
-      <div class="rsv-field"><label>ご住所<em>必須</em></label><input name="address" required autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
+      <div class="rsv-field"><label>ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
       <div class="rsv-field"><label>ご相談方法</label>
         <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
@@ -205,7 +205,8 @@ async function rsvSubmit(e){
   const knownEl=rsvApp.querySelector('.kchip.on');const known=knownEl?knownEl.dataset.k:undefined;
   const methodEl=rsvApp.querySelector('.mchip.on');
   const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
-  const msg=[`【相談方法】${methodLabel}`,`【ご住所】${f.address.value.trim()}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  const addr=f.address.value.trim();
+  const msg=[`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
     const data=await r.json().catch(()=>({}));
