@@ -14,7 +14,19 @@ function run(){
   const SEL='h1,h2,h3,h4,p,li,td,th,figcaption';
   const done=new Set(), out=[];
   D.querySelectorAll('details').forEach(d=>d.open=true);
+  // 「ラベル＋本文」（<figcaption><b>吹き抜け</b><span>本文</span></figcaption> や
+  // <li><span>耐震</span><span>耐震等級3…</span></li>）は、ラベルが上の行に乗る作りなので
+  // まとめて測ると「3文字以下の行」「名前と数字が離れた」に必ず引っかかる。
+  // 直の子が全部タグで、地の文が無いものは、子どうしを別のかたまりとして測る。
+  const targets=[];
   D.querySelectorAll(SEL).forEach(el=>{
+    const kids=[...el.children];
+    const bare=[...el.childNodes].some(n=>n.nodeType===3&&n.nodeValue.trim());
+    if(kids.length>=2 && !bare && kids.every(k=>/^(B|SPAN|SMALL|EM|I|STRONG|DIV)$/.test(k.tagName))){
+      kids.forEach(k=>targets.push(k));
+    } else targets.push(el);
+  });
+  targets.forEach(el=>{
     if(el.closest('header,footer,.fixed-cta,nav,script,style'))return;
     if(done.has(el))return;
     let a=el.parentElement, nested=false;

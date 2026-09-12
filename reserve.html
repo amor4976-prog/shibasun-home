@@ -28,7 +28,7 @@ body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f6f6f5;l
 a{text-decoration:none;color:inherit}
 .gothic{font-family:'Zen Kaku Gothic New',sans-serif}
 .en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:66px;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
 .logo{display:flex;flex-direction:column;line-height:1.25}
 .logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
 .logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
@@ -44,6 +44,13 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .wrap{max-width:640px;margin:0 auto;padding:24px 20px 50px}
 .reserve-box{border:1px solid var(--linec);padding:30px 20px}
+/* 予約枠の高さをあらかじめ空けておく。空けないと、空き状況を読み込んだ瞬間に
+   下の「お電話でも」「アフター予約」がまとめて約1,450px下へ飛ぶ
+   （2026-09-13 実測 CLS 0.32＝Googleの「悪い」基準0.1の3倍。読んでいる途中で
+   画面が飛ぶので離脱の原因になる）。読み込めなかったときは .short を付けて戻す */
+#rsv-app{min-height:1400px}
+@media(min-width:480px){#rsv-app{min-height:1290px}}
+#rsv-app.short{min-height:0}
 .rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
 .date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
 .date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;border:1px solid var(--linec);background:#fff;transition:all .2s}
@@ -148,11 +155,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 const SHIBAGRAM_API='https://shibagram.onrender.com';
 const rsvApp=document.getElementById('rsv-app');
 let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
-function rsvFallback(){rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
+function rsvFallback(){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
 function rsvRender(){
   const dates=[...new Set(rsvSlots.map(s=>s.date))];
-  if(!dates.length){rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
+  if(!dates.length){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
   // 空きのある日を最初に出す。満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる
   // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
   const rsvOpenDates=new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date));
@@ -204,7 +211,7 @@ async function rsvSubmit(e){
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'予約に失敗しました');
     rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===rsvSlot);const fd=fmtDate(sel.date);
-    rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
+    rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
   }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
 }
 function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
