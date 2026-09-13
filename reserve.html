@@ -80,6 +80,26 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .rsv-submit{width:100%;margin-top:28px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
 .rsv-submit:disabled{opacity:.4;cursor:default}
+/* 合う日時がないとき。予約の流れとは別の道だと分かるよう、白地の四角に左線。
+   塗りつぶしの黒は「この日時で予約する」だけに残す＝押し間違いを防ぐ（専務 2026-09-13）*/
+.alt-box{margin-top:22px;background:#fff;border:1px solid var(--linec);border-left:3px solid var(--ink);padding:18px 18px 20px}
+.alt-box p{font-size:12.5px;font-weight:300;line-height:1.95;color:#454543}
+.alt-box b{font-weight:500;color:var(--ink)}
+.alt-go{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:11px 22px;
+  border:1px solid var(--ink);background:#fff;color:var(--ink);font-family:inherit;font-size:12.5px;
+  letter-spacing:.1em;cursor:pointer;border-radius:0;-webkit-appearance:none;transition:all .2s}
+.alt-go:hover{background:var(--ink);color:#fff}
+.alt-go:disabled{opacity:.45;cursor:default}
+.sendin{display:none;margin-top:6px}
+.sendin.open{display:block}
+.alt-send{width:100%;margin-top:20px}
+.sendnote{font-size:11px;color:var(--gray);margin-top:10px;line-height:1.85}
+.sendin .two{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:420px){.sendin .two{grid-template-columns:1.1fr 1fr}}
+.sendin select{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;
+  font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
+.kouho-done{margin-top:14px;padding:14px 16px;background:#f2f4f1;font-size:12.5px;font-weight:300;line-height:1.95;color:#2f2f2d}
+.kouho-done b{font-weight:500;color:var(--ink)}
 /* 資料請求は「この日時で予約する」の下に置く（専務 2026-09-13「このフォーム入れずに、
    この日付で予約するの下に」）。塗りつぶしの黒は予約ボタンだけに残す＝押し間違いを防ぐ。
    90日で154人が予約画面を開いて4人しか申し込んでいない。150人をそのまま帰さないための口 */
@@ -132,6 +152,26 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="wrap">
   <div class="reserve-box">
     <div id="rsv-app"><div class="rsv-msg">空き状況を確認しています…</div></div>
+
+    <!-- 合う日時がないとき。rsvRender で時間の枠の下へ動かす。
+         作り直すと入力が消えるので、ここに1回だけ置いて node ごと移す -->
+    <div class="alt-box" id="kouho" hidden>
+      <p><b>合う日時がないとき</b>は、ご希望の日をお送りください。<br>折り返しご連絡して日時を決めます。</p>
+      <button type="button" class="alt-go" id="kouho-open">希望の日を送る</button>
+      <div class="sendin" id="kouho-in">
+        <div class="rsv-field"><label>第1希望<em>必須</em></label>
+          <div class="two"><input type="date" id="k-d1"><select id="k-b1">
+            <option>午前（9:00〜12:00）</option><option selected>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div></div>
+        <div class="rsv-field"><label>第2希望</label>
+          <div class="two"><input type="date" id="k-d2"><select id="k-b2">
+            <option>午前（9:00〜12:00）</option><option selected>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div></div>
+        <div class="rsv-field"><label>お名前<em>必須</em></label><input id="k-name" autocomplete="name" placeholder="柴 太郎"></div>
+        <div class="rsv-field"><label>お電話番号<em>どちらか必須</em></label><input id="k-tel" type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
+        <div class="rsv-field"><label>メールアドレス<em>どちらか必須</em></label><input id="k-mail" type="email" autocomplete="email" placeholder="taro@example.com"></div>
+        <button type="button" class="alt-go alt-send" id="kouho-send">この候補日で送る</button>
+        <p class="sendnote">この場では予約は取れません。担当の柴部から折り返しご連絡します。</p>
+      </div>
+    </div>
     <div class="rsv-note">所要時間は約60分・お子様連れ歓迎・オンライン相談も可能です</div>
   </div>
 </div>
@@ -203,6 +243,9 @@ function rsvRender(){
         <small>合う日時がないときは、こちらでも承ります。価格表・施工事例・標準仕様・進め方の4点を郵送します</small></div>
       <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
     </form>`;
+  // 「合う日時がないとき」を時間の枠の下へ移す。作り直さず node ごと動かすので入力は消えない
+  const kouho=document.getElementById('kouho'), grid=rsvApp.querySelector('.slot-grid');
+  if(kouho&&grid&&grid.parentNode){ kouho.hidden=false; grid.parentNode.insertBefore(kouho, grid.nextSibling); }
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
@@ -228,7 +271,14 @@ async function rsvSubmit(e){
     rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
   }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
 }
-function rsvFormDirty(){const f=document.getElementById('rsv-form');if(!f)return false;return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
+function rsvFormDirty(){
+  // 希望日の欄も「入力中」に数える。数えないと1分ごとの取り直しで打った字が消える
+  const k=['k-d1','k-d2','k-name','k-tel','k-mail'].some(id=>{const e=document.getElementById(id);return e&&e.value;});
+  const opened=document.getElementById('kouho-in');
+  if(k||(opened&&opened.classList.contains('open')))return true;
+  const f=document.getElementById('rsv-form');
+  if(!f)return false;
+  return !!(rsvSlot||f.name.value||f.phone.value||f.address.value||f.email.value||f.message.value);}
 /* 相談会ページ（event.html）から ?slot=◯◯ で来た時、その枠を選んだ状態で開く。
    枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
 let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
@@ -239,6 +289,45 @@ async function rsvLoad(){
     if(!rsvDone&&!rsvFormDirty())rsvRender();}
   catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
 }
+// ── 合う日時がないとき：希望の日を送る ──
+// 枠は押さえない。シバグラム側でタスクに起こして、専務へLINEとメールの両方で知らせる
+(function(){
+  const box=document.getElementById('kouho'), inn=document.getElementById('kouho-in');
+  const open=document.getElementById('kouho-open'), send=document.getElementById('kouho-send');
+  if(!box||!open||!send) return;
+  const g=id=>document.getElementById(id);
+  const min=new Date(); min.setHours(0,0,0,0); min.setDate(min.getDate()+1);
+  g('k-d1').min=min.toISOString().slice(0,10);
+  g('k-d2').min=min.toISOString().slice(0,10);
+  open.addEventListener('click',()=>{
+    inn.classList.toggle('open');
+    open.textContent=inn.classList.contains('open')?'閉じる':'希望の日を送る';
+  });
+  send.addEventListener('click',async()=>{
+    const name=g('k-name').value.trim(), tel=g('k-tel').value.trim(), mail=g('k-mail').value.trim();
+    if(!g('k-d1').value){alert('第1希望の日を選んでください');return}
+    if(!name){alert('お名前を入れてください');return}
+    if(!tel&&!mail){alert('お電話番号かメールアドレスのどちらかを入れてください');return}
+    send.disabled=true; send.textContent='送信中…';
+    try{
+      const r=await fetch(SHIBAGRAM_API+'/api/public/date-request',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({name,phone:tel,email:mail,
+          date1:g('k-d1').value,band1:g('k-b1').value,
+          date2:g('k-d2').value,band2:g('k-b2').value})});
+      const d=await r.json().catch(()=>({}));
+      if(!r.ok)throw new Error(d.error||'送信に失敗しました');
+      if(window.gtag)window.gtag('event','generate_lead',{method:'date_request'});
+      box.innerHTML='<div class="kouho-done"><b>ご希望の日を承りました。</b><br>'
+        +'まだご予約は確定していません。担当の柴部より、当日〜翌営業日にご連絡して日時を決めます。<br>'
+        +'お急ぎのときはお電話（0120-154-483）でどうぞ。</div>';
+    }catch(e){
+      send.disabled=false; send.textContent='この候補日で送る';
+      alert(e.message+'\nお手数ですが 0120-154-483 までお電話ください。');
+    }
+  });
+})();
+
 rsvLoad();setInterval(rsvLoad,60000);
 </script>
 <script src="site.js?v=20260913b" defer></script>
