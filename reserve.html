@@ -78,6 +78,15 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .rsv-submit{width:100%;margin-top:28px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
 .rsv-submit:disabled{opacity:.4;cursor:default}
+/* 選べる日が少ない時だけ出す資料請求の口（2026-09-13 専務判断）。
+   90日で154人が予約画面を開いて4人しか申し込んでいない＝150人がそのまま帰っている。
+   「フォームのページに他ページの案内を貼らない」の例外。**選べる日が4日以下の時だけ**出し、
+   日程が見つかる人の邪魔はしない（[[feedback_form_page_deguchi_nashi]]） */
+.rsv-alt{margin-top:20px;padding:16px 16px 18px;background:#faf9f7;border:1px solid var(--linec)}
+.rsv-alt b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.04em}
+.rsv-alt a{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:11px 20px;
+  border:1px solid var(--ink);font-size:12.5px;letter-spacing:.1em;transition:all .2s}
+.rsv-alt a:hover{background:var(--ink);color:#fff}
 .rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
 .rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
 .rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
@@ -157,6 +166,16 @@ const rsvApp=document.getElementById('rsv-app');
 let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
 function rsvFallback(){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
+/* 2週間以内に選べる枠の数。ここが少ない＝「近いうちに行きたい」人が帰る状態。
+   日数ではなく枠の数で見る（11日あっても平日17:30が1つずつなら選べない）*/
+function soonCount(){
+  const lim=new Date(); lim.setHours(0,0,0,0); lim.setDate(lim.getDate()+14);
+  return rsvSlots.filter(s=>{
+    if(s.status==='full')return false;
+    const p=s.date.split('-').map(Number);
+    return new Date(p[0],p[1]-1,p[2])<=lim;
+  }).length;
+}
 function rsvRender(){
   const dates=[...new Set(rsvSlots.map(s=>s.date))];
   if(!dates.length){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
@@ -169,6 +188,8 @@ function rsvRender(){
   rsvApp.innerHTML=`
     <div class="rsv-step-label">1. 日付を選ぶ</div>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);return`<button type="button" class="date-chip${d===rsvDate?' on':''}${rsvOpenDates.has(d)?'':' nofree'}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}${rsvOpenDates.has(d)?'':' 満'}</div></button>`}).join('')}</div>
+    ${soonCount()<=8?`<div class="rsv-alt"><b>ご希望の日程が見つからない時</b>
+      <a href="/catalog">資料を請求する（無料）</a></div>`:''}
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
     <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
     <form id="rsv-form">
@@ -228,6 +249,6 @@ async function rsvLoad(){
 }
 rsvLoad();setInterval(rsvLoad,60000);
 </script>
-<script src="site.js?v=20260913a" defer></script>
+<script src="site.js?v=20260913b" defer></script>
 </body>
 </html>

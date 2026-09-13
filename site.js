@@ -125,6 +125,12 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   .mid-cta .mc-in p{margin:6px 0 0;font-size:12.5px;line-height:1.9}
   .mid-cta .mc-in a{width:100%;min-width:0;margin-top:14px}
   .mid-cta .mc-t{font-family:'Zen Kaku Gothic New',sans-serif;font-size:17px;font-weight:500;letter-spacing:.06em;line-height:1.6;margin-top:6px}
+  .mid-cta .mc-kit{list-style:none;margin:12px 0 0;padding:0;text-align:left;display:grid;gap:7px}
+  .mid-cta .mc-kit li{position:relative;padding-left:15px;font-size:12.5px;letter-spacing:.02em;line-height:1.5}
+  .mid-cta .mc-kit b{font-weight:500}
+  .mid-cta .mc-kit li::before{content:"";position:absolute;left:0;top:.58em;width:5px;height:5px;border:1px solid var(--ink,#1a1a1a);border-radius:50%}
+  .mid-cta .mc-kit small{display:block;font-size:11px;font-weight:300;color:var(--gray,#767674);letter-spacing:.02em;margin-top:2px}
+  .mid-cta .mc-note{font-size:11.5px !important;color:var(--gray,#767674);margin:12px 0 0 !important}
   /* PC＝積水ハウスの型：左に写真、右に見出し・一文・ボタン（2026-09-11 専務） */
   @media(min-width:760px){
     .mid-cta{padding:0;border:1px solid var(--linec,#e8e8e6);border-top-width:1px;border-bottom-width:1px}
@@ -133,6 +139,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     .mid-cta .mc-tx{margin:0;padding:34px 40px 0;grid-column:2;grid-row:1;align-self:end}
     .mid-cta .mc-t{font-size:22px;margin-top:8px}
     .mid-cta .mc-in p{font-size:13.5px;margin-top:10px}
+    .mid-cta .mc-kit{grid-template-columns:1fr 1fr;gap:8px 22px;margin-top:14px}
     .mid-cta .mc-in a{width:auto;min-width:290px;margin:18px 40px 34px;grid-column:2;grid-row:2;align-self:start;justify-self:start}
   }
   .mid-cta .mc-en{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;
@@ -310,7 +317,15 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
         '<img class="mc-img" src="img/catalog/set-cut.webp" width="900" height="535" alt="シバサンホームの資料" loading="lazy" decoding="async">' +
         '<div class="mc-tx"><div class="mc-en">Catalog</div>' +
         '<h3 class="mc-t">価格も仕様も、まずは資料で。</h3>' +
-        '<p>坪単価・商品ラインアップ・施工事例をまとめた資料を<b>無料</b>でお届けします。</p></div>' +
+        // 何が届くのかを押す前に見せる（2026-09-13 専務「いま何が届くのか分からないまま押させている」）。
+        // 中身は catalog.html の01〜04と同じ言葉にそろえる。ずれたら両方直す
+        '<ul class="mc-kit">' +
+          '<li><b>商品ラインアップ＆価格表</b><small>坪単価・総額の目安（税込）</small></li>' +
+          '<li><b>施工事例集</b><small>外観・LDK・キッチンの実例写真</small></li>' +
+          '<li><b>性能と標準仕様のご案内</b><small>耐震等級3・高断熱・高気密</small></li>' +
+          '<li><b>家づくりの進め方・資金計画ガイド</b><small>土地探しからお引き渡しまで</small></li>' +
+        '</ul>' +
+        '<p class="mc-note">郵送・無料。しつこい営業はいたしません。</p></div>' +
         '<a href="/catalog">カタログ資料請求（無料）</a>' +
       '</div>';
   });
