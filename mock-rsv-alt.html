@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【モック】候補日を送る｜シバサンホーム</title>
+<meta name="description" content="奈良の工務店シバサンホームの来店予約・無料相談ページ。空き状況を見てご希望の日時を選ぶだけ。資金計画・土地探し・間取りのご相談はすべて無料。しつこい営業はいたしません。オンライン相談も可能です。">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1c1c1a">
+<link rel="canonical" href="https://www.shibasun.jp/reserve">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="シバサンホーム">
+<meta property="og:title" content="来店予約・無料相談｜シバサンホーム">
+<meta property="og:description" content="空き状況を見て、ご希望の日時を選ぶだけ。奈良の工務店の無料相談予約。">
+<meta property="og:url" content="https://www.shibasun.jp/reserve">
+<meta property="og:image" content="https://www.shibasun.jp/img/og-image.jpg">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
+<style>
+:root{--ink:#1a1a1a;--gray:#767674;--pale:#ffffff;--linec:#e8e8e6;--gold:#1a1a1a;--line:#06c755}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:#f6f6f5;line-height:1.9;letter-spacing:.04em;padding-bottom:60px}
+a{text-decoration:none;color:inherit}
+.gothic{font-family:'Zen Kaku Gothic New',sans-serif}
+.en{font-family:'Jost',sans-serif;letter-spacing:.28em;text-transform:uppercase}
+header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;height:66px;padding:16px 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--linec)}
+.logo{display:flex;flex-direction:column;line-height:1.25}
+.logo .en{font-size:15px;font-weight:500;letter-spacing:.22em}
+.logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
+.back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px;transition:all .3s}
+.back:hover{background:var(--ink);color:#fff}
+.whead{padding:48px 24px 8px;text-align:center}
+.whead .en{font-size:11px;color:var(--gold);font-weight:500}
+.whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
+.whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
+.rsv-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;color:var(--gray);margin-top:14px}
+.rsv-after{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.9;margin-top:12px}
+.rsv-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7da06f;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.wrap{max-width:640px;margin:0 auto;padding:24px 20px 50px}
+.reserve-box{border:1px solid var(--linec);padding:30px 20px}
+/* 予約枠の高さをあらかじめ空けておく。空けないと、空き状況を読み込んだ瞬間に
+   下の「お電話でも」「アフター予約」がまとめて約1,450px下へ飛ぶ
+   （2026-09-13 実測 CLS 0.32＝Googleの「悪い」基準0.1の3倍。読んでいる途中で
+   画面が飛ぶので離脱の原因になる）。読み込めなかったときは .short を付けて戻す */
+#rsv-app{min-height:1400px}
+@media(min-width:480px){#rsv-app{min-height:1290px}}
+#rsv-app.short{min-height:0}
+.rsv-step-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
+.date-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.date-chip{flex:0 0 auto;min-width:74px;padding:12px 10px;text-align:center;cursor:pointer;border:1px solid var(--linec);background:#fff;transition:all .2s}
+.date-chip .d{font-family:'Jost',sans-serif;font-size:17px;font-weight:400;line-height:1.3}
+.date-chip .w{font-size:10px;color:var(--gray);letter-spacing:.1em}
+.date-chip.nofree{opacity:.45}
+.date-chip.on{background:var(--ink);border-color:var(--ink)}
+.date-chip.on .d,.date-chip.on .w{color:#fff}
+.slot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+@media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
+.slot-btn{padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
+.slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
+.slot-btn.full small{color:#a8a8a6}
+.slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.slot-btn.on small{color:#d8c49a}
+.rsv-field{margin-top:22px}
+.rsv-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
+.rsv-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
+.rsv-field input,.rsv-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
+.rsv-field input:focus,.rsv-field textarea:focus{outline:none;border-color:var(--ink)}
+.topic-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tchip{border:1px solid var(--linec);background:#fff;color:#454543;font-family:inherit;font-size:12.5px;letter-spacing:.04em;padding:9px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.tchip:hover{border-color:var(--gold)}
+.tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rsv-submit{width:100%;margin-top:28px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.rsv-submit:disabled{opacity:.4;cursor:default}
+/* 選べる日が少ない時だけ出す資料請求の口（2026-09-13 専務判断）。
+   90日で154人が予約画面を開いて4人しか申し込んでいない＝150人がそのまま帰っている。
+   「フォームのページに他ページの案内を貼らない」の例外。**選べる日が4日以下の時だけ**出し、
+   日程が見つかる人の邪魔はしない（[[feedback_form_page_deguchi_nashi]]） */
+.rsv-alt{margin-top:20px;padding:16px 16px 18px;background:#faf9f7;border:1px solid var(--linec)}
+.rsv-alt b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.04em}
+.rsv-alt a{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:11px 20px;
+  border:1px solid var(--ink);font-size:12.5px;letter-spacing:.1em;transition:all .2s}
+.rsv-alt a:hover{background:var(--ink);color:#fff}
+.rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
+.rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
+.rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
+.rsv-done{text-align:center;padding:36px 10px}
+.rsv-done .mark{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
+.rsv-done h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin-bottom:14px}
+.rsv-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
+.altbox{max-width:640px;margin:0 auto;padding:0 20px 60px;text-align:center}
+.altbox .div{height:1px;background:var(--linec);margin:0 0 30px}
+.crosslink{max-width:640px;margin:0 auto;padding:0 20px 44px;text-align:center;font-size:12px;color:var(--gray);font-weight:300;letter-spacing:.06em}
+.crosslink a{color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px}
+.altbox p{font-size:12px;color:var(--gray);font-weight:300;margin-bottom:16px;letter-spacing:.06em}
+.altbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
+.abtn{display:flex;align-items:center;justify-content:center;padding:15px;font-size:13px;letter-spacing:.16em;border:1px solid var(--ink)}
+.abtn-tel{background:var(--ink);color:#fff}
+.abtn-cat{background:#fff;color:var(--ink)}
+footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em}
+footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
+footer a{color:#c2c2c0}footer a:hover{color:#fff}
+footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spacing:.2em;font-size:10px}
+.fixed-cta{position:fixed;left:0;right:0;bottom:0;z-index:200;display:grid;grid-template-columns:1fr 1fr;height:60px;border-top:1px solid rgba(255,255,255,.15)}
+.fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em}
+.fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}
+.fc-cat{background:var(--ink);color:#fff}
+@media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+
+.mocklabel{max-width:640px;margin:34px auto 12px;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.08em;color:var(--gray)}
+.alt2{display:grid;gap:9px;margin-top:14px;max-width:340px}
+.altbtn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--ink);
+  background:#fff;color:var(--ink);font-family:inherit;font-size:12.5px;letter-spacing:.08em;cursor:pointer;transition:all .2s}
+.altbtn:hover{background:var(--ink);color:#fff}
+.altbtn-fill{background:var(--ink);color:#fff}
+.altbtn-fill:hover{opacity:.85;background:var(--ink);color:#fff}
+.sendbox{display:none;margin-top:10px;background:#fff}
+.sendbox.open{display:block}
+.sendnote{font-size:12px;font-weight:300;line-height:1.9;color:#454543;margin-top:6px}
+.sendbox .two{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:420px){.sendbox .two{grid-template-columns:1.1fr 1fr}}
+.sendbox select{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;border-radius:0;-webkit-appearance:none}
+.rsv-after{font-size:11px;color:var(--gray);font-weight:300;text-align:center;margin-top:12px;line-height:1.9}
+
+/* ② 罫線と文字だけ */
+.alt-line{margin-top:22px;padding-top:16px;border-top:1px solid var(--linec);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.alt-line .al-h{font-size:12px;color:var(--gray);letter-spacing:.06em}
+.alt-line a{font-size:12.5px;letter-spacing:.04em;border-bottom:1px solid var(--ink);padding-bottom:1px}
+/* ③ 左に縦線 */
+.alt-side{margin-top:22px;padding:2px 0 2px 14px;border-left:2px solid var(--linec)}
+.alt-side p{font-size:12.5px;font-weight:300;color:#454543;line-height:1.9}
+.alt-side b{font-weight:500}
+.alt-side a{display:block;margin-top:8px;font-size:12.5px;letter-spacing:.04em}
+.alt-side a:hover{opacity:.7}
+/* ④ 閉じておく */
+.alt-fold{margin-top:22px;border-top:1px solid var(--linec);padding-top:14px}
+.alt-fold summary{cursor:pointer;font-size:12.5px;letter-spacing:.06em;color:#454543;list-style:none}
+.alt-fold summary::-webkit-details-marker{display:none}
+.alt-fold summary::before{content:"＋ ";color:var(--gray)}
+.alt-fold[open] summary::before{content:"− "}
+.alt-fold .af-in{display:grid;gap:8px;margin-top:12px}
+.alt-fold .af-in a{font-size:12.5px;letter-spacing:.04em;border-bottom:1px solid var(--ink);padding-bottom:1px;justify-self:start}
+
+/* 合う日時がないとき。予約の流れとは別の道だと分かるよう、白地の四角で囲って左に線を引く。
+   塗りつぶしの黒は「この日時で予約する」だけに残す（押し間違いを防ぐ・専務 2026-09-13）*/
+.alt-box{margin-top:22px;background:#fff;border:1px solid var(--linec);border-left:3px solid var(--ink);padding:18px 18px 20px}
+.alt-box p{font-size:12.5px;font-weight:300;line-height:1.95;color:#454543}
+.alt-box b{font-weight:500;color:var(--ink)}
+.alt-go{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:11px 22px;
+  border:1px solid var(--ink);background:#fff;color:var(--ink);font-family:inherit;font-size:12.5px;
+  letter-spacing:.1em;cursor:pointer;transition:all .2s}
+.alt-go:hover{background:var(--ink);color:#fff}
+.sendin{display:none;margin-top:6px}
+.sendin.open{display:block}
+.alt-send{width:100%;margin-top:20px}
+.sendnote{font-size:11px;color:var(--gray);margin-top:10px;line-height:1.85}
+.sendin .two{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:420px){.sendin .two{grid-template-columns:1.1fr 1fr}}
+.sendin select{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;border-radius:0;-webkit-appearance:none}
+/* 資料請求は予約ボタンの下・枠の外に置く（専務 2026-09-13「このフォーム入れずに」）*/
+.after-doc{max-width:640px;margin:18px auto 0;text-align:center}
+.after-doc a{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border:1px solid var(--ink);font-size:12.5px;letter-spacing:.1em;transition:all .2s}
+.after-doc a:hover{background:var(--ink);color:#fff}
+.after-doc small{display:block;margin-top:9px;font-size:11px;font-weight:300;color:var(--gray);line-height:1.85}
+</style>
+</head><body>
+<header>
+  <a class="logo" href="/"><span class="en">Shiba Sun Home</span><small>奈良の注文住宅</small></a>
+</header>
+
+<div class="whead">
+  <div class="en">Mock</div>
+  <h1>合う日時がないときの出し方</h1>
+  <p>本番ではありません。③を四角で囲い、資料請求を予約ボタンの下に移した形です。</p>
+</div>
+
+<div class="wrap">
+  <div class="reserve-box">
+    <div class="rsv-step-label">1. 日付を選ぶ</div>
+    <div class="date-scroll">
+      <button type="button" class="date-chip on"><div class="d">9/17</div><div class="w">木</div></button>
+      <button type="button" class="date-chip"><div class="d">9/19</div><div class="w">土</div></button>
+      <button type="button" class="date-chip nofree"><div class="d">9/20</div><div class="w">日 満</div></button>
+      <button type="button" class="date-chip nofree"><div class="d">9/21</div><div class="w">月 満</div></button>
+    </div>
+
+    <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
+    <div class="slot-grid"><button type="button" class="slot-btn">17:30<small>◎ ご予約いただけます</small></button></div>
+
+    <div class="alt-box">
+      <p><b>合う日時がないとき</b>は、ご希望の日をお送りください。<br>折り返しご連絡して日時を決めます。</p>
+      <button type="button" class="alt-go" id="open">希望の日を送る</button>
+      <div class="sendin" id="box">
+        <div class="rsv-field"><label>第1希望<em>必須</em></label>
+          <div class="two"><input type="date" value="2026-09-27"><select><option>午前（9:00〜12:00）</option><option selected>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div></div>
+        <div class="rsv-field"><label>第2希望</label>
+          <div class="two"><input type="date"><select><option>午前（9:00〜12:00）</option><option>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div></div>
+        <div class="rsv-field"><label>お名前<em>必須</em></label><input placeholder="柴 太郎"></div>
+        <div class="rsv-field"><label>お電話番号<em>必須</em></label><input type="tel" placeholder="090-0000-0000"></div>
+        <button type="button" class="alt-go alt-send">この候補日で送る</button>
+        <p class="sendnote">この場では予約は取れません。担当の柴部から折り返しご連絡します。</p>
+      </div>
+    </div>
+
+    <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
+    <div class="rsv-field"><label>お名前<em>必須</em></label><input placeholder="柴 太郎"></div>
+    <div class="rsv-field"><label>お電話番号<em>必須</em></label><input type="tel" placeholder="090-0000-0000"></div>
+    <button class="rsv-submit" type="button">この日時で予約する</button>
+  </div>
+
+  <div class="after-doc">
+    <a href="#">資料を請求する（無料）</a>
+    <small>価格表・施工事例・標準仕様・進め方の4点を郵送します</small>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">SHIBA SUN HOME</div>
+  <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
+</footer>
+
+<script>
+document.getElementById('open').addEventListener('click',function(){
+  var b=document.getElementById('box');
+  b.classList.toggle('open');
+  this.textContent=b.classList.contains('open')?'閉じる':'希望の日を送る';
+});
+</script>
+</body>
+</html>
