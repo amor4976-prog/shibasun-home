@@ -35,13 +35,13 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .logo small{font-size:9px;letter-spacing:.3em;color:var(--gray);margin-top:3px}
 .back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px;transition:all .3s}
 .back:hover{background:var(--ink);color:#fff}
-.whead{padding:48px 24px 8px;text-align:center}
+.whead{padding:34px 24px 6px;text-align:center}
 .whead .en{font-size:11px;color:var(--gold);font-weight:500}
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
 .whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
 /* 資料の中身プレビュー */
-.kit{max-width:640px;margin:24px auto 0;padding:0 20px}.kit-img{width:100%;height:auto;display:block;margin:6px auto 22px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.10))}@media(min-width:760px){.kit{max-width:900px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}.kit-img{margin:0}}
-.kit-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--linec)}
+.kit{max-width:640px;margin:24px auto 0;padding:0 20px}.kit-img{width:100%;height:auto;display:block;margin:4px auto 14px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.10))}@media(min-width:760px){.kit{max-width:900px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}.kit-img{margin:0}}
+.kit-row{display:flex;align-items:center;gap:12px;padding:9px 0;line-height:1.6;border-bottom:1px solid var(--linec)}
 .kit-row:last-child{border-bottom:none}
 .kit-ic{flex:0 0 30px;font-family:'Jost',sans-serif;color:var(--gold);font-size:13px;font-weight:500}
 .kit-row b{font-size:13.5px;font-weight:500}
@@ -50,6 +50,10 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .form-box{border:1px solid var(--linec);padding:30px 20px}
 .cat-field{margin-bottom:20px}
 .cat-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
+.cat-sel{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23767674' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:11px}
+.cat-sel:focus{outline:none;border-color:var(--ink)}
+.cat-field label .opt{color:var(--gray);font-size:10px;margin-left:6px;letter-spacing:.06em}
+.cat-lead{max-width:640px;margin:22px auto 0;padding:0 20px;font-size:11.5px;color:var(--gray);letter-spacing:.06em;text-align:center}
 .cat-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
 .cat-field input,.cat-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
 .cat-field input:focus,.cat-field textarea:focus{outline:none;border-color:var(--ink)}
@@ -82,6 +86,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fixed-cta a{display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.2em}
 .fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}
 .fc-reserve{background:var(--ink);color:#fff}
+.fc-send{background:var(--ink);color:#fff;border:none;font-family:inherit;font-size:12.5px;letter-spacing:.14em;cursor:pointer}
+.fixed-cta.done{display:none}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
 .nb{white-space:nowrap}</style>
 <script type="application/ld+json">
@@ -151,6 +157,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </div>
 
+<p class="cat-lead" id="cat-lead">必須はお名前とメールアドレスだけです。</p>
 <div class="wrap">
   <div class="form-box">
     <div id="cat-app">
@@ -175,19 +182,20 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         </div>
         <div class="cat-field"><label>ご質問・ご要望</label><textarea name="message" rows="3" placeholder="例：平屋に興味があります／土地から探しています（任意）"></textarea></div>
         <div class="cat-field">
-          <label>シバサンホームを何で知りましたか<span style="color:var(--gray);font-size:10px;margin-left:6px;letter-spacing:.06em">任意・<span class="nb">1つお選びください</span></span></label>
-          <div class="cat-choice">
-            <label><input type="radio" name="known" value="Google検索"><span>Google検索</span></label>
-            <label><input type="radio" name="known" value="AI検索（ChatGPTなど）"><span>AI検索（ChatGPTなど）</span></label>
-            <label><input type="radio" name="known" value="インスタグラム"><span>インスタグラム</span></label>
-            <label><input type="radio" name="known" value="YouTube"><span>YouTube</span></label>
-            <label><input type="radio" name="known" value="知人の紹介"><span>知人の紹介</span></label>
-            <label><input type="radio" name="known" value="通りがかり（看板・現場）"><span>通りがかり（看板・現場）</span></label>
-            <label><input type="radio" name="known" value="スーモ"><span>スーモ</span></label>
-            <label><input type="radio" name="known" value="ポスティングチラシ"><span>ポスティングチラシ</span></label>
-            <label><input type="radio" name="known" value="雑誌"><span>雑誌</span></label>
-            <label><input type="radio" name="known" value="その他"><span>その他</span></label>
-          </div>
+          <label>シバサンホームを何で知りましたか<span class="opt">任意</span></label>
+          <select name="known" class="cat-sel">
+            <option value="">選んでください</option>
+            <option>Google検索</option>
+            <option>AI検索（ChatGPTなど）</option>
+            <option>インスタグラム</option>
+            <option>YouTube</option>
+            <option>知人の紹介</option>
+            <option>通りがかり（看板・現場）</option>
+            <option>スーモ</option>
+            <option>ポスティングチラシ</option>
+            <option>雑誌</option>
+            <option>その他</option>
+          </select>
         </div>
         <button class="cat-submit" type="submit">無料で資料を請求する</button>
         <p class="cat-note">いただいた情報は資料送付・ご連絡のみに使用します。<br>しつこい営業は一切いたしません。</p>
@@ -203,8 +211,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <div class="copy">© 2026 株式会社シバ・サンホーム All Rights Reserved.</div>
 </footer>
 
-<nav class="fixed-cta">
+<nav class="fixed-cta" id="cat-bar">
   <a class="fc-tel" href="tel:0120154483">電話で相談</a>
+  <button type="button" class="fc-send" id="cat-go">無料で資料を請求する</button>
 </nav>
 
 <script>
@@ -225,6 +234,10 @@ function applyRecv(){
   var postal=document.querySelector('[name="postal"]'), addr=document.querySelector('[name="address"]');
   email.required=mail;
   postal.required=addr.required=!mail;
+  // メールで受け取る人に住所は要らない。出したままだと欄が2つぶん長くなる
+  document.getElementById('f-addr').hidden=mail;
+  var lead=document.getElementById('cat-lead');
+  if(lead)lead.textContent=mail?'必須はお名前とメールアドレスだけです。':'必須はお名前とご住所だけです。';
   fm.querySelector('.req').textContent=mail?'必須':'任意';
   fa.querySelector('.req').textContent=mail?'任意':'必須';
   email.placeholder=mail?'shiba@example.com':'任意';
@@ -266,7 +279,7 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
     return;
   }
   btn.disabled=true;btn.textContent='送信中…';
-  const known=f.querySelector('input[name="known"]:checked');
+  const known=f.known&&f.known.value?{value:f.known.value}:null;
   const payload={customerName:f.name.value.trim(),customerKana:f.kana.value.trim()||undefined,customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,postalCode:f.postal.value.trim()||undefined,address:f.address.value.trim()||undefined,knownChannel:known?known.value:undefined,message:(function(){var m=f.message.value.trim();return '【受け取り方】'+recvNow()+(m?'\n'+m:'')})()};
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/catalog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -278,6 +291,7 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
       + `<a class="done-cta" href="/reserve" data-go="reserve">日時を選んで予約する（無料）</a>`
       + `<p class="done-note">所要は約60分です。</p></div></div>`;
     // 完了画面からの来店予約はGA4で追える（フォームの手前には出さない＝出口を作らない）
+    var bar=document.getElementById('cat-bar'); if(bar)bar.classList.add('done');
     var dc=catApp.querySelector('.done-cta');
     if(dc)dc.addEventListener('click',function(){if(window.gtag)window.gtag('event','catalog_done_reserve')});
   }catch(err){
@@ -285,7 +299,17 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
     alert('送信できませんでした。\nお手数ですが 0120-154-483 までお電話いただくか、時間をおいて再度お試しください。');
   }
 });
+
+// 追従バーの「無料で資料を請求する」＝フォームをそのまま送る。
+// 空の必須欄があればブラウザがその欄まで画面を送って知らせる。
+var catGo=document.getElementById('cat-go');
+if(catGo)catGo.addEventListener('click',function(){
+  var fm=document.getElementById('cat-form');
+  if(!fm)return;
+  if(fm.requestSubmit)fm.requestSubmit();
+  else fm.querySelector('.cat-submit').click();
+});
 </script>
-<script src="site.js?v=20260913b" defer></script>
+<script src="site.js?v=20260914a" defer></script>
 </body>
 </html>

@@ -39,6 +39,8 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .whead{padding:52px 24px 8px;text-align:center}
 .whead .en{font-size:11px;color:var(--gold);font-weight:500}
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.08em;margin:10px 0 16px}
+/* 390pxで「リフォーム・／リノベーション」と割れていた。1行に収まる大きさにする */
+@media(max-width:430px){.whead h1{font-size:23px;letter-spacing:.04em}}
 .whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:660px;margin:0 auto;line-height:2.1}
 /* 文字だけのページだったので、上に1枚入れる（2026-08-30 専務指摘）*/
 .evhero{width:100%;aspect-ratio:16/9;object-fit:cover;margin-top:30px;background:#ededeb}
@@ -121,6 +123,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 </div>
 
+
+<!-- 資料請求（ページの終わりに置く。site.js が中身を組む） -->
+<div data-cta="doc"></div>
+
 <footer>
   <div class="fl">SHIBA SUN HOME</div>
   <div>株式会社シバ・サンホーム｜奈良県奈良市北之庄町41-1</div>
@@ -133,6 +139,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <a class="fc-reserve" href="/reserve">来店を予約</a>
 </nav>
 
-<script src="site.js?v=20260913b" defer></script>
+<script src="site.js?v=20260914a" defer></script>
 </body>
 </html>

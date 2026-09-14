@@ -664,6 +664,12 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s;
 }
 .rsv-submit:disabled{opacity:.4;cursor:default}
+.after-doc{margin-top:18px;text-align:center}
+.after-doc a{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;
+  border:1px solid var(--ink);font-size:12.5px;letter-spacing:.1em;transition:all .2s}
+.after-doc a:hover{background:var(--ink);color:#fff}
+.after-doc small{display:block;margin-top:9px;font-size:11px;font-weight:300;color:var(--gray);line-height:1.85}
+
 .rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
 .rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
 .rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
@@ -1316,6 +1322,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </section>
 
+<!-- 資料請求（価格・実例・性能を見た所で置く。トップは13,772pxあり、
+     下まで下りるのは開いた人の32%だけ＝ここまでは半分が来る） -->
+<div data-cta="doc"></div>
+
 <!-- 見学会・相談会（イベントを上に＝集客サイトの型） -->
 <section class="evsec" id="event">
   <div class="inner">
@@ -1514,15 +1524,15 @@ else setupLifeBand();
     <h2 class="cl-h">コラム</h2>
     <div class="cl-list">
       <a class="cl-item fade" href="/blog-jiban">
-        <span class="th"><img src="img/blog/jiban_sarachi.jpg" alt="更地になった土地" loading="lazy" decoding="async"></span>
+        <span class="th"><img src="img/blog/thumb/jiban_sarachi.webp" width="760" height="570" alt="更地になった土地" loading="lazy" decoding="async"></span>
         <span><span class="kind">お金</span><span class="t">地盤改良のお金。土地を買う前に知っておくこと</span></span>
       </a>
       <a class="cl-item fade" href="/blog-kinri">
-        <span class="th"><img src="img/blog/kinri_biru.jpg" alt="オフィスビルが並ぶ街並み" loading="lazy" decoding="async"></span>
+        <span class="th"><img src="img/blog/thumb/kinri_biru.webp" width="760" height="507" alt="オフィスビルが並ぶ街並み" loading="lazy" decoding="async"></span>
         <span><span class="kind">お金</span><span class="t">フラット35が3.46％に。いまの制度で最も高い水準です</span></span>
       </a>
       <a class="cl-item fade" href="/blog-natsu">
-        <span class="th"><img src="img/blog/natsu_sudare.jpg" alt="窓の外側に立てかけたすだれ" loading="lazy" decoding="async"></span>
+        <span class="th"><img src="img/blog/thumb/natsu_sudare.webp" width="760" height="570" alt="窓の外側に立てかけたすだれ" loading="lazy" decoding="async"></span>
         <span><span class="kind">暮らし</span><span class="t">「2階が暑い」には理由がある。夏に涼しい家の条件</span></span>
       </a>
       <a class="cl-item fade" href="/blog-inu">
@@ -1650,6 +1660,8 @@ function rsvRender(){
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
+      <div class="after-doc"><a href="/catalog">資料を請求する（無料）</a>
+        <small>合う日時がないときは、こちらでも承ります。価格表・施工事例・標準仕様・進め方の4点をお届けします</small></div>
     </form>`;
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
@@ -1829,7 +1841,7 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   },{once:true});
 });
 </script>
-<script src="site.js?v=20260913b" defer></script>
+<script src="site.js?v=20260914a" defer></script>
 <script>
 // 坪数スライダー（shiryo.html・products.html と同じ単価・同じ計算）
 (function(){

@@ -606,8 +606,15 @@ async function rsvLoad(){
 }
 rsvLoad();setInterval(rsvLoad,60000);
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-REFN8K7K95"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
-gtag('js',new Date());gtag('config','G-REFN8K7K95',{page_title:'資料'});</script>
+<script>
+// 本番 shibasun.jp のときだけ数える。手元の確認用サーバーで開いたぶんが
+// 工務店ホームページの数字に混ざっていた（28日で85表示）。
+if(/(^|\.)shibasun\.jp$/i.test(location.hostname)){
+  var g=document.createElement('script');g.async=true;
+  g.src='https://www.googletagmanager.com/gtag/js?id=G-REFN8K7K95';document.head.appendChild(g);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());gtag('config','G-REFN8K7K95',{page_title:'資料'});
+}
+</script>
 </body>
 </html>

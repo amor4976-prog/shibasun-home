@@ -383,8 +383,14 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
   window.addEventListener('resize',function(){deck.scrollLeft=cur*deck.clientWidth});
 })();
 </script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-REFN8K7K95"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
-gtag('js',new Date());gtag('config','G-REFN8K7K95',{page_title:'資料（スワイプ）'});</script>
+<script>
+// 本番 shibasun.jp のときだけ数える（手元の確認が数字に混ざっていた）
+if(/(^|\.)shibasun\.jp$/i.test(location.hostname)){
+  var g=document.createElement('script');g.async=true;
+  g.src='https://www.googletagmanager.com/gtag/js?id=G-REFN8K7K95';document.head.appendChild(g);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+  gtag('js',new Date());gtag('config','G-REFN8K7K95',{page_title:'資料（スワイプ）'});
+}
+</script>
 </body>
 </html>

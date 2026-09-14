@@ -325,13 +325,16 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
           '<li><b>性能と標準仕様のご案内</b><small>耐震等級3・高断熱・高気密</small></li>' +
           '<li><b>家づくりの進め方・資金計画ガイド</b><small>土地探しからお引き渡しまで</small></li>' +
         '</ul>' +
-        '<p class="mc-note">郵送・無料。しつこい営業はいたしません。</p></div>' +
+        '<p class="mc-note">無料。メールか郵送でお届けします。</p></div>' +
         '<a href="/catalog">カタログ資料請求（無料）</a>' +
       '</div>';
   });
 
   // ---- LINE フローティングボタン（LINE_URL を設定したときだけ表示）----
-  if (LINE_URL) {
+  // 資料請求ページの追従バーは「電話｜資料を請求する」に固定する。
+  // フォームのページに別の出口を足すと資料請求が減る（専務の決まり）。
+  const NO_LINEBAR = ['catalog.html'];
+  if (LINE_URL && NO_LINEBAR.indexOf(here) < 0) {
     const bar = document.querySelector('.fixed-cta');
     const mkLine = (cls) => {
       const a = document.createElement('a');
@@ -374,6 +377,22 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     });
   }
 
+  // ---- 資料請求ボタンのクリックを数える ----
+  // いままで「見られていない」のか「見たけど押されていない」のかが分からなかった。
+  // どの置き場所（ヘッダー／途中／下の追従バー／ページ末尾）が押されているかも一緒に記録する。
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href="/catalog"],a[href="catalog.html"]');
+    if (!a || !window.gtag) return;
+    let where = 'other';
+    if (a.closest('.fixed-cta')) where = 'bar';            // 下の追従バー
+    else if (a.closest('.mid-cta')) where = 'mid';         // ページ途中
+    else if (a.closest('.nav-overlay')) where = 'menu';    // ハンバーガー
+    else if (a.classList.contains('head-doc')) where = 'header';
+    else if (a.closest('footer')) where = 'footer';
+    else if (a.closest('.hero,.hbtn,.cta-inline,.cbtn')) where = 'cta';
+    window.gtag('event', 'doc_click', { where: where, page: here });
+  });
+
   // ---- 電話タップの計測（成果として記録）----
   document.addEventListener('click', e => {
     const t = e.target.closest && e.target.closest('a[href^="tel:"]');
@@ -413,7 +432,18 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
 
   // ---- GA4 アクセス解析（GA_ID 設定 かつ 本番ドメイン shibasun.jp のときだけ有効）----
   // ローカル・プレビュー・他ドメインでは計測しない（テストのニセ数字でデータを汚さないため）
-  if (GA_ID && /(^|\.)shibasun\.jp$/i.test(location.hostname)) {
+  // 自分たちの見回りを数字に入れない。
+  // 事務所のパソコンから /reserve を直接開いた回数が28日で72あり、
+  // 「開いた人」の数が本物のお客様より多く見えていた。
+  // 専務・社員は https://www.shibasun.jp/?noga=1 を一度開けば、その端末は以後数えない
+  // （元に戻すときは ?noga=0）。
+  var NOGA = false;
+  try {
+    if (location.search.indexOf('noga=1') >= 0) localStorage.setItem('shibasun_noga', '1');
+    if (location.search.indexOf('noga=0') >= 0) localStorage.removeItem('shibasun_noga');
+    NOGA = localStorage.getItem('shibasun_noga') === '1';
+  } catch (e) { }
+  if (GA_ID && !NOGA && /(^|\.)shibasun\.jp$/i.test(location.hostname)) {
     const g = document.createElement('script'); g.async = true;
     g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(g);

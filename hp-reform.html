@@ -496,7 +496,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 }
 
 /* ── 2026-09-12 組み直し：深緑ヒーロー＋8倍＋予約 ── */
-.hero2{background:#1B3A2F;color:#fff;margin:0 -22px;padding:34px 24px 0}
+.hero2{background:#1B3A2F;color:#fff;margin:0 -22px;padding:38px 24px 0}
 .hero2 .k{font-size:12px;letter-spacing:.18em;color:rgba(255,255,255,.72);margin-bottom:14px}
 .hero2 h1{font-size:26px;font-weight:700;letter-spacing:.05em;line-height:1.5;margin:0 0 14px;color:#fff}
 .hero2 .ki{color:#F2C230}
@@ -531,6 +531,10 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 .shindan{background:#EAF2EC;border-radius:4px;padding:10px 12px;margin:2px 0 12px}
 .shindan b{display:block;font-size:14px;color:#1B3A2F}
 .shindan span{display:block;font-size:12px;color:#333;line-height:1.7;margin-top:2px}
+.yoyaku2{margin:16px 0 30px;text-align:center}
+.yoyaku2 .btn{display:block;background:#F2C230;color:#1a1a1a;text-align:center;padding:16px;font-size:16px;font-weight:700;border-radius:4px;text-decoration:none;letter-spacing:.04em}
+.yoyaku2 .s{font-size:12.5px;color:#333;line-height:1.8;margin-top:10px}
+.yoyaku2 .s b{color:#1B3A2F}
 </style>
 </head>
 <body>
@@ -609,17 +613,6 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 </aside>
 
 <div class="wrap">
-  <header>
-    <div class="up">
-      <div class="title-block">
-        <div class="l">
-          <div class="en">SHIBA SUN HOME</div>
-          <small>奈良県奈良市北之庄町41-1／注文住宅・リフォーム</small>
-        </div>
-        <div class="r"><span>DRAWN BY</span><span>SHIKUMI</span></div>
-      </div>
-    </div>
-  </header>
 
   <!-- ヒーロー（2026-09-12 組み直し：7の頭＋4の予約） -->
   <div class="hero2">
@@ -633,12 +626,9 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     <div class="v"><b>8倍</b>になりました</div>
     <div class="n">自社サイトの実測。月1〜2件だった問い合わせが月16件（<span class="nb">公開後17日間の実測を</span>月に直した数字）</div>
   </div>
-  <div class="yoyaku up">
-    <div class="h">無料相談（リモート30分）の空き日時</div>
-    <div class="topdays" id="topdays"><span class="ld">空いている日時を読み込んでいます…</span></div>
-    <div class="shindan"><b>今なら、無料診断つき</b><span>御社のホームページを点検して、<span class="nb">効く順に3つ</span>お伝えします</span></div>
-    <a class="btn" href="#soudan">空いている日時から予約する</a>
-    <div class="s">その場で契約のお願いはいたしません</div>
+  <div class="yoyaku2 up">
+    <a class="btn" href="#soudan">無料相談（30分）を予約する</a>
+    <div class="s"><b>今なら、無料診断つき。</b><br>その場で契約のお願いはいたしません</div>
   </div>
 
   <section id="c02b">
@@ -954,7 +944,7 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
     }
     // 下の締めにも、そのまま押せる日付ボタンを出す（押すと予約欄へ移動してその日を選ぶ）
     function ctaDays(dates){
-      ['ctadays','topdays'].forEach(function(id){var box=document.getElementById(id);if(!box)return;
+      ['ctadays'].forEach(function(id){var box=document.getElementById(id);if(!box)return;
       box.innerHTML=dates.slice(0,3).map(function(d){var f=ymd(d);
         return '<button type="button" class="cd" data-d="'+d+'"><span class="d">'+f.md+'</span><span class="w">'+f.w+'</span></button>'}).join('')
         +(dates.length>3?'<button type="button" class="more" data-d="">ほかの日を見る</button>':'');
@@ -1071,6 +1061,8 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
       frames.forEach(function(fr){
         var deteru = fr.offsetParent !== null;
         [].forEach.call(fr.querySelectorAll('video'), function(v){
+          // スマホのリフォーム前は元のページが短く、送りが速すぎる → 半分の速さで流す（2026-09-12 専務）
+          if(fr.id==='baFrame' && v.classList.contains('before')) v.playbackRate=0.5;
           if(deteru){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
           else { try{ v.pause(); }catch(e){} }
         });
