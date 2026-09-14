@@ -166,6 +166,56 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .people h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;font-weight:500;letter-spacing:.14em;margin:4px 0 0}
 .people-more{max-width:760px;margin:16px auto 0;font-size:12px;letter-spacing:.08em}
 .people-more a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:2px}
+/* 価格表（productsと同じ数字。ずれたら両方直す） */
+.ltable{max-width:1040px;margin:26px auto 0;border-top:1px solid var(--linec)}
+.lrow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 2px;border-bottom:1px solid var(--linec)}
+.lrow.head{padding:10px 2px;font-size:10.5px;letter-spacing:.18em;color:var(--gray)}
+.lname b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:14.5px;font-weight:500;letter-spacing:.08em}
+.lname small{display:block;font-size:11.5px;font-weight:300;color:var(--gray);margin-top:2px}
+.lprice{text-align:right;white-space:nowrap}
+.lprice .pp{font-family:'Jost',sans-serif;font-size:20px;letter-spacing:.02em}
+.lprice .pp em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:10.5px;color:var(--gray);margin-left:3px}
+.lprice .tot{display:block;font-size:11.5px;font-weight:300;color:#454543;margin-top:2px}
+.lnote{max-width:1040px;margin:14px auto 0;font-size:11.5px;font-weight:300;color:var(--gray);line-height:2}
+/* 実例のカード */
+.wcards{display:grid;gap:20px;max-width:1040px;margin:26px auto 0;grid-template-columns:1fr 1fr}
+@media(min-width:760px){.wcards{grid-template-columns:repeat(3,1fr);gap:26px}}
+.wcards a{display:block}
+.wcards img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;background:#e9e6e0}
+.wcards .wt{font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.06em;line-height:1.7;margin-top:10px}
+.wcards .wm{font-size:10.5px;letter-spacing:.12em;color:var(--gray);margin-top:4px}
+/* 家づくりの流れ */
+.steps{max-width:760px;margin:26px auto 0;counter-reset:st}
+.steps li{list-style:none;display:grid;grid-template-columns:26px minmax(0,1fr);column-gap:16px;padding:13px 0;border-bottom:1px solid var(--linec)}
+.steps li::before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:'Jost',sans-serif;font-size:12px;color:var(--gray);grid-column:1;grid-row:1;padding-top:3px}
+.steps li>b{grid-column:2;grid-row:1}
+.steps li>span{grid-column:2;grid-row:2}
+.steps b{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em}
+.steps span{display:block;font-size:12px;font-weight:300;color:var(--gray);margin-top:3px;line-height:1.9}
+/* 対応エリアと事務所 */
+.area-in{max-width:1040px;margin:0 auto}
+.area-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.area-list span{border:1px solid var(--linec);background:#fff;padding:7px 13px;font-size:12px;letter-spacing:.06em;color:#454543}
+.office{margin-top:30px;border-top:1px solid var(--linec);padding-top:22px;font-size:13px;font-weight:300;line-height:2.1;color:#454543}
+.office dt{font-size:10.5px;letter-spacing:.18em;color:var(--gray);margin-top:12px}
+.office dt:first-child{margin-top:0}
+.office dd{margin:0}
+.office a{border-bottom:1px solid var(--gold)}
+/* 地価（国の地価公示・奈良県の発表から） */
+.chika{max-width:520px;margin:20px 0 0;border-top:1px solid var(--linec)}
+.chika div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:11px 2px;border-bottom:1px solid var(--linec)}
+.chika .y{font-size:12.5px;font-weight:300;color:#454543}
+.chika .r{font-family:'Jost',sans-serif;font-size:17px;letter-spacing:.02em}
+.chika .r em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--gray);margin-left:4px}
+.chika .r.down{color:var(--gray)}
+.src{margin-top:12px;font-size:11px;font-weight:300;color:var(--gray);line-height:1.9}
+/* 性能の4項目＝順番ではないので番号は付けない */
+.qlist{max-width:1040px;margin:22px auto 0}
+.qlist li{list-style:none;display:grid;grid-template-columns:minmax(0,1fr);padding:15px 0;border-bottom:1px solid var(--linec)}
+.qlist li>b{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em}
+.qlist li>span{display:block;font-size:12px;font-weight:300;color:var(--gray);margin-top:3px;line-height:1.9}
+
+
 </style>
 
 <script type="application/ld+json">
@@ -193,62 +243,18 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   {
    "@type": "FAQPage",
    "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "奈良で注文住宅を建てると、いくらかかりますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "シバサンホームの注文住宅は坪単価69.9万円〜（税込）です。延床30坪なら本体価格2,095万円〜（税込・内装・設備・照明込み）が目安です。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示します。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "奈良県のどのあたりまで対応していますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "奈良市・大和郡山市・天理市・桜井市・生駒市など、奈良県全域で建てています。事務所は奈良市北之庄町41-1です。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "奈良で使える補助金はありますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "国の「みらいエコ住宅2026事業」は奈良県のどこで建てても対象です。市町村の支援金は市町村によって異なります（奈良市は2026年7月に、市外から引っ越す子育て世帯向けの制度ができました）。最新の内容はご相談のときにお伝えします。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "土地を持っていなくても相談できますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "奈良は地盤が弱いと聞きました。",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "奈良盆地は、昔の川筋や水田を造成した土地が多い地域です。ただ「奈良だから弱い」ではなく、その土地ごとに調べます。奈良で多いのは柱状改良で、費用は0円で済むこともあれば200万円かかることもあります。土地を買う前に、地盤の見方をお伝えします。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "住宅の性能はどのくらいですか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "耐震等級3（全棟・許容応力度計算）、断熱等級6（HEAT20 G2相当）、UA値0.4〜0.46、C値0.5以下を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています（NEST・ARCHの場合）。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "相談は無料ですか？しつこい営業はありませんか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "ご相談・資金計画・見学のご予約はすべて無料です。一組ずつ誠実にお付き合いすることを大切にしています。しつこい営業は一切いたしません。"
-     }
-    }
+    {"@type": "Question", "name": "奈良で注文住宅を建てると、いくらかかりますか？", "acceptedAnswer": {"@type": "Answer", "text": "シバサンホームの注文住宅は坪単価69.9万円〜（税込）です。延床30坪なら本体価格2,095万円〜（税込・内装・設備・照明込み）が目安です。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示します。"}},
+    {"@type": "Question", "name": "奈良県のどのあたりまで対応していますか？", "acceptedAnswer": {"@type": "Answer", "text": "奈良市・大和郡山市・天理市・桜井市・生駒市など、奈良県全域で建てています。事務所は奈良市北之庄町41-1です。"}},
+    {"@type": "Question", "name": "奈良で使える補助金はありますか？", "acceptedAnswer": {"@type": "Answer", "text": "国の「みらいエコ住宅2026事業」は奈良県のどこで建てても対象です。市町村の支援金は市町村によって異なります（奈良市は2026年7月に、市外から引っ越す子育て世帯向けの制度ができました）。最新の内容はご相談のときにお伝えします。"}},
+    {"@type": "Question", "name": "土地を持っていなくても相談できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。"}},
+    {"@type": "Question", "name": "奈良は地盤が弱いと聞きました。", "acceptedAnswer": {"@type": "Answer", "text": "奈良盆地は、昔の川筋や水田を造成した土地が多い地域です。ただ「奈良だから弱い」ではなく、その土地ごとに調べます。奈良で多いのは柱状改良で、費用は0円で済むこともあれば200万円かかることもあります。土地を買う前に、地盤の見方をお伝えします。"}},
+    {"@type": "Question", "name": "住宅の性能はどのくらいですか？", "acceptedAnswer": {"@type": "Answer", "text": "耐震等級3（全棟・許容応力度計算）、断熱等級6（HEAT20 G2相当）、UA値0.4〜0.46、C値0.5以下を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています（NEST・ARCHの場合）。"}},
+    {"@type": "Question", "name": "地盤が弱い土地でも建てられますか？", "acceptedAnswer": {"@type": "Answer", "text": "地盤調査をセカンドオピニオンで多面的に分析し、必要に応じて改良を行います。地盤は20年保証（5,000万円上限）です。土地を買う前に、地盤の見方もお伝えします。"}},
+    {"@type": "Question", "name": "完成までどのくらいかかりますか？", "acceptedAnswer": {"@type": "Answer", "text": "最初のお打ち合わせからお引き渡しまで、目安としておよそ8〜12ヶ月です。土地さがしやプラン内容により前後します。"}},
+    {"@type": "Question", "name": "オンラインでも相談できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。ご来店のほか、オンライン（Web）でのご相談も可能です。ご都合に合わせてお選びいただけます。"}},
+    {"@type": "Question", "name": "構造計算は本当に全棟でやっていますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。耐力壁のX・Yバランス、壁直下率、ねじれ・耐風強度まで自社設計で一元管理し、全棟で許容応力度計算を行っています。"}},
+    {"@type": "Question", "name": "保証はどのくらいありますか？", "acceptedAnswer": {"@type": "Answer", "text": "雨漏り10年・構造10年・地盤20年・防蟻5年（最長10年）・外壁材10年ほか。住宅瑕疵担保責任保険に引渡しから10年加入しています。"}},
+    {"@type": "Question", "name": "相談は無料ですか？しつこい営業はありませんか？", "acceptedAnswer": {"@type": "Answer", "text": "ご相談・資金計画・見学のご予約はすべて無料です。一組ずつ誠実にお付き合いすることを大切にしています。しつこい営業は一切いたしません。"}}
    ]
   },
   {
@@ -310,11 +316,23 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <a class="more" href="/products">価格・プランの詳しい内訳を見る →</a>
     </div>
   </div>
+  <div class="ltable">
+    <div class="lrow head"><span>シリーズ／タイプ</span><span>坪単価〜／総額〜</span></div>
+    <div class="lrow"><span class="lname"><b>NEST</b><small>2階建て・30坪</small></span><span class="lprice"><span class="pp">69.9<em>万円〜/坪</em></span><span class="tot">総額 2,095万円〜</span></span></div>
+    <div class="lrow"><span class="lname"><b>NEST FLAT</b><small>平屋・24坪</small></span><span class="lprice"><span class="pp">78.7<em>万円〜/坪</em></span><span class="tot">総額 1,888万円〜</span></span></div>
+    <div class="lrow"><span class="lname"><b>ARCH</b><small>2階建て・30坪</small></span><span class="lprice"><span class="pp">82.5<em>万円〜/坪</em></span><span class="tot">総額 2,475万円〜</span></span></div>
+    <div class="lrow"><span class="lname"><b>ARCH FLAT</b><small>平屋・24坪</small></span><span class="lprice"><span class="pp">91.3<em>万円〜/坪</em></span><span class="tot">総額 2,191万円〜</span></span></div>
+    <div class="lrow"><span class="lname"><b>GLAMP</b><small>個性派・規格外プラン</small></span><span class="lprice"><span class="pp" style="font-size:14px">要相談</span></span></div>
+  </div>
+  <p class="lnote">表示はすべて税込・本体価格の目安です。<span class="nb">諸費用・外構費・土地代は別途</span>かかります。延床面積や仕様により変動します。<span class="nb">NEST</span>は自由度の高いセミオーダー、<span class="nb">ARCH</span>は建築家による自由設計です。</p>
 </section>
 
 <section class="sec" style="background:var(--pale);max-width:none">
   <div class="works">
     <div class="label"><span class="en">Works</span><small>奈良で建てた家</small></div>
+    <h2 style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,24px);font-weight:500;letter-spacing:.06em;line-height:1.7;margin-bottom:6px">奈良で建てた家を、<span class="nb">写真で見る。</span></h2>
+    <p style="font-size:13.5px;font-weight:300;line-height:2.2;color:#454543"><span class="nb">実際にお引き渡しした家</span>です。<br>外観やLDK、キッチン、吹き抜けまで、<br>押すと写真がすべて見られます。</p>
+
     <div class="strip">
       <figure><img src="img/shiryo/works/w01_gaikan.jpg" alt="奈良で建てた家の外観" loading="lazy" decoding="async" width="900" height="600"></figure>
       <figure><img src="img/shiryo/works/w02_kitchen.jpg" alt="キッチン" loading="lazy" decoding="async" width="900" height="600"></figure>
@@ -325,8 +343,29 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <figure><img src="img/shiryo/works/w11_nakaniwa.jpg" alt="中庭" loading="lazy" decoding="async" width="900" height="600"></figure>
       <figure><img src="img/shiryo/works/w06_washitsu.jpg" alt="和室" loading="lazy" decoding="async" width="900" height="600"></figure>
     </div>
+    <div class="wcards">
+      <a href="/jisseki-case02"><img src="img/jisseki/case02/thumb/01.jpg" alt="庭とつながる、明るいリビング" loading="lazy" decoding="async" width="640" height="426"><div class="wt">庭とつながる、明るいリビング</div><div class="wm">2階建て・大開口</div></a>
+      <a href="/jisseki-case07"><img src="img/jisseki/case07/thumb/03.jpg" alt="中庭に開く、白い家" loading="lazy" decoding="async" width="640" height="426"><div class="wt">中庭に開く、白い家</div><div class="wm">2階建て・中庭</div></a>
+      <a href="/jisseki-case12"><img src="img/jisseki/case12/thumb/02.jpg" alt="黒い外壁に、木の軒天" loading="lazy" decoding="async" width="640" height="426"><div class="wt">黒い外壁に、木の軒天</div><div class="wm">2階建て・吹き抜け</div></a>
+      <a href="/jisseki-case06"><img src="img/jisseki/case06/thumb/02.jpg" alt="格子で仕切って、閉じきらない家" loading="lazy" decoding="async" width="640" height="426"><div class="wt">格子で仕切って、閉じきらない家</div><div class="wm">2階建て・土間</div></a>
+      <a href="/jisseki-case13"><img src="img/jisseki/case13/thumb/01.jpg" alt="木の天井の下に、黒いキッチン" loading="lazy" decoding="async" width="640" height="426"><div class="wt">木の天井の下に、黒いキッチン</div><div class="wm">2階建て・吹き抜け</div></a>
+      <a href="/jisseki-case03"><img src="img/jisseki/case03/thumb/10.jpg" alt="深い緑の壁が迎える家" loading="lazy" decoding="async" width="640" height="426"><div class="wt">深い緑の壁が迎える家</div><div class="wm">平屋・吹き抜け</div></a>
+    </div>
     <a class="more" href="/jisseki">建築実例をすべて見る →</a>
   </div>
+</section>
+
+<section class="sec">
+  <div class="label"><span class="en">Quality</span><small>性能と、つくり方</small></div>
+  <h2 style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,24px);font-weight:500;letter-spacing:.06em;line-height:1.7;margin-bottom:10px"><span class="nb">耐震等級3も断熱等級6も、</span><span class="nb">標準です。</span></h2>
+  <p style="font-size:13.5px;font-weight:300;line-height:2.2;color:#454543;max-width:760px">オプションで追加するものではありません。<br><span class="nb">C値0.5以下</span>も、<span class="nb">NEST・ARCHともに標準仕様</span>です。<br><span class="nb">それぞれの数字の意味</span>は、<span class="nb">別のページ</span>でご説明しています。</p>
+  <ul class="qlist">
+    <li><b><a href="/quality-taishin" style="border-bottom:1px solid var(--ink)">耐震</a></b><span>耐震等級3を標準に、全棟で構造計算。ベタ基礎は鉄筋量・強度が基準の約1.5倍。</span></li>
+    <li><b><a href="/quality-dannetsu" style="border-bottom:1px solid var(--ink)">断熱・気密</a></b><span>断熱等級6（HEAT20 G2相当）、C値0.5以下。<span class="nb">部屋ごとの温度差</span>が小さい家。</span></li>
+    <li><b><a href="/quality-taikyu" style="border-bottom:1px solid var(--ink)">耐久・保証</a></b><span>長期優良住宅仕様。地盤20年・雨漏り・<span class="nb">構造10年の保証</span>と、3ヶ月からの定期点検。</span></li>
+    <li><b><a href="/quality-daiku" style="border-bottom:1px solid var(--ink)">つくる人</a></b><span>大工歴43年の社長と、いつも同じ顔ぶれの専属職人。土台は国産檜の4寸角。</span></li>
+  </ul>
+  <p class="lnote" style="max-width:1040px">※ GLAMPは一部仕様が異なります。性能値は<span class="nb">NEST・ARCHの標準仕様</span>（地域区分5）で、C値は<span class="nb">実測平均値のため</span>間取りにより変動します。</p>
 </section>
 
 <div data-cta="doc"></div>
@@ -356,6 +395,44 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </section>
 
 <section class="sec">
+  <div class="label"><span class="en">Land price</span><small>土地の値段</small></div>
+  <h2 style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,24px);font-weight:500;letter-spacing:.06em;line-height:1.7;margin-bottom:10px">土地の値段は、<span class="nb">市によって動きが違います。</span></h2>
+  <p style="font-size:13.5px;font-weight:300;line-height:2.2;color:#454543;max-width:760px">国が毎年発表する、<span class="nb">住宅地の地価変動率</span>です。<br>奈良県全体では<span class="nb">18年連続で下がっています</span>が、<br><span class="nb">12の市のうち6市</span>は上がっています。</p>
+  <div class="chika" style="max-width:620px">
+    <div><span class="y"><a href="/nara-shi" style="border-bottom:1px solid var(--ink)">奈良市</a></span><span class="r">+1.3<em>％</em></span></div>
+    <div><span class="y">生駒市</span><span class="r">+1.2<em>％</em></span></div>
+    <div><span class="y">橿原市</span><span class="r">+0.7<em>％</em></span></div>
+    <div><span class="y">大和高田市・大和郡山市・香芝市</span><span class="r">+0.2<em>％</em></span></div>
+    <div><span class="y">桜井市</span><span class="r down">−0.2<em>％</em></span></div>
+    <div><span class="y">天理市</span><span class="r down">−0.4<em>％</em></span></div>
+    <div><span class="y">葛城市</span><span class="r down">−0.4<em>％</em></span></div>
+    <div><span class="y">奈良県全体</span><span class="r down">−0.1<em>％</em></span></div>
+  </div>
+  <p style="font-size:13.5px;font-weight:300;line-height:2.2;color:#454543;max-width:760px;margin-top:18px"><span class="nb">奈良県で土地を購入して</span>家を建てた方の土地代は、<br><span class="nb">平均1,549万円</span>でした。<br>建てる場所によって、<span class="nb">土地にかかる金額は変わります</span>。</p>
+  <p class="src">出どころ：奈良県「令和8年地価公示（奈良県分）」<br>市町村別用途別平均変動率（住宅地・令和8年1月1日時点）／<br>住宅金融支援機構<span class="nb">「フラット35利用者調査」</span>2024年度・<br>土地付注文住宅・奈良県94件（土地取得費の平均1,548.6万円）。</p>
+  <p class="people-more" style="max-width:760px;margin-top:18px"><a href="/nara-shi">奈良市の補助金と地価を、市のページで見る →</a></p>
+</section>
+
+<section class="sec">
+  <div class="label"><span class="en">Flow</span><small>家づくりの流れ</small></div>
+  <h2 style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,24px);font-weight:500;letter-spacing:.06em;line-height:1.7">はじめてのご相談から、<span class="nb">お引き渡しまで。</span></h2>
+  <ol class="steps">
+      <li><b>ご相談・お問い合わせ</b><span>ご来店でもオンラインでも。無料です</span></li>
+      <li><b>資金計画・予算決め</b><span>月々の返済額から、無理のない総額を決めます</span></li>
+      <li><b>土地さがし・敷地調査</b><span>土地をお持ちでなくても大丈夫。<span class="nb">建物との総額</span>で選びます</span></li>
+      <li><b>プラン・お見積り</b><span>諸費用・外構も含めた総額をお出しします</span></li>
+      <li><b>パートナー申込</b></li>
+      <li><b>詳細打ち合わせ・仕様決め</b></li>
+      <li><b>ご契約</b><span>金額が確定してからです</span></li>
+      <li><b>着工・上棟</b></li>
+      <li><b>完成・お引き渡し</b></li>
+      <li><b>アフター・定期点検</b><span><span class="nb">3ヶ月・6ヶ月</span>・1年・2年・5年・10年。以降も点検を続けます</span></li>
+  </ol>
+  <p class="lnote">最初のお打ち合わせからお引き渡しまで、目安として<span class="nb">およそ8〜12ヶ月</span>です。土地さがしやプラン内容により前後します。</p>
+  <p class="people-more" style="max-width:760px"><a href="/flow">家づくりの流れをくわしく →</a></p>
+</section>
+
+<section class="sec">
   <div class="label"><span class="en">People</span><small>つくる人</small></div>
   <div class="people">
     <div><img src="img/member-shacho.jpg" alt="代表取締役 柴部崇" loading="lazy" style="object-position:64% 32%"><div class="role">President</div><h3>柴部 崇</h3></div>
@@ -376,8 +453,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </section>
 
-<section class="sec" style="padding-top:0"><p class="people-more" style="margin:0 auto"><a href="/nara-shi">奈良市で建てる方はこちら →</a></p></section>
-
 <section class="sec">
   <div class="label"><span class="en">FAQ</span><small>奈良で建てる方から、よくある質問</small></div>
   <div class="faq">
@@ -387,9 +462,30 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <details><summary>土地を持っていなくても相談できますか？</summary><div class="a">はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。</div></details>
     <details><summary>奈良は地盤が弱いと聞きました。</summary><div class="a">奈良盆地は、昔の川筋や水田を造成した土地が<span class="nb">多い地域</span>です。ただ「奈良だから弱い」ではなく、<span class="nb">その土地ごとに</span>調べます。奈良で多いのは柱状改良で、<span class="nb">費用は0円で済む</span>ことも<span class="nb">あれば200万円</span><span class="nb">かかること</span>もあります。<span class="nb">土地を買う前に</span>、地盤の<span class="nb">見方をお伝えします</span>。</div></details>
     <details><summary>住宅の性能はどのくらいですか？</summary><div class="a">耐震等級3（全棟・許容応力度計算）、<span class="nb">断熱等級6（HEAT20 G2相当）</span>、UA値0.4〜0.46、<span class="nb">C値0.5以下</span>を標準としています。大手<span class="nb">ハウスメーカー水準の性能</span>を、<span class="nb">すべての住まいで標準装備</span>しています<span class="nb">（NEST・ARCHの場合）</span>。</div></details>
+    <details><summary>地盤が弱い土地でも建てられますか？</summary><div class="a">地盤調査を<span class="nb">セカンドオピニオン</span>で多面的に分析し、必要に応じて改良を行います。地盤は<span class="nb">20年保証（5,000万円上限）</span>です。<span class="nb">土地を買う前に</span>、地盤の<span class="nb">見方もお伝えします</span>。</div></details>
+    <details><summary>完成までどのくらいかかりますか？</summary><div class="a">最初のお打ち合わせからお引き渡しまで、目安として<span class="nb">およそ8〜12ヶ月</span>です。土地さがしやプラン内容により前後します。</div></details>
+    <details><summary>オンラインでも相談できますか？</summary><div class="a">はい。ご来店のほか、<span class="nb">オンライン（Web）</span>でのご相談も可能です。ご都合に合わせてお選びいただけます。</div></details>
+    <details><summary>構造計算は本当に全棟でやっていますか？</summary><div class="a">はい。耐力壁のX・Yバランス、壁直下率、<span class="nb">ねじれ・耐風強度</span>まで自社設計で一元管理し、全棟で<span class="nb">許容応力度計算</span>を行っています。</div></details>
+    <details><summary>保証はどのくらいありますか？</summary><div class="a">雨漏り10年・構造10年・<span class="nb">地盤20年</span>・防蟻5年（最長10年）・外壁材10年ほか。<span class="nb">住宅瑕疵担保責任保険</span>に引渡しから10年加入しています。</div></details>
     <details><summary>相談は無料ですか？<span class="nb">しつこい営業</span>はありませんか？</summary><div class="a">ご相談・資金計画・見学のご予約はすべて無料です。一組ずつ誠実にお付き合いすることを<span class="nb">大切にしています</span>。しつこい営業は<span class="nb">一切いたしません</span>。</div></details>
   </div>
 <p class="people-more"><a href="/faq">よくある質問をすべて見る →</a></p>
+</section>
+
+<section class="sec" style="background:var(--pale);max-width:none">
+  <div class="area-in">
+    <div class="label"><span class="en">Area</span><small>対応エリア</small></div>
+    <h2 style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,24px);font-weight:500;letter-spacing:.06em;line-height:1.7;margin-bottom:10px">奈良県全域で<span class="nb">建てています。</span></h2>
+    <p style="font-size:13.5px;font-weight:300;line-height:2.2;color:#454543">事務所は奈良市北之庄町にあります。<br>奈良県内は、<span class="nb">次の市町村にお伺いしています</span>。</p>
+    <div class="area-list">
+      <span><a href="/nara-shi" style="border-bottom:1px solid var(--ink)">奈良市</a></span><span>大和郡山市</span><span>天理市</span><span>桜井市</span><span>生駒市</span><span>橿原市</span><span>香芝市</span><span>大和高田市</span><span>葛城市</span><span>斑鳩町</span><span>王寺町</span><span>三郷町</span><span>上牧町</span><span>広陵町</span><span>河合町</span><span>川西町</span><span>安堵町</span><span>田原本町</span>
+    </div>
+    <dl class="office">
+      <dt>事務所</dt><dd>シバサンホーム／奈良県奈良市北之庄町41-1</dd>
+      <dt>電話</dt><dd><a href="tel:0120154483">0120-154-483</a>（9:00-18:00・水曜定休）</dd>
+      <dt>創業</dt><dd>1969年。大工の下請けから始めました</dd>
+    </dl>
+  </div>
 </section>
 
 <div class="cta">
