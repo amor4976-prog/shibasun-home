@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>家づくりのブログ｜奈良の注文住宅・シバサンホーム</title>
+<title>家づくりのブログ｜奈良の注文住宅｜シバサンホーム</title>
 <meta name="description" content="奈良で注文住宅を建てる前に知っておきたいこと。坪単価の相場、工務店とハウスメーカーの違い、大工社長が建てる家とは。奈良の工務店シバサンホームが正直に解説するブログです。">
 <meta name="theme-color" content="#1c1c1a">
 <link rel="canonical" href="https://www.shibasun.jp/blog">
@@ -20,6 +20,13 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap" onload="this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
 <link rel="stylesheet" href="article.css?v=20260830b">
+<style>
+/* カードのグリッドが min-content で押し広げられ、390pxで横に558pxまで伸びていた。
+   文字の側を縮められるようにする（2026-09-14） */
+.col-card{grid-template-columns:118px minmax(0,1fr)}
+@media(min-width:760px){.col-card{grid-template-columns:200px minmax(0,1fr)}}
+.col-body{min-width:0}
+</style>
 </head>
 <body>
 
@@ -49,7 +56,7 @@
     <div class="col-body">
       <div class="cat">家えらび</div>
       <h2>土地を買う前に、ハザードマップを見てください</h2>
-      <p>洪水と土砂災害だけでなく、その土地がどうやってできたかまで分かります。住所を入れるだけの5分の手順と、色が付いていた土地をどう考えるかを書きました。</p>
+      <p>洪水と<span class="nb">土砂災害だけでなく</span>、<span class="nb">その土地</span>がどうやってできたかまで分かります。住所を入<span class="nb">れるだけの5分の手順</span>と、色が付いていた土地をどう考えるかを書きました。</p>
     </div>
   </a>
 
@@ -58,7 +65,7 @@
     <div class="col-body">
       <div class="cat">お金</div>
       <h2>奈良で新築を建てるといくら？総額の内訳を正直に</h2>
-      <p>広告に出ている価格と、最後に払う総額は同じではありません。本体価格・諸費用・外構費・土地代の4つに分けて、シバサンホームの価格もあわせて出しています。</p>
+      <p>広告に出ている価格と、最後に払う総額は<span class="nb">同じではありません</span>。<span class="nb">本体価格</span>・諸費用・外構費・土地代の4つに分けて、シバサンホームの価格もあわせて出しています。</p>
     </div>
   </a>
 
@@ -67,15 +74,15 @@
     <div class="col-body">
       <div class="cat">お金</div>
       <h2>地盤改良のお金。土地を買う前に知っておくこと</h2>
-      <p>地盤改良の費用は0円のこともあれば、200万円かかることもあります。しかも土地を買う前には調べられません。工法ごとの費用の目安と、金額が大きく変わる3つの条件を、奈良の工務店が正直にまとめました。</p>
+      <p><span class="nb">地盤改良の費用</span>は<span class="nb">0円のこと</span>もあれば、200<span class="nb">万円かかることもあり</span>ます。しかも土地を買う前には調べられません。<span class="nb">工法ごとの費用の目安</span>と、金額が大<span class="nb">きく変わる3つの条件</span><span class="nb">を、奈良の工務店が正</span>直にまとめました。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-kinri" data-cat="お金">
     <div class="col-thumb"><img src="img/blog/kinri_biru.jpg" alt="オフィスビルが並ぶ街並み" loading="lazy"></div>
     <div class="col-body">
       <div class="cat">お金</div>
-      <h2>フラット35が3.46％に。いまの制度で最も高い水準です</h2>
-      <p>2026年9月の固定金利は3.460％。先月から0.17％上がり、3,000万円の借入で35年123万円の差になりました。ただし高性能な住宅は割引されます。ZEH水準なら当初5年は0.75％安く、月12,638円ちがいます。</p>
+      <h2>フラット35が3.46％<span class="nb">に。いまの制度で最も</span>高い水準です</h2>
+      <p>2026年9月の固定金利は3.460％。先月から0.17％上がり、<span class="nb">3,000万円を35年</span>借りると、<span class="nb">123万円の差</span>に<span class="nb">なりました</span>。<span class="nb">高性能な住宅</span>は割引されます。<span class="nb">ZEH水準なら</span><span class="nb">当初5年は0.75</span>％<span class="nb">安く、月12,63</span>8円ちがいます。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-natsu" data-cat="暮らし">
@@ -91,7 +98,7 @@
     <div class="col-body">
       <div class="cat">暮らし</div>
       <h2>犬と暮らす新築の家。採用したい7つのポイント</h2>
-      <p>匂いの出る場所だけ調湿タイル、ひっかき傷に強い壁紙、滑りにくい床、お散歩帰りの足洗い場。実際の家づくりで採用してきた工夫を、大工社長の動画とあわせて紹介します。</p>
+      <p>匂いの出る場所だけ調湿タイル、ひっかき傷に強い壁紙、滑りにくい床、<span class="nb">お散歩帰りの足洗い場</span>。<span class="nb">実際の家づくり</span>で採用してきた工夫を、大工社長の動画とあわせて紹介します。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-roomtour" data-cat="動画">
@@ -99,7 +106,7 @@
     <div class="col-body">
       <div class="cat">動画</div>
       <h2>ルームツアーはネタバレ？動画で見てから見学する家づくりのすすめ</h2>
-      <p>動画で分かるのは間取りとアイデア、現地でしか分からないのは広さの体感と光と素材。実例のルームツアー3本つきで「動画で予習→現地で答え合わせ」の進め方をご紹介します。</p>
+      <p>動画で分かるのは間取りとアイデア、現地でしか分からないのは<span class="nb">広さの体感</span>と光と素材。<span class="nb">ルームツアー3本</span>つきで、<span class="nb">動画で予習して</span><span class="nb">現地で答え合わせ</span>する<span class="nb">進め方</span>をご紹介します。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-taifu" data-cat="お手入れ">
@@ -107,7 +114,7 @@
     <div class="col-body">
       <div class="cat">お手入れ</div>
       <h2>台風が来る前に。家を守る点検チェックリスト</h2>
-      <p>壊れる場所は決まっています。飛びそうな物・雨樋・バルコニーの排水口・シャッター。前日までにやること、当日の過ごし方、台風のあとの訪問営業への注意まで現場目線で解説します。</p>
+      <p>壊れる場所は決まっています。飛びそうな物・雨樋・バ<span class="nb">ルコニーの排水口・シ</span>ャッター。前日までにやること、当日の過ごし<span class="nb">方、台風のあとの訪問</span>営業への注意まで現場目線で解説します。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-hojokin" data-cat="お金">
@@ -115,7 +122,7 @@
     <div class="col-body">
       <div class="cat">お金</div>
       <h2>2026年の住宅補助金｜奈良で家を建てる人がもらえるお金</h2>
-      <p>みらいエコ住宅2026で最大110万円。国の制度と奈良市の移住支援金、締切と申請のタイミングまで、もらえるお金を整理しました。</p>
+      <p><span class="nb">みらいエコ住宅2026</span>で<span class="nb">最大110万円</span>。<span class="nb">国の制度</span>と<span class="nb">奈良市の移住支援金</span>、締<span class="nb">切と申請のタイミング</span>まで、もらえるお金を整理しました。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-gaiheki" data-cat="お手入れ">
@@ -123,7 +130,7 @@
     <div class="col-body">
       <div class="cat">お手入れ</div>
       <h2>外壁の塗り替えは何年目がベスト？「10年」は早いかもしれません</h2>
-      <p>10年点検で撮った実際の写真とともに。先に傷むのは壁ではなくコーキング、そして築10年前後に増える訪問営業への注意点まで正直にお話しします。</p>
+      <p>10年点検で撮<span class="nb">った実際の写真ととも</span>に。先に傷むのは壁ではなくコーキング<span class="nb">、そして築10年前後</span>に増える訪<span class="nb">問営業への注意点まで</span>正直にお話しします。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-mushi" data-cat="暮らし">
@@ -139,7 +146,7 @@
     <div class="col-body">
       <div class="cat">家えらび</div>
       <h2>塗り壁の外壁は汚れる？サイディングとの違いと、汚れにくくする設計</h2>
-      <p>汚れる場所は決まっています。窓の下・軒のない壁・北面・地面ぎわ。設計でどこまで抑えられるか、塗り替えの時期の考え方まで解説します。</p>
+      <p>汚れる場所は決まってい<span class="nb">ます。窓の下・軒のな</span>い壁・北面・地面ぎわ。設計でどこまで抑えられるか、<span class="nb">塗り替えの時期</span>の<span class="nb">考え方</span>まで解説します。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-shacho-01" data-cat="社長ブログ">
@@ -147,7 +154,7 @@
     <div class="col-body">
       <div class="cat">社長ブログ</div>
       <h2>家づくりで後悔しないために、最初に知っておきたい6つのこと</h2>
-      <p>資金計画・土地探し・住宅会社選び・間取り・性能・将来の暮らし方。大工歴43年の社長が、後悔しない家づくりの「順番」をわかりやすく解説します。</p>
+      <p>資金計画・土地探し・住宅会社選び・間取り・性能・将来の暮らし方。大工<span class="nb">歴43年の社長が、後</span>悔しない家づくりの「順番」をわかりやすく解説します。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-movie-bohan" data-cat="動画">
@@ -155,7 +162,7 @@
     <div class="col-body">
       <div class="cat">動画</div>
       <h2>こんな家は泥棒に狙われる。今すぐできる防犯対策</h2>
-      <p>空き巣は必ず下見をして「入りやすい家」を選びます。狙われやすい家の特徴と、今すぐできる対策・新築の防犯設計を大工社長が解説。侵入に5分以上かかる家は狙われません。</p>
+      <p>空き巣は必ず下見をして「入りやすい家」を選びます。狙われやすい家の特徴と、今すぐできる対<span class="nb">策・新築の防犯設計を</span>大工社長が解<span class="nb">説。侵入に5分以上か</span>かる家は狙われません。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-movie-yuka-souji" data-cat="動画">
@@ -163,7 +170,7 @@
     <div class="col-body">
       <div class="cat">動画</div>
       <h2>その床掃除、実は逆効果かも。床が傷む水拭きの話</h2>
-      <p>良かれと思った水拭きが、床の寿命を縮めているかも。床材が水に弱い理由と正しい掃除の仕方を、大工社長が実演解説。42万回以上再生のチャンネル最大の回です。</p>
+      <p>良かれと思った水拭<span class="nb">きが、床の寿命を縮め</span><span class="nb">ているかも。床材が</span>水に弱い理由と正しい掃除の仕方を、大工社長が実演解説。<span class="nb">チャンネル最大</span>の、<span class="nb">42万回以上再生</span>の回です。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-movie-setsubi" data-cat="動画">
@@ -171,7 +178,7 @@
     <div class="col-body">
       <div class="cat">動画</div>
       <h2>付けたら損する住宅設備10選、大工が本音で語りました</h2>
-      <p>全館空調・太陽光・床暖房・食洗機…維持費や手入れで後悔しやすい設備を、大工歴43年の社長が動画で本音解説。8万回以上再生の人気回です。</p>
+      <p>全館空調・太陽光・床暖房・食洗機…維持費や手入れで後悔しやすい設備を、大工<span class="nb">歴43年の社長が動画</span>で本音解説。8万回<span class="nb">以上再生の人気回です</span>。</p>
     </div>
   </a>
   <a class="col-card" href="/blog-youtube" data-cat="動画">
@@ -186,7 +193,7 @@
     <div class="col-thumb"><img src="img/work-exterior.jpg" alt="奈良の注文住宅の外観と坪単価" loading="lazy"></div>
     <div class="col-body">
       <div class="cat">お金</div>
-      <h2>奈良で注文住宅の坪単価はいくら？相場と「適正価格」の考え方</h2>
+      <h2><span class="nb">奈良で注文住宅の坪単価</span>はいくら？<span class="nb">相場と「適正価格」</span>の考え方</h2>
       <p>奈良の坪単価の相場、ローコストとの違い、見積もりで見落としがちな諸費用・外構費まで。価格を公開している工務店だからこそ正直に解説します。</p>
     </div>
   </a>
@@ -218,7 +225,7 @@
     <div class="col-thumb"><img src="img/work-kitchen.jpg" alt="注文住宅の予算と資金計画" loading="lazy"></div>
     <div class="col-body">
       <div class="cat">お金</div>
-      <h2>注文住宅の予算の決め方｜年収別の目安と資金計画のコツ</h2>
+      <h2><span class="nb">注文住宅の予算の決め方</span>｜<span class="nb">年収別の目安</span>と<span class="nb">資金計画のコツ</span></h2>
       <p>いくらの家を建てられるのか。年収別の借入目安、無理なく返せる額の考え方、総額の見方を、資金計画担当の専務が解説します。</p>
     </div>
   </a>

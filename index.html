@@ -320,9 +320,18 @@ section{padding:58px 22px}
 .work{position:relative;flex:0 0 80%;scroll-snap-align:center;overflow:hidden;background:#ddd}
 @media(min-width:760px){.work{flex-basis:360px}}
 .work img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform .7s ease}
-.works-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:20px}
-.works-dots button{width:8px;height:8px;padding:0;border:none;border-radius:50%;background:var(--linec);cursor:pointer;transition:background .25s,transform .25s}
-.works-dots button.on{background:var(--ink);transform:scale(1.15)}
+.works-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:0;margin-top:12px}
+/* 見た目は8pxの点のまま、指で押せる所を34x40pxにする（2026-09-14 実測で8pxだった） */
+.works-dots button{width:34px;height:40px;padding:0;border:none;background:none;cursor:pointer;position:relative}
+.works-dots button::before{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--linec);transition:background .25s,transform .25s}
+.works-dots button.on::before{background:var(--ink);transform:scale(1.15)}
+/* 「その他の入口」。</html>の後ろに素のまま置かれていたのを、本文の中へ移した（2026-09-14） */
+.more-links{max-width:760px;margin:0 auto;padding:26px 20px 34px;display:flex;flex-direction:column;gap:2px}
+.more-links a{display:inline-block;align-self:flex-start;padding:9px 0;font-size:12.5px;letter-spacing:.08em;border-bottom:1px solid var(--ink);line-height:1.6}
+@media(min-width:760px){.more-links{flex-direction:row;flex-wrap:wrap;gap:8px 26px}}
+/* 文字リンクも指で押せる高さに（2026-09-14 実測で17〜27pxだった） */
+.works-more,.pr-more,.price-more,.yt-sub,.rev-all a,.js-reserve,.hero-first{display:inline-block;padding:9px 0}
+
 .work .cap{
   position:absolute;left:0;right:0;bottom:0;padding:16px 16px 15px;
   background:linear-gradient(to top, rgba(15,15,14,.72), rgba(15,15,14,0));
@@ -486,10 +495,13 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   font-size:11px;letter-spacing:.1em;color:var(--gray);margin-bottom:9px}
 .tsim-lab b{font-family:'Jost',sans-serif;font-size:22px;font-weight:400;color:var(--ink);letter-spacing:.04em}
 .tsim-lab b em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:12px;margin-left:3px}
-.tsim input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;
-  background:#d6d6d3;outline:none;margin:0 0 4px}
+.tsim input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;
+  background:transparent;outline:none;margin:0 0 4px}
+/* 押せる所が線の2pxしかなかった。箱を28pxにして、線は中に描く（2026-09-14） */
+.tsim input[type=range]::-webkit-slider-runnable-track{height:2px;background:#d6d6d3;border-radius:1px}
+.tsim input[type=range]::-moz-range-track{height:2px;background:#d6d6d3;border-radius:1px}
 .tsim input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
-  width:28px;height:28px;border-radius:50%;background:var(--ink);cursor:pointer;border:0}
+  width:28px;height:28px;border-radius:50%;background:var(--ink);cursor:pointer;border:0;margin-top:-13px}
 .tsim input[type=range]::-moz-range-thumb{width:28px;height:28px;border-radius:50%;
   background:var(--ink);cursor:pointer;border:0}
 .tsim-ends{display:flex;justify-content:space-between;font-size:10px;color:var(--gray);
@@ -1576,6 +1588,13 @@ else setupLifeBand();
   </div>
 </div>
 
+<nav class="more-links">
+  <a href="/faq">よくある質問をすべて見る →</a>
+  <a href="/nara-shi"><span class="nb">奈良市で建てる方はこちら →</span></a>
+  <a href="/nara"><span class="nb">奈良県で建てる方はこちら →</span></a>
+  <a href="/hiraya"><span class="nb">平屋を建てる方はこちら →</span></a>
+</nav>
+
 <footer>
   <div class="inner">
     <div class="fl">SHIBA SUN HOME</div>
@@ -1876,5 +1895,3 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
 </script>
 </body>
 </html>
-<p class="people-more"><a href="/faq">よくある質問をすべて見る →</a></p>
-<p class="people-more"><a href="/nara-shi"><span class="nb">奈良市で建てる方はこちら →</span></a>　<a href="/nara"><span class="nb">奈良県で建てる方はこちら →</span></a>　<a href="/hiraya"><span class="nb">平屋を建てる方はこちら →</span></a></p>
