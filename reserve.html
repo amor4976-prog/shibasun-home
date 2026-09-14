@@ -234,8 +234,8 @@ function rsvRender(){
       const days=[...new Set(free.map(x=>x.date))];
       const best=days.map(d=>[d,free.filter(x=>x.date===d).length]).sort((a,b)=>b[1]-a[1])[0];
       const bf=best?fmtDate(best[0]):null;
-      return `1か月先まで<b>${days.length}日ぶん・${free.length}枠</b>が空いています。`
-        + (bf&&best[1]>=3?`<br>いちばん選べるのは <b>${bf.md}（${bf.w}）</b>です。`:'');})()}</p>
+      return `1か月先まで、<b>${days.length}日</b>ご予約いただけます。`
+        + (bf&&best[1]>=3?`<br>いちばん空いているのは <b>${bf.md}（${bf.w}）</b>です。`:'');})()}</p>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);
       const free=rsvSlots.filter(x=>x.date===d&&x.status!=='full').length;
       const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');

@@ -234,7 +234,7 @@ function applyRecv(){
   var postal=document.querySelector('[name="postal"]'), addr=document.querySelector('[name="address"]');
   email.required=mail;
   postal.required=addr.required=!mail;
-  // メールで受け取る人に住所は要らない。出したままだと欄が2つぶん長くなる
+  // メールで受け取る人に住所は要らない。出したままだと欄が2つ多くなって長くなる
   document.getElementById('f-addr').hidden=mail;
   var lead=document.getElementById('cat-lead');
   if(lead)lead.textContent=mail?'必須はお名前とメールアドレスだけです。':'必須はお名前とご住所だけです。';
