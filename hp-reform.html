@@ -570,6 +570,43 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   .aiflow b{font-size:16.5px}.aiflow span{font-size:13.5px}
   .aibig .v{font-size:26px}.aibig .v b{font-size:60px}.aibig .t{font-size:14px}
 }
+
+/* 力を入れている3つ・AIの数（2026-09-14） */
+.san{display:grid;gap:10px;margin-top:16px}
+.san a{display:block;background:#1B3A2F;color:#fff;text-decoration:none;border-radius:8px;padding:18px 18px 16px;position:relative}
+.san i{display:inline-block;font-style:normal;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:#F2C230;color:#1a1a1a;font-weight:700;font-size:13px;margin-bottom:10px}
+.san b{display:block;font-size:20px;line-height:1.4}
+.san span{display:block;font-size:13px;color:rgba(255,255,255,.85);line-height:1.75;margin-top:6px}
+.ainum{display:grid;gap:10px;margin-top:16px}
+.ainum>div{background:#EAF2EC;border-radius:8px;padding:16px 18px 14px}
+.ainum small{display:block;font-size:12.5px;color:#1B3A2F;font-weight:700;letter-spacing:.02em}
+.ainum .pair{display:flex;align-items:baseline;gap:10px;margin:6px 0 4px;font-weight:700;color:#1a1a1a}
+.ainum .bf{font-size:24px;color:#5e5d5b}
+.ainum .af{font-size:40px;color:#1B3A2F;line-height:1.1}
+.ainum .ar{font-size:18px;color:#1B3A2F}
+.ainum i{font-style:normal;font-size:14px;font-weight:500;margin-left:2px}
+.ainum em{display:block;font-style:normal;font-size:11px;color:#5e5d5b;line-height:1.6}
+@media(min-width:1000px){
+  .san{grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px}
+  .san a{padding:24px 24px 20px}
+  .san b{font-size:22px}.san span{font-size:13.5px}
+  .ainum{grid-template-columns:1fr 1fr;gap:16px;max-width:900px}
+  .ainum .af{font-size:44px}
+}
+
+.aiuchi{margin-top:10px;background:#fff;border:2px solid #1B3A2F;border-radius:8px;padding:16px 18px 14px}
+.aiuchi small{display:block;font-size:12px;color:#1B3A2F;letter-spacing:.04em}
+.aiuchi .l b{display:block;font-size:18px;color:#1a1a1a;line-height:1.6;margin-top:2px}
+.aiuchi .l em{font-style:normal;color:#1B3A2F;font-size:30px;line-height:1;margin-left:2px}
+.aiuchi .pair{display:flex;align-items:baseline;gap:10px;margin:10px 0 4px;font-weight:700}
+.aiuchi .bf{font-size:22px;color:#5e5d5b}.aiuchi .af{font-size:36px;color:#1B3A2F;line-height:1.1}.aiuchi .ar{font-size:18px;color:#1B3A2F}
+.aiuchi i{font-style:normal;font-size:14px;font-weight:500;margin-left:2px}
+.aiuchi .n{display:block;font-size:11px;color:#5e5d5b;line-height:1.6}
+@media(min-width:1000px){
+  .aiuchi{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;max-width:900px;padding:18px 24px}
+  .aiuchi .l b{font-size:20px}.aiuchi .l em{font-size:34px}
+  .aiuchi .pair{margin:0 0 4px;justify-content:flex-end}.aiuchi .n{text-align:right;max-width:300px}
+}
 </style>
 </head>
 <body>
@@ -690,7 +727,13 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
 
   <section id="c02b">
     <div class="rule"></div>
-    <h2 class="up" style="margin-top:22px"><span class="tag">03</span>工務店だから分かる、成果につながる8つのこと</h2>
+    <h2 class="up" style="margin-top:22px"><span class="tag">03</span>私どもが、力を入れている3つ</h2>
+    <div class="san up">
+      <a href="#c02d"><i>1</i><b>AI検索に強い</b><span>AIが読める会社情報を裏側に入れる。対応できている工務店は26%</span></a>
+      <a href="#c02c"><i>2</i><b>予約しやすい</b><span>お客様がその場で日時を選べる。<span class="nb">電話をかけずに3回で終わる</span></span></a>
+      <a href="#c02"><i>3</i><b>工務店が作っている</b><span>制作会社ではなく同業。自社で作り替えて、<span class="nb">問い合わせ8倍</span></span></a>
+    </div>
+    <h3 class="mid up" style="margin-top:34px">そのほかに、成果につながる8つのこと</h3>
     <p class="up" style="font-size:15px;color:#333;line-height:1.8;margin-top:8px">私どもは工務店として、集客・営業・施工・SNSなど、<span class="nb">日々の仕事</span>の中でホームページの困りごとを実感してきました。</p>
     <div class="pts2 up">
       <div class="pt2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9h13v-9"/><path d="M10 19v-5h4v5"/></svg></i><b>01　施工事例</b><span>「作品集」で終わらせない</span></div>
@@ -707,7 +750,16 @@ h3.mid{color:var(--ao);font-size:16px;font-weight:600;letter-spacing:.04em;margi
   <section id="c02d">
     <div class="rule"></div>
     <h2 class="up" style="margin-top:22px"><span class="tag">04</span>AIに、読まれる作り</h2>
-    <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px">お客様がAIに「おすすめの工務店」を聞く時代です。そのときAIが読むのは、人が見る画面ではなく、<span class="nb">裏側に埋め込んだ会社の情報</span>です。</p>
+    <p class="up" style="font-size:16px;color:#2b2b29;margin-top:12px"><b>Googleで検索されるだけでは、お客様の候補に上がらなくなっています。</b>お客様は、<span class="nb">検索の代わりに</span>AIに「おすすめの工務店」を聞くようになりました。</p>
+    <div class="ainum up">
+      <div><small>日本で生成AIを使ったことがある人</small><div class="pair"><span class="bf">26.7<i>%</i></span><span class="ar">→</span><span class="af">58.8<i>%</i></span></div><em>2024年度 → 2025年度　総務省「令和8年版 情報通信白書」</em></div>
+      <div><small>ChatGPTを週に使う人</small><div class="pair"><span class="af">9<i>億人</i></span></div><em>OpenAI 2026年2月発表。1年前は4億人</em></div>
+    </div>
+    <div class="aiuchi up">
+      <div class="l"><small>私どものサイトでも</small><b>作り替えてから、<span class="nb">AI経由で来る人が<em>5倍</em></span></b></div>
+      <div class="r"><div class="pair"><span class="bf">月1<i>件</i></span><span class="ar">→</span><span class="af">月20<i>件</i></span></div><span class="n">GA4の実測。作り替え後30日間（8/16〜9/14）と、<span class="nb">それ以前の227日間の</span>1日あたりの比較</span></div>
+    </div>
+    <p class="up" style="font-size:16px;color:#2b2b29;margin-top:18px">そのときAIが読むのは、人が見る画面ではなく、<span class="nb">裏側に埋め込んだ会社の情報</span>です。</p>
     <div class="aiflow up">
       <div><i>1</i><b>お客様がAIに聞く</b><span>「◯◯市で注文住宅、おすすめの工務店は」</span></div>
       <div class="ar">→</div>
