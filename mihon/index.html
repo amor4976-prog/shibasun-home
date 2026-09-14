@@ -1,0 +1,343 @@
+<!doctype html><html lang="ja"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>みほん工務店｜奈良の注文住宅（見本ページ）</title>
+<meta name="description" content="奈良県で注文住宅を建てるみほん工務店。価格を先にお伝えします。ご相談は無料、しつこい営業はいたしません。">
+<style>
+:root{--ink:#1f1d1b;--gray:#6e6a64;--usu:#a3a3a1;--line:#e6e2da;--ji:#fbfaf8;--ao:#1c3d5a;--midori:#2f6b4b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ji);color:var(--ink);line-break:strict;overflow-wrap:break-word;
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  font-size:15px;line-height:2.05;letter-spacing:.02em;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.nb{white-space:nowrap}
+.wrap{max-width:430px;margin:0 auto;padding-left:22px;padding-right:22px}
+/* パソコンで見た時は、電話の幅のまま中央に置く */
+@media(min-width:900px){ body{background:#efedea} .col{max-width:430px;margin:0 auto;background:var(--ji);box-shadow:0 0 40px rgba(0,0,0,.08)} }
+
+/* 浮き上がる演出 */
+.up{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.61,.36,1)}
+.up.in{opacity:1;transform:none}
+.up.d1{transition-delay:.1s}.up.d2{transition-delay:.2s}.up.d3{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.up{opacity:1;transform:none;transition:none}}
+
+/* 下の固定バー */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:1fr 1fr 1.25fr;
+  background:#fff;border-top:1px solid var(--line);max-width:430px;margin:0 auto}
+.bar a{padding:16px 4px;text-align:center;font-size:12.5px;letter-spacing:.04em;border-right:1px solid var(--line)}
+.bar a:last-child{background:var(--ink);color:#fff;border-right:0;font-weight:600}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:15px 22px;background:#fff;border-bottom:1px solid var(--line)}
+header img.logo{height:36px;max-width:58vw;width:auto;object-fit:contain;display:block}
+header.dark{background:#23211e;border-bottom-color:#23211e}
+header.dark .tel{color:#fff}
+header.dark .tel small{color:#c9c6c1}
+.kname{font-size:15px;font-weight:700;letter-spacing:.06em}
+.ktag{font-size:9.5px;color:var(--gray);letter-spacing:.08em;margin-top:2px}
+header .tel{font-size:13px;font-weight:600;letter-spacing:.03em;white-space:nowrap;text-align:right}
+header .tel small{display:block;font-size:9.5px;font-weight:400;color:var(--gray);letter-spacing:.06em;margin-top:2px}
+
+/* ── ヒーロー：写真が切り替わる ── */
+.hero{position:relative;height:calc(86vh - 52px);min-height:480px;overflow:hidden;background:#c9c6c1}
+.hero .slides{position:absolute;inset:0}
+.hero .slide{position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;transition:opacity 1.6s ease;transform:scale(1.06)}
+.hero .slide.on{opacity:1;transform:scale(1);transition:opacity 1.6s ease,transform 7s ease-out}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(12,12,11,.88) 0%,rgba(12,12,11,.55) 34%,rgba(12,12,11,.05) 72%)}
+.hero .copy{position:absolute;left:0;right:0;bottom:26px;z-index:3;color:#fff;padding:0 22px}
+.hero h1{font-size:clamp(24px,6.6vw,32px);font-weight:600;line-height:1.65;letter-spacing:.1em}
+.hero .btns{display:flex;gap:9px;margin-top:19px}
+.hero .btns a{flex:1;text-align:center;padding:13px 6px;font-size:13px;letter-spacing:.05em;border:1px solid rgba(255,255,255,.7)}
+.hero .btns a.fill{background:#fff;color:var(--ink);border-color:#fff;font-weight:600}
+.hero .first{display:inline-block;margin-top:15px;font-size:12px;letter-spacing:.08em;
+  border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:3px}
+.hero .dots{position:absolute;right:22px;bottom:calc(26px + 138px);z-index:3;display:flex;gap:6px}
+.hero .dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45);display:block;transition:background .4s}
+.hero .dots i.on{background:#fff}
+
+/* 信頼の帯 */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.trust div{background:#fff;padding:11px 4px;text-align:center}
+.trust .v{font-size:12.5px;font-weight:700;line-height:1.35;letter-spacing:.01em}
+.trust .v small{font-size:9.5px;font-weight:400}
+.trust .aki2{display:flex;align-items:center;justify-content:center}
+.trust .aki2 .v{font-size:11px;font-weight:400;color:#b2aea6;letter-spacing:.04em}
+.trust .c{font-size:9.5px;color:var(--gray);margin-top:3px;line-height:1.4;white-space:nowrap}
+
+section{padding:64px 0}
+.lb{font-size:9.5px;letter-spacing:.32em;color:var(--usu);margin-bottom:14px}
+h2{font-size:22px;font-weight:600;letter-spacing:.08em;line-height:1.8;text-wrap:balance}
+.sub{font-size:13.5px;color:var(--gray);margin-top:16px;line-height:2.1;text-wrap:pretty}
+
+/* 価格 */
+.price{background:#fff;border:1px solid var(--line);margin-top:26px}
+.price .row{display:flex;justify-content:space-between;align-items:baseline;padding:20px 22px;border-bottom:1px solid var(--line)}
+.price .row:last-child{border-bottom:0}
+.price .k{font-size:14px;font-weight:600}
+.price .k small{display:block;font-size:10.5px;font-weight:400;color:var(--gray);margin-top:1px}
+.price .y{font-size:27px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.price .y small{font-size:11.5px;font-weight:400}
+.price .machi{color:#c6c3bd}
+.aki{background:#fff8f5;border:1px solid #e8c9c0;padding:16px 18px;margin-top:14px;font-size:12.5px;line-height:1.9;color:#5e5d5b}
+.aki b{color:#a3382c}
+.chu{font-size:12px;color:var(--gray);margin-top:11px;line-height:1.9}
+
+/* 施工事例：横に流す */
+.works{margin-top:26px}
+.works .track{display:flex;gap:11px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.works .track::-webkit-scrollbar{display:none}
+.works figure{flex:0 0 74%;scroll-snap-align:start;background:#fff;border:1px solid var(--line)}
+.works img{aspect-ratio:4/3;object-fit:cover;width:100%}
+
+
+.more{display:inline-block;margin-top:20px;font-size:12.5px;letter-spacing:.06em;border-bottom:1px solid var(--ink);padding-bottom:3px}
+
+/* 暗い帯 */
+.band{position:relative;padding:70px 0;color:#fff;background-size:cover;background-position:center}
+.band:after{content:"";position:absolute;inset:0;background:rgba(16,16,15,.6)}
+.band .wrap{position:relative;z-index:2}
+.band h2{color:#fff}
+.band p{font-size:13.5px;line-height:2.2;margin-top:20px;color:#e2e0dc}
+
+/* 進み方 */
+.steps{margin-top:26px;border-top:1px solid var(--ink)}
+.step{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:19px 0;border-bottom:1px solid var(--line)}
+.step .n{font-size:11px;letter-spacing:.1em;color:var(--usu);padding-top:4px}
+.step b{font-size:14.5px;font-weight:600}
+.step p{font-size:13px;color:var(--gray);margin-top:4px;line-height:1.9}
+
+/* よくある質問 */
+.faq{margin-top:26px;border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{padding:18px 28px 18px 0;font-size:14px;font-weight:600;cursor:pointer;position:relative;list-style:none;line-height:1.7}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"＋";position:absolute;right:2px;top:15px;color:var(--usu);font-weight:400}
+.faq details[open] summary:after{content:"−"}
+.faq p{padding:0 0 20px;font-size:13.5px;color:var(--gray);line-height:2}
+
+/* 締め */
+.cta{background:var(--ink);color:#fff;padding:66px 22px;text-align:center}
+.cta h2{color:#fff}
+.cta .p{color:#c2c2c0;font-size:13px;margin-top:16px;line-height:1.9}
+.cta .btns{display:flex;flex-direction:column;gap:11px;max-width:330px;margin:30px auto 0}
+.cta a{display:block;padding:15px;font-size:13.5px;letter-spacing:.08em;background:#fff;color:var(--ink);font-weight:600}
+.cta a.g{background:transparent;color:#fff;border:1px solid #55534f;font-weight:400}
+.cta .nagare{font-size:11.5px;color:#9d9b97;margin-top:22px;line-height:1.85}
+
+
+/* 日時を選んで予約 */
+#yoyaku .sub{font-size:13px;letter-spacing:0;white-space:nowrap}
+.rsv{background:#fff;border:1px solid var(--line);padding:22px 20px;margin-top:26px}
+.rsv .st{font-size:10px;letter-spacing:.24em;color:var(--usu);margin:0 0 11px}
+.rsv .st+.st{margin-top:26px}
+.rsv .days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.rsv .days::-webkit-scrollbar{display:none}
+.rsv .day{flex:0 0 auto;min-width:62px;border:1px solid var(--line);background:#fff;
+  padding:11px 10px;text-align:center;cursor:pointer;line-height:1.45}
+.rsv .day .d{font-size:15px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.rsv .day .w{font-size:9.5px;color:var(--gray);margin-top:2px}
+.rsv .day .m{font-size:9.5px;color:var(--usu)}
+.rsv .day.sat .w{color:#3d6a92}.rsv .day.sun .w{color:#a3382c}
+.rsv .day.on{border-color:var(--ink);background:var(--ink);color:#fff}
+.rsv .day.on .w,.rsv .day.on .m{color:#cfcdc9}
+.rsv .day.x{opacity:.4;cursor:default}
+.rsv .times{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rsv .time{border:1px solid var(--line);background:#fff;padding:14px 8px;cursor:pointer;
+  font-size:13.5px;letter-spacing:.04em;text-align:center;font-variant-numeric:tabular-nums}
+.rsv .time small{display:block;font-size:9.5px;color:var(--gray);margin-top:3px;letter-spacing:.06em}
+.rsv .time.on{border-color:var(--ink);background:var(--ink);color:#fff}
+.rsv .time.on small{color:#cfcdc9}
+.rsv .time.x{opacity:.35;cursor:default}
+.rsv .go{display:block;width:100%;margin-top:20px;padding:16px;background:var(--ink);color:#fff;
+  border:0;font-family:inherit;font-size:14px;letter-spacing:.08em;font-weight:600;cursor:pointer;opacity:.35}
+.rsv .go.ready{opacity:1}
+.rsv .erabi{font-size:12.5px;color:var(--gray);margin-top:13px;line-height:1.8;text-align:center}
+.rsv .erabi b{color:var(--ink);font-weight:600}
+.rsv .note{font-size:11px;color:var(--usu);margin-top:12px;line-height:1.75}
+
+/* 会社紹介の動画 */
+.movie{margin-top:26px}
+.movie .frame{position:relative;width:100%;aspect-ratio:16/9;background:#111;overflow:hidden}
+.movie iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.movie .kara{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  width:100%;aspect-ratio:16/9;border:1px dashed #c9c5bd;background:#faf9f7;color:#a7a39b}
+.movie .kara i{display:block;width:0;height:0;border-left:22px solid #c9c5bd;
+  border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:5px}
+.movie .kara span{font-size:12px;letter-spacing:.08em}
+footer{padding:38px 22px 26px;font-size:11.5px;color:var(--gray);line-height:1.95;text-align:center}
+.kari{background:#f3f5f3;border-top:2px solid #1B3A2F;padding:20px 22px;font-size:12px;line-height:1.95;color:#5e5d5b}
+.kari b{color:#1B3A2F}
+</style></head><body>
+<div class="col">
+
+<header>
+  <div><div class="kname">みほん工務店</div><div class="ktag">奈良県の注文住宅</div></div>
+  
+</header>
+
+<div class="hero">
+  <div class="slides" id="slides"><div class="slide on" style="background-image:url('img/06.jpg')"></div><div class="slide" style="background-image:url('img/07.jpg')"></div><div class="slide" style="background-image:url('img/03.jpg')"></div></div>
+  <div class="dots" id="dots"><i class="on"></i><i class=""></i><i class=""></i></div>
+  <div class="copy">
+    <h1>奈良県で、<br>家を建てています。</h1>
+    <div class="btns">
+      <a class="fill" href="#toi">資料請求（無料）</a>
+      <a href="#toi">来店のご予約</a>
+    </div>
+    <a class="first" href="#hajimete">はじめての方はこちら →</a>
+  </div>
+</div>
+
+<div class="trust"><div><div class="v">耐震等級3</div><div class="c">許容応力度計算</div></div><div><div class="v">奈良県内</div><div class="c">対応エリア</div></div><div><div class="v">地元密着</div><div class="c">奈良の工務店</div></div></div>
+
+
+
+<section class="wrap">
+  <div class="lb up">WORKS</div>
+  <h2 class="up d1">施工事例</h2>
+  <div class="works up d2"><div class="track"><figure><img src="img/04.jpg" alt="" loading="lazy"></figure><figure><img src="img/01.jpg" alt="" loading="lazy"></figure><figure><img src="img/08.jpg" alt="" loading="lazy"></figure></div></div>
+</section>
+
+
+
+
+<section class="wrap" id="hajimete">
+  <div class="lb up">FIRST STEP</div>
+  <h2 class="up d1">家づくりの進み方</h2>
+  <div class="steps up d2">
+    <div class="step"><div class="n">01</div><div><b>ご相談（無料）</b><p>ご予算と土地のことから。その場で<span class="nb">契約のお願いは</span>いたしません。</p></div></div>
+    <div class="step"><div class="n">02</div><div><b>ご提案とお見積り</b><p>総額の目安をお出しします。諸費用・外構も含めてご説明します。</p></div></div>
+    <div class="step"><div class="n">03</div><div><b>ご契約・着工</b><p>お引渡しのあとも、定期点検で<span class="nb">お付き合いが続きます</span>。</p></div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="lb up">FAQ</div>
+  <h2 class="up d1">よくある質問</h2>
+  <div class="faq up d2">
+    <details open><summary>対応エリアはどこですか？</summary>
+      <p>奈良県を中心に対応しています。地元の工務店として、<span class="nb">その土地の気候や地盤を</span>知り尽くしています。</p></details>
+    <details><summary>大手ハウスメーカーとの違いは何ですか？</summary>
+      <p>広告費や中間マージンをかけず、地元の職人が<span class="nb">直接施工するため</span>、同じ品質でも<span class="nb">コストを抑えられます</span>。</p></details>
+    <details><summary>土地を持っていなくても相談できますか？</summary>
+      <p>はい。地元のネットワークを活かして土地探しから<span class="nb">お手伝いします</span>。建物とのトータル予算で土地を選べるのが<span class="nb">工務店の強みです</span>。</p></details>
+    <details><summary>相談は無料ですか？<span class="nb">しつこい営業はありませんか？</span></summary>
+      <p>ご相談・資金計画・見学のご予約はすべて無料です。<span class="nb">しつこい営業は</span>一切いたしません。</p></details>
+  </div>
+</section>
+
+
+
+
+
+<section class="wrap" id="yoyaku">
+  <div class="lb up">RESERVE</div>
+  <h2 class="up d1">ご予約</h2>
+  <p class="sub up d2">下記からご希望の日時を選択して、ご予約ください。</p>
+  <div class="rsv up d2">
+    <p class="st">日付を選ぶ</p>
+    <div class="days" id="days"></div>
+    <p class="st">時間を選ぶ</p>
+    <div class="times" id="times"></div>
+    <p class="erabi" id="erabi">日付と時間をお選びください</p>
+    <button class="go" id="go" type="button">この日時で予約する</button>
+    <p class="note">※このページは見本のため、ご予約は確定いたしません。</p>
+  </div>
+</section>
+
+<div class="cta" id="toi">
+  <h2 class="up">資料請求・ご相談</h2>
+  <p class="p up d1">価格・標準仕様・施工事例の資料をお送りします。<br>ご相談は無料です。しつこい営業はいたしません。</p>
+  <div class="btns up d2">
+    <a href="#toi">資料請求（無料でお届け）</a>
+    
+    <a class="g" href="#toi">来店のご予約</a>
+  </div>
+  <p class="nagare up d3">ご送信後、担当者より当日から翌営業日にご連絡いたします。</p>
+</div>
+
+<footer>みほん工務店<br>奈良県奈良市</footer>
+
+<div class="kari"><b>これは見本のページです。</b><br>架空の「みほん工務店」として、<span class="nb">シバサンホーム しくみ設計室が</span><span class="nb">組みました</span>。<br>写真は<span class="nb">シバサンホームの施工事例</span>です。<br>予約・資料請求は動きますが、<span class="nb">送信はされません</span>。</div>
+
+<div class="bar">
+  
+  <a href="#toi">資料請求</a>
+  <a href="#toi">来店を予約</a>
+</div>
+
+</div>
+<script>
+// 浮き上がる演出
+(function(){
+  var t=[].slice.call(document.querySelectorAll('.up'));
+  if(!('IntersectionObserver' in window)){ t.forEach(function(e){e.classList.add('in')}); return; }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});},{threshold:.15});
+  t.forEach(function(e){io.observe(e)});
+})();
+// ヒーローの写真を切り替える
+(function(){
+  var s=[].slice.call(document.querySelectorAll('#slides .slide'));
+  var d=[].slice.call(document.querySelectorAll('#dots i'));
+  if(s.length<2) return;
+  var i=0;
+  setInterval(function(){
+    s[i].classList.remove('on'); if(d[i]) d[i].classList.remove('on');
+    i=(i+1)%s.length;
+    s[i].classList.add('on'); if(d[i]) d[i].classList.add('on');
+  }, 4600);
+})();
+
+// 日時を選んで予約（見本の日程）
+(function(){
+  var days=document.getElementById('days'), times=document.getElementById('times');
+  if(!days) return;
+  var W=['日','月','火','水','木','金','土'];
+  var sel={d:null,t:null};
+  var base=new Date(); base.setHours(0,0,0,0);
+  var list=[];
+  for(var i=1;i<=12;i++){ var x=new Date(base); x.setDate(base.getDate()+i); list.push(x); }
+  list.forEach(function(x,i){
+    var w=x.getDay();
+    var full=(i===2||i===6);            // 見本として、いくつか満にする
+    var e=document.createElement('div');
+    e.className='day'+(w===0?' sun':'')+(w===6?' sat':'')+(full?' x':'');
+    e.innerHTML='<div class="m">'+(x.getMonth()+1)+'月</div><div class="d">'+x.getDate()+'</div><div class="w">'+
+                (full?'満':'（'+W[w]+'）')+'</div>';
+    if(!full) e.onclick=function(){
+      [].forEach.call(days.children,function(c){c.classList.remove('on')});
+      e.classList.add('on'); sel.d=(x.getMonth()+1)+'月'+x.getDate()+'日（'+W[w]+'）'; draw();
+    };
+    days.appendChild(e);
+  });
+  var T=[['10:00','午前'],['13:00','午後'],['15:00','午後'],['17:00','夕方']];
+  T.forEach(function(p,i){
+    var e=document.createElement('div');
+    var full=(i===1);
+    e.className='time'+(full?' x':'');
+    e.innerHTML=p[0]+'<small>'+(full?'満席':p[1])+'</small>';
+    if(!full) e.onclick=function(){
+      [].forEach.call(times.children,function(c){c.classList.remove('on')});
+      e.classList.add('on'); sel.t=p[0]; draw();
+    };
+    times.appendChild(e);
+  });
+  function draw(){
+    var er=document.getElementById('erabi'), go=document.getElementById('go');
+    if(sel.d&&sel.t){ er.innerHTML='<b>'+sel.d+' '+sel.t+'</b> でご予約します'; go.classList.add('ready'); }
+    else if(sel.d){ er.textContent=sel.d+'　時間をお選びください'; }
+    else { er.textContent='日付と時間をお選びください'; }
+  }
+  document.getElementById('go').onclick=function(){
+    if(!(sel.d&&sel.t)) return;
+    document.getElementById('erabi').innerHTML='<b>'+sel.d+' '+sel.t+'</b><br>これは見本のページのため、ご予約は入っていません。';
+  };
+})();
+</script>
+</body></html>
