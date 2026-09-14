@@ -71,7 +71,14 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   h1,h2,h3,h4{text-wrap:balance}
   p,li,dd,dt,figcaption,figcaption b,figcaption span,td,th,summary{text-wrap:pretty}
 
-  .nav-toggle{position:relative;width:30px;height:22px;background:none;border:none;cursor:pointer;padding:0;z-index:402}
+  /* 指で押す所は44pxを目安にする（2026-09-14 実測：ハンバーガー22px・フッター15pxだった） */
+  .nav-toggle{position:relative;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:11px 7px;z-index:402}
+  .nav-toggle span{left:7px;width:30px}
+  .nav-toggle span:nth-child(1){top:11px}.nav-toggle span:nth-child(2){top:21px}.nav-toggle span:nth-child(3){top:31px}
+  body.nav-open .nav-toggle span:nth-child(1){transform:translateY(10px) rotate(45deg)}
+  body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-10px) rotate(-45deg)}
+  footer a{display:inline-block;padding:8px 4px}
+  footer .fl{padding:0}
   .nav-toggle span{position:absolute;left:0;width:100%;height:1.6px;background:var(--ink,#1c1c1a);transition:.3s}
   .nav-toggle span:nth-child(1){top:0}.nav-toggle span:nth-child(2){top:10px}.nav-toggle span:nth-child(3){top:20px}
   body.nav-open .nav-toggle span{background:#fff}

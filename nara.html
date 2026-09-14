@@ -200,7 +200,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .office dt{font-size:10.5px;letter-spacing:.18em;color:var(--gray);margin-top:12px}
 .office dt:first-child{margin-top:0}
 .office dd{margin:0}
-.office a{border-bottom:1px solid var(--gold)}
+.office a{display:inline-block;padding:8px 0;border-bottom:1px solid var(--gold)}
 /* 地価（国の地価公示・奈良県の発表から） */
 .chika{max-width:520px;margin:20px 0 0;border-top:1px solid var(--linec)}
 .chika div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:11px 2px;border-bottom:1px solid var(--linec)}
@@ -209,6 +209,15 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .chika .r em{font-style:normal;font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--gray);margin-left:4px}
 .chika .r.down{color:var(--gray)}
 .src{margin-top:12px;font-size:11px;font-weight:300;color:var(--gray);line-height:1.9}
+/* スマホで押せる大きさにする（指の目安は44px。行ごと押せるようにして高さを稼ぐ） */
+.chika div a{display:block;padding:11px 0;margin:-11px 0;border-bottom:none;text-decoration:underline;text-underline-offset:3px}
+.area-list span{padding:0}
+.area-list span a{display:block;padding:11px 14px;margin:0;border-bottom:none!important;text-decoration:underline;text-underline-offset:3px}
+.area-list span:not(:has(a)){padding:11px 14px}
+.qlist li>b a{display:inline-block;padding:7px 0;border-bottom:none;text-decoration:underline;text-underline-offset:3px}
+.more,.people-more a,.lead-link a{display:inline-block;padding:9px 0}
+.faq summary{padding-top:20px;padding-bottom:20px}
+
 /* 性能の4項目＝順番ではないので番号は付けない */
 .qlist{max-width:1040px;margin:22px auto 0}
 .qlist li{list-style:none;display:grid;grid-template-columns:minmax(0,1fr);padding:15px 0;border-bottom:1px solid var(--linec)}
@@ -509,6 +518,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <a class="fc-tel" href="tel:0120154483">電話で相談</a>
   <a class="fc-reserve" href="/reserve">来店予約</a>
 </nav>
-<script src="site.js?v=20260914a" defer></script>
+<script src="site.js?v=20260914b" defer></script>
 </body>
 </html>
