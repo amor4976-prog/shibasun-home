@@ -36,24 +36,24 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .back{font-size:11px;letter-spacing:.16em;border:1px solid currentColor;padding:9px 16px;transition:all .3s}
 .back:hover{background:var(--ink);color:#fff}
 .whead{padding:34px 24px 6px;text-align:center}
-.whead .en{font-size:11px;color:var(--gold);font-weight:500}
+.whead .en{font-size:11.5px;color:var(--gold);font-weight:500}
 .whead h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(24px,6.5vw,36px);font-weight:500;letter-spacing:.1em;margin:10px 0 14px}
-.whead p{font-size:13px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
+.whead p{font-size:14px;font-weight:300;color:var(--gray);max-width:620px;margin:0 auto;line-height:2.1}
 /* 資料の中身プレビュー */
-.kit{max-width:640px;margin:24px auto 0;padding:0 20px}.kit-img{width:100%;height:auto;display:block;margin:4px auto 14px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.10))}@media(min-width:760px){.kit{max-width:900px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}.kit-img{margin:0}}
+.kit{max-width:640px;margin:24px auto 0;padding:0 20px}.kit-img{width:100%;height:auto;display:block;margin:4px auto 14px}@media(min-width:760px){.kit{max-width:900px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}.kit-img{margin:0}}
 .kit-row{display:flex;align-items:center;gap:12px;padding:9px 0;line-height:1.6;border-bottom:1px solid var(--linec)}
 .kit-row:last-child{border-bottom:none}
-.kit-ic{flex:0 0 30px;font-family:'Jost',sans-serif;color:var(--gold);font-size:13px;font-weight:500}
-.kit-row b{font-size:13.5px;font-weight:500}
-.kit-row span{font-size:12px;color:var(--gray);font-weight:300}
+.kit-ic{flex:0 0 30px;font-family:'Jost',sans-serif;color:var(--gold);font-size:12.5px;font-weight:500}
+.kit-row b{font-size:14px;font-weight:500}
+.kit-row span{font-size:12.5px;color:var(--gray);font-weight:300}
 .wrap{max-width:640px;margin:0 auto;padding:24px 20px 50px}
 .form-box{border:1px solid var(--linec);padding:30px 20px}
 .cat-field{margin-bottom:20px}
-.cat-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
+.cat-field label{display:block;font-size:11.5px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
 .cat-sel{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23767674' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:11px}
 .cat-sel:focus{outline:none;border-color:var(--ink)}
 .cat-field label .opt{color:var(--gray);font-size:10px;margin-left:6px;letter-spacing:.06em}
-.cat-lead{max-width:640px;margin:22px auto 0;padding:0 20px;font-size:11.5px;color:var(--gray);letter-spacing:.06em;text-align:center}
+.cat-lead{max-width:640px;margin:22px auto 0;padding:0 20px;font-size:12.5px;color:var(--gray);letter-spacing:.06em;text-align:center}
 .cat-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
 .cat-field input,.cat-field textarea{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none}
 .cat-field input:focus,.cat-field textarea:focus{outline:none;border-color:var(--ink)}
@@ -61,23 +61,23 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .cat-choice{display:flex;flex-wrap:wrap;gap:8px}
 .cat-choice label{display:inline-block;margin:0}
 .cat-choice input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
-.cat-choice span{display:inline-block;white-space:nowrap;border:1px solid var(--linec);background:#fff;color:#454543;padding:8px 14px;font-size:12px;letter-spacing:.08em;cursor:pointer;transition:all .2s}
+.cat-choice span{display:inline-block;white-space:nowrap;border:1px solid var(--linec);background:#fff;color:#454543;padding:8px 14px;font-size:12.5px;letter-spacing:.08em;cursor:pointer;transition:all .2s}
 .cat-choice input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
-.cat-submit{width:100%;margin-top:10px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:13px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.cat-submit{width:100%;margin-top:10px;padding:17px;background:var(--ink);color:#fff;border:none;font-size:14px;letter-spacing:.26em;cursor:pointer;font-family:inherit;transition:opacity .2s}
 .cat-submit:disabled{opacity:.4;cursor:default}
-.cat-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.06em;font-weight:300;text-align:center;line-height:1.9}
+.cat-note{margin-top:14px;font-size:11.5px;color:var(--gray);letter-spacing:.06em;font-weight:300;text-align:center;line-height:1.9}
 .cat-done{text-align:center;padding:46px 14px}
-.cat-done .mark{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
+.cat-done .mark{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.4em;color:var(--gold);margin-bottom:16px}
 .cat-done h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:21px;font-weight:500;letter-spacing:.14em;margin-bottom:14px}
-.cat-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
+.cat-done p{font-size:14px;font-weight:300;color:#454543;line-height:2.2}
 /* 完了画面だけに置く来店予約（フォームの手前には出さない＝別の出口を見せない） */
 .done-next{margin-top:34px;padding-top:26px;border-top:1px solid var(--linec)}
-.done-lead{font-size:13px!important;font-weight:400!important;color:var(--ink)!important;line-height:2.1!important;margin-bottom:18px}
+.done-lead{font-size:14px!important;font-weight:400!important;color:var(--ink)!important;line-height:2.1!important;margin-bottom:18px}
 .done-cta{display:inline-flex;align-items:center;justify-content:center;margin-top:26px;
-  padding:16px 30px;background:var(--ink);color:#fff;font-size:13px;letter-spacing:.14em;
+  padding:16px 30px;background:var(--ink);color:#fff;font-size:14px;letter-spacing:.14em;
   font-family:'Zen Kaku Gothic New',sans-serif;font-weight:500;transition:opacity .2s}
 .done-cta:hover{opacity:.82}
-.done-note{margin-top:12px;font-size:11.5px!important;color:var(--gray)!important;line-height:1.9!important}
+.done-note{margin-top:12px;font-size:12.5px!important;color:var(--gray)!important;line-height:1.9!important}
 footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em}
 footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
 footer a{color:#c2c2c0}footer a:hover{color:#fff}
@@ -148,7 +148,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </div>
 
 <div class="kit">
-  <img class="kit-img" src="img/catalog/set-cut.webp" alt="シバサンホームの資料" width="900" height="535" decoding="async">
+  <img class="kit-img" src="img/catalog/set-book.webp" alt="シバサンホームの資料" width="978" height="730" decoding="async">
   <div class="kit-rows">
   <div class="kit-row"><span class="kit-ic">01</span><div><b>商品ラインアップ＆価格表</b><br><span>NEST／ARCH／FLAT の坪単価・総額の目安（税込）</span></div></div>
   <div class="kit-row"><span class="kit-ic">02</span><div><b>施工事例集</b><br><span>外観・LDK・キッチンなど実例写真</span></div></div>
