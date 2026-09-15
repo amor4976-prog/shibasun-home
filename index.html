@@ -1697,12 +1697,14 @@ async function rsvSubmit(e){
   const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip)')].map(c=>c.dataset.t);
   const methodEl=rsvApp.querySelector('.mchip.on');
   const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
+  // 相談方法をシバグラムへ文字で渡す。メモ欄に埋めるだけだと、自動返信が「奈良市北之庄町までお越しください」になる（2026-09-15）
+  const meetingMethod=methodEl&&methodEl.dataset.m==='online'?'online':'visit';
   const msg=[`【相談方法】${methodLabel}`,topics.length?`【相談したいこと】${topics.join('・')}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        slotId:rsvSlot,reservationType:'visit',
+        slotId:rsvSlot,reservationType:'visit',meetingMethod,
         customerName:f.name.value.trim(),
         customerPhone:f.phone.value.trim(),
         customerEmail:f.email.value.trim()||undefined,
