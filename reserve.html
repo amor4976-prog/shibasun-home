@@ -64,9 +64,6 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .date-chip .w.sun{color:#b84a4a}
 .date-chip .n{font-size:9.5px;letter-spacing:.06em;color:var(--gray);margin-top:2px;line-height:1.3}
 .date-chip.on .w.sat,.date-chip.on .w.sun,.date-chip.on .n{color:#fff}
-.crosslink a{display:inline-block;padding:9px 2px}
-.rsv-sum{margin:2px 0 12px;font-size:12px;font-weight:300;color:#454543;line-height:1.9}
-.rsv-sum b{font-weight:500;color:var(--ink)}
 .date-chip.nofree{opacity:.45}
 .date-chip.on{background:var(--ink);border-color:var(--ink)}
 .date-chip.on .d,.date-chip.on .w{color:#fff}
@@ -89,7 +86,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .rsv-field input:focus,.rsv-field textarea:focus{outline:none;border-color:var(--ink)}
 .rsv-sel{width:100%;border:1px solid var(--linec);background:#fff;padding:13px 14px;font-size:16px;font-family:inherit;letter-spacing:.04em;border-radius:0;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23767674' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:11px}
 .rsv-sel:focus{outline:none;border-color:var(--ink)}
-.topic-chips{display:flex;flex-wrap:wrap;gap:8px}
+.topic-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .tchip{border:1px solid var(--linec);background:#fff;color:#454543;font-family:inherit;font-size:12.5px;letter-spacing:.04em;padding:9px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
 .tchip:hover{border-color:var(--gold)}
 .tchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -118,11 +115,6 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 /* 資料請求は「この日時で予約する」の下に置く（専務 2026-09-13「このフォーム入れずに、
    この日付で予約するの下に」）。塗りつぶしの黒は予約ボタンだけに残す＝押し間違いを防ぐ。
    90日で154人が予約画面を開いて4人しか申し込んでいない。150人をそのまま帰さないための口 */
-.after-doc{margin-top:18px;text-align:center}
-.after-doc a{display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;
-  border:1px solid var(--ink);font-size:12.5px;letter-spacing:.1em;transition:all .2s}
-.after-doc a:hover{background:var(--ink);color:#fff}
-.after-doc small{display:block;margin-top:9px;font-size:11px;font-weight:300;color:var(--gray);line-height:1.85}
 .rsv-note{margin-top:14px;font-size:10.5px;color:var(--gray);letter-spacing:.08em;font-weight:300;text-align:center}
 .rsv-msg{padding:30px 10px;text-align:center;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2}
 .rsv-msg.error a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink)}
@@ -132,12 +124,15 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .rsv-done p{font-size:13px;font-weight:300;color:#454543;line-height:2.2}
 .altbox{max-width:640px;margin:0 auto;padding:0 20px 60px;text-align:center}
 .altbox .div{height:1px;background:var(--linec);margin:0 0 30px}
-.crosslink{max-width:640px;margin:0 auto;padding:0 20px 44px;text-align:center;font-size:12px;color:var(--gray);font-weight:300;letter-spacing:.06em}
-.crosslink a{color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px}
 .altbox p{font-size:12px;color:var(--gray);font-weight:300;margin-bottom:16px;letter-spacing:.06em}
+.nb{white-space:nowrap}
+.oblink{margin-top:26px}
+.oblink a{display:inline-block;padding:11px 4px;font-size:11.5px;font-weight:300;color:var(--gray);border-bottom:1px solid var(--linec);letter-spacing:.06em}
+.oblink a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.altnote{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.9;margin:16px auto 0;max-width:380px}
 .altbtns{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:0 auto}
 .abtn{display:flex;align-items:center;justify-content:center;padding:15px;font-size:13px;letter-spacing:.16em;border:1px solid var(--ink)}
-.abtn-tel{background:var(--ink);color:#fff}
+.abtn-tel{background:#fff;color:var(--ink)}
 .abtn-cat{background:#fff;color:var(--ink)}
 footer{background:#161614;color:#939391;padding:36px 24px 30px;text-align:center;font-size:11px;letter-spacing:.12em}
 footer .fl{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.26em;color:#fff;margin-bottom:10px}
@@ -191,9 +186,6 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </div>
 
-<div class="crosslink">
-  シバサンホームでお家を建てられたお客様の点検・アフターのご予約は <a href="/reserve-after">こちら</a>
-</div>
 
 <div class="altbox">
   <div class="div"></div>
@@ -202,6 +194,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <a class="abtn abtn-tel" href="tel:0120154483">電話で相談する（0120-154-483）</a>
     <a class="abtn abtn-cat" href="/catalog">まずは資料請求する</a>
   </div>
+  <p class="altnote">資料は、価格表・施工事例・標準仕様・<span class="nb">進め方の4点</span>をお届けします。</p>
+  <p class="oblink"><a href="/reserve-after">建築後のオーナー様の点検申込</a></p>
 </div>
 
 <footer>
@@ -238,12 +232,6 @@ function rsvRender(){
   if(rsvSlot&&!daySlots.some(s=>s.id===rsvSlot))rsvSlot=null;
   rsvApp.innerHTML=`
     <div class="rsv-step-label">1. 日付を選ぶ</div>
-    <p class="rsv-sum">${(()=>{const free=rsvSlots.filter(x=>x.status!=='full');
-      const days=[...new Set(free.map(x=>x.date))];
-      const best=days.map(d=>[d,free.filter(x=>x.date===d).length]).sort((a,b)=>b[1]-a[1])[0];
-      const bf=best?fmtDate(best[0]):null;
-      return `1か月先まで、<b>${days.length}日</b>ご予約いただけます。`
-        + (bf&&best[1]>=3?`<br>いちばん空いているのは <b>${bf.md}（${bf.w}）</b>です。`:'');})()}</p>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);
       const free=rsvSlots.filter(x=>x.date===d&&x.status!=='full').length;
       const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
@@ -258,7 +246,7 @@ function rsvRender(){
       <div class="rsv-field"><label>ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
       <div class="rsv-field"><label>ご相談方法</label>
-        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t])=>`<button type="button" class="tchip mchip${v===rsvMethod?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
+        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンラインで相談']].map(([v,t])=>`<button type="button" class="tchip mchip${v===rsvMethod?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
@@ -268,8 +256,6 @@ function rsvRender(){
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
-      <div class="after-doc"><a href="/catalog">資料を請求する（無料）</a>
-        <small>合う日時がないときは、こちらでも承ります。価格表・施工事例・標準仕様・進め方の4点をお届けします</small></div>
       <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときのキャンセル・変更も気軽にどうぞ。</p>
     </form>`;
   // 「合う日時がないとき」を時間の枠の下へ移す。作り直さず node ごと動かすので入力は消えない
