@@ -384,6 +384,28 @@ footer a.link{color:var(--g);font-weight:700;border-bottom:1px solid var(--g)}
 @media(min-width:1000px){.fab{left:auto;right:24px;bottom:24px;padding:16px 26px}}
 body{padding-bottom:78px}
 @media(min-width:1000px){body{padding-bottom:0}}
+
+/* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
+   柱は860pxの1本だけ。左の端は全部そろえる。
+   文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
+@media(min-width:1000px){
+  .wrap{max-width:900px}
+  section{padding:100px 0}
+  section > *{max-width:860px;margin-left:auto;margin-right:auto}
+  /* 文章は少し短く切る（左はそろえたまま） */
+  .lead,.note,.gbar .cap,.pb p,.step p,.qa .a,.senmu li,.ba .cap2{max-width:760px}
+  section > .lead,section > .note{margin-left:0;margin-right:auto}
+  .gh{font-size:var(--f5)}
+  .gh+.lead{margin-top:20px}
+  .ba .frame.pc{max-width:860px}
+  /* トップと「うちもそうでした」は中央にそろえる（チラシと同じ見え方） */
+  .hero .sub,.hero .jisseki,.story p,.story .big,.story .last{max-width:660px;margin-left:auto;margin-right:auto}
+  .hero .chev{max-width:560px}
+  /* 上下の間 */
+  h3.mid{margin-top:60px}
+  .gbar+.gbar{margin-top:48px}
+  .cta{padding:72px 20px}
+}
 </style>
 </head>
 <body>
