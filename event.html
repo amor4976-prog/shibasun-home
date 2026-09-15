@@ -84,6 +84,10 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 @media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
 .slot-btn{padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;
   font-size:13px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
+.slot-btn .onl{display:block;font-size:10px;letter-spacing:.06em;color:#6b7f8c;margin-top:4px}
+.slot-btn.on .onl{color:#bcd0dc}
+.slot-btn.full .onl{color:#a8a8a6}
+.online-note{margin:12px 0 0;padding:12px 14px;border:1px solid #d8e2e8;background:#f5f9fb;font-size:12.5px;line-height:1.85;color:#454543;letter-spacing:.03em}
 .slot-btn small{display:block;font-size:9px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
 .slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
 .slot-btn.full small{color:#a8a8a6}
@@ -258,6 +262,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 const SHIBAGRAM_API='https://shibagram.onrender.com';
 const rsvApp=document.getElementById('rsv-app');
 let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
+// 夕方の枠は置いても埋まっていない（17時台は67枠に対して予約1件・10時は6件）。
+// 空いているここだけ「オンラインでも」と出す。10時・13時・15時には出さない＝
+// 来店できる方をオンラインへ寄せないため（専務 2026-09-15・/reserve と同じ）。
+const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
 
 function rsvFallback(){
   rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';
@@ -285,7 +293,8 @@ function rsvRender(){
       return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w">${f.w}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
     <div class="slot-grid">${daySlots.map(s=>
-      `<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
+      `<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
+    ${(()=>{const sel=daySlots.find(x=>x.id===rsvSlot);return sel&&rsvOnlineOk(sel)?`<p class="online-note">この時間は、ご自宅からオンラインでもご相談いただけます。<br>下の「ご相談方法」でお選びください。</p>`:''})()}
     <form id="rsv-form">
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
@@ -370,6 +379,6 @@ async function rsvLoad(){
 rsvLoad();
 setInterval(rsvLoad,60000); // 1分ごとに空き状況を更新
 </script>
-<script src="site.js?v=20260914b" defer></script>
+<script src="site.js?v=20260915a" defer></script>
 </body>
 </html>

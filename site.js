@@ -127,7 +127,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     border-top:1px solid var(--linec,#e8e8e6);border-bottom:1px solid var(--linec,#e8e8e6)}
   /* 2026-09-11 専務：カタログの写真が上・ボタンが下・スマホで見やすい正方形っぽい枠（BESSの冊子写真＋積水の簡潔さ） */
   .mid-cta .mc-in{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;max-width:360px;margin:0 auto}
-  .mid-cta .mc-img{width:220px;height:auto;display:block;filter:drop-shadow(0 8px 14px rgba(0,0,0,.10))}
+  .mid-cta .mc-img{width:220px;height:auto;display:block}
   .mid-cta .mc-tx{margin-top:14px}
   .mid-cta .mc-in p{margin:6px 0 0;font-size:12.5px;line-height:1.9}
   .mid-cta .mc-in a{width:100%;min-width:0;margin-top:14px}
@@ -321,7 +321,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
     el.className = 'mid-cta';
     el.innerHTML =
       '<div class="mc-in">' +
-        '<img class="mc-img" src="img/catalog/set-cut.webp" width="900" height="535" alt="シバサンホームの資料" loading="lazy" decoding="async">' +
+        '<img class="mc-img" src="img/catalog/set-book.webp" width="978" height="730" alt="シバサンホームの資料" loading="lazy" decoding="async">' +
         '<div class="mc-tx"><div class="mc-en">Catalog</div>' +
         '<h3 class="mc-t">価格も仕様も、まずは資料で。</h3>' +
         // 何が届くのかを押す前に見せる（2026-09-13 専務「いま何が届くのか分からないまま押させている」）。
