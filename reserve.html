@@ -78,6 +78,10 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .slot-btn.full small{color:#a8a8a6}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .slot-btn.on small{color:#d8c49a}
+.slot-btn .onl{display:block;font-size:9px;letter-spacing:.06em;color:#6b7f8c;margin-top:4px}
+.slot-btn.on .onl{color:#bcd0dc}
+.slot-btn.full .onl{color:#a8a8a6}
+.online-note{margin:12px 0 0;padding:12px 14px;border:1px solid #d8e2e8;background:#f5f9fb;font-size:12px;line-height:1.85;color:#454543;letter-spacing:.03em}
 .rsv-field{margin-top:22px}
 .rsv-field label{display:block;font-size:11px;letter-spacing:.2em;color:var(--gray);margin-bottom:8px}
 .rsv-field label em{font-style:normal;color:var(--gold);margin-left:6px;font-size:10px}
@@ -156,7 +160,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="whead">
   <div class="en">Reserve</div>
   <h1>来店予約・無料相談</h1>
-  <p>資金計画・土地探し・間取りのご相談はすべて無料。<br>しつこい営業は一切いたしません。オンライン相談も可能です。</p>
+  <p>資金計画・土地探し・間取りのご相談はすべて無料。<br>しつこい営業は一切いたしません。</p>
   <div class="rsv-live">空き状況はリアルタイムで更新されています</div>
 </div>
 
@@ -183,7 +187,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         <p class="sendnote">この場では予約は取れません。担当の柴部から折り返しご連絡します。</p>
       </div>
     </div>
-    <div class="rsv-note">所要時間は約60分・お子様連れ歓迎・オンライン相談も可能です</div>
+    <div class="rsv-note">所要時間は約60分・お子様連れ歓迎</div>
   </div>
 </div>
 
@@ -215,7 +219,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <script>
 const SHIBAGRAM_API='https://shibagram.onrender.com';
 const rsvApp=document.getElementById('rsv-app');
-let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false;
+let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false,rsvMethod='visit';
+// 夕方の枠は置いても埋まっていない（17時台は67枠に対して予約1件・10時は6件）。
+// 空いているここだけ「オンラインでも」と出す。10時・13時・15時には出さない＝
+// 来店できる方をオンラインへ寄せないため（専務 2026-09-15）。
+const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
 function rsvFallback(){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
 function rsvRender(){
@@ -241,7 +249,8 @@ function rsvRender(){
       const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
       return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w${wc}">${f.w}</div><div class="n">空き${free}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
-    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small></button>`).join('')}</div>
+    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
+    ${(()=>{const sel=daySlots.find(x=>x.id===rsvSlot);return sel&&rsvOnlineOk(sel)?`<p class="online-note">この時間は、ご自宅からオンラインでもご相談いただけます。<br>下の「ご相談方法」でお選びください。</p>`:''})()}
     <form id="rsv-form">
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
@@ -249,7 +258,7 @@ function rsvRender(){
       <div class="rsv-field"><label>ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
       <div class="rsv-field"><label>ご相談方法</label>
-        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t],i)=>`<button type="button" class="tchip mchip${i===0?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
+        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンライン相談（Web）']].map(([v,t])=>`<button type="button" class="tchip mchip${v===rsvMethod?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
@@ -269,7 +278,7 @@ function rsvRender(){
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
-  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
   document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
 }
 async function rsvSubmit(e){
@@ -278,10 +287,9 @@ async function rsvSubmit(e){
   const btn=f.querySelector('.rsv-submit');btn.disabled=true;btn.textContent='送信中…';
   const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip):not(.kchip)')].map(c=>c.dataset.t);
   const knownEl=document.getElementById('rsv-known');const known=knownEl&&knownEl.value?knownEl.value:undefined;
-  const methodEl=rsvApp.querySelector('.mchip.on');
-  const methodLabel=methodEl&&methodEl.dataset.m==='online'?'オンライン相談（Web）':'ご来店';
+  const methodLabel=rsvMethod==='online'?'オンライン相談（Web）':'ご来店';
   // 相談方法をシバグラムへ文字で渡す。メモ欄に埋めるだけだと、自動返信が「奈良市北之庄町までお越しください」になる（2026-09-15）
-  const meetingMethod=methodEl&&methodEl.dataset.m==='online'?'online':'visit';
+  const meetingMethod=rsvMethod==='online'?'online':'visit';
   const addr=f.address.value.trim();
   const msg=[`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
