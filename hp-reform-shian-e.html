@@ -387,6 +387,42 @@ footer a.link{color:var(--g);font-weight:700;border-bottom:1px solid var(--g)}
 body{padding-bottom:78px}
 @media(min-width:1000px){body{padding-bottom:0}}
 
+
+/* ── 講評を受けた直し（2026-09-16 Gemini・GPT） ───────────────── */
+/* ③ 節の地を交互に（横にはみ出さない書き方） */
+section.alt{background:#F6F6F3;box-shadow:0 0 0 100vmax #F6F6F3;clip-path:inset(0 -100vmax)}
+section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
+/* ① 3つの強み：番号札の下に題、3枚の高さをそろえる */
+.pcard .ph{flex-direction:column;gap:0}
+.pcard .ph h3{padding:14px 18px 0}
+.pcard .pb{flex:1}
+@media(min-width:1000px){.pcards{grid-template-columns:repeat(3,1fr)}}
+/* ② 面談後の流れ：PCは横3段 */
+@media(min-width:1000px){
+  .steps{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;align-items:start}
+  .step{grid-template-columns:1fr;gap:12px}
+  .step .w{padding:14px 4px}
+  .stcon{width:34px;height:2px;margin:36px 0 0}
+}
+/* ④ 締め */
+.btn.wh{background:#fff;color:var(--g);border-color:#fff;margin-top:6px}
+.btn.wh:hover{background:var(--y);border-color:var(--y);color:#141414}
+.cta .sub2{font-size:var(--f1);margin-top:18px;opacity:.92}
+.cta .sub2 a{border-bottom:1px solid rgba(255,255,255,.7);font-weight:700}
+/* ⑤ 価格：箱の中の灰色の箱をやめて線1本 */
+.pkn{background:transparent;border-top:1px solid var(--line);margin:0 18px;padding:16px 0 20px}
+@media(min-width:760px){.pkn{margin:0 28px}}
+/* ⑥ 予約画面の画像を地から浮かせる */
+.yoyaku3 figure{background:#fff;border-color:#dcdcd8;box-shadow:0 4px 14px rgba(0,0,0,.07)}
+/* ⑦ グラフ：数字を棒の先に付ける */
+.gbar .row{grid-template-columns:6.6em 1fr}
+.gbar .tr{display:flex;align-items:center;gap:10px}
+.gbar .fl{flex:none;width:calc(var(--w) * .55)}
+@media(min-width:1000px){.gbar .fl{width:calc(var(--w) * .78)}}
+/* ⑦ AI検索の3段：高さと矢印をそろえる */
+.flow .fb{height:100%}
+.flow .ar{align-self:center}
+
 /* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
    柱は860pxの1本だけ。左の端は全部そろえる。
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
@@ -530,21 +566,21 @@ body{padding-bottom:78px}
   </section>
 
   <!-- ── 02 前と今 ───────────────── -->
-  <section id="c02">
+  <section id="c02" class="alt">
     <h2 class="gh up"><span class="no">01</span><em>作り替える前と、いま</em></h2>
     <p class="lead up">ここに並べたものは、すべて<b class="nb">去年までの私どもの話</b>です。ホームページは十年ほど、ただ置いてあるだけでした。そこで一から作り替えました。</p>
 
 
     <div class="gbar up in">
       <span class="lb">ホームページからのお問合せ（月）</span>
-      <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:9%"></i></span><span class="nm bfn">月1〜2件</span></div>
-      <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i></span><span class="nm">月16件</span></div>
+      <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:9%"></i><span class="nm bfn">月1〜2件</span></span></div>
+      <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i><span class="nm">月16件</span></span></div>
     </div>
 
     <div class="gbar up in">
       <span class="lb">コラムの更新（週）</span>
-      <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:0%"></i></span><span class="nm bfn">0本</span></div>
-      <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i></span><span class="nm">毎週3本</span></div>
+      <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:0%"></i><span class="nm bfn">0本</span></span></div>
+      <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i><span class="nm">毎週3本</span></span></div>
       <div class="cap">※私どものサイトの実測値です。<span class="nb">月16件は</span>、<span class="nb">公開して17日間で9件を</span>月に直した数字です。<span class="nb">17日間だけの実測なので</span>、<span class="nb">これから先も同じ調子とは限りません</span>。</div>
     </div>
 
@@ -556,23 +592,24 @@ body{padding-bottom:78px}
     <h2 class="gh up"><span class="no">02</span><em>工務店だから分かる、<span class="nb">3つの強み</span></em></h2>
 
     <div class="pcards up">
-      <a class="pcard wide" href="#c05">
-        <div class="ph"><span class="n">01</span><h3>予約しやすい。<span class="nb">日程調整のやり取りがないから、</span><span class="nb">お問合せのハードルが下がる</span></h3></div>
+      <a class="pcard" href="#c05">
+        <div class="ph"><span class="n">01</span><h3>予約しやすい</h3></div>
         <div class="pb">
-          <p>会社のGoogleカレンダーと繋いで、<b>空いている日時をお客様の画面に出します</b>。お客様は、電話をかけずに簡単に予約ができます。</p>
+          <p>日程調整のやり取りがないから、<b class="nb">お問合せのハードルが下がります</b>。</p>
+          <p>会社のGoogleカレンダーと繋いで、<b><span class="nb">空いている日時を</span><span class="nb">お客様の画面に出します</span></b>。お客様は、電話をかけずに簡単に予約ができます。</p>
           <p>御社にとっても、日程を合わせるやり取りが要らなくなり、<span class="nb">二重に入る心配もなくなります</span>。</p>
         </div>
       </a>
       <a class="pcard" href="#c04">
         <div class="ph"><span class="n">02</span><h3>AI検索に強い</h3></div>
         <div class="pb">
-          <p>お客様がAIに「おすすめの工務店」を聞く時代です。<b>AIが読み取れる会社情報を裏側に入れます</b>。<span class="nb">対応できている工務店は</span>、<span class="nb">まだ26%です</span>。</p>
+          <p>お客様がAIに<span class="nb">「おすすめの工務店」を</span><span class="nb">聞く時代です</span>。<b>AIが読み取れる会社情報を裏側に入れます</b>。<span class="nb">対応できている工務店は</span>、<span class="nb">まだ26%です</span>。</p>
         </div>
       </a>
       <a class="pcard" href="#c02">
         <div class="ph"><span class="n">03</span><h3>工務店が作っている</h3></div>
         <div class="pb">
-          <p>制作会社ではなく、同業の工務店です。<b><span class="nb">自分の会社のホームページを</span>作り替えて、<span class="nb">お問合せが8倍</span></b>になりました。<span class="nb">その手順を</span>、<span class="nb">そのまま行います</span>。</p>
+          <p><span class="nb">制作会社ではなく</span>、<span class="nb">同業の工務店です</span>。<b><span class="nb">自分の会社のホームページを</span>作り替えて、<span class="nb">お問合せが8倍</span></b>になりました。<span class="nb">その手順を</span>、<span class="nb">そのまま行います</span>。</p>
         </div>
       </a>
     </div>
@@ -591,7 +628,7 @@ body{padding-bottom:78px}
   </section>
 
   <!-- ── 04 AI検索 ───────────────── -->
-  <section id="c04">
+  <section id="c04" class="alt">
     <h2 class="gh up"><span class="no">03</span><em>AIの検索に、<span class="nb">見つけてもらう</span></em></h2>
     <p class="lead up"><b><span class="nb">Googleで検索されるだけでは</span>、<span class="nb">お客様の候補に上がらなくなっています</span>。</b><br>お客様は、<span class="nb">検索の代わりに</span><span class="nb">AIに「おすすめの工務店」を</span>聞くようになりました。</p>
 
@@ -602,16 +639,16 @@ body{padding-bottom:78px}
 
     <div class="gbar up in">
       <span class="lb">日本で生成AIを使ったことがある人</span>
-      <div class="row"><span class="kk">2024年度</span><span class="tr"><i class="fl bf" style="--w:45%"></i></span><span class="nm bfn">26.7%</span></div>
-      <div class="row"><span class="kk">2025年度</span><span class="tr"><i class="fl af" style="--w:100%"></i></span><span class="nm">58.8%</span></div>
+      <div class="row"><span class="kk">2024年度</span><span class="tr"><i class="fl bf" style="--w:45%"></i><span class="nm bfn">26.7%</span></span></div>
+      <div class="row"><span class="kk">2025年度</span><span class="tr"><i class="fl af" style="--w:100%"></i><span class="nm">58.8%</span></span></div>
       <div class="hito">1年で、<em>約2倍</em>に</div>
       <div class="cap">総務省<span class="nb">「令和8年版 情報通信白書」</span></div>
     </div>
 
     <div class="gbar up in">
       <span class="lb">AI検索から来る人（月）</span>
-      <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:5%"></i></span><span class="nm bfn">月1件</span></div>
-      <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i></span><span class="nm">月20件</span></div>
+      <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:5%"></i><span class="nm bfn">月1件</span></span></div>
+      <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i><span class="nm">月20件</span></span></div>
       <div class="hito">私どものサイトでも、<em>5倍</em>に</div>
       <div class="cap">GA4の実測。作り替える前と後の、<span class="nb">1日あたりの人数を月に直した数字</span></div>
     </div>
@@ -649,7 +686,7 @@ body{padding-bottom:78px}
   </section>
 
   <!-- ── 06 価格 ───────────────── -->
-  <section id="c06">
+  <section id="c06" class="alt">
     <h2 class="gh up"><span class="no">05</span><em>正直な価格でやっています</em></h2>
     <p class="lead up">あとから「これは別料金です」と申し上げないために、<b>入るものを先に全部書いておきます</b>。</p>
 
@@ -717,7 +754,7 @@ body{padding-bottom:78px}
   </section>
 
   <!-- ── 予約欄 ───────────────── -->
-  <section id="soudan">
+  <section id="soudan" class="alt">
     <h2 class="gh up"><span class="no">07</span><em>無料相談（30分）のご予約</em></h2>
     <p class="lead up"><b>リモートで30分。</b>下の空いている日時から、ご都合の枠をお選びください。<b>今なら、<span class="nb">御社のホームページの</span>無料診断つき。</b><span class="nb">改善点をお伝えします</span>。<b>費用はかかりません。<span class="nb">その場で売り込むこともいたしません</span>。</b></p>
 
@@ -741,10 +778,8 @@ body{padding-bottom:78px}
   <h2 class="up">まずはリモートで30分、<span class="nb">無料の個別相談から。</span></h2>
   <p class="up d1">空いている日時から、ご都合に合わせてお選びいただけます。費用はかかりません。<span class="nb">その場で契約のお願いもいたしません</span>。</p>
   <div class="ctadays up d2" id="ctadays"></div>
-  <div class="row up d2">
-    <a href="tel:0742813948">電話で聞く　0742-81-3948</a>
-    <a href="mailto:yasuhiro@shibasun.jp?subject=%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで聞く</a>
-  </div>
+  <div class="up d2"><a class="btn wh" href="#soudan">無料相談（30分）を予約する</a></div>
+  <p class="sub2 up d2">お電話でも受け付けています　<a href="tel:0742813948">0742-81-3948</a>　／　<a href="mailto:yasuhiro@shibasun.jp?subject=%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで聞く</a></p>
 </div>
 
 <footer>
