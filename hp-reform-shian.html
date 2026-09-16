@@ -438,6 +438,18 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 @media(min-width:760px){.ksp{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;gap:26px}.ksp-hint{display:none}}
 @media(min-width:1000px){.ksp{padding:0 40px}}
 
+
+/* 黒帯がスマホで5pxはみ出していた */
+@media(max-width:420px){.bh{padding:.48em .7em;max-width:100%}}
+/* ひと目で分かる1枚 */
+.matome{border:1.5px solid var(--g);background:#fff;margin:30px auto 0;max-width:660px;text-align:left}
+.matome .r{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+.matome .r:first-child{border-top:0}
+.matome .k{background:var(--gl);color:var(--gd);font-weight:700;font-size:var(--f1);padding:12px 12px;white-space:nowrap;display:flex;align-items:center}
+.matome .v{font-size:var(--f2);line-height:1.8;padding:11px 14px;min-width:0}
+.matome .k{padding:7px 14px!important}
+@media(min-width:600px){.matome .r{grid-template-columns:8.8em 1fr}.matome .k{padding:12px!important}}
+
 /* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
    柱は860pxの1本だけ。左の端は全部そろえる。
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
@@ -496,6 +508,12 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <div class="btnwrap up d3">
       <a class="btn" href="#soudan">無料相談（30分）を予約する</a>
       <div class="s"><b>今なら、無料診断つき。</b><br>その場で契約のお願いはいたしません</div>
+    </div>
+    <div class="matome up">
+      <div class="r"><span class="k">どなた向け</span><span class="v">注文住宅を建てている、<span class="nb">工務店さん</span></span></div>
+      <div class="r"><span class="k">すること</span><span class="v">今のホームページを、お客様が<span class="nb">見つけやすく</span>、<span class="nb">予約しやすい形に</span><span class="nb">作り替えます</span></span></div>
+      <div class="r"><span class="k">費用</span><span class="v"><b>制作費50万円</b>（<span class="nb">税別・先着3社様</span>）<br><span class="nb">公開後の更新をお任せいただく場合は</span>、<span class="nb">月2万円</span></span></div>
+      <div class="r"><span class="k">できあがるもの</span><span class="v"><span class="nb">8ページのホームページ</span>・<span class="nb">スマートフォン対応</span>・<span class="nb">その場で日時を選べる予約の仕組み</span></span></div>
     </div>
 
 
@@ -607,13 +625,22 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <h2 class="gh up"><em>AIの検索に、<span class="nb">見つけてもらう</span></em></h2>
     <p class="lead up"><b><span class="nb">Googleで検索されるだけでは</span>、<span class="nb">お客様の候補に上がらなくなっています</span>。</b><br>お客様は、<span class="nb">検索の代わりに</span><span class="nb">AIに「おすすめの工務店」を</span>聞くようになりました。</p>
 
+    <div class="flow up">
+      <div class="fb"><i>1</i><b>お客様がスマホで聞く</b><span>ChatGPTなどのAIに<span class="nb">「◯◯市で注文住宅</span>、<span class="nb">いい工務店は？」</span></span></div>
+      <div class="ar">▶</div>
+      <div class="fb"><i>2</i><b>AIが工務店を選んで答える</b><span>ホームページに書かれた<span class="nb">会社の情報を読んで</span>、<span class="nb">候補の会社を挙げます</span></span></div>
+      <div class="ar">▶</div>
+      <div class="fb"><i>3</i><b>御社のページが開かれる</b><span>候補に入れば、お客様が<span class="nb">そのまま御社のページを見て</span>、<span class="nb">予約まで進みます</span></span></div>
+    </div>
+    <p class="lead up">会社の情報が<b>AIに読める形で書かれていないと</b>、<span class="nb">候補に入りません</span>。</p>
+
     <div class="pieblk up">
       <div class="pie"><b class="y1">AI対応済</b><b class="y2">26%</b><b class="g1">AI未対応</b><b class="g2">74%</b></div>
       <div class="tx">AI検索に対応している<span class="nb">工務店は</span><br>わずか<em>26</em>%<small>私どもが拝見した110社のうち、<span class="nb">対応できていたのは29社</span></small></div>
     </div>
 
     <div class="gbar up in">
-      <span class="lb">日本で生成AIを使ったことがある人</span>
+      <span class="lb">ChatGPTなどのAIを使ったことがある人（日本）</span>
       <div class="row"><span class="kk">2024年度</span><span class="tr"><i class="fl bf" style="--w:45%"></i><span class="nm bfn">26.7%</span></span></div>
       <div class="row"><span class="kk">2025年度</span><span class="tr"><i class="fl af" style="--w:100%"></i><span class="nm">58.8%</span></span></div>
       <div class="hito">1年で、<em>約2倍</em>に</div>
@@ -628,15 +655,8 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <div class="cap">私どものサイトのアクセス記録。作り替える前と後の、<span class="nb">1日あたりの人数を月に直した数字</span></div>
     </div>
 
-    <p class="lead up">AIが読むのは見た目ではなく、<span class="nb">ページに書き込まれた会社の情報</span>です。</p>
+    
 
-    <div class="flow up">
-      <div class="fb"><i>1</i><b>お客様がAIに聞く</b><span>「◯◯市で注文住宅、<span class="nb">おすすめの工務店は」</span></span></div>
-      <div class="ar">▶</div>
-      <div class="fb"><i>2</i><b>AIが会社の情報を読む</b><span>会社名・所在地・建てられる地域・価格・施工事例が、<span class="nb">AIに読める形で書かれているか</span></span></div>
-      <div class="ar">▶</div>
-      <div class="fb"><i>3</i><b>御社が候補に出る</b><span>入っていなければ、<span class="nb">AIから見て会社が無いのと同じです</span></span></div>
-    </div>
     <p class="lead up">作り替えでは、<b><span class="nb">AIに読める形で</span>、<span class="nb">会社の情報を書き込むところまで</span></b>行います。</p>
   </section>
 
@@ -708,6 +728,10 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <div class="qa">
         <div class="q"><i>Q</i><span>先着3社以外の金額はいくらですか？</span></div>
         <div class="a"><i>A</i><span>ホームページ全面リフォーム80万円でお作りします。<span class="nb">維持管理費は変わらず月2万円です</span>。</span></div>
+      </div>
+      <div class="qa">
+        <div class="q"><i>Q</i><span>施工事例の写真は、誰が撮りますか？</span></div>
+        <div class="a"><i>A</i><span>今お持ちの写真を使ってお作りします。<span class="nb">撮り直しが要る場合だけ</span>、<span class="nb">カメラマンの費用を実費でいただきます</span>。</span></div>
       </div>
       <div class="qa">
         <div class="q"><i>Q</i><span>月2万円は、必ずかかりますか？</span></div>
