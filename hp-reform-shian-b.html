@@ -426,6 +426,25 @@ body{padding-bottom:78px}
 .heroD .pkbox .l4{display:inline-block;background:var(--y);color:var(--gd);font-weight:700;font-size:var(--f4);padding:.4em 1.3em;margin-top:16px}
 .heroD .jisseki{margin-top:30px}
 .heroD .jisseki .eight{margin-top:14px}
+
+/* 案E：並びをgridの名前で決める。スマホは縦1列、PCは左に言葉・右にスマホ */
+.heroE{display:grid;grid-template-columns:1fr;grid-template-areas:"k" "h1" "eight" "ph" "sub" "chev" "btn" "jis"}
+.heroE>.k{grid-area:k;justify-self:center}
+.heroE>h1{grid-area:h1}
+.heroE>.eight{grid-area:eight}
+.heroE>.phones{grid-area:ph;margin-top:22px}
+.heroE>.sub{grid-area:sub}
+.heroE>.chev{grid-area:chev;width:100%}
+.heroE>.btnwrap{grid-area:btn}
+.heroE>.jisseki{grid-area:jis}
+.heroE .phone{width:150px}
+@media(min-width:1000px){
+  .heroE{grid-template-columns:1fr 410px;column-gap:30px;align-items:start;padding-top:50px;
+    grid-template-areas:"k ph" "h1 ph" "eight ph" "sub ph" "chev ph" "btn ph" "jis jis"}
+  .heroE>.phones{margin-top:0;align-self:center;gap:14px}
+  .heroE .phone{width:190px;max-width:none}
+  .heroE>.jisseki{margin-top:44px}
+}
 </style>
 </head>
 <body>
