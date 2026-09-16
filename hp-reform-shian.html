@@ -423,6 +423,21 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 .flow .fb{height:100%}
 .flow .ar{align-self:center}
 
+
+/* ── 完成イメージ（2026-09-16 社長目線の読み比べで「完成形が見えない」） ───────── */
+.kpc{margin-top:24px}
+.kpc img{width:100%;height:auto}
+.ksp{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:18px;padding:4px 2px 10px;-webkit-overflow-scrolling:touch}
+.ksp figure{flex:0 0 58%;scroll-snap-align:start}
+.ksp img{width:100%;height:auto;border:6px solid #191919;border-radius:18px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.ksp figcaption{font-size:var(--f1);color:var(--sub);line-height:1.7;margin-top:10px;text-align:center}
+.ksp figcaption b{display:block;font-size:var(--f3);color:var(--ink);font-weight:700}
+.ksp-hint{text-align:center;margin-top:4px}
+.kbtn{margin-top:26px;text-align:center}
+.kbtn .note{margin-top:10px;text-align:center;max-width:none!important}
+@media(min-width:760px){.ksp{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;gap:26px}.ksp-hint{display:none}}
+@media(min-width:1000px){.ksp{padding:0 40px}}
+
 /* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
    柱は860pxの1本だけ。左の端は全部そろえる。
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
@@ -486,6 +501,20 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   </div>
 
+  <!-- ── 完成イメージ ───────────────── -->
+  <section id="kansei">
+    <h2 class="gh up"><em>完成すると、<span class="nb">こんなホームページになります</span></em></h2>
+    <p class="lead up"><span class="nb">見本としてお作りした</span><span class="nb">「みほん工務店」のホームページです</span>。<b><span class="nb">写真と文章を御社のものに</span>入れ替えて</b>、<span class="nb">同じ形でお作りします</span>。</p>
+    <figure class="kpc up"><img src="img/hp-reform/kansei_pc.jpg" alt="見本のホームページをパソコンで開いたところ" width="1440" height="1004" loading="lazy"></figure>
+    <div class="ksp up">
+      <figure><img src="img/hp-reform/kansei_top.jpg" alt="見本のホームページのトップ（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>トップ</b>動画で、<span class="nb">現場の空気を伝えます</span></figcaption></figure>
+      <figure><img src="img/hp-reform/kansei_works.jpg" alt="見本のホームページの施工事例（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>施工事例</b><span class="nb">写真を大きく見せます</span></figcaption></figure>
+      <figure><img src="img/hp-reform/kansei_yoyaku.jpg" alt="見本のホームページの来店予約（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>来店のご予約</b><span class="nb">空いている日時を</span><span class="nb">その場で選べます</span></figcaption></figure>
+    </div>
+    <p class="note up ksp-hint">横に送ると、ほかの画面も見られます</p>
+    <div class="up kbtn"><a class="btn y" href="/mihon/" target="_blank" rel="noopener">見本のホームページを開く</a><p class="note">ご予約の操作も、<span class="nb">そのまま試せます</span>（<span class="nb">見本のため確定はしません</span>）</p></div>
+  </section>
+
   <!-- ── 01 お悩み ───────────────── -->
   <section id="c01">
     <div class="up"><span class="bh">今のホームページ、<span class="nb">こんなお悩みありませんか？</span></span></div>
@@ -513,7 +542,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 02 前と今 ───────────────── -->
   <section id="c02" class="alt">
-    <h2 class="gh up"><span class="no">01</span><em>作り替える前と、いま</em></h2>
+    <h2 class="gh up"><em>作り替える前と、いま</em></h2>
     <p class="lead up">ここに並べたものは、すべて<b class="nb">去年までの私どもの話</b>です。ホームページは十年ほど、ただ置いてあるだけでした。そこで一から作り替えました。</p>
 
 
@@ -535,7 +564,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 03 3つの強み ───────────────── -->
   <section id="c03">
-    <h2 class="gh up"><span class="no">02</span><em>工務店だから分かる、<span class="nb">3つの強み</span></em></h2>
+    <h2 class="gh up"><em>工務店だから分かる、<span class="nb">3つの強み</span></em></h2>
 
     <div class="pcards up">
       <a class="pcard" href="#c05">
@@ -549,13 +578,13 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <a class="pcard" href="#c04">
         <div class="ph"><span class="n">02</span><h3>AI検索に強い</h3></div>
         <div class="pb">
-          <p>お客様がAIに<span class="nb">「おすすめの工務店」を</span><span class="nb">聞く時代です</span>。<b>AIが読み取れる会社情報を裏側に入れます</b>。<span class="nb">対応できている工務店は</span>、<span class="nb">まだ26%です</span>。</p>
+          <p>お客様がAIに<span class="nb">「おすすめの工務店」を</span><span class="nb">聞く時代です</span>。<b><span class="nb">AIが読み取れる形で</span>、<span class="nb">会社の情報を書き込みます</span></b>。<span class="nb">対応できている工務店は</span>、<span class="nb">まだ26%です</span>。</p>
         </div>
       </a>
       <a class="pcard" href="#c02">
         <div class="ph"><span class="n">03</span><h3>工務店が作っている</h3></div>
         <div class="pb">
-          <p><span class="nb">制作会社ではなく</span>、<span class="nb">同業の工務店です</span>。<b><span class="nb">自分の会社のホームページを</span>作り替えて、<span class="nb">お問合せが8倍</span></b>になりました。<span class="nb">その手順を</span>、<span class="nb">そのまま行います</span>。</p>
+          <p><span class="nb">制作会社ではなく</span>、<span class="nb">同業の工務店です</span>。<b><span class="nb">自分の会社のホームページで</span><span class="nb">試した手順</span></b>を、<span class="nb">そのまま行います</span>。</p>
         </div>
       </a>
     </div>
@@ -575,7 +604,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 04 AI検索 ───────────────── -->
   <section id="c04" class="alt">
-    <h2 class="gh up"><span class="no">03</span><em>AIの検索に、<span class="nb">見つけてもらう</span></em></h2>
+    <h2 class="gh up"><em>AIの検索に、<span class="nb">見つけてもらう</span></em></h2>
     <p class="lead up"><b><span class="nb">Googleで検索されるだけでは</span>、<span class="nb">お客様の候補に上がらなくなっています</span>。</b><br>お客様は、<span class="nb">検索の代わりに</span><span class="nb">AIに「おすすめの工務店」を</span>聞くようになりました。</p>
 
     <div class="pieblk up">
@@ -596,24 +625,24 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:5%"></i><span class="nm bfn">月1件</span></span></div>
       <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i><span class="nm">月20件</span></span></div>
       <div class="hito">私どものサイトでも、<em>5倍</em>に</div>
-      <div class="cap">GA4の実測。作り替える前と後の、<span class="nb">1日あたりの人数を月に直した数字</span></div>
+      <div class="cap">私どものサイトのアクセス記録。作り替える前と後の、<span class="nb">1日あたりの人数を月に直した数字</span></div>
     </div>
 
-    <p class="lead up">AIが読むのは、人が見る画面ではなく、<span class="nb">裏側に埋め込んだ会社の情報</span>です。</p>
+    <p class="lead up">AIが読むのは見た目ではなく、<span class="nb">ページに書き込まれた会社の情報</span>です。</p>
 
     <div class="flow up">
       <div class="fb"><i>1</i><b>お客様がAIに聞く</b><span>「◯◯市で注文住宅、<span class="nb">おすすめの工務店は」</span></span></div>
       <div class="ar">▶</div>
-      <div class="fb"><i>2</i><b>AIが裏側を読む</b><span>会社名・所在地・施工エリア・価格・実例。<span class="nb">機械が読める形で入っているか</span></span></div>
+      <div class="fb"><i>2</i><b>AIが会社の情報を読む</b><span>会社名・所在地・建てられる地域・価格・施工事例が、<span class="nb">AIに読める形で書かれているか</span></span></div>
       <div class="ar">▶</div>
       <div class="fb"><i>3</i><b>御社が候補に出る</b><span>入っていなければ、<span class="nb">AIから見て会社が無いのと同じです</span></span></div>
     </div>
-    <p class="lead up">作り替えでは、<b>機械が読める会社情報を裏側に<span class="nb">入れるところまで</span></b>行います。</p>
+    <p class="lead up">作り替えでは、<b><span class="nb">AIに読める形で</span>、<span class="nb">会社の情報を書き込むところまで</span></b>行います。</p>
   </section>
 
   <!-- ── 05 予約 ───────────────── -->
   <section id="c05">
-    <h2 class="gh up"><span class="no">04</span><em>予約が、<span class="nb">その場で取れます</span></em></h2>
+    <h2 class="gh up"><em>予約が、<span class="nb">その場で取れます</span></em></h2>
     <p class="lead up">御社のお客様が、<span class="nb">電話をかけずに簡単に</span>予約ができます。</p>
 
     <div class="yoyaku3 up">
@@ -633,7 +662,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 06 価格 ───────────────── -->
   <section id="c06" class="alt">
-    <h2 class="gh up"><span class="no">05</span><em>正直な価格でやっています</em></h2>
+    <h2 class="gh up"><em>正直な価格でやっています</em></h2>
     <p class="lead up">あとから「これは別料金です」と申し上げないために、<b>入るものを先に全部書いておきます</b>。</p>
 
     <div class="pk up">
@@ -647,8 +676,8 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         <div class="it"><i></i><div><b>電話・LINEにすぐ繋がる</b></div></div>
         <div class="it"><i></i><div><b>スマートフォン対応サイト</b></div></div>
         <div class="it"><i></i><div><b>公開までの作業／<span class="nb">公開前の修正2回</span></b></div></div>
-        <div class="it"><i></i><div><b>アクセス解析の設置と<span class="nb">検索への登録</span></b></div></div>
-        <div class="it"><i></i><div><b>現行ページの引越し</b><span>転送100本まで</span></div></div>
+        <div class="it"><i></i><div><b>アクセス解析の設置と<span class="nb">検索への登録</span></b><span>何人が見に来たか分かるようにして、<span class="nb">新しいページをGoogleに届け出ます</span></span></div></div>
+        <div class="it"><i></i><div><b>現行ページの引越し</b><span>今のページの住所を開いた人を、<span class="nb">新しいページへ自動で案内します</span>（100ページまで）</span></div></div>
         <div class="it"><i></i><div><b>原稿作り</b><span>御社のお話をもとに、<span class="nb">私どもが原稿を作成いたします</span></span></div></div>
         <div class="it hi"><i></i><div><b>その場で日時を選べる<span class="nb">予約の仕組み</span></b><span>下の空き日時と同じものが、<span class="nb">御社のページに入ります</span></span></div></div>
       </div>
@@ -665,7 +694,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 07 流れとご質問 ───────────────── -->
   <section id="c07">
-    <h2 class="gh up"><span class="no">06</span><em>面談後の流れ</em></h2>
+    <h2 class="gh up"><em>面談後の流れ</em></h2>
     <div class="steps up">
       <div class="step"><span class="w"><small>1</small>面談</span><p>リモートで30分。<b>お話を伺う／ご質問にお答えする</b>だけです。<span class="nb">無理な売り込みは致しません</span></p></div>
       <div class="stcon"></div>
@@ -681,27 +710,31 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         <div class="a"><i>A</i><span>ホームページ全面リフォーム80万円でお作りします。<span class="nb">維持管理費は変わらず月2万円です</span>。</span></div>
       </div>
       <div class="qa">
+        <div class="q"><i>Q</i><span>月2万円は、必ずかかりますか？</span></div>
+        <div class="a"><i>A</i><span>公開後の更新と管理を、<span class="nb">私どもにお任せいただく場合だけです</span>。<span class="nb">月2回までの更新</span>・<span class="nb">コラム1本</span>・<span class="nb">不具合の対応が入ります</span>。</span></div>
+      </div>
+      <div class="qa">
         <div class="q"><i>Q</i><span>修正は有料ですか。何回修正できますか？</span></div>
         <div class="a"><i>A</i><span>公開前の修正は2回（無料）です。<span class="nb">公開後の大きな修正は</span>、<span class="nb">内容に応じてご相談させていただきます</span>。</span></div>
       </div>
       <div class="qa">
         <div class="q"><i>Q</i><span>どれくらいの期間でできますか？</span></div>
-        <div class="a"><i>A</i><span>ご依頼をいただいてから4〜6週間で公開まで。<span class="nb">御社の出番は3回だけです</span>。</span></div>
+        <div class="a"><i>A</i><span>ご依頼をいただいてから、4〜6週間で公開までお作りします。</span></div>
       </div>
       <div class="qa">
         <div class="q"><i>Q</i><span>今のホームページは、どうなりますか？</span></div>
-        <div class="a"><i>A</i><span>いまのページは引っ越しをして、<span class="nb">これまでの住所でも開けるようにします</span><span class="nb">（転送100本まで）</span>。</span></div>
+        <div class="a"><i>A</i><span>いまのページは引っ越しをして、<span class="nb">これまでの住所でも開けるようにします</span><span class="nb">（100ページまで）</span>。</span></div>
       </div>
       <div class="qa">
         <div class="q"><i>Q</i><span>原稿は、こちらで用意するのですか？</span></div>
-        <div class="a"><i>A</i><span>御社のお話を伺って、<span class="nb">私どもが原稿を作成いたします</span>。<span class="nb">御社の出番は3回だけです</span>。</span></div>
+        <div class="a"><i>A</i><span>御社のお話を伺って、<span class="nb">私どもが原稿を作成いたします</span>。</span></div>
       </div>
     </div>
   </section>
 
   <!-- ── 予約欄 ───────────────── -->
   <section id="soudan" class="alt">
-    <h2 class="gh up"><span class="no">07</span><em>無料相談（30分）のご予約</em></h2>
+    <h2 class="gh up"><em>無料相談（30分）のご予約</em></h2>
     <p class="lead up"><b>リモートで30分。</b>下の空いている日時から、ご都合の枠をお選びください。<b>今なら、<span class="nb">御社のホームページの</span>無料診断つき。</b><span class="nb">改善点をお伝えします</span>。<b>費用はかかりません。<span class="nb">その場で売り込むこともいたしません</span>。</b></p>
 
     <div class="senmu up">
