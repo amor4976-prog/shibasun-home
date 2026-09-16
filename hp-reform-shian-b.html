@@ -112,7 +112,7 @@ section{padding:56px 0}
   clip-path:polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%)}
 .chev .c1 span{display:block;font-size:var(--f2)}
 .chev .c1 b{font-size:var(--f4)}
-.chev .c2{flex:0 0 auto;margin-left:-22px;background:var(--y);color:var(--gd);font-weight:700;
+.chev .c2{flex:0 0 auto;margin-left:-22px;padding-left:36px!important;background:var(--y);color:var(--gd);font-weight:700;
   font-size:var(--f4);display:grid;place-items:center;padding:10px 18px;line-height:1.35;text-align:center}
 .hero .btnwrap{margin-top:26px}
 .hero .s{font-size:var(--f1);color:var(--sub);margin-top:10px;line-height:1.8}
@@ -154,6 +154,8 @@ section{padding:56px 0}
 .story p{font-size:var(--f2);line-height:2.05}
 .story .big{font-size:var(--f4);font-weight:700;line-height:1.7;margin-top:8px}
 .story .eight{margin-top:6px}
+.story .big8{font-size:var(--f4);font-weight:700;line-height:1.6;margin-top:10px}
+.story .big8 em{font-style:normal;color:var(--g);font-size:var(--f6);margin:0 .12em}
 .story .last{font-size:var(--f4);font-weight:700;line-height:1.85;margin-top:30px}
 
 /* ── ポイントのカード ───────────────── */
@@ -390,7 +392,7 @@ body{padding-bottom:78px}
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
 @media(min-width:1000px){
   .wrap{max-width:900px}
-  section{padding:100px 0}
+  section{padding:80px 0}
   section > *{max-width:860px;margin-left:auto;margin-right:auto}
   /* 文章は少し短く切る（左はそろえたまま） */
   .lead,.note,.gbar .cap,.pb p,.step p,.qa .a,.senmu li,.ba .cap2{max-width:760px}
@@ -485,19 +487,7 @@ body{padding-bottom:78px}
     <h1 class="up d1"><span>ホームページ</span><span>全面リフォーム</span></h1>
     <p class="sub up d1"><span class="nb">奈良の工務店が</span>、<span class="nb">自分の会社のホームページを</span><span class="nb">作り替えました</span>。</p>
 
-    <div class="jisseki up">
-      <div class="t">自社サイトを作り替えた結果</div>
-      <div class="pair">
-        <div class="bf"><small>作り替える前</small><b>月1〜2件</b></div>
-        <div class="ar">→</div>
-        <div class="af"><small>作り替えた後</small><b>月16件</b></div>
-      </div>
-      <div class="n"><span class="nb">公開後17日間で9件の実測を</span>、月に直した数字です</div>
-    <div class="eight ">
-      <span class="bub">お問合せが</span>
-      <span class="n8">8</span><span class="bai">倍に！</span>
-    </div>
-    </div>
+
     <div class="chev up d3">
       <div class="c1"><span>先着3社様限定で</span><b>制作費50万円</b></div>
       <div class="c2">相談無料</div>
@@ -526,10 +516,7 @@ body{padding-bottom:78px}
     <div class="story up">
       <p>うちも、そうでした。</p>
       <p class="big">ですが「集客のしくみ」を取り入れて<br><span class="nb">ホームページを全面リフォームすると</span></p>
-      <div class="eight">
-        <span class="bub">お問合せの数が</span>
-        <span class="n8">8</span><span class="bai">倍に！</span>
-      </div>
+      <p class="big8"><span class="nb">お問合せの数が<em>8倍</em>に</span><span class="nb">増えました。</span></p>
       <p style="margin-top:22px">私どもは工務店として、集客・営業・施工・SNSなど、<br class="pcbr"><span class="nb">日々の仕事の中で</span>ホームページの困りごとを<span class="nb">実感してきました</span>。<br class="pcbr">その経験があるからこそ、<span class="nb">「工務店の成果」につながる</span><span class="nb">ホームページを考えられます</span>。</p>
       <p class="last">ただのホームページ制作会社にはできない、<br><span class="mk">工務店だからこそできる</span><br><span class="mk">工務店のためのホームページづくり。</span></p>
       <a class="gonav" href="#soudan">無料相談（30分）を予約する →</a>
@@ -546,7 +533,6 @@ body{padding-bottom:78px}
       <span class="lb">ホームページからのお問合せ（月）</span>
       <div class="row"><span class="kk">作り替える前</span><span class="tr"><i class="fl bf" style="--w:9%"></i></span><span class="nm bfn">月1〜2件</span></div>
       <div class="row"><span class="kk">作り替えた後</span><span class="tr"><i class="fl af" style="--w:100%"></i></span><span class="nm">月16件</span></div>
-      <div class="hito">お問合せの数が、<em>8倍</em>に</div>
     </div>
 
     <div class="gbar up in">
