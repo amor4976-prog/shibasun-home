@@ -451,6 +451,23 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 .matome .k{padding:7px 14px!important}
 @media(min-width:600px){.matome .r{grid-template-columns:8.8em 1fr}.matome .k{padding:12px!important}}
 
+
+/* ── アイソメのイラスト（2026-09-16 専務「イラストで見やすく」） ───────── */
+.cpic{display:block;width:62%;max-width:220px;height:auto;margin:10px auto 0}
+.fpic{display:block;width:120px;height:auto;margin:0 auto 6px}
+.yzu{margin:22px auto 0;max-width:420px}
+.yzu img{width:100%;height:auto}
+.step>.spic{grid-column:2;width:110px;height:auto}
+.step>p{grid-column:2}
+.step>.w{grid-row:span 2;align-self:start}
+@media(min-width:1000px){
+  .flow .fb{text-align:left}
+  .fpic{width:150px}
+  .step>.spic{grid-column:auto;width:150px;margin:4px auto 0}
+  .step>p{grid-column:auto}
+  .step>.w{grid-row:auto}
+}
+
 /* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
    柱は860pxの1本だけ。左の端は全部そろえる。
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
@@ -587,7 +604,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
     <div class="pcards up">
       <a class="pcard" href="#c05">
-        <div class="ph"><span class="n">01</span><h3>予約しやすい</h3></div>
+        <div class="ph"><span class="n">01</span><h3>予約しやすい</h3></div><img class="cpic" src="img/hp-reform/iso/t_yoyaku.jpg" alt="スマートフォンの予約の絵" width="560" height="560" loading="lazy">
         <div class="pb">
           <p>日程調整のやり取りがないから、<b class="nb">お問合せのハードルが下がります</b>。</p>
           <p>会社のGoogleカレンダーと繋いで、<b><span class="nb">空いている日時を</span><span class="nb">お客様の画面に出します</span></b>。お客様は、電話をかけずに簡単に予約ができます。</p>
@@ -595,13 +612,13 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         </div>
       </a>
       <a class="pcard" href="#c04">
-        <div class="ph"><span class="n">02</span><h3>AI検索に強い</h3></div>
+        <div class="ph"><span class="n">02</span><h3>AI検索に強い</h3></div><img class="cpic" src="img/hp-reform/iso/t_ai.jpg" alt="AIが工務店を選ぶ絵" width="560" height="560" loading="lazy">
         <div class="pb">
           <p>お客様がAIに<span class="nb">「おすすめの工務店」を</span><span class="nb">聞く時代です</span>。<b><span class="nb">AIが読み取れる形で</span>、<span class="nb">会社の情報を書き込みます</span></b>。<span class="nb">対応できている工務店は</span>、<span class="nb">まだ26%です</span>。</p>
         </div>
       </a>
       <a class="pcard" href="#c02">
-        <div class="ph"><span class="n">03</span><h3>工務店が作っている</h3></div>
+        <div class="ph"><span class="n">03</span><h3>工務店が作っている</h3></div><img class="cpic" src="img/hp-reform/iso/t_koumuten.jpg" alt="家の骨組みとパソコンの絵" width="560" height="560" loading="lazy">
         <div class="pb">
           <p><span class="nb">制作会社ではなく</span>、<span class="nb">同業の工務店です</span>。<b><span class="nb">自分の会社のホームページで</span><span class="nb">試した手順</span></b>を、<span class="nb">そのまま行います</span>。</p>
         </div>
@@ -627,11 +644,11 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <p class="lead up"><b><span class="nb">Googleで検索されるだけでは</span>、<span class="nb">お客様の候補に上がらなくなっています</span>。</b><br>お客様は、<span class="nb">検索の代わりに</span><span class="nb">AIに「おすすめの工務店」を</span>聞くようになりました。</p>
 
     <div class="flow up">
-      <div class="fb"><i>1</i><b>お客様がスマホで聞く</b><span>ChatGPTなどのAIに<span class="nb">「◯◯市で注文住宅</span>、<span class="nb">いい工務店は？」</span></span></div>
+      <div class="fb"><img class="fpic" src="img/hp-reform/iso/a1.jpg" alt="スマートフォンで聞く絵" width="560" height="560" loading="lazy"><i>1</i><b>お客様がスマホで聞く</b><span>ChatGPTなどのAIに<span class="nb">「◯◯市で注文住宅</span>、<span class="nb">いい工務店は？」</span></span></div>
       <div class="ar">▶</div>
-      <div class="fb"><i>2</i><b>AIが工務店を選んで答える</b><span>ホームページに書かれた<span class="nb">会社の情報を読んで</span>、<span class="nb">候補の会社を挙げます</span></span></div>
+      <div class="fb"><img class="fpic" src="img/hp-reform/iso/a2.jpg" alt="AIが会社の情報を読む絵" width="560" height="560" loading="lazy"><i>2</i><b>AIが工務店を選んで答える</b><span>ホームページに書かれた<span class="nb">会社の情報を読んで</span>、<span class="nb">候補の会社を挙げます</span></span></div>
       <div class="ar">▶</div>
-      <div class="fb"><i>3</i><b>御社のページが開かれる</b><span>候補に入れば、お客様が<span class="nb">そのまま御社のページを見て</span>、<span class="nb">予約まで進みます</span></span></div>
+      <div class="fb"><img class="fpic" src="img/hp-reform/iso/a3.jpg" alt="ホームページが開かれる絵" width="560" height="560" loading="lazy"><i>3</i><b>御社のページが開かれる</b><span>候補に入れば、お客様が<span class="nb">そのまま御社のページを見て</span>、<span class="nb">予約まで進みます</span></span></div>
     </div>
     <p class="lead up">会社の情報が<b>AIに読める形で書かれていないと</b>、<span class="nb">候補に入りません</span>。</p>
 
@@ -666,6 +683,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <h2 class="gh up"><em>予約が、<span class="nb">その場で取れます</span></em></h2>
     <p class="lead up">御社のお客様が、<span class="nb">電話をかけずに簡単に</span>予約ができます。</p>
 
+    <figure class="yzu up"><img class="" src="img/hp-reform/iso/yoyaku.jpg" alt="お客様のスマートフォンの予約が、御社のパソコンのカレンダーに入る絵" width="560" height="560" loading="lazy"></figure>
     <div class="yoyaku3 up">
       <figure><img src="img/hp-reform/yoyaku_1.png" alt="日時を選ぶ画面" loading="lazy" width="780" height="1000"><figcaption><b>1</b>日時を選ぶ</figcaption></figure>
       <figure><img src="img/hp-reform/yoyaku_2.png" alt="名前と連絡先を書く画面" loading="lazy" width="780" height="1000"><figcaption><b>2</b>連絡先を書く</figcaption></figure>
@@ -718,11 +736,11 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
   <section id="c07">
     <h2 class="gh up"><em>面談後の流れ</em></h2>
     <div class="steps up">
-      <div class="step"><span class="w"><small>1</small>面談</span><p>リモートで30分。<b>お話を伺う／ご質問にお答えする</b>だけです。<span class="nb">無理な売り込みは致しません</span></p></div>
+      <div class="step"><span class="w"><small>1</small>面談</span><img class="spic" src="img/hp-reform/iso/s1.jpg" alt="リモートの面談の絵" width="560" height="560" loading="lazy"><p>リモートで30分。<b>お話を伺う／ご質問にお答えする</b>だけです。<span class="nb">無理な売り込みは致しません</span></p></div>
       <div class="stcon"></div>
-      <div class="step"><span class="w"><small>2</small>ご提案</span><p>どこを直すとよいか、<b>いくらかかるかお見積り</b>をお出しします。<span class="nb">ここまで費用はかかりません</span></p></div>
+      <div class="step"><span class="w"><small>2</small>ご提案</span><img class="spic" src="img/hp-reform/iso/s2.jpg" alt="お見積りの絵" width="560" height="560" loading="lazy"><p>どこを直すとよいか、<b>いくらかかるかお見積り</b>をお出しします。<span class="nb">ここまで費用はかかりません</span></p></div>
       <div class="stcon"></div>
-      <div class="step"><span class="w"><small>3</small>作成</span><p>ご依頼をいただいてから、<b>4〜6週間</b>でホームページ公開まで。<span class="nb">御社の出番は3回だけです</span></p></div>
+      <div class="step"><span class="w"><small>3</small>作成</span><img class="spic" src="img/hp-reform/iso/s3.jpg" alt="ホームページ公開の絵" width="560" height="560" loading="lazy"><p>ご依頼をいただいてから、<b>4〜6週間</b>でホームページ公開まで。<span class="nb">御社の出番は3回だけです</span></p></div>
     </div>
 
     <h3 class="mid up" style="margin-top:46px">よくあるご質問</h3>
