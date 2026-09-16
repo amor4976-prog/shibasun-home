@@ -441,6 +441,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
 /* 黒帯がスマホで5pxはみ出していた */
 @media(max-width:420px){.bh{padding:.48em .7em;max-width:100%}}
+.pkt .mon{font-size:var(--f1);color:var(--sub);line-height:1.8;margin-top:10px}
 /* ひと目で分かる1枚 */
 .matome{border:1.5px solid var(--g);background:#fff;margin:30px auto 0;max-width:660px;text-align:left}
 .matome .r{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
@@ -501,7 +502,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <p class="sub up d2">奈良の工務店が、<span class="nb">自分の会社のホームページを</span><br>作り替えました。<span class="nb">同じ手順を</span>、<br><span class="nb">他府県の工務店さんのホームページで</span>行っています。</p>
 
     <div class="chev up d3">
-      <div class="c1"><span>先着3社様限定で</span><b>制作費50万円</b></div>
+      <div class="c1"><span>モニター募集・先着3社様</span><b>制作費50万円</b></div>
       <div class="c2">相談無料</div>
     </div>
 
@@ -512,7 +513,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <div class="matome up">
       <div class="r"><span class="k">どなた向け</span><span class="v">注文住宅を建てている、<span class="nb">工務店さん</span></span></div>
       <div class="r"><span class="k">すること</span><span class="v">今のホームページを、お客様が<span class="nb">見つけやすく</span>、<span class="nb">予約しやすい形に</span><span class="nb">作り替えます</span></span></div>
-      <div class="r"><span class="k">費用</span><span class="v"><b>制作費50万円</b>（<span class="nb">税別・先着3社様</span>）<br><span class="nb">公開後の更新をお任せいただく場合は</span>、<span class="nb">月2万円</span></span></div>
+      <div class="r"><span class="k">費用</span><span class="v"><b>制作費50万円</b>（<span class="nb">税別・モニター価格</span>・<span class="nb">先着3社様</span>）<br><span class="nb">公開後の更新をお任せいただく場合は</span>、<span class="nb">月2万円</span></span></div>
       <div class="r"><span class="k">できあがるもの</span><span class="v"><span class="nb">8ページのホームページ</span>・<span class="nb">スマートフォン対応</span>・<span class="nb">その場で日時を選べる予約の仕組み</span></span></div>
     </div>
 
@@ -688,7 +689,8 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <div class="pk up">
       <div class="pkt">
         <div class="l1">ホームページ全面リフォーム</div>
-        <div class="l2"><span class="sen"><span class="mk">先着3社様限定</span>で</span><span class="big">50</span><em>万円</em><small>（税別）</small></div>
+        <div class="l2"><span class="sen"><span class="mk">モニター価格・先着3社様</span></span><span class="big">50</span><em>万円</em><small>（税別）</small></div>
+        <div class="mon">モニターの3社様には、<span class="nb">公開後のお問合せの変化を</span>、<span class="nb">私どもの実例として</span><span class="nb">載せさせていただきます</span>。<span class="nb">4社様目からは80万円です</span>。</div>
       </div>
       <div class="pkl">
         <div class="it"><i></i><div><b>標準8ページ</b><span>トップ／会社案内／施工事例／価格／進み方／お客様の声／コラム／お問合せ</span></div></div>
@@ -726,7 +728,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <h3 class="mid up" style="margin-top:46px">よくあるご質問</h3>
     <div class="qas up">
       <div class="qa">
-        <div class="q"><i>Q</i><span>先着3社以外の金額はいくらですか？</span></div>
+        <div class="q"><i>Q</i><span>モニターの3社様のあとは、<span class="nb">いくらですか？</span></span></div>
         <div class="a"><i>A</i><span>ホームページ全面リフォーム80万円でお作りします。<span class="nb">維持管理費は変わらず月2万円です</span>。</span></div>
       </div>
       <div class="qa">
@@ -854,7 +856,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         '<div class="f"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="例：山田 太郎"></div>'+
         '<div class="f"><label>お電話番号<em>必須</em></label><input name="tel" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>'+
         '<div class="f"><label>メールアドレス</label><input name="mail" type="email" autocomplete="email" placeholder="任意"></div>'+
-        '<div class="f"><label>御社のホームページ<em>必須</em></label><input name="hp" required placeholder="www.example.jp"></div>'+
+        '<div class="f"><label>御社のホームページ</label><input name="hp" placeholder="任意（www.example.jp）"></div>'+
         '<div class="f"><label>気になっていること</label><textarea name="note" rows="2" placeholder="例：スマホでの見え方が気になっています"></textarea></div>'+
         '<button class="send" type="submit">この日時で予約する</button></form>';
       rsv.querySelectorAll('.day').forEach(function(b){b.addEventListener('click',function(){pickDate=b.dataset.d;pickSlot=null;render()})});
@@ -878,7 +880,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       e.preventDefault();var f=e.target;
       if(!pickSlot){alert('ご希望の時間をお選びください');return;}
       var b=f.querySelector('.send');b.disabled=true;b.textContent='送信中…';
-      var msg=['【ホームページの無料相談・オンライン30分】','【御社のホームページ】'+f.hp.value.trim(),
+      var msg=['【ホームページの無料相談・オンライン30分】',f.hp.value.trim()?'【御社のホームページ】'+f.hp.value.trim():'',
                f.note.value.trim()?'【気になっていること】'+f.note.value.trim():''].filter(Boolean).join('\n');
       try{
         var r=await fetch(API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},
