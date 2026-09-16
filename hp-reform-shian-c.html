@@ -427,8 +427,23 @@ body{padding-bottom:78px}
 .heroD .jisseki{margin-top:30px}
 .heroD .jisseki .eight{margin-top:14px}
 
+
+/* 案E：実績を縦の棒グラフで */
+.tate .tb{display:flex;justify-content:center;align-items:stretch;gap:34px;height:230px;margin-top:18px}
+.tate .col{display:flex;flex-direction:column;align-items:center;width:110px}
+.tate .v{font-size:var(--f4);font-weight:700;color:var(--g);line-height:1.4;white-space:nowrap}
+.tate .v.bfn{color:#6b6b69}
+.tate .trk{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;width:100%;border-bottom:2px solid #c9c9c6}
+.tate .v{margin-bottom:6px}
+.tate .bar{display:block;width:64px;height:var(--h);min-height:8px}
+.tate .bar.bf{background:var(--gy2)}
+.tate .bar.af{background:var(--g)}
+.tate small{font-size:var(--f1);color:var(--sub);margin-top:8px;white-space:nowrap}
+.tate .hito{font-size:var(--f3);font-weight:700;margin-top:16px;line-height:1.6}
+.tate .hito em{font-style:normal;color:var(--g);font-size:var(--f5)}
+@media(min-width:1000px){.tate .tb{height:280px}}
 /* 案E：並びをgridの名前で決める。スマホは縦1列、PCは左に言葉・右にスマホ */
-.heroE{display:grid;grid-template-columns:1fr;grid-template-areas:"k" "h1" "eight" "ph" "sub" "chev" "btn" "jis"}
+.heroE{display:grid;grid-template-columns:1fr;grid-template-areas:"k" "h1" "eight" "sub" "chev" "btn" "jis"}
 .heroE>.k{grid-area:k;justify-self:center}
 .heroE>h1{grid-area:h1}
 .heroE>.eight{grid-area:eight}
@@ -439,11 +454,11 @@ body{padding-bottom:78px}
 .heroE>.jisseki{grid-area:jis}
 .heroE .phone{width:150px}
 @media(min-width:1000px){
-  .heroE{grid-template-columns:1fr 410px;column-gap:30px;align-items:start;padding-top:50px;
-    grid-template-areas:"k ph" "h1 ph" "eight ph" "sub ph" "chev ph" "btn ph" "jis jis"}
+  .heroE{grid-template-columns:1fr 360px;column-gap:40px;align-items:start;padding-top:50px;
+    grid-template-areas:"k jis" "h1 jis" "eight jis" "sub jis" "chev jis" "btn jis"}
   .heroE>.phones{margin-top:0;align-self:center;gap:14px}
   .heroE .phone{width:190px;max-width:none}
-  .heroE>.jisseki{margin-top:44px}
+  .heroE>.jisseki{margin-top:0;align-self:center;max-width:none}
 }
 </style>
 </head>
@@ -496,10 +511,7 @@ body{padding-bottom:78px}
       <a class="btn" href="#soudan">無料相談（30分）を予約する</a>
       <div class="s"><b>今なら、無料診断つき。</b><br>その場で契約のお願いはいたしません</div>
     </div>
-    <div class="phones up" aria-hidden="true">
-      <div class="phone b"><span class="tg">リフォーム前</span><img src="img/hp-reform/before_poster.jpg" alt="" width="560" height="994" loading="lazy"></div>
-      <div class="phone"><span class="tg">リフォーム後</span><video src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg" muted loop playsinline preload="metadata" width="560" height="994"></video></div>
-    </div>
+
   </div>
 
   <!-- ── 02 前と今 ───────────────── -->
@@ -507,27 +519,6 @@ body{padding-bottom:78px}
     <h2 class="gh up"><span class="no">01</span><em>作り替える前と、いま</em></h2>
     <p class="lead up">ここに並べたものは、すべて<b class="nb">去年までの私どもの話</b>です。ホームページは十年ほど、ただ置いてあるだけでした。そこで一から作り替えました。</p>
 
-    <div class="ba up" id="ba">
-      <div class="frame sp" id="baFrame">
-        <video src="img/hp-reform/after.mp4" poster="img/hp-reform/after_poster.jpg" autoplay muted loop playsinline preload="metadata" width="560" height="994" aria-label="リフォーム後のホームページをiPhoneで動かしたところ"></video>
-        <video class="before" src="img/hp-reform/before.mp4" poster="img/hp-reform/before_poster.jpg" autoplay muted loop playsinline preload="metadata" width="560" height="994" aria-label="リフォーム前のホームページをiPhoneで動かしたところ"></video>
-        <span class="tag2 l">リフォーム前</span>
-        <span class="tag2 r">リフォーム後</span>
-        <span class="bar"></span>
-        <span class="knob">‹›</span>
-      </div>
-      <div class="frame pc" id="baFramePc">
-        <video src="img/hp-reform/pc_after.mp4" poster="img/hp-reform/pc_after_poster.jpg" autoplay muted loop playsinline preload="metadata" width="880" height="550" aria-label="リフォーム後のホームページをパソコンで上から下まで送ったところ"></video>
-        <video class="before" src="img/hp-reform/pc_before.mp4" poster="img/hp-reform/pc_before_poster.jpg" autoplay muted loop playsinline preload="metadata" width="880" height="550" aria-label="リフォーム前のホームページをパソコンで上から下まで送ったところ"></video>
-        <span class="tag2 l">リフォーム前</span>
-        <span class="tag2 r">リフォーム後</span>
-        <span class="bar"></span>
-        <span class="knob">‹›</span>
-      </div>
-      <div class="how">◀　緑の丸をつまんで、左右に動かしてください　▶</div>
-      <p class="cap2 sp">どちらも<b>iPhoneで実際に<span class="nb">動かしているところ</span></b>です。</p>
-      <p class="cap2 pc">どちらも<b>パソコンで開いて、上から下まで送ったところ</b>です。</p>
-    </div>
 
     <div class="gbar up in">
       <span class="lb">ホームページからのお問合せ（月）</span>
