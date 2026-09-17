@@ -484,6 +484,34 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 @media(min-width:1000px){.step{text-align:center}.step>p{text-align:center}}
 .pcard .cpic{margin-bottom:4px}
 
+
+/* ── GPT相談を受けた直し（2026-09-17） ───────────────── */
+/* 1画面目：押せるボタンは黒にして、緑の帯（価格の案内）と見分ける */
+.hero .btnwrap{margin-top:34px}
+.hero .btn{background:var(--bk);border-color:var(--bk);color:#fff;padding:20px 14px}
+.hero .btn:hover{background:#333;border-color:#333}
+.hero .btn:after{content:"　→"}
+.chev{cursor:default}
+.hero .sub{font-size:var(--f3);line-height:1.9}
+/* お悩み：黒帯を下の箱と同じ幅にして、ひとつの箱に */
+#c01 .bh{display:block;width:100%;max-width:none;padding:18px 28px}
+#c01 .chks{margin-top:0}
+@media(max-width:420px){#c01 .bh{padding:14px 20px}}
+/* 私どもも、同じでした：見出しは中央、説明文は左寄せ */
+.story{text-align:center}
+.story .lead1{font-size:var(--f3);line-height:1.8;margin-bottom:14px}
+.story .head1{font-size:var(--f4);font-weight:700;line-height:1.7}
+.story .head1 em{font-style:normal;color:var(--g);font-size:var(--f5)}
+.story .body1{font-size:var(--f2);line-height:2;text-align:left;max-width:620px!important;margin:24px auto 0}
+.story .last{font-size:var(--f4);line-height:1.8;margin-top:30px}
+/* グラフの題：緑の帯をやめ、左の緑線と黒文字に */
+.gbar .lb{display:block;background:none;color:var(--ink);font-size:var(--f2);font-weight:700;padding:4px 0 4px 12px;border-left:6px solid var(--g);margin-bottom:6px}
+.gbar .fl{height:1.9em}
+/* 予約欄：受付できる枠は緑の小さな文字、予約済みは灰色 */
+.rsv .time small{color:var(--g);font-weight:700}
+.rsv .time[disabled] small{color:#999}
+.rsv .time.on small{color:#d7e7dc}
+
 /* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
    柱は860pxの1本だけ。左の端は全部そろえる。
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
@@ -532,7 +560,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <span class="bub">お問合せが</span>
       <span class="n8">8</span><span class="bai">倍に！</span>
     </div>
-    <p class="sub up d2">奈良の工務店が、<span class="nb">自分の会社のホームページを</span><br>作り替えました。<span class="nb">同じ手順を</span>、<br><span class="nb">他府県の工務店さんのホームページで</span>行っています。</p>
+    <p class="sub up d2"><span class="nb">奈良の工務店である私どもが</span>、<span class="nb">自社のホームページを作り替えました</span>。<br><span class="nb">同じ手順で</span>、<span class="nb">他府県の工務店様のホームページも</span><span class="nb">作り替えています</span>。</p>
 
     <div class="chev up d3">
       <div class="c1"><span>モニター募集・先着3社様</span><b>制作費50万円</b></div>
@@ -541,7 +569,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
     <div class="btnwrap up d3">
       <a class="btn" href="#soudan">無料相談（30分）を予約する</a>
-      <div class="s"><b>今なら、無料診断つき。</b><br>その場で契約のお願いはいたしません</div>
+      <div class="s"><b>今なら、ホームページの無料診断つきです。</b><br>その場で契約のお願いはいたしません</div>
     </div>
     <div class="matome up">
       <div class="r"><span class="k">対象</span><span class="v">注文住宅を建てている工務店</span></div>
@@ -555,16 +583,16 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 完成イメージ ───────────────── -->
   <section id="kansei">
-    <h2 class="gh up"><em>完成すると、<span class="nb">こんなホームページになります</span></em></h2>
-    <p class="lead up"><span class="nb">見本としてお作りした</span><span class="nb">「みほん工務店」のホームページです</span>。<b><span class="nb">写真と文章を御社のものに</span>入れ替えて</b>、<span class="nb">同じ形でお作りします</span>。</p>
+    <h2 class="gh up"><em>完成後のホームページ（見本）</em></h2>
+    <p class="lead up"><span class="nb">見本としてお作りした</span><span class="nb">「みほん工務店」のホームページです</span>。<b><span class="nb">写真と文章を御社の内容に</span>入れ替えて</b>、<span class="nb">同じ形でお作りします</span>。</p>
     <figure class="kpc up"><img src="img/hp-reform/kansei_pc.jpg" alt="見本のホームページをパソコンで開いたところ" width="1440" height="1004" loading="lazy"></figure>
     <div class="ksp up">
-      <figure><img src="img/hp-reform/kansei_top.jpg" alt="見本のホームページのトップ（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>トップ</b>動画で、<span class="nb">現場の空気を伝えます</span></figcaption></figure>
+      <figure><img src="img/hp-reform/kansei_top.jpg" alt="見本のホームページのトップ（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>トップ</b>動画で、<span class="nb">現場の雰囲気を伝えます</span></figcaption></figure>
       <figure><img src="img/hp-reform/kansei_works.jpg" alt="見本のホームページの施工事例（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>施工事例</b><span class="nb">写真を大きく見せます</span></figcaption></figure>
-      <figure><img src="img/hp-reform/kansei_yoyaku.jpg" alt="見本のホームページの来店予約（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>来店のご予約</b><span class="nb">空いている日時を</span><span class="nb">その場で選べます</span></figcaption></figure>
+      <figure><img src="img/hp-reform/kansei_yoyaku.jpg" alt="見本のホームページの来店予約（スマートフォン）" width="600" height="1169" loading="lazy"><figcaption><b>来店のご予約</b><span class="nb">ご予約いただける日時を</span>、<span class="nb">その場で選べます</span></figcaption></figure>
     </div>
-    <p class="note up ksp-hint">指で横に動かすと、ほかの画面も見られます</p>
-    <div class="up kbtn"><a class="btn y" href="/mihon/" target="_blank" rel="noopener">見本のホームページを開く</a><p class="note">ご予約の操作も、<span class="nb">そのまま試せます</span>（<span class="nb">見本のため確定はしません</span>）</p></div>
+    <p class="note up ksp-hint">横に動かすと、ほかの画面もご覧いただけます</p>
+    <div class="up kbtn"><a class="btn y" href="/mihon/" target="_blank" rel="noopener">見本のホームページを開く</a><p class="note">ご予約の流れも、<span class="nb">そのままお試しいただけます</span>（<span class="nb">見本のため確定はしません</span>）</p></div>
   </section>
 
   <!-- ── 01 お悩み ───────────────── -->
@@ -573,7 +601,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
     <div class="chks up">
       <div class="chk"><i></i><span>資料請求が月5件以下で、<span class="nb">ゼロの月もある</span></span></div>
-      <div class="chk"><i></i><span>届くのは、業者の営業メールばかり</span></div>
+      <div class="chk"><i></i><span>届くのは、営業メールばかり</span></div>
       <div class="chk"><i></i><span>資料請求が来ても、<span class="nb">お会いできずに終わる</span></span></div>
       <div class="chk"><i></i><span>更新を頼んでも、<span class="nb">対応してもらえない</span></span></div>
       <div class="chk"><i></i><span>ブログを何年も更新していない</span></div>
@@ -583,19 +611,18 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     </div>
 
     <div class="story up">
-      <p>うちも、そうでした。</p>
-      <p class="big">ですが「集客のしくみ」を取り入れて<br><span class="nb">ホームページを全面リフォームすると</span></p>
-      <p class="big8"><span class="nb">お問合せの数が<em>8倍</em>に</span><span class="nb">増えました。</span></p>
-      <p style="margin-top:22px">私どもは工務店として、集客・営業・施工・SNSなど、<br class="pcbr"><span class="nb">日々の仕事の中で</span>ホームページの困りごとを<span class="nb">実感してきました</span>。<br class="pcbr">その経験があるからこそ、<span class="nb">「工務店の成果」につながる</span><span class="nb">ホームページをご提案できます</span>。</p>
-      <p class="last">ただのホームページ制作会社にはできない、<br><span class="mk">工務店だからこそできる</span><br><span class="mk">工務店のためのホームページづくり。</span></p>
+      <p class="lead1">私どもも、同じでした。</p>
+      <p class="head1"><span class="nb">そこで「集客のしくみ」を取り入れて、</span><span class="nb">ホームページを</span><span class="nb">全面リフォームしたところ、</span><br><span class="nb">お問合せの数が<em>8倍</em>に増えました</span>。</p>
+      <p class="body1">私どもも工務店として、<span class="nb">集客・営業・施工・SNSに取り組む中で</span>、<span class="nb">ホームページの悩みを実感してきました</span>。<span class="nb">その経験があるからこそ</span>、<span class="nb">「工務店の成果」につながる</span><span class="nb">ホームページをご提案できます</span>。</p>
+      <p class="last"><span class="nb">制作会社ではなく</span>、<span class="nb">工務店だからこそできる</span>、<br><span class="mk nb">工務店のためのホームページづくり。</span></p>
       <a class="gonav" href="#soudan">無料相談（30分）を予約する →</a>
     </div>
   </section>
 
   <!-- ── 02 前と今 ───────────────── -->
   <section id="c02" class="alt">
-    <h2 class="gh up"><em>作り替える前と、今</em></h2>
-    <p class="lead up">ここに並べたものは、すべて<b class="nb">去年までの私どもの話</b>です。ホームページは十年ほど、ただ置いてあるだけでした。そこで一から作り替えました。</p>
+    <h2 class="gh up"><em>作り替える前と後</em></h2>
+    <p class="lead up">ここに並べたものは、すべて<b class="nb">去年までの私どもの実情</b>です。ホームページは十年ほど、十分に活かせていない状態でした。そこで一から作り替えました。</p>
 
 
     <div class="gbar up in">
@@ -611,7 +638,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <div class="cap">※私どものサイトの実測値です。<span class="nb">月16件は</span>、<span class="nb">公開して17日間で9件を</span>月に直した数字です。<span class="nb">17日間だけの実測なので</span>、<span class="nb">今後も同じ数になるとは限りません</span>。</div>
     </div>
 
-    <p class="lead up">特別なことはしていません。<b>同じ手順を、<span class="nb">御社のホームページで</span>行うだけ</b>です。</p>
+    <p class="lead up">特別なことをしたわけではありません。<b>同じ手順を、<span class="nb">御社のホームページでも</span>行います</b>。</p>
   </section>
 
   <!-- ── 03 3つの強み ───────────────── -->
@@ -622,19 +649,19 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <a class="pcard" href="#c05">
         <div class="ph"><span class="n">01</span><h3>予約しやすい</h3></div><img class="cpic" src="img/hp-reform/iso/t_yoyaku.jpg" alt="日付に印の付いたカレンダーの絵" width="560" height="560" loading="lazy">
         <div class="pb">
-          <p>日程調整のやり取りがなく、<br><b><span class="nb">お客様がスマホで</span><span class="nb">その場で予約できます</span></b>。</p>
+          <p>日程調整のやり取りを減らし、<br><b><span class="nb">お客様がスマートフォンで</span><span class="nb">その場で予約できます</span></b>。</p>
         </div>
       </a>
       <a class="pcard" href="#c04">
         <div class="ph"><span class="n">02</span><h3>AI検索に強い</h3></div><img class="cpic" src="img/hp-reform/iso/t_ai.jpg" alt="吹き出しの中に工務店の札が並ぶ絵" width="560" height="560" loading="lazy">
         <div class="pb">
-          <p><span class="nb">AIに読める形で</span>会社の情報を書き込み、<br><b><span class="nb">AIの候補に</span><span class="nb">入りやすくします</span></b>。</p>
+          <p><span class="nb">AIに読める形で</span>会社の情報を書き込み、<br><b><span class="nb">AIが候補として</span><span class="nb">挙げやすい形に整えます</span></b>。</p>
         </div>
       </a>
       <a class="pcard" href="#c02">
         <div class="ph"><span class="n">03</span><h3>工務店が作っている</h3></div><img class="cpic" src="img/hp-reform/iso/t_koumuten.jpg" alt="家の骨組みとパソコンの絵" width="560" height="560" loading="lazy">
         <div class="pb">
-          <p><span class="nb">制作会社ではなく</span><span class="nb">同業の工務店が</span>、<br><b><span class="nb">自社で試した手順で</span><span class="nb">お作りします</span></b>。</p>
+          <p><span class="nb">制作会社ではなく</span><span class="nb">同業の工務店が</span>、<br><b><span class="nb">自社で確かめた手順で</span><span class="nb">お作りします</span></b>。</p>
         </div>
       </a>
     </div>
@@ -654,8 +681,8 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 04 AI検索 ───────────────── -->
   <section id="c04" class="alt">
-    <h2 class="gh up"><em>AIの検索に、<span class="nb">見つけてもらう</span></em></h2>
-    <p class="lead up"><b><span class="nb">Googleで検索されるだけでは</span>、<span class="nb">お客様の候補に上がらなくなっています</span>。</b><br>お客様は、<span class="nb">検索の代わりに</span><span class="nb">AIに「おすすめの工務店」を</span>聞くようになりました。</p>
+    <h2 class="gh up"><em>AI検索への対応</em></h2>
+    <p class="lead up"><b><span class="nb">Googleで検索されるだけでは</span>、<span class="nb">お客様の候補に入りにくくなっています</span>。</b><br>お客様は、<span class="nb">検索の代わりに</span><span class="nb">AIに「おすすめの工務店」を</span>聞くようになりました。</p>
 
     <div class="flow up">
       <div class="fb"><img class="fpic" src="img/hp-reform/iso/a1.jpg" alt="スマートフォンで聞く絵" width="560" height="560" loading="lazy"><i>1</i><b>お客様がスマホで聞く</b><span>ChatGPTなどのAIに<span class="nb">「◯◯市で注文住宅</span>、<span class="nb">いい工務店は？」</span></span></div>
@@ -694,28 +721,28 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 
   <!-- ── 05 予約 ───────────────── -->
   <section id="c05">
-    <h2 class="gh up"><em>予約が、<span class="nb">その場で取れます</span></em></h2>
-    <p class="lead up">御社のお客様が、<span class="nb">電話をかけずに簡単に</span>予約ができます。</p>
+    <h2 class="gh up"><em>その場で予約できる仕組み</em></h2>
+    <p class="lead up">御社のお客様が、<span class="nb">電話をかけずに</span>予約できます。</p>
 
     <div class="yoyaku3 up">
-      <figure><img src="img/hp-reform/yoyaku_1.png" alt="日時を選ぶ画面" loading="lazy" width="780" height="1000"><figcaption><b>1</b>日時を選ぶ</figcaption></figure>
-      <figure><img src="img/hp-reform/yoyaku_2.png" alt="名前と連絡先を書く画面" loading="lazy" width="780" height="1000"><figcaption><b>2</b>連絡先を書く</figcaption></figure>
-      <figure><img src="img/hp-reform/yoyaku_3.png" alt="予約が完了した画面" loading="lazy" width="780" height="1000"><figcaption><b>3</b>終わり</figcaption></figure>
+      <figure><img src="img/hp-reform/yoyaku_1.png" alt="日時を選ぶ画面" loading="lazy" width="780" height="1000"><figcaption><b>1</b>日時の選択</figcaption></figure>
+      <figure><img src="img/hp-reform/yoyaku_2.png" alt="名前と連絡先を書く画面" loading="lazy" width="780" height="1000"><figcaption><b>2</b>ご連絡先の入力</figcaption></figure>
+      <figure><img src="img/hp-reform/yoyaku_3.png" alt="予約が完了した画面" loading="lazy" width="780" height="1000"><figcaption><b>3</b>予約完了</figcaption></figure>
     </div>
 
-    <div class="callout up">お問合せのページで日付を選ぶと、<span class="nb">空いている予約枠が</span><span class="nb">そのまま出ます</span>。<br>Googleカレンダーで予定を入れた時間帯や、<span class="nb">ほかのお客様が</span><span class="nb">すでに予約している時間帯は</span>出しません。</div>
+    <div class="callout up">お問合せのページで日付を選ぶと、<span class="nb">ご予約いただける日時が</span>、<span class="nb">その場で表示されます</span>。<br>Googleカレンダーで予定を入れた時間帯や、<span class="nb">ほかのお客様が</span><span class="nb">すでに予約している時間帯は</span>出しません。</div>
 
     <div class="y3n up">
-      <div><b>お客様の都合のいい時に</b><span>スマートフォンで簡単に<span class="nb">予約ができます</span></span></div>
-      <div><b>翌朝、一覧で並ぶ</b><span>御社の画面で、<span class="nb">予約をまとめて見られます</span></span></div>
+      <div><b>お客様のご都合に合わせて</b><span>スマートフォンから<span class="nb">予約できます</span></span></div>
+      <div><b>予約は一覧で確認</b><span>御社の画面で、<span class="nb">予約をまとめて確認できます</span></span></div>
       <div><b>50万円に含みます</b><span>この仕組みが、そのまま<span class="nb">御社のページに入ります</span></span></div>
     </div>
   </section>
 
   <!-- ── 06 価格 ───────────────── -->
   <section id="c06" class="alt">
-    <h2 class="gh up"><em>正直な価格でやっています</em></h2>
-    <p class="lead up">あとから「これは別料金です」と申し上げないために、<b>入るものを先に全部書いておきます</b>。</p>
+    <h2 class="gh up"><em>料金と、含まれる内容</em></h2>
+    <p class="lead up">あとから追加料金の話にならないよう、<b><span class="nb">含まれる内容を</span><span class="nb">先にすべて載せています</span></b>。</p>
 
     <div class="pk up">
       <div class="pkt">
@@ -729,8 +756,8 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         <div class="it"><i></i><div><b>電話・LINEにすぐ繋がる</b></div></div>
         <div class="it"><i></i><div><b>スマートフォン対応サイト</b></div></div>
         <div class="it"><i></i><div><b>公開までの作業／<span class="nb">公開前の修正2回</span></b></div></div>
-        <div class="it"><i></i><div><b>アクセス解析の設置と<span class="nb">検索への登録</span></b><span>何人が見に来たか分かるようにして、<span class="nb">新しいページをGoogleに届け出ます</span></span></div></div>
-        <div class="it"><i></i><div><b>現行ページの引っ越し</b><span>今のページを開こうとした人を、<span class="nb">新しいページへ自動で案内します</span>（100ページまで）</span></div></div>
+        <div class="it"><i></i><div><b>アクセス解析の設置と<span class="nb">検索への登録</span></b><span>何人が見に来たか分かるようにして、<span class="nb">新しいページをGoogleに知らせます</span></span></div></div>
+        <div class="it"><i></i><div><b>現行ページの引っ越し</b><span>今のページを開こうとした方を、<span class="nb">新しいページへ自動で案内します</span>（100ページまで）</span></div></div>
         <div class="it"><i></i><div><b>原稿作り</b><span>御社のお話をもとに、<span class="nb">私どもが原稿を作成いたします</span></span></div></div>
         <div class="it hi"><i></i><div><b>その場で日時を選べる<span class="nb">予約の仕組み</span></b><span>下の空き日時と同じものが、<span class="nb">御社のページに入ります</span></span></div></div>
       </div>
@@ -742,14 +769,14 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     </div>
 
     <p class="note up"><span class="nb">今、同時にお受けできるのは3社様までです。</span>空きがない場合は、<span class="nb">次にお受けできる時期をお伝えします</span>。</p>
-    <a class="gonav up" href="#soudan">まずは30分、無料で相談してみる →</a>
+    <a class="gonav up" href="#soudan">まずは30分の無料相談を予約する →</a>
   </section>
 
   <!-- ── 07 流れとご質問 ───────────────── -->
   <section id="c07">
     <h2 class="gh up"><em>面談後の流れ</em></h2>
     <div class="steps up">
-      <div class="step"><span class="w"><small>1</small>面談</span><img class="spic" src="img/hp-reform/iso/s1.jpg" alt="リモートの面談の絵" width="560" height="560" loading="lazy"><p>リモートで30分。<b>お話を伺い、ご質問にお答えする</b>だけです。<span class="nb">無理な売り込みはいたしません</span>。</p></div>
+      <div class="step"><span class="w"><small>1</small>面談</span><img class="spic" src="img/hp-reform/iso/s1.jpg" alt="リモートの面談の絵" width="560" height="560" loading="lazy"><p>リモートで30分。<b>お話を伺い、ご質問にお答えします</b>。<span class="nb">無理な売り込みはいたしません</span>。</p></div>
       <div class="stcon"></div>
       <div class="step"><span class="w"><small>2</small>ご提案</span><img class="spic" src="img/hp-reform/iso/s2.jpg" alt="お見積りの絵" width="560" height="560" loading="lazy"><p>どこを直すとよいか、<b>いくらかかるかお見積り</b>をお出しします。<span class="nb">ここまで費用はかかりません</span>。</p></div>
       <div class="stcon"></div>
@@ -775,7 +802,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         <div class="a"><i>A</i><span>公開前の修正は2回（無料）です。<span class="nb">公開後の大きな修正は</span>、<span class="nb">内容に応じてご相談させていただきます</span>。</span></div>
       </div>
       <div class="qa">
-        <div class="q"><i>Q</i><span>どれくらいの期間でできますか？</span></div>
+        <div class="q"><i>Q</i><span>公開まで、<span class="nb">どれくらいかかりますか？</span></span></div>
         <div class="a"><i>A</i><span>ご依頼をいただいてから、4〜6週間で公開します。</span></div>
       </div>
       <div class="qa">
@@ -796,12 +823,12 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
   <!-- ── 予約欄 ───────────────── -->
   <section id="soudan" class="alt">
     <h2 class="gh up"><em>無料相談（30分）のご予約</em></h2>
-    <p class="lead up"><b>リモートで30分。</b>下の空いている日時から、ご都合の枠をお選びください。<b>今なら、<span class="nb">御社のホームページの</span>無料診断つき。</b><span class="nb">改善点をお伝えします</span>。<b>費用はかかりません。<span class="nb">その場で売り込むこともいたしません</span>。</b></p>
+    <p class="lead up"><b>リモートで30分。</b>下の日時から、ご都合に合う枠をお選びください。<b>今なら、<span class="nb">御社のホームページの無料診断つき</span>。</b><span class="nb">改善点をお伝えします</span>。<b>費用はかかりません。<span class="nb">その場で売り込むこともいたしません</span>。</b></p>
 
     <div class="senmu up">
       <div class="t">
         <img src="img/shikumi/senmu-2026.jpg" alt="専務取締役 柴部文嘉" loading="lazy" width="400" height="400">
-        <div class="nm"><small>ご相談をお受けするのは、私です</small>専務取締役　柴部 文嘉<span>株式会社シバ・サンホーム／<span class="nb">しくみ設計室</span></span></div>
+        <div class="nm"><small>ご相談の担当</small>専務取締役　柴部 文嘉<span>株式会社シバ・サンホーム／<span class="nb">しくみ設計室</span></span></div>
       </div>
       <ul>
         <li>奈良で注文住宅を建てている<span class="nb">工務店の専務です</span>。大工ではなく、<b>段取りと数字</b>を担当しています</li>
@@ -810,13 +837,13 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       </ul>
     </div>
 
-    <div class="rsv up" id="rsv"><div class="msg">空いている日時を読み込んでいます…</div></div>
+    <div class="rsv up" id="rsv"><div class="msg">ご予約いただける日時を読み込んでいます…</div></div>
   </section>
 </div>
 
 <div class="cta">
   <h2 class="up">まずはリモートで30分、<span class="nb">無料の個別相談から。</span></h2>
-  <p class="up d1">空いている日時から、ご都合に合わせてお選びいただけます。費用はかかりません。<span class="nb">その場で契約のお願いもいたしません</span>。</p>
+  <p class="up d1">ご予約いただける日時から、ご都合に合わせてお選びいただけます。費用はかかりません。<span class="nb">その場で契約のお願いもいたしません</span>。</p>
   <div class="ctadays up d2" id="ctadays"></div>
   <div class="up d2"><a class="btn wh" href="#soudan">無料相談（30分）を予約する</a></div>
   <p class="sub2 up d2">お電話でも受け付けています　<a href="tel:0742813948">0742-81-3948</a>　／　<a href="mailto:yasuhiro@shibasun.jp?subject=%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E3%83%AA%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">メールで聞く</a></p>
@@ -881,10 +908,10 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       var day=slots.filter(function(s){return s.date===pickDate});
       if(pickSlot&&!day.some(function(s){return s.id===pickSlot}))pickSlot=null;
       rsv.innerHTML=
-        '<p class="st">1. 日を選ぶ</p><div class="days">'+dates.map(function(d){var f=ymd(d);
+        '<p class="st">1. 日付</p><div class="days">'+dates.map(function(d){var f=ymd(d);
           return '<button type="button" class="day'+(d===pickDate?' on':'')+'" data-d="'+d+'"><span class="d">'+f.md+'</span><span class="w">'+f.w+'</span></button>'}).join('')+'</div>'+
-        '<p class="st">2. 時間を選ぶ</p><div class="times">'+day.map(function(s){
-          return '<button type="button" class="time'+(s.id===pickSlot?' on':'')+'" data-s="'+s.id+'"'+(s.status==='full'?' disabled':'')+'>'+s.startTime+'<small>'+(s.status==='full'?'満席':'空いています')+'</small></button>'}).join('')+'</div>'+
+        '<p class="st">2. 時間</p><div class="times">'+day.map(function(s){
+          return '<button type="button" class="time'+(s.id===pickSlot?' on':'')+'" data-s="'+s.id+'"'+(s.status==='full'?' disabled':'')+'>'+s.startTime+'<small>'+(s.status==='full'?'予約済み':'ご予約いただけます')+'</small></button>'}).join('')+'</div>'+
         '<form id="rsvf">'+
         '<p class="st">3. ご連絡先</p>'+
         '<div class="f"><label>御社名<em>必須</em></label><input name="company" required placeholder="例：◯◯工務店"></div>'+
@@ -892,7 +919,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         '<div class="f"><label>お電話番号<em>必須</em></label><input name="tel" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>'+
         '<div class="f"><label>メールアドレス</label><input name="mail" type="email" autocomplete="email" placeholder="任意"></div>'+
         '<div class="f"><label>御社のホームページ</label><input name="hp" placeholder="任意（www.example.jp）"></div>'+
-        '<div class="f"><label>気になっていること</label><textarea name="note" rows="2" placeholder="例：スマホでの見え方が気になっています"></textarea></div>'+
+        '<div class="f"><label>ご相談内容</label><textarea name="note" rows="2" placeholder="例：スマホでの見え方が気になっています"></textarea></div>'+
         '<button class="send" type="submit">この日時で予約する</button></form>';
       rsv.querySelectorAll('.day').forEach(function(b){b.addEventListener('click',function(){pickDate=b.dataset.d;pickSlot=null;render()})});
       rsv.querySelectorAll('.time').forEach(function(b){b.addEventListener('click',function(){pickSlot=b.dataset.s;render()})});
@@ -904,7 +931,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       var box=document.getElementById('ctadays');if(!box)return;
       box.innerHTML=dates.slice(0,3).map(function(d){var f=ymd(d);
         return '<button type="button" class="cd" data-d="'+d+'"><span class="d">'+f.md+'</span><span class="w">'+f.w+'</span></button>'}).join('')
-        +(dates.length>3?'<button type="button" class="more" data-d="">ほかの日を見る</button>':'');
+        +(dates.length>3?'<button type="button" class="more" data-d="">ほかの日付を見る</button>':'');
       box.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){
         var d=b.getAttribute('data-d');
         if(d){pickDate=d;pickSlot=null;render();}
@@ -916,7 +943,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       if(!pickSlot){alert('ご希望の時間をお選びください');return;}
       var b=f.querySelector('.send');b.disabled=true;b.textContent='送信中…';
       var msg=['【ホームページの無料相談・オンライン30分】',f.hp.value.trim()?'【御社のホームページ】'+f.hp.value.trim():'',
-               f.note.value.trim()?'【気になっていること】'+f.note.value.trim():''].filter(Boolean).join('\n');
+               f.note.value.trim()?'【ご相談内容】'+f.note.value.trim():''].filter(Boolean).join('\n');
       try{
         var r=await fetch(API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},
           body:JSON.stringify({slotId:pickSlot,reservationType:'vendor',
@@ -927,7 +954,7 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
         done=true;if(window.gtag)window.gtag('event','generate_lead',{method:'hp_reform'});
         var sel=slots.filter(function(s){return s.id===pickSlot})[0];var fd=ymd(sel.date);
         rsv.innerHTML='<div class="done"><div class="mk">RESERVED</div><h3>ご予約をお受けしました</h3>'+
-          '<p>'+fd.md+'（'+fd.w+'）'+sel.startTime+'〜　お待ちしております。<br>当日つなぐ先は、柴部より前日までにご連絡いたします。</p></div>';
+          '<p>'+fd.md+'（'+fd.w+'）'+sel.startTime+'〜　お待ちしております。<br>当日の接続先は、柴部より前日までにご連絡いたします。</p></div>';
       }catch(err){b.disabled=false;b.textContent='この日時で予約する';
         alert(err.message+'\nお手数ですが 0742-81-3948 までお電話ください。');load();}
     }
