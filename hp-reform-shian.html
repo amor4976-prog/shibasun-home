@@ -512,6 +512,63 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
 .rsv .time[disabled] small{color:#999}
 .rsv .time.on small{color:#d7e7dc}
 
+
+/* ── 新しいチラシ中面に合わせた（2026-09-17） ───────────────── */
+/* お悩み：緑の帯を箱の上に中央でかぶせる */
+#c01 .bh{display:table;width:auto;max-width:92%;margin:0 auto -26px;position:relative;z-index:1;background:var(--g);padding:14px 30px;text-align:center}
+#c01 .chks{padding-top:52px}
+@media(max-width:420px){#c01 .bh{display:block;max-width:100%;margin:0 0 -20px;padding:12px 16px}#c01 .chks{padding-top:40px}}
+/* 専務のかたまり */
+.smblk{display:flex;align-items:flex-end;justify-content:center;gap:24px;margin-top:44px}
+.smblk .l{text-align:left}
+.smblk .lgt{font-size:var(--f1);font-weight:700;margin-bottom:6px}
+.smblk .lgb i{font-size:var(--f3);width:1.9em;height:1.9em;border-color:var(--ink);color:var(--ink)}
+.smblk .lgs{font-size:var(--f1);color:var(--ink);font-weight:700;margin-top:8px}
+.smblk .yaku{font-size:var(--f1);color:var(--sub);margin-top:16px}
+.smblk .nm{width:260px;height:auto;margin-top:2px}
+.smblk .ph{width:210px;height:auto}
+@media(max-width:600px){.smblk{gap:10px}.smblk .nm{width:170px}.smblk .ph{width:140px}.smblk .lgb i{font-size:var(--f1)}}
+/* 5つのポイント */
+.p5{display:grid;grid-template-columns:minmax(0,1fr);gap:34px 22px;margin-top:40px}
+@media(min-width:760px){.p5{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.p5c{min-width:0}.p5one{grid-template-columns:minmax(0,1fr)}
+.p5c{position:relative;background:#fff;border:1.5px solid var(--g);padding:34px 22px 24px;text-align:left}
+.p5c.wide{grid-column:1/-1}
+.p5n{position:absolute;left:-10px;top:-18px;background:var(--g);color:#fff;font-family:'Jost',sans-serif;font-weight:600;font-size:var(--f5);line-height:1;padding:10px 12px}
+.p5c h3{color:var(--g);font-size:var(--f4);font-weight:700;line-height:1.55;margin-left:40px}
+@media(max-width:600px){.p5c h3{margin-left:0;margin-top:14px}.p5c{padding:30px 16px 20px}}
+.p5c>p{font-size:var(--f2);line-height:1.9;margin-top:12px;max-width:none!important}
+.p5one{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px;align-items:center}
+@media(min-width:1000px){.p5one{grid-template-columns:170px 60px 210px minmax(0,1fr)}}
+.p5eigyo{text-align:center}
+.p5eigyo img{width:150px;height:auto;margin:0 auto}
+.p5eigyo figcaption{font-size:var(--f1);color:var(--g);font-weight:700;line-height:1.6;margin-top:6px}
+.p5ar{color:var(--g);font-size:var(--f4);letter-spacing:-.1em;text-align:center;white-space:nowrap}
+.p5ar .pc{display:none}@media(min-width:1000px){.p5ar .pc{display:inline}.p5ar .sp{display:none}}
+.p5phone{max-width:210px;margin:0 auto}
+.p5phone img{width:100%;height:auto;border:6px solid #191919;border-radius:18px;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.p5call{border:2px solid var(--y);padding:12px 14px;font-size:var(--f2);font-weight:700;line-height:1.7;color:var(--ink)}
+.p5note{font-size:var(--f1);line-height:1.8;margin-top:10px;color:#333}
+.p5cta{display:block;margin-top:14px;background:var(--g);color:#fff;font-weight:700;font-size:var(--f2);line-height:1.6;padding:12px 44px 12px 16px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%)}
+.p5cta:hover{background:var(--gd)}
+.p5g{margin-top:16px}
+.p5gt{background:var(--g);color:#fff;font-size:var(--f1);font-weight:700;padding:6px 10px}
+.p5gr{display:flex;align-items:center;gap:10px;margin-top:12px;border-left:2px solid #c9c9c6;padding-left:0}
+.p5gb{display:block;width:calc(var(--w) * .72);font-size:var(--f1);font-weight:700;padding:7px 12px;white-space:nowrap;border:1.5px solid var(--g)}
+.p5gb.y{background:var(--y);color:var(--ink)}
+.p5gb.g{background:var(--gy);color:var(--ink)}
+.p5gr b{font-family:'Jost',sans-serif;font-size:var(--f5);color:var(--g);font-weight:600}
+.p5src{font-size:var(--f1);color:var(--sub);margin-top:8px}
+.p5pic.wide{display:block;width:100%;max-width:300px;height:auto;margin:16px 0 0 auto}
+.p5local{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:14px}
+.p5local .t{font-size:var(--f2);color:var(--g);font-weight:700;line-height:1.8}
+.p5local img{width:110px;height:auto}
+.p5ai{display:flex;align-items:center;gap:18px;margin-top:16px;flex-wrap:wrap}
+.p5ai .pie{width:150px;height:150px}
+.p5ai .t{font-size:var(--f2);color:var(--g);font-weight:700;line-height:1.7}
+.p5ai .t b{font-size:var(--f5)}
+.p5ai .t small{display:block;font-size:var(--f1);color:var(--sub);font-weight:400;margin-top:6px}
+
 /* ── パソコンの余白（2026-09-15 専務「無駄に横幅が広い」） ─────────────
    柱は860pxの1本だけ。左の端は全部そろえる。
    文章だけ760pxで切って、右に少し余りを作る。端がそろうと余白に見える。 */
@@ -617,10 +674,68 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
       <p class="last"><span class="nb">制作会社ではなく</span>、<span class="nb">工務店だからこそできる</span>、<br><span class="mk nb">工務店のためのホームページづくり。</span></p>
       <a class="gonav" href="#soudan">無料相談（30分）を予約する →</a>
     </div>
+
+  </section>
+
+  <!-- ── 5つのポイント（新しいチラシの中面に合わせた 2026-09-17） ───────────────── -->
+  <section id="c03" class="alt">
+    <h2 class="gh up"><em>工務店だから分かる、<span class="nb">成果につながる5つのポイント</span></em></h2>
+    <div class="p5 up">
+      <div class="p5c wide">
+        <span class="p5n">01</span>
+        <h3><span class="nb">日程調整のやり取りが</span><span class="nb">ないから、</span><br><span class="nb">お問合せのハードルが下がる</span></h3>
+        <p>会社のGoogleカレンダーと連携して、<span class="nb">予約できる日時をお客様の画面に表示します。</span><span class="nb">日程調整のやり取りがないので、</span><span class="nb">お客様にとってお問合せのハードルが下がります。</span><span class="nb">営業担当にとっても</span><span class="nb">業務の負担が減り、</span><span class="nb">二重予約の心配もなくなります。</span></p>
+        <div class="p5one">
+          <figure class="p5eigyo"><img src="img/hp-reform/line/eigyo.png" alt="パソコンで予定を入れる営業担当の絵" width="640" height="609" loading="lazy"><figcaption>営業担当は<br><span class="nb">Googleカレンダーに</span><br>予定を入れるだけ</figcaption></figure>
+          <div class="p5ar" aria-hidden="true"><span class="pc">▶▶▶</span><span class="sp">▼</span></div>
+          <figure class="p5phone"><img src="img/hp-reform/yoyaku_1.png" alt="お客様のスマートフォンの予約画面" width="780" height="1000" loading="lazy"></figure>
+          <div class="p5side">
+            <div class="p5call"><span class="nb">お問合せページで日付を選ぶと、</span><br><span class="nb">予約できる時間が</span><span class="nb">その場で表示されます</span></div>
+            <p class="p5note"><span class="nb">Googleカレンダーで予定を入れた時間帯や、</span><span class="nb">ほかのお客様がすでに予約している枠は、</span><span class="nb">予約枠として表示されません</span></p>
+            <a class="p5cta" href="/mihon/" target="_blank" rel="noopener"><span class="nb">実際に操作して確かめられる</span><br><span class="nb">見本のページを開く</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="p5c">
+        <span class="p5n">02</span>
+        <h3>スマホで「伝わる」<span class="nb">ホームページ</span></h3>
+        <p>最近のお客様は、<span class="nb">スマートフォンで会社を調べます。</span><span class="nb">スマートフォンでの見やすさと、</span><span class="nb">お問合せまでの流れを</span><span class="nb">分かりやすく整えます。</span></p>
+        <div class="p5g">
+          <div class="p5gt">日常の調べもの・検索で使う端末（日本国内）</div>
+          <div class="p5gr"><span class="p5gb y" style="--w:94%">スマートフォン</span><b>94%</b></div>
+          <div class="p5gr"><span class="p5gb g" style="--w:38%">パソコン</span><b>38%</b></div>
+          <div class="p5src">LINEリサーチ（2023年）</div>
+        </div>
+      </div>
+      <div class="p5c">
+        <span class="p5n">03</span>
+        <h3>「工務店特化型」<span class="nb">ホームページ</span></h3>
+        <p><span class="nb">制作会社ではなく、</span><span class="nb">工務店のことをよく知る</span><span class="nb">同業の工務店がつくる</span><span class="nb">ホームページです。</span><span class="nb">自社のホームページを作り替えて、</span><span class="nb">お問合せを8倍に伸ばした</span><span class="nb">「しくみ」があります。</span></p>
+        <img class="p5pic wide" src="img/hp-reform/line/koumuten.png" alt="グラフを指し示す工務店の人の絵" width="640" height="315" loading="lazy">
+      </div>
+      <div class="p5c">
+        <span class="p5n">04</span>
+        <h3>地域のお客様に<span class="nb">見つけてもらう</span></h3>
+        <p><span class="nb">「地域名＋工務店」</span><span class="nb">「地域名＋注文住宅」など、</span><span class="nb">検索からの集客を意識した対策で、</span><span class="nb">地元のお客様に見つけてもらえます。</span></p>
+        <div class="p5local">
+          <div class="t"><span class="nb">検索で近くの工務店が見つかる</span><br><b><span class="mk">▶ 来店につながりやすい</span></b></div>
+          <img src="img/hp-reform/line/josei.png" alt="スマートフォンを持つ女性の絵" width="440" height="640" loading="lazy">
+        </div>
+      </div>
+      <div class="p5c">
+        <span class="p5n">05</span>
+        <h3>AIの検索に<span class="nb">見つけてもらう</span></h3>
+        <p><span class="nb">お客様がAIに「おすすめの工務店」を</span><span class="nb">聞く時代です。</span><span class="nb">AIが読み取りやすい形を</span><span class="nb">よく知っているので、</span><span class="nb">AIに紹介されやすい</span><span class="nb">ホームページにします。</span></p>
+        <div class="p5ai">
+          <div class="pie"><b class="y1">AI対応済</b><b class="y2">26%</b><b class="g1">AI未対応</b><b class="g2">74%</b></div>
+          <div class="t"><span class="nb">AI検索に対応している</span><span class="nb">工務店は</span><br>わずか<b><span class="mk">26%</span></b>です。<small><span class="nb">私どもが拝見した110社のうち、</span><span class="nb">対応できていたのは29社</span></small></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ── 02 前と今 ───────────────── -->
-  <section id="c02" class="alt">
+  <section id="c02">
     <h2 class="gh up"><em>作り替える前と後</em></h2>
     <p class="lead up">ここに並べたものは、すべて<b class="nb">去年までの私どもの実情</b>です。ホームページは十年ほど、十分に活かせていない状態でした。そこで一から作り替えました。</p>
 
@@ -641,44 +756,6 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     <p class="lead up">特別なことをしたわけではありません。<b>同じ手順を、<span class="nb">御社のホームページでも</span>行います</b>。</p>
   </section>
 
-  <!-- ── 03 3つの強み ───────────────── -->
-  <section id="c03">
-    <h2 class="gh up"><em>工務店だから分かる、<span class="nb">3つの強み</span></em></h2>
-
-    <div class="pcards up">
-      <a class="pcard" href="#c05">
-        <div class="ph"><span class="n">01</span><h3>予約しやすい</h3></div><img class="cpic" src="img/hp-reform/iso/t_yoyaku.jpg" alt="日付に印の付いたカレンダーの絵" width="560" height="560" loading="lazy">
-        <div class="pb">
-          <p>日程調整のやり取りを減らし、<br><b><span class="nb">お客様がスマートフォンで</span><span class="nb">その場で予約できます</span></b>。</p>
-        </div>
-      </a>
-      <a class="pcard" href="#c04">
-        <div class="ph"><span class="n">02</span><h3>AI検索に強い</h3></div><img class="cpic" src="img/hp-reform/iso/t_ai.jpg" alt="吹き出しの中に工務店の札が並ぶ絵" width="560" height="560" loading="lazy">
-        <div class="pb">
-          <p><span class="nb">AIに読める形で</span>会社の情報を書き込み、<br><b><span class="nb">AIが候補として</span><span class="nb">挙げやすい形に整えます</span></b>。</p>
-        </div>
-      </a>
-      <a class="pcard" href="#c02">
-        <div class="ph"><span class="n">03</span><h3>工務店が作っている</h3></div><img class="cpic" src="img/hp-reform/iso/t_koumuten.jpg" alt="家の骨組みとパソコンの絵" width="560" height="560" loading="lazy">
-        <div class="pb">
-          <p><span class="nb">制作会社ではなく</span><span class="nb">同業の工務店が</span>、<br><b><span class="nb">自社で確かめた手順で</span><span class="nb">お作りします</span></b>。</p>
-        </div>
-      </a>
-    </div>
-
-    <h3 class="mid up" style="margin-top:44px">そのほかに、<span class="nb">成果につながる8つのこと</span></h3>
-    <div class="pts up">
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9h13v-9"/><path d="M10 19v-5h4v5"/></svg></i><b>施工事例</b><span>「作品集」で<span class="nb">終わらせない</span></span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 7.5 12 12.5l3.5-5M12 12.5V17M9 13.5h6M9 15.5h6"/></svg></i><b>価格</b><span class="nb">隠さず、先に載せる</span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 11l8-4M8 13l8 4"/></svg></i><b>SNS</b><span class="nb">ホームページへつなげる</span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10.5 18.5h3"/></svg></i><b>スマートフォン</b><span>読みやすく、<span class="nb">押しやすく</span></span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5.5 5.5"/></svg></i><b>検索</b><span class="nb">「地域名＋工務店」で見つかる</span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></i><b>動画</b><span class="nb">トップに、現場の空気</span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/><circle cx="12" cy="12" r="3"/></svg></i><b>AI検索</b><span>AIが読み取れる作り</span></div>
-      <div class="pt"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="m8.5 15 2.5 2.5 4.5-5"/></svg></i><b>予約</b><span class="nb">その場で日時を選べる</span></div>
-    </div>
-  </section>
-
   <!-- ── 04 AI検索 ───────────────── -->
   <section id="c04" class="alt">
     <h2 class="gh up"><em>AI検索への対応</em></h2>
@@ -693,10 +770,6 @@ section.alt .pieblk,section.alt .y3n div,section.alt .fb{background:#fff}
     </div>
     <p class="lead up">会社の情報が<b>AIに読める形で書かれていないと</b>、<span class="nb">候補に入りません</span>。</p>
 
-    <div class="pieblk up">
-      <div class="pie"><b class="y1">AI対応済</b><b class="y2">26%</b><b class="g1">AI未対応</b><b class="g2">74%</b></div>
-      <div class="tx">AI検索に対応している<span class="nb">工務店は</span><br>わずか<em>26</em>%<small>私どもが拝見した110社のうち、<span class="nb">対応できていたのは29社</span></small></div>
-    </div>
 
     <div class="gbar up in">
       <span class="lb">ChatGPTなどのAIを使ったことがある人（日本）</span>
