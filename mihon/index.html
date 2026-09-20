@@ -356,5 +356,14 @@ footer .fl{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;letter-sp
   if('IntersectionObserver' in window){ new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ go2(); o.disconnect(); } }); },{rootMargin:'300px'}).observe(c); } else go2();
 })();
 </script>
+<script>
+// アクセス解析（本番 shibasun.jp のときだけ）。このページは外からリンクが無いので、開いた数＝チラシのQRからの数
+if (/(^|\.)shibasun\.jp$/i.test(location.hostname)) {
+  var GA_ID='G-REFN8K7K95';var g=document.createElement('script');g.async=true;
+  g.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(g);
+  window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date());gtag('config',GA_ID,{page_title:'みほん工務店（外販の見本）'});
+}
+</script>
 </body>
 </html>
