@@ -71,6 +71,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 @media(min-width:560px){.slot-grid{grid-template-columns:repeat(3,1fr)}}
 .slot-btn{padding:13px 6px;text-align:center;border:1px solid #d6d6d3;background:#fff;font-size:14px;letter-spacing:.06em;cursor:pointer;transition:all .2s;font-family:'Jost','Noto Sans JP',sans-serif}
 .slot-btn small{display:block;font-size:10px;color:var(--gold);letter-spacing:.12em;margin-top:3px}
+.slot-full-note{margin:10px 0 0;font-size:11.5px;color:var(--gray);letter-spacing:.02em}
 .slot-btn.full{color:#9a9a98;background:#efefec;border-color:#e4e4e1;cursor:default;pointer-events:none}
 .slot-btn.full small{color:#a8a8a6}
 .slot-btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -229,7 +230,11 @@ function rsvRender(){
   // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
   if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates[0];
   const daySlots=rsvSlots.filter(s=>s.date===rsvDate);
-  if(rsvSlot&&!daySlots.some(s=>s.id===rsvSlot))rsvSlot=null;
+  // 満席の時間は出さない（2026-09-24）。9/27は5枠のうち4枠が満席で、
+  // スマホで開くと「× 満席」が画面いっぱいに並び、平均27秒で帰られていた（74人）
+  const openSlots=daySlots.filter(s=>s.status!=='full');
+  const fullCount=daySlots.length-openSlots.length;
+  if(rsvSlot&&!openSlots.some(s=>s.id===rsvSlot))rsvSlot=null;
   rsvApp.innerHTML=`
     <div class="rsv-step-label">1. 日付を選ぶ</div>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);
@@ -237,7 +242,8 @@ function rsvRender(){
       const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
       return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w${wc}">${f.w}</div><div class="n">空き${free}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
-    <div class="slot-grid">${daySlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
+    <div class="slot-grid">${openSlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
+    ${fullCount?`<p class="slot-full-note">ほかの時間は満席です。</p>`:''}
     ${(()=>{const sel=daySlots.find(x=>x.id===rsvSlot);return sel&&rsvOnlineOk(sel)?`<p class="online-note">この時間は、ご自宅からオンラインでもご相談いただけます。<br>下の「ご相談方法」でお選びください。</p>`:''})()}
     <form id="rsv-form">
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
