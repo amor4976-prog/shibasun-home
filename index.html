@@ -185,6 +185,26 @@ br.sp{display:inline}
 .pr-scroll.gliding,.works-scroll.gliding{scroll-snap-type:none}
 .pr-scroll.dragging,.works-scroll.dragging{user-select:none;-webkit-user-select:none}
 .pr-card img,.work img{-webkit-user-drag:none}
+/* PCでカードを送る矢印（2026-10-03 専務「ドラッグする人おらんやろ」）。
+   指で送れるスマホ・タブレットには出さない。押せる所は42px角。 */
+.sl-wrap{position:relative}
+.sl-btn{display:none}
+@media(hover:hover) and (min-width:760px){
+  .sl-btn{display:flex;align-items:center;justify-content:center;position:absolute;
+    top:var(--arrowY,50%);transform:translateY(-50%);width:42px;height:42px;
+    border-radius:50%;padding:0;cursor:pointer;z-index:2;
+    background:rgba(255,255,255,.92);border:1px solid var(--linec);
+    transition:background .25s,box-shadow .25s,opacity .25s}
+  .sl-btn:hover{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+  .sl-btn svg{width:12px;height:12px;stroke:var(--ink);fill:none;stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round}
+  .sl-prev{left:10px}
+  .sl-next{right:10px}
+  .sl-btn[disabled]{opacity:0;pointer-events:none}
+  .promise .sl-btn{background:rgba(26,26,24,.5);border-color:rgba(255,255,255,.5);backdrop-filter:blur(3px)}
+  .promise .sl-btn:hover{background:rgba(26,26,24,.82)}
+  .promise .sl-btn svg{stroke:#fff}
+}
 .pr-more{display:inline-block;margin-top:30px;font-size:11.5px;letter-spacing:.14em;color:#fff;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:3px}
 /* 選ばれる理由 01-08 */
 .reasons .reason-list{max-width:760px;margin:8px auto 0}
@@ -833,7 +853,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     "シバ・サンホーム",
     "SHIBA SUN HOME"
    ],
-   "description": "奈良で新築・注文住宅を手がける工務店。現場に立つ大工歴43年の社長と、暮らしに寄り添う二代目が、親子二代で正直につくる。セミオーダーから建築家による自由設計まで。坪単価69.9万円〜（税込）の適正価格で、耐震等級3（許容応力度計算）・断熱等級6の性能を標準にする。",
+   "description": "奈良で新築・注文住宅を手がける工務店。セミオーダーから建築家による自由設計まで。坪単価69.9万円〜（税込）の適正価格で、耐震等級3（許容応力度計算）・断熱等級6の性能を標準にする。",
    "url": "https://www.shibasun.jp/",
    "image": "https://www.shibasun.jp/img/hero.jpg",
    "logo": "https://www.shibasun.jp/img/logo/mark-black.png",
@@ -1105,6 +1125,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 <section class="works" id="works">
   <div class="inner">
     <div class="label"><span class="en">Works</span><small>施工事例</small></div>
+    <div class="sl-wrap" style="--arrowY:calc(50% - 3px)">
     <div class="works-scroll" id="worksScroll">
       <a class="work fade" href="/jisseki-case12">
         <img src="img/jisseki/case12/thumb/03.jpg" srcset="img/jisseki/case12/thumb/03.jpg 640w, img/jisseki/case12/03.jpg 1600w" sizes="(min-width:900px) 360px, 80vw" alt="施工実例 丸いテーブルの正面に大きな窓。外の緑を景色に" loading="eager" decoding="async">
@@ -1150,6 +1171,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     
     
     </div>
+    </div>
     <div class="works-dots" id="worksDots"></div>
     <a class="works-more fade" href="/jisseki">建築実例をすべて見る</a>
   </div>
@@ -1169,7 +1191,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     </div>
     <div class="sd-mh"><span>個別相談会</span><em>6</em><span>つのいいこと</span></div>
     <ul class="sd-list">
-      <li><span class="n">01</span><p>担当は<u>はじめから引き渡しまで同じ人</u>。話した内容が引き継ぎで消えません</p></li>
+      <li><span class="n">01</span><p>はじめから引き渡しまで、<u>担当者は変わりません</u>。同じ話を何度もしていただく必要がありません</p></li>
       <li><span class="n">02</span><p>本体・諸費用・外構まで含めた<span class="nb"><u>総額の目安</u>を</span>、その場でお出しします</p></li>
       <li><span class="n">03</span><p><u>土地が決まっていなくても</u>大丈夫。<span class="nb">土地の見方</span>からお話しします</p></li>
       <li><span class="n">04</span><p><u>他社と迷っている段階</u>で構いません。<span class="nb">比べるための材料</span>をお渡しします</p></li>
@@ -1204,6 +1226,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <div class="promise fade">
       <span class="en pr-en">Our Promise</span>
       <p class="pr-title">私たちのこだわり</p>
+      <div class="sl-wrap" style="--arrowY:91px">
       <div class="pr-scroll" id="promiseScroll">
         <a class="pr-card" href="/iezukuri#r01"><img src="img/promise/01.jpg" alt="カウンターに並んで座る子どもたち" loading="lazy" decoding="async"><span class="pn">01</span><span class="pt">とことん、親身に。</span></a>
         <a class="pr-card" href="/iezukuri#r02"><img src="img/promise/02.jpg" alt="木の格子で仕切ったLDK" loading="lazy" decoding="async"><span class="pn">02</span><span class="pt">自分たちらしい家を、自由に。</span></a>
@@ -1214,11 +1237,18 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
         <a class="pr-card" href="/iezukuri#r07"><img src="img/promise/07.jpg" alt="玄関前で自転車の練習" loading="lazy" decoding="async"><span class="pn">07</span><span class="pt">お引き渡しは、始まりです。</span></a>
         <a class="pr-card" href="/iezukuri#r08"><img src="img/promise/08.jpg" alt="工事中の現場" loading="lazy" decoding="async"><span class="pn">08</span><span class="pt">建てている間も、ずっと。</span></a>
       </div>
+      </div>
       <a class="pr-more" href="/iezukuri">選ばれる理由 01 − 08 をすべて見る →</a>
     </div>
   </div>
 </section>
 <script>
+// 「動いた」を知らせる口。scroll の出来事と requestAnimationFrame は、
+// 絵が止められている場では飛んでこないことがある（矢印の出し入れが固まった＝実測）。
+// 自分で動かした時は、この口から直に知らせる。
+function onMove(s,fn){(s.__moveFns=s.__moveFns||[]).push(fn);
+  s.addEventListener('scroll',function(){fireMove(s);},{passive:true});}
+function fireMove(s){(s.__moveFns||[]).forEach(function(f){try{f();}catch(e){}});}
 // カードごとの「実際に止まれる位置」。端のカードは真ん中に来ないので、行ける所まで。
 // これを入れないと最後の1枚に届かず、手前のカードへ引き戻されていた。
 function stopAt(s,el){
@@ -1230,18 +1260,62 @@ function nearestStop(s,els){
   els.forEach(function(el,i){var d=Math.abs(stopAt(s,el)-s.scrollLeft);if(d<bd){bd=d;best=i;}});
   return best;
 }
+// PC用の矢印を付ける。カード1枚ずつ送り、端まで来たら消す。
+function addArrows(s,cards,word){
+  var wrap=s.parentNode;
+  if(!wrap||!wrap.classList.contains('sl-wrap'))return;
+  // 矢印で止まる所。端のカードは真ん中に来られず、隣と数十pxしか違わないので、
+  // 近すぎる止まり位置はまとめる（まとめないと1回目の押しが数十pxしか動かず、壊れて見える）
+  function steps(){
+    var max=s.scrollWidth-s.clientWidth,raw=cards.map(function(c){return stopAt(s,c);}),out=[];
+    raw.sort(function(a,b){return a-b;});
+    raw.forEach(function(v){if(!out.length||v>out[out.length-1]+60)out.push(v);});
+    if(!out.length)out=[0];
+    if(max-out[out.length-1]<60)out[out.length-1]=max; else out.push(max);
+    return out;
+  }
+  function mk(dir,label){
+    var b=document.createElement('button');
+    b.type='button';b.className='sl-btn '+(dir<0?'sl-prev':'sl-next');
+    b.setAttribute('aria-label',label);
+    b.innerHTML='<svg viewBox="0 0 12 12" aria-hidden="true"><path d="'+(dir<0?'M8 1 3 6l5 5':'M4 1l5 5-5 5')+'"/></svg>';
+    b.addEventListener('click',function(){
+      // まだ滑っている最中なら、今いる場所でなく「行き先」から数える
+      // （今いる場所で数えると、続けて押した1回ぶんが消える）
+      var base=(s.classList.contains('gliding')&&s.__to!=null)?s.__to:s.scrollLeft;
+      var st=steps(),i=0,bd=Infinity;
+      st.forEach(function(v,k){var d=Math.abs(v-base);if(d<bd){bd=d;i=k;}});
+      i=Math.max(0,Math.min(st.length-1,i+dir));
+      glide(s,st[i]);
+    });
+    wrap.appendChild(b);return b;
+  }
+  var prev=mk(-1,'前の'+word+'を見る'), next=mk(1,'次の'+word+'を見る');
+  function mark(){
+    var max=s.scrollWidth-s.clientWidth;
+    prev.disabled=s.scrollLeft<=1;
+    next.disabled=s.scrollLeft>=max-1;
+  }
+  onMove(s,mark);
+  window.addEventListener('resize',mark);
+  mark();
+}
 // 横スライドを滑らせる。scrollTo の behavior:'smooth' は横のスナップ付きの箱では
 // 動かないことがある（この箱では13pxも263pxも一歩も動かなかった＝実測）ので、自前で動かす。
 function glide(s,left){
   var from=s.scrollLeft,d=left-from,t0=null,ms=380,done=false;
+  // 続けて押された時は、前の動きを捨てて最後のものだけ動かす
+  // （捨てないと2つが同時にscrollLeftを書き合って、押した回数ぶん進まない）
+  var my=(s.__glide=(s.__glide||0)+1);
+  s.__to=left;                              // 続けて押された時の数え始め
   s.classList.add('gliding');               // 滑っている間はスナップを切る（切らないと毎回引き戻される）
-  function fin(){if(done)return;done=true;s.scrollLeft=left;s.classList.remove('dragging');s.classList.remove('gliding');}
+  function fin(){if(done||s.__glide!==my)return;done=true;s.scrollLeft=left;s.classList.remove('dragging');s.classList.remove('gliding');fireMove(s);}
   if(Math.abs(d)<1){fin();return;}
   function step(t){
-    if(done)return;
+    if(done||s.__glide!==my)return;
     if(t0===null)t0=t;
     var k=Math.min(1,(t-t0)/ms);
-    s.scrollLeft=from+d*(1-Math.pow(1-k,3));
+    s.scrollLeft=from+d*(1-Math.pow(1-k,3));fireMove(s);
     if(k<1){requestAnimationFrame(step);}else{fin();}
   }
   requestAnimationFrame(step);
@@ -1295,8 +1369,9 @@ function glide(s,left){
     glide(s,target);
     return target;
   }
-  s.addEventListener('scroll',function(){window.requestAnimationFrame(markDots);},{passive:true});
+  onMove(s,markDots);
   markDots();
+  addArrows(s,slides,'実例');
 
   // ── ゆっくり自動送り（1枚ずつ・ホバー/タッチ中は停止）──
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -1304,8 +1379,10 @@ function glide(s,left){
   function play(){if(reduce)return;stop();timer=setInterval(function(){if(!paused)goTo(cur()+1);},4800);}
   function stop(){if(timer){clearInterval(timer);timer=null;}}
   play();
-  s.addEventListener('mouseenter',function(){paused=true;});
-  s.addEventListener('mouseleave',function(){paused=false;});
+  // 矢印の上に乗っている間も止める（矢印はスライドの外側に置いてあるため）
+  var hov=(s.parentNode&&s.parentNode.classList.contains('sl-wrap'))?s.parentNode:s;
+  hov.addEventListener('mouseenter',function(){paused=true;});
+  hov.addEventListener('mouseleave',function(){paused=false;});
   s.addEventListener('touchstart',function(){paused=true;},{passive:true});
   s.addEventListener('touchend',function(){setTimeout(function(){paused=false;},2500);},{passive:true});
   document.addEventListener('visibilitychange',function(){paused=document.hidden;});
@@ -1314,7 +1391,7 @@ function glide(s,left){
   var down=false,moved=false,sx=0,sl=0;
   s.addEventListener('dragstart',function(e){e.preventDefault();});
   s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;if(e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');paused=true;});
-  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
+  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;fireMove(s);});
   window.addEventListener('pointerup',function(){if(!down)return;down=false;paused=false;goTo(cur());});
   s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
 })();
@@ -1330,9 +1407,10 @@ function glide(s,left){
   var down=false,moved=false,sx=0,sl=0;
   s.addEventListener('dragstart',function(e){e.preventDefault();});
   s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;if(e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');});
-  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
+  window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;fireMove(s);});
   window.addEventListener('pointerup',function(){if(!down)return;down=false;settle();});
   s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
+  addArrows(s,cards,'こだわり');
 })();
 </script>
 
@@ -1361,7 +1439,7 @@ function glide(s,left){
         </div>
         <div class="price-ex">
           ※ 上の金額は<b>本体価格</b>です（税込・内装・設備・照明込み）。<b>諸費用・外構・土地は別途</b>かかります。総額の目安も最初にご提示します。<br>
-          ※ 月々は35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。<br>
+          ※ 月々の返済額は、35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。<br>
           <a class="price-more" href="/products">価格・プランの詳しい内訳を見る →</a>
         </div>
       </div>
