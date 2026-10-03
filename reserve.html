@@ -167,7 +167,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <!-- 合う日時がないとき。rsvRender で時間の枠の下へ動かす。
          作り直すと入力が消えるので、ここに1回だけ置いて node ごと移す -->
     <div class="alt-box" id="kouho" hidden>
-      <p><b>合う日時がないとき</b>は、ご希望の日をお送りください。<br>折り返しご連絡し、日時を決めます。</p>
+      <p><b>合う日時がないとき</b>は、ご希望の日をお送りください。<br>折り返しご連絡し、日時を調整いたします。</p>
       <button type="button" class="alt-go" id="kouho-open">希望の日を送る</button>
       <div class="sendin" id="kouho-in">
         <div class="rsv-field"><label>第1希望<em>必須</em></label>
@@ -257,7 +257,7 @@ function rsvRender(){
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
-      <div class="rsv-field"><label>シバサンホームをどこで知りましたか<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label>
+      <div class="rsv-field"><label>何からお知りになりましたか？<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label>
         <select class="rsv-sel" id="rsv-known"><option value="">お選びください</option>${['Google検索','AI検索（ChatGPTなど）','インスタグラム','YouTube','知人の紹介','通りがかり（看板・現場）','スーモ','ポスティングチラシ','雑誌','その他'].map(t=>`<option>${t}</option>`).join('')}</select>
       </div>
       <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
@@ -340,7 +340,7 @@ async function rsvLoad(){
       if(!r.ok)throw new Error(d.error||'送信に失敗しました');
       if(window.gtag)window.gtag('event','generate_lead',{method:'date_request'});
       box.innerHTML='<div class="kouho-done"><b>ご希望の日を承りました。</b><br>'
-        +'まだご予約は確定していません。担当の柴部より、当日〜翌営業日にご連絡し、日時を決めます。<br>'
+        +'まだご予約は確定していません。担当の柴部より、当日〜翌営業日にご連絡し、日時を調整いたします。<br>'
         +'お急ぎのときはお電話（0120-154-483）でどうぞ。</div>';
     }catch(e){
       send.disabled=false; send.textContent='この候補日で送る';
