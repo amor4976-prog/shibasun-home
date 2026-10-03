@@ -176,6 +176,15 @@ br.sp{display:inline}
    その2枚が高さを決めるので、残りの下に半端な余白が出ていた（2026-08-29 専務指摘）*/
 .pr-scroll.dragging{cursor:grabbing}
 @media(hover:hover){.pr-scroll{cursor:grab}}
+/* PCでドラッグしても送れなかった原因3つ（2026-10-03 専務指摘）。
+   ①scroll-snap-type:x mandatory が、ドラッグ中に入れた位置を毎回スナップ点へ引き戻していた
+     （120px動かしても51pxのまま＝実測）。ドラッグ中だけスナップを切る。
+   ②カードの写真がブラウザの「画像の持ち出し」に取られて、途中でドラッグが切れていた。
+   ③つかんで動かすと説明の文字が選択されていた。 */
+.pr-scroll.dragging,.works-scroll.dragging,
+.pr-scroll.gliding,.works-scroll.gliding{scroll-snap-type:none}
+.pr-scroll.dragging,.works-scroll.dragging{user-select:none;-webkit-user-select:none}
+.pr-card img,.work img{-webkit-user-drag:none}
 .pr-more{display:inline-block;margin-top:30px;font-size:11.5px;letter-spacing:.14em;color:#fff;border-bottom:1px solid rgba(255,255,255,.55);padding-bottom:3px}
 /* 選ばれる理由 01-08 */
 .reasons .reason-list{max-width:760px;margin:8px auto 0}
@@ -1210,6 +1219,34 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </section>
 <script>
+// カードごとの「実際に止まれる位置」。端のカードは真ん中に来ないので、行ける所まで。
+// これを入れないと最後の1枚に届かず、手前のカードへ引き戻されていた。
+function stopAt(s,el){
+  var max=s.scrollWidth-s.clientWidth;
+  return Math.max(0,Math.min(max,el.offsetLeft+el.offsetWidth/2-s.clientWidth/2));
+}
+function nearestStop(s,els){
+  var best=0,bd=Infinity;
+  els.forEach(function(el,i){var d=Math.abs(stopAt(s,el)-s.scrollLeft);if(d<bd){bd=d;best=i;}});
+  return best;
+}
+// 横スライドを滑らせる。scrollTo の behavior:'smooth' は横のスナップ付きの箱では
+// 動かないことがある（この箱では13pxも263pxも一歩も動かなかった＝実測）ので、自前で動かす。
+function glide(s,left){
+  var from=s.scrollLeft,d=left-from,t0=null,ms=380,done=false;
+  s.classList.add('gliding');               // 滑っている間はスナップを切る（切らないと毎回引き戻される）
+  function fin(){if(done)return;done=true;s.scrollLeft=left;s.classList.remove('dragging');s.classList.remove('gliding');}
+  if(Math.abs(d)<1){fin();return;}
+  function step(t){
+    if(done)return;
+    if(t0===null)t0=t;
+    var k=Math.min(1,(t-t0)/ms);
+    s.scrollLeft=from+d*(1-Math.pow(1-k,3));
+    if(k<1){requestAnimationFrame(step);}else{fin();}
+  }
+  requestAnimationFrame(step);
+  setTimeout(fin,ms+200);   // 絵が止められている時でも必ず終わらせる（スナップを切ったままにしない）
+}
 (function(){
   var s=document.getElementById('worksScroll');
   if(!s)return;
@@ -1249,17 +1286,14 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     b.addEventListener('click',function(){goTo(i);});dotsWrap.appendChild(b);
   });
   var dots=[].slice.call(dotsWrap.children);
-  function centerOf(el){return el.offsetLeft+el.offsetWidth/2;}
-  function cur(){
-    var c=s.scrollLeft+s.clientWidth/2, best=0, bd=Infinity;
-    slides.forEach(function(el,i){var d=Math.abs(centerOf(el)-c);if(d<bd){bd=d;best=i;}});
-    return best;
-  }
+
+  function cur(){return nearestStop(s,slides);}
   function markDots(){var i=cur();dots.forEach(function(d,k){d.classList.toggle('on',k===i);});}
   function goTo(i){
     i=(i+slides.length)%slides.length;
-    var target=centerOf(slides[i])-s.clientWidth/2;
-    s.scrollTo({left:target,behavior:'smooth'});
+    var target=stopAt(s,slides[i]);
+    glide(s,target);
+    return target;
   }
   s.addEventListener('scroll',function(){window.requestAnimationFrame(markDots);},{passive:true});
   markDots();
@@ -1278,19 +1312,26 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 
   // ── PCドラッグで送る ──
   var down=false,moved=false,sx=0,sl=0;
-  s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');paused=true;});
+  s.addEventListener('dragstart',function(e){e.preventDefault();});
+  s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;if(e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');paused=true;});
   window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
-  window.addEventListener('pointerup',function(){if(!down)return;down=false;s.classList.remove('dragging');paused=false;goTo(cur());});
+  window.addEventListener('pointerup',function(){if(!down)return;down=false;paused=false;goTo(cur());});
   s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
 })();
 // こだわりカードもPCでドラッグで送れるように（自動送りはしない）
 (function(){
   var s=document.getElementById('promiseScroll');
   if(!s)return;
+  var cards=[].slice.call(s.querySelectorAll('.pr-card'));
+  function settle(){
+    if(!cards.length){s.classList.remove('dragging');return;}
+    glide(s,stopAt(s,cards[nearestStop(s,cards)]));
+  }
   var down=false,moved=false,sx=0,sl=0;
-  s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');});
+  s.addEventListener('dragstart',function(e){e.preventDefault();});
+  s.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;if(e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=s.scrollLeft;s.classList.add('dragging');});
   window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;s.scrollLeft=sl-dx;});
-  window.addEventListener('pointerup',function(){if(!down)return;down=false;s.classList.remove('dragging');});
+  window.addEventListener('pointerup',function(){if(!down)return;down=false;settle();});
   s.addEventListener('click',function(e){if(moved){e.preventDefault();moved=false;}},true);
 })();
 </script>
