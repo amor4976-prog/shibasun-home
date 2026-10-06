@@ -992,7 +992,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
      "name": "奈良で注文住宅を建てる場合の坪単価はいくらですか？",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "シバサンホームの注文住宅は坪単価69.9万円〜（税込）です。延床30坪なら本体価格2,095万円〜（税込・内装・設備・照明込み）が目安です。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示します。"
+      "text": "シバサンホームの注文住宅は坪単価63.5万円〜（税別）、税込69.9万円〜です。延床30坪なら本体価格1,905万円〜（税別・税込2,095万円）が目安で、内装・設備・照明込みです。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示します。"
      }
     },
     {
@@ -1430,14 +1430,14 @@ function glide(s,left){
           <input type="range" id="tsRange" min="30" max="45" step="1" value="30" aria-label="延床面積（坪）">
           <div class="tsim-ends"><span id="tsMin">30</span><span>45</span></div>
           <div class="tsim-out">
-            <div class="cap">本体価格の目安（税込）</div>
-            <div class="yen"><span id="tsPrice">2,095</span><em>万円</em></div>
-            <div class="sub">坪単価 <span id="tsUnit">69.9</span>万円 × <span id="tsT2">30</span>坪</div>
+            <div class="cap">本体価格の目安（税別）</div>
+            <div class="yen"><span id="tsPrice">1,905</span><em>万円</em></div>
+            <div class="sub">坪単価 <span id="tsUnit">63.5</span>万円 × <span id="tsT2">30</span>坪<span class="nb">（税込 <span id="tsTax">2,095</span>万円）</span></div>
             <div class="mon">住宅ローンなら、月々 <b id="tsMon">5.9</b>万円</div>
           </div>
         </div>
         <div class="price-ex">
-          ※ 上の金額は<b>本体価格</b>です（税込・内装・設備・照明込み）。<b>諸費用・外構・土地は別途</b>かかります。総額の目安も最初にご提示します。<br>
+          ※ 上の金額は<b>本体価格</b>です（税別・内装・設備・照明込み）。<b>諸費用・外構・土地は別途</b>かかります。総額の目安も最初にご提示します。<br>
           ※ 月々の返済額は、35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。<br>
           <a class="price-more" href="/products">価格・プランの詳しい内訳を見る →</a>
         </div>
@@ -1625,7 +1625,7 @@ else setupLifeBand();
     <div class="faq-list fade">
       <div class="faq-item">
         <button class="faq-q" type="button">奈良で注文住宅を建てる場合の坪単価はいくらですか？</button>
-        <div class="faq-a"><div>シバサンホームの注文住宅は<b>坪単価69.9万円〜（税込）</b>です。延床30坪なら本体価格2,095万円〜（税込・内装・設備・照明込み）が目安です。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示するので、後から想定外の出費に驚きません。</div></div>
+        <div class="faq-a"><div>シバサンホームの注文住宅は<b>坪単価63.5万円〜（税別）</b>、税込69.9万円〜です。延床30坪なら本体価格1,905万円〜（税別・税込2,095万円）が目安で、内装・設備・照明込みです。このほかに諸費用・外構費が別途かかりますが、総額の目安も最初にご提示するので、後から想定外の出費に驚きません。</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" type="button">対応エリアはどこですか？</button>
@@ -1682,7 +1682,7 @@ else setupLifeBand();
   <div class="inner">
     <div class="label"><span class="en">Reserve</span><small>来店予約</small></div>
     <p class="reserve-lead">
-      来店もオンラインも無料。<span class="nb">しつこい営業</span>はいたしません。<br>
+      来店もオンラインも無料です。<br>
       下のカレンダーは<b>現在の空き状況</b>です。<span class="nb">ご希望の日時</span>をお選びください。<br>
       <span class="rsv-live">空き状況はリアルタイムで更新されています</span>
     </p>
@@ -1996,7 +1996,7 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   var r=document.getElementById('tsRange'); if(!r)return;
   // 掛け算は丸めない単価で（公開している総額と合わせる。69.9は表示用の丸め値で、
   // それで掛けると30坪が2,097万円になり価格ページの2,095万円とずれる）
-  var TAN={'2f':69.85,'flat':78.7}, SHOW={'2f':69.9,'flat':78.7};
+  var TAN={'2f':69.85,'flat':78.7}, SHOW={'2f':63.5,'flat':71.5}; // TAN＝税込の単価（ローン・税込表示用）、SHOW＝税別の坪単価（大きく出す）
   var MIN={'2f':30,'flat':24}, kind='2f', tsubo=30;
   var R=0.01/12, N=420, F=R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
   function calc(){
@@ -2004,7 +2004,8 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
     document.getElementById('tsUnit').textContent=SHOW[kind];
     document.getElementById('tsTsubo').innerHTML=tsubo+'<em>坪</em>';
     document.getElementById('tsT2').textContent=tsubo;
-    document.getElementById('tsPrice').textContent=Math.floor(total).toLocaleString('ja-JP');
+    document.getElementById('tsPrice').textContent=Math.floor(SHOW[kind]*tsubo).toLocaleString('ja-JP');
+    document.getElementById('tsTax').textContent=Math.floor(total).toLocaleString('ja-JP');
     document.getElementById('tsMon').textContent=(total*F).toFixed(1);
   }
   document.querySelectorAll('#tsKind button').forEach(function(b){

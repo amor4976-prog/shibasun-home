@@ -162,6 +162,12 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .two h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,4.6vw,24px);font-weight:500;letter-spacing:.06em;line-height:1.7;margin-bottom:12px;text-wrap:balance}
 .two p{font-size:13.5px;font-weight:300;line-height:2.2;color:#454543}
 .two .more{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:.08em;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.hcase{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.hcase a{display:block;color:inherit}
+.hcase img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9e6e0}
+.hcase b{display:block;font-size:13px;font-weight:500;margin-top:8px;line-height:1.5}
+.hcase small{display:block;font-size:11px;color:var(--gray);margin-top:2px}
+@media(max-width:600px){.hcase{grid-template-columns:1fr;gap:16px}.hcase a{display:grid;grid-template-columns:42% 1fr;gap:12px;align-items:center}.hcase b{margin-top:0}}
 .works{max-width:1040px;margin:0 auto}
 .strip{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;--bh:220px}
 .strip::-webkit-scrollbar{display:none}
@@ -204,6 +210,26 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <p>地元工務店が建てる、<span class="nb">適正価格</span>の<span class="nb">“ちょうどいい平屋”</span>。<br>シンプルに、無駄なく、<span class="nb">安心快適に暮らす</span>。<br>“ちょうどいい平屋”という選択。</p>
 </div>
 
+<section class="sec">
+  <div class="works">
+    <div class="label"><span class="en">Works</span><small>奈良で建てた平屋</small></div>
+    <div class="strip">
+      <figure><img src="img/hiraya/horii_07.jpg" alt="平屋のキッチン" loading="lazy" decoding="async" width="1600" height="1067"></figure>
+      <figure><img src="img/hiraya/kadowaki_12_table.jpg" alt="平屋のダイニングキッチン" loading="lazy" decoding="async" width="1536" height="1024"></figure>
+      <figure><img src="img/hiraya/kadowaki_47.jpg" alt="平屋のリビング" loading="lazy" decoding="async" width="1600" height="1068"></figure>
+      <figure><img src="img/hiraya/horii_19.jpg" alt="平屋の書斎コーナー" loading="lazy" decoding="async" width="1600" height="1067"></figure>
+      <figure><img src="img/hiraya/horii_53.jpg" alt="平屋の玄関収納" loading="lazy" decoding="async" width="1600" height="1067"></figure>
+      <figure><img src="img/hiraya/kadowaki_03.jpg" alt="平屋の玄関土間" loading="lazy" decoding="async" width="1600" height="1068"></figure>
+    </div>
+    <div class="hcase">
+      <a href="/jisseki-case03"><img src="img/jisseki/case03/thumb/01.jpg" alt="深い緑の壁が迎える平屋" loading="lazy" decoding="async"><span><b>深い緑の壁が迎える家</b><small>平群町・26.3坪</small></span></a>
+      <a href="/jisseki-case10"><img src="img/jisseki/case10/thumb/01.jpg" alt="木の天井とアイアンの梯子の平屋" loading="lazy" decoding="async"><span><b>木の天井と、アイアンの梯子</b><small>大和郡山市・28.3坪</small></span></a>
+      <a href="/jisseki-case14"><img src="img/jisseki/case14/thumb/03.jpg" alt="黒でまとめた平屋のLDK" loading="lazy" decoding="async"><span><b>黒でまとめた、静かなLDK</b><small>河合町・18.0坪</small></span></a>
+    </div>
+    <a class="more" href="/jisseki">建築実例をすべて見る →</a>
+  </div>
+</section>
+
 <section class="sec" style="padding-top:8px">
   <div class="pos">
     <div class="pi"><div class="ph2"><span class="k">坪単価（NEST FLAT）</span><div class="v"><b>71.5<small>万円〜</small></b><span class="u">税別</span></div></div><p>平屋プラン<span class="nb">NEST FLAT</span>の本体価格・税別（<span class="nb">税込78.7万円</span>）。内装・設備・照明込み。<span class="nb">24坪</span>なら<span class="nb">本体価格1,716万円〜</span>（<span class="nb">税込1,888万円</span>）が目安です。諸費用・外構・土地は別途で、<span class="nb">総額の目安</span>も最初にお伝えします。</p></div>
@@ -232,24 +258,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <div><div class="no">01</div><h3>地元密着工務店だからできる<span class="nb">品質と適正価格</span></h3><p>広告費や中間マージンをかけず、大工社長のもと<span class="nb">当社指定の職人</span>「チームシバサン会」が<span class="nb">直接施工するため</span>、<span class="nb">同じ品質</span>でも<span class="nb">コストを抑えられます</span>。</p></div>
     <div><div class="no">02</div><h3>耐震等級3・断熱等級6の<span class="nb">高性能住宅</span></h3><p><span class="nb">耐震等級3</span>（全棟・許容応力度計算）、<span class="nb">断熱等級6</span>（HEAT20 G2相当）、<span class="nb">UA値0.4〜0.46</span>、<span class="nb">C値0.5以下</span>を標準としています。2階建てと<span class="nb">同じ標準</span>です。</p></div>
     <div><div class="no">03</div><h3>使いやすい一流メーカー設備を<span class="nb">標準仕様に採用</span></h3><p>キッチンは<span class="nb">W2550mm</span>／3口IH／深型食洗機（Panasonic・LIXIL等から選択）。浴室1616・<span class="nb">高断熱保温浴槽</span>。照明器具一式（<span class="nb">35万円分</span>を含む）が<span class="nb">本体価格に含まれます</span>。</p></div>
-    <div><div class="no">04</div><h3>安心の自社職人施工、<span class="nb">万全のサポート</span></h3><p>大工歴43年の社長のもと、<span class="nb">当社指定の職人</span>がつくります。3ヶ月・6ヶ月・1年・2年・5年・<span class="nb">10年〜の無償定期点検</span>（以降も継続）。</p></div>
+    <div><div class="no">04</div><h3>当社指定の職人が施工、<span class="nb">万全のサポート</span></h3><p>大工歴43年の社長のもと、<span class="nb">当社指定の職人</span>がつくります。3ヶ月・6ヶ月・1年・2年・5年・<span class="nb">10年〜の無償定期点検</span>（以降も継続）。</p></div>
   </div>
 </section>
 
-<section class="sec">
-  <div class="works">
-    <div class="label"><span class="en">Works</span><small>奈良で建てた平屋</small></div>
-    <div class="strip">
-      <figure><img src="img/hiraya/horii_07.jpg" alt="平屋のキッチン" loading="lazy" decoding="async" width="1600" height="1067"></figure>
-      <figure><img src="img/hiraya/kadowaki_12_table.jpg" alt="平屋のダイニングキッチン" loading="lazy" decoding="async" width="1536" height="1024"></figure>
-      <figure><img src="img/hiraya/kadowaki_47.jpg" alt="平屋のリビング" loading="lazy" decoding="async" width="1600" height="1068"></figure>
-      <figure><img src="img/hiraya/horii_19.jpg" alt="平屋の書斎コーナー" loading="lazy" decoding="async" width="1600" height="1067"></figure>
-      <figure><img src="img/hiraya/horii_53.jpg" alt="平屋の玄関収納" loading="lazy" decoding="async" width="1600" height="1067"></figure>
-      <figure><img src="img/hiraya/kadowaki_03.jpg" alt="平屋の玄関土間" loading="lazy" decoding="async" width="1600" height="1068"></figure>
-    </div>
-    <a class="more" href="/jisseki">建築実例をすべて見る →</a>
-  </div>
-</section>
 
 <div data-cta="doc"></div>
 
