@@ -627,5 +627,48 @@ if(/(^|\.)shibasun\.jp$/i.test(location.hostname)){
   gtag('js',new Date());gtag('config','G-REFN8K7K95',{page_title:'資料'});
 }
 </script>
+<script>
+/* 電話番号の桁を見る（2026-10-08 専務「桁がおかしかったら送信できないように」）。
+   携帯・IP（070 080 090 050 060 020）と0800は11桁、それ以外の0ではじまる番号は10桁。
+   1桁足りない携帯が一番多いので、「10桁か11桁」ではなく頭の番号ごとに見る。
+   ハイフン・空白・かっこ・全角の数字・+81 はこちらで直して数えるので、お客様の書き方は問わない。
+   海外の番号（+81以外の+ではじまるもの）は8〜15桁なら通す。
+   空のときは何も言わない（必須かどうかは欄ごとの決まりに任せる）。 */
+(function(){
+  var ELEVEN=['070','080','090','050','060','020'];
+  function han(v){
+    return String(v||'').replace(/[\uFF10-\uFF19\uFF0B]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0);});
+  }
+  function ng(raw){
+    var v=han(raw).trim();
+    if(!v)return '';
+    var t=v.replace(/[^0-9+]/g,'');
+    if(/^\+/.test(t)&&!/^\+81/.test(t)){
+      var g=t.replace(/[^0-9]/g,'');
+      return (g.length>=8&&g.length<=15)?'':'お電話番号をもう一度ご確認ください';
+    }
+    var d=t.replace(/^\+81/,'0').replace(/^0081/,'0').replace(/[^0-9]/g,'');
+    if(d.charAt(0)!=='0')return 'お電話番号は市外局番からご記入ください（例：090-0000-0000）';
+    var need=(ELEVEN.indexOf(d.slice(0,3))>=0||d.slice(0,4)==='0800')?11:10;
+    if(d.length!==need)return 'お電話番号が'+need+'桁になっていません。もう一度ご確認ください（例：'+(need===11?'090-0000-0000':'0742-00-0000')+'）';
+    return '';
+  }
+  function check(el){
+    if(!el||el.type!=='tel')return;
+    el.setCustomValidity(ng(el.value));
+  }
+  document.addEventListener('input',function(e){check(e.target);},true);
+  document.addEventListener('change',function(e){check(e.target);},true);
+  // 送信ボタンを押した時点でも見る（自動入力など、打たずに入った値のため）。
+  // ブラウザが中身を見るより先に動かすので、capture で受ける。
+  document.addEventListener('click',function(e){
+    var t=e.target, b=t&&t.closest?t.closest('button,input[type=submit]'):null;
+    if(!b)return;
+    var f=b.form||(b.closest?b.closest('form'):null);
+    if(!f||!f.querySelectorAll)return;
+    [].forEach.call(f.querySelectorAll('input[type=tel]'),check);
+  },true);
+})();
+</script>
 </body>
 </html>
