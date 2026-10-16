@@ -144,6 +144,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fc-tel{background:#fff;color:var(--ink);border-right:1px solid var(--linec)}
 .fc-cat{background:var(--ink);color:#fff}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
+.rsv-selection{margin-top:24px;padding:12px 14px;border:1px solid var(--linec);background:#faf9f6;font-size:13px;line-height:1.9;letter-spacing:.02em}.tchip{min-height:44px}.rsv-field input,.rsv-field textarea{scroll-margin-top:100px}
+.form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 </style>
 </head>
 <body>
@@ -168,17 +170,17 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
          作り直すと入力が消えるので、ここに1回だけ置いて node ごと移す -->
     <div class="alt-box" id="kouho" hidden>
       <p><b>合う日時がないとき</b>は、ご希望の日をお送りください。<br>折り返しご連絡し、日時を調整いたします。</p>
-      <button type="button" class="alt-go" id="kouho-open">希望の日を送る</button>
+      <button type="button" class="alt-go" id="kouho-open">希望日を入力する</button>
       <div class="sendin" id="kouho-in">
         <div class="rsv-field"><label>第1希望<em>必須</em></label>
-          <div class="two"><input type="date" id="k-d1"><select id="k-b1">
+          <div class="two"><input type="date" id="k-d1" aria-label="第1希望の日付"><select id="k-b1" aria-label="第1希望の時間帯">
             <option>午前（9:00〜12:00）</option><option selected>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div></div>
         <div class="rsv-field"><label>第2希望</label>
-          <div class="two"><input type="date" id="k-d2"><select id="k-b2">
+          <div class="two"><input type="date" id="k-d2" aria-label="第2希望の日付"><select id="k-b2" aria-label="第2希望の時間帯">
             <option>午前（9:00〜12:00）</option><option selected>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div></div>
-        <div class="rsv-field"><label>お名前<em>必須</em></label><input id="k-name" autocomplete="name" placeholder="柴 太郎"></div>
-        <div class="rsv-field"><label>お電話番号<em>どちらか必須</em></label><input id="k-tel" type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
-        <div class="rsv-field"><label>メールアドレス<em>どちらか必須</em></label><input id="k-mail" type="email" autocomplete="email" placeholder="taro@example.com"></div>
+        <div class="rsv-field"><label for="k-name">お名前<em>必須</em></label><input id="k-name" autocomplete="name" placeholder="柴 太郎"></div>
+        <div class="rsv-field"><label for="k-tel">お電話番号<em>どちらか必須</em></label><input id="k-tel" type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
+        <div class="rsv-field"><label for="k-mail">メールアドレス<em>どちらか必須</em></label><input id="k-mail" type="email" autocomplete="email" placeholder="taro@example.com" inputmode="email"></div>
         <button type="button" class="alt-go alt-send" id="kouho-send">この候補日で送る</button>
         <p class="sendnote">この場では予約は確定しません。担当の柴部から折り返しご連絡いたします。</p>
       </div>
@@ -213,15 +215,25 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 
 <script>
 const SHIBAGRAM_API='https://shibagram.onrender.com';
+let rsvSubmitting=false;
 const rsvApp=document.getElementById('rsv-app');
 let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false,rsvMethod='visit';
 // 夕方の枠は置いても埋まっていない（17時台は67枠に対して予約1件・10時は6件）。
 // 空いているここだけ「オンラインでも」と出す。10時・13時・15時には出さない＝
 // 来店できる方をオンラインへ寄せないため（専務 2026-09-15）。
 const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
-function rsvFallback(){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">ただいまオンライン予約がご利用いただけません。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話ください。<br>（9:00-18:00／水曜定休）</div>';}
+function rsvFallback(){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">予約枠を読み込めませんでした。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話いただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">公式LINEでご相談ください</a>。<br>（電話受付 9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
 function rsvRender(){
+  const candidateBox=document.getElementById('kouho');
+  // 日時を選び直しても、入力済みの連絡先・相談内容は残す。
+  const previousForm=document.getElementById('rsv-form');
+  const savedForm=previousForm?{
+    fields:[...previousForm.querySelectorAll('input,textarea,select')].map(el=>({key:el.name||el.id,value:el.value})),
+    topics:[...previousForm.querySelectorAll('.tchip.on[data-t]')].map(el=>el.dataset.t),
+    method:previousForm.querySelector('.mchip.on')?.dataset.m
+  }:null;
+
   // 満席だけの日は日付の帯に出さない（専務 2026-09-13「予約できる日が並んでる方がいい」）。
   // 2026-08-06に「満席も出す」と決めた形からの変更。時間ごとの「× 満席」は残す
   const dates=[...new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date))];
@@ -246,37 +258,52 @@ function rsvRender(){
     ${fullCount?`<p class="slot-full-note">ほかの時間は満席です。</p>`:''}
     ${(()=>{const sel=daySlots.find(x=>x.id===rsvSlot);return sel&&rsvOnlineOk(sel)?`<p class="online-note">この時間は、ご自宅からオンラインでもご相談いただけます。<br>下の「ご相談方法」でお選びください。</p>`:''})()}
     <form id="rsv-form">
+      <p class="rsv-selection" role="status">${(()=>{const chosen=daySlots.find(x=>x.id===rsvSlot);if(!chosen)return '上の日付・時間をお選びください。';const date=fmtDate(chosen.date);return '選択中：'+date.md+'（'+date.w+'） '+chosen.startTime+'〜'+chosen.endTime;})()}</p>
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
-      <div class="rsv-field"><label>お名前<em>必須</em></label><input name="name" required autocomplete="name" placeholder="柴 太郎"></div>
-      <div class="rsv-field"><label>お電話番号<em>必須</em></label><input name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000"></div>
-      <div class="rsv-field"><label>ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
-      <div class="rsv-field"><label>メールアドレス</label><input name="email" type="email" autocomplete="email" placeholder="任意"></div>
+      <div class="rsv-field"><label for="rsv-name">お名前<em>必須</em></label><input id="rsv-name" name="name" required autocomplete="name" placeholder="柴 太郎"></div>
+      <div class="rsv-field"><label for="rsv-phone">お電話番号<em>必須</em></label><input id="rsv-phone" name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
+      <div class="rsv-field"><label for="rsv-address">ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input id="rsv-address" name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
+      <div class="rsv-field"><label for="rsv-email">メールアドレス</label><input id="rsv-email" name="email" type="email" autocomplete="email" placeholder="任意" inputmode="email"></div>
       <div class="rsv-field"><label>ご相談方法</label>
-        <div class="topic-chips method-chips">${[['visit','ご来店して相談'],['online','オンラインで相談']].map(([v,t])=>`<button type="button" class="tchip mchip${v===rsvMethod?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
+        <div class="topic-chips method-chips">${[['visit','来店で相談'],['online','オンラインで相談']].map(([v,t])=>`<button type="button" class="tchip mchip${v===rsvMethod?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
-      <div class="rsv-field"><label>何からお知りになりましたか？<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label>
+      <div class="rsv-field"><label for="rsv-known">当社を知ったきっかけ<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label>
         <select class="rsv-sel" id="rsv-known"><option value="">お選びください</option>${['Google検索','AI検索（ChatGPTなど）','インスタグラム','YouTube','知人の紹介','通りがかり（看板・現場）','スーモ','ポスティングチラシ','雑誌','その他'].map(t=>`<option>${t}</option>`).join('')}</select>
       </div>
-      <div class="rsv-field"><label>その他ご質問（任意）</label><textarea name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
+      <div class="rsv-field"><label for="rsv-message">その他ご質問（任意）</label><textarea id="rsv-message" name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
+      <p class="form-error" id="rsv-error" role="alert" hidden><span class="error-detail">送信できませんでした。入力内容は残っています。</span><br>もう一度お試しいただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEでご相談ください</a>。</p>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
       <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときは、キャンセル・変更も気軽にどうぞ。</p>
     </form>`;
   // 「合う日時がないとき」を時間の枠の下へ移す。作り直さず node ごと動かすので入力は消えない
-  const kouho=document.getElementById('kouho'), grid=rsvApp.querySelector('.slot-grid');
+  const kouho=candidateBox, grid=rsvApp.querySelector('.slot-grid');
   if(kouho&&grid&&grid.parentNode){ kouho.hidden=false; grid.parentNode.insertBefore(kouho, grid.nextSibling); }
   rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
   rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+
+  if(savedForm){
+    const form=document.getElementById('rsv-form');
+    savedForm.fields.forEach(item=>{const el=[...form.querySelectorAll('input,textarea,select')].find(el=>(el.name||el.id)===item.key);if(el)el.value=item.value;});
+    form.querySelectorAll('.tchip[data-t]').forEach(el=>el.classList.toggle('on',savedForm.topics.includes(el.dataset.t)));
+    if(savedForm.method)form.querySelectorAll('.mchip').forEach(el=>el.classList.toggle('on',el.dataset.m===savedForm.method));
+  }
   document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
 }
 async function rsvSubmit(e){
   e.preventDefault();const f=e.target;
+  if(rsvSubmitting)return;
   if(!rsvSlot){alert('ご希望の時間を選択してください');return}
-  const btn=f.querySelector('.rsv-submit');btn.disabled=true;btn.textContent='送信中…';
+  rsvSubmitting=true;
+  const submittedSlot=rsvSlot;
+  const slotControls=[...rsvApp.querySelectorAll('.date-chip,.slot-btn')].map(el=>[el,el.disabled]);
+  slotControls.forEach(([el])=>el.disabled=true);
+  const btn=f.querySelector('.rsv-submit');const previousError=f.querySelector('.form-error');if(previousError)previousError.hidden=true;
+  btn.disabled=true;btn.textContent='送信中…';
   const topics=[...rsvApp.querySelectorAll('.tchip.on:not(.mchip):not(.kchip)')].map(c=>c.dataset.t);
   const knownEl=document.getElementById('rsv-known');const known=knownEl&&knownEl.value?knownEl.value:undefined;
   const methodLabel=rsvMethod==='online'?'オンライン相談（Web）':'ご来店';
@@ -285,12 +312,14 @@ async function rsvSubmit(e){
   const addr=f.address.value.trim();
   const msg=[`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
-    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:rsvSlot,reservationType:'visit',meetingMethod,customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
+    const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:submittedSlot,reservationType:'visit',meetingMethod,customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'予約に失敗しました');
-    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===rsvSlot);const fd=fmtDate(sel.date);
-    rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} にお待ちしております。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
-  }catch(err){btn.disabled=false;btn.textContent='この日時で予約する';alert(err.message+'\nお手数ですが別の日時をお試しいただくか、0120-154-483までお電話ください。');rsvLoad();}
+    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===submittedSlot);const fd=fmtDate(sel.date);
+    rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} のご予約を受け付けました。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
+  }catch(err){
+    rsvSubmitting=false;slotControls.forEach(([el,disabled])=>el.disabled=disabled);btn.disabled=false;btn.textContent='この日時で予約する';const notice=f.querySelector('.form-error');notice.hidden=false;
+    notice.querySelector('.error-detail').textContent=(/[\u3040-\u30ff\u3400-\u9fff]/.test(err.message)?err.message:'送信できませんでした。')+' 入力内容は残っています。';rsvLoad();}
 }
 function rsvFormDirty(){
   // 希望日の欄も「入力中」に数える。数えないと1分ごとの取り直しで打った字が消える
@@ -318,17 +347,18 @@ async function rsvLoad(){
   if(!box||!open||!send) return;
   const g=id=>document.getElementById(id);
   const min=new Date(); min.setHours(0,0,0,0); min.setDate(min.getDate()+1);
-  g('k-d1').min=min.toISOString().slice(0,10);
-  g('k-d2').min=min.toISOString().slice(0,10);
+  g('k-d1').min=[min.getFullYear(),String(min.getMonth()+1).padStart(2,'0'),String(min.getDate()).padStart(2,'0')].join('-');
+  g('k-d2').min=[min.getFullYear(),String(min.getMonth()+1).padStart(2,'0'),String(min.getDate()).padStart(2,'0')].join('-');
   open.addEventListener('click',()=>{
     inn.classList.toggle('open');
-    open.textContent=inn.classList.contains('open')?'閉じる':'希望の日を送る';
+    open.textContent=inn.classList.contains('open')?'閉じる':'希望日を入力する';
   });
   send.addEventListener('click',async()=>{
     const name=g('k-name').value.trim(), tel=g('k-tel').value.trim(), mail=g('k-mail').value.trim();
     if(!g('k-d1').value){alert('第1希望の日を選んでください');return}
     if(!name){alert('お名前を入れてください');return}
     if(!tel&&!mail){alert('お電話番号かメールアドレスのどちらかを入れてください');return}
+    for(const id of ['k-d1','k-d2','k-tel','k-mail']){if(!g(id).reportValidity())return;}
     send.disabled=true; send.textContent='送信中…';
     try{
       const r=await fetch(SHIBAGRAM_API+'/api/public/date-request',{
