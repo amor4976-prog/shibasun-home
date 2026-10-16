@@ -51,7 +51,7 @@ h1{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(19px,5.2vw,27px)
 /* 写真が縦に連続する。PCは2列で縦写真と横写真を噛み合わせる（切らない・隙間なく詰む） */
 .shots{columns:1}
 .shots figure{break-inside:avoid;-webkit-column-break-inside:avoid;margin:0 0 24px}
-.shots img{width:100%;height:auto;background:#e6e4da}
+.shots img{width:auto;max-width:100%;height:auto;max-height:70vh;max-height:min(70svh,720px);margin:0 auto;background:#e6e4da}
 .shots figcaption{padding:11px 24px 0}
 .shots figcaption b{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;color:var(--ink);margin-bottom:5px}
 .shots figcaption span{display:block;font-size:12.5px;font-weight:300;color:#57544c;letter-spacing:.03em;line-height:1.95}

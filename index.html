@@ -169,7 +169,7 @@ br.sp{display:inline}
 .pr-scroll::-webkit-scrollbar{display:none}
 .pr-card{flex:0 0 60%;max-width:238px;scroll-snap-align:center;display:block;text-align:left;color:#fff}
 @media(min-width:760px){.pr-card{flex:0 0 238px}}
-.pr-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#2a2a28}
+.pr-card img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:#2a2a28}
 .pr-card .pn{display:block;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.24em;margin:12px 0 3px;color:rgba(255,255,255,.65)}
 .pr-card .pt{display:block;font-family:'Zen Kaku Gothic New',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.04em;line-height:1.65;min-height:3.3em}
 /* 文字の箱を常に2行の高さで確保する。8枚のうち14文字の2枚だけが折り返し、
@@ -386,6 +386,7 @@ section{padding:58px 22px}
   display:flex;align-items:center;gap:14px;margin-top:24px;width:fit-content;
   font-family:'Zen Kaku Gothic New','Jost',sans-serif;font-size:13px;letter-spacing:.1em;font-weight:500;
 }
+.works-more[data-hp-entry]{display:block;max-width:100%;line-height:1.9}.works-more[data-hp-entry]::after{display:none}
 .works-scroll + .works-more{margin-top:34px}
 .works-more::after{content:"";width:46px;height:1px;background:var(--ink);transition:width .3s}
 .works-more:hover::after{width:70px}
@@ -599,7 +600,8 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .cl-lead{font-size:12px;color:var(--gray);letter-spacing:.12em}
 .cl-h{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(23px,6.4vw,32px);font-weight:500;letter-spacing:.1em;margin-top:6px}
 .cl-list{margin-top:26px}
-.cl-item{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linec)}
+.cl-item{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linec)}
+@media(max-width:360px){.cl-item{grid-template-columns:96px minmax(0,1fr);gap:12px}}
 .cl-item:first-of-type{border-top:1px solid var(--linec)}
 .cl-item .th{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#ededeb}
 .cl-item .th img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -1660,7 +1662,7 @@ else setupLifeBand();
     <div class="cl-list">
       <a class="cl-item fade" href="/blog-fuyu-hiatari">
         <span class="th"><img src="img/blog/thumb/fuyu-hiatari.webp" width="760" height="507" alt="天窓と大きな窓から床に日差しが入るLDK" loading="lazy" decoding="async"></span>
-        <span><span class="kind">家えらび</span><span class="t">冬の日当たりは、<span style="white-space:nowrap">土地を買う前に見てください</span></span></span>
+        <span><span class="kind">家えらび</span><span class="t">冬の日当たりは、<span style="white-space:nowrap">土地を買う前に</span><span style="white-space:nowrap">見てください</span></span></span>
       </a>
       <a class="cl-item fade" href="/blog-koujo">
         <span class="th"><img src="img/blog/thumb/koujo.webp" width="760" height="507" alt="書類と電卓が置かれた机" loading="lazy" decoding="async"></span>
@@ -1672,7 +1674,7 @@ else setupLifeBand();
       </a>
       <a class="cl-item fade" href="/blog-kouku">
         <span class="th"><img src="img/blog/thumb/kouku.webp" width="760" height="507" alt="玄関ポーチと、道路へ下りる階段" loading="lazy" decoding="async"></span>
-        <span><span class="kind">暮らし</span><span class="t">校区だけは、<span style="white-space:nowrap">あとから選び直せません</span></span></span>
+        <span><span class="kind">暮らし</span><span class="t">校区だけは、<span style="white-space:nowrap">あとから</span><span style="white-space:nowrap">選び直せません</span></span></span>
       </a>
     </div>
     <a class="cl-more" href="/blog">コラムをさらに見る<span>›</span></a>
