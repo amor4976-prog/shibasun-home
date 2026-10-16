@@ -292,6 +292,13 @@ function rsvRender(){
     form.querySelectorAll('.tchip[data-t]').forEach(el=>el.classList.toggle('on',savedForm.topics.includes(el.dataset.t)));
     if(savedForm.method)form.querySelectorAll('.mchip').forEach(el=>el.classList.toggle('on',el.dataset.m===savedForm.method));
   }
+  if(!savedForm){
+    const query=new URLSearchParams(location.search);
+    if(query.get('visit')==='ob'||query.has('pref')){
+      const pref=(query.get('pref')||'').slice(0,500);
+      document.getElementById('rsv-message').value='OB様邸の見学希望'+(pref?'。見たいポイント：'+pref:'');
+    }
+  }
   document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
 }
 async function rsvSubmit(e){
