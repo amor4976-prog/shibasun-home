@@ -90,6 +90,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 .cmap-ttl{font-family:'Zen Kaku Gothic New',sans-serif;font-size:14px;font-weight:500;letter-spacing:.06em;margin-bottom:6px}
 .cmap-body p{font-size:13px;font-weight:300;color:#454543;line-height:2;margin-bottom:12px}
 .cmap-btn{display:inline-block;font-size:12.5px;letter-spacing:.06em;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.hiraya-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px auto 0}.hiraya-nav a{padding:12px 16px;border:1px solid var(--linec);font-size:13px;letter-spacing:.04em}#hiraya-works,#hiraya-price,#hiraya-faq{scroll-margin-top:90px}
 /* cta */
 .cta{text-align:center;padding:56px 24px 70px}
 .cta h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:500;letter-spacing:.08em;margin-bottom:8px}
@@ -207,10 +208,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </div>
 
 <div class="intro">
-  <p>地元工務店が建てる、<span class="nb">適正価格</span>の<span class="nb">“ちょうどいい平屋”</span>。<br>シンプルに、無駄なく、<span class="nb">安心快適に暮らす</span>。<br>“ちょうどいい平屋”という選択。</p>
+  <p><span class="nb">18.0坪から28.3坪まで。</span><br>実際に建てた平屋をご紹介します。<br>写真と坪数を見ながら、<span class="nb">ご希望の広さ</span>をお考えください。</p>
+  <nav class="hiraya-nav" aria-label="平屋ページの案内"><a href="#hiraya-works">建築実例</a><a href="#hiraya-price">価格の目安</a><a href="#hiraya-faq">よくある質問</a></nav>
 </div>
 
-<section class="sec">
+<section class="sec" id="hiraya-works">
   <div class="works">
     <div class="label"><span class="en">Works</span><small>奈良で建てた平屋</small></div>
     <div class="strip">
@@ -227,6 +229,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <a href="/jisseki-case14"><img src="img/jisseki/case14/thumb/03.jpg" alt="黒でまとめた平屋のLDK" loading="lazy" decoding="async" width="640" height="427"><span><b>黒でまとめた、静かなLDK</b><small>河合町・18.0坪</small></span></a>
     </div>
     <a class="more" href="/jisseki">建築実例をすべて見る →</a>
+    <p style="text-align:center;margin:24px auto 12px;font-size:14px">土地が決まっていない方も、<span class="nb">平屋の広さと予算</span>をご相談いただけます。</p>
+    <div class="cbtns"><a class="cbtn cbtn-fill" href="/reserve">平屋の広さ・予算を相談する</a></div>
   </div>
 </section>
 
@@ -244,7 +248,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <div class="two">
     <img src="img/hiraya/horii_01.jpg" alt="平屋のLDKと畳コーナー" loading="lazy" width="1600" height="1067" style="aspect-ratio:4/3 !important;height:auto !important;max-height:none !important;object-fit:cover" srcset="img/sp/hiraya/horii_01.jpg 900w, img/hiraya/horii_01.jpg 1600w" sizes="(max-width:820px) 100vw, 1040px">
     <div>
-      <h2>NEST FLAT 24坪、<br class="sp">本体価格1,716万円〜（税別）。</h2>
+      <h2 id="hiraya-price">NEST FLAT 24坪、<br class="sp">本体価格1,716万円〜（税別）。</h2>
       <p>シバサンホームの平屋プランが<span class="nb">NEST FLAT</span>です。24坪で<span class="nb">本体価格の目安</span>は<span class="nb">1,716万円〜（税別）</span>、<span class="nb">税込1,888万円</span>。<span class="nb">上位のARCH FLAT</span>は、<span class="nb">本体価格1,992万円〜（税別）</span>、<span class="nb">税込2,191万円</span>。諸費用・外構・土地は別途で、<span class="nb">総額の目安</span>も最初にお伝えします。自由度の高いセミオーダーで、暮らしに合わせて<span class="nb">間取りを整えられます</span>。<span class="nb">耐震等級3</span>（全棟・許容応力度計算）と<span class="nb">断熱等級6</span>は、2階建てと<span class="nb">同じ標準</span>です。</p>
       <p>平屋は、<span class="nb">同じ床面積</span>でも基礎と<span class="nb">屋根の面積が2階建てより広く</span>なります。そのぶん、坪単価は<span class="nb">やや高め</span>になる傾向があります。坪単価ではなく、<span class="nb">総額で比べること</span>が大切です。</p>
       <a class="more" href="/products">価格・プランの詳しい内訳を見る →</a>
@@ -319,7 +323,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </section>
 
 <section class="sec" style="background:var(--pale);max-width:none">
-  <div class="label" style="max-width:760px;margin:0 auto 30px"><span class="en">FAQ</span><small>平屋を建てる方から、よくある質問</small></div>
+  <div class="label" style="max-width:760px;margin:0 auto 30px"><span class="en" id="hiraya-faq">FAQ</span><small>平屋を建てる方から、よくある質問</small></div>
   <div class="faq">
     <details><summary>平屋を建てるには、どれくらいの<span class="nb">広さの土地</span>が必要ですか？</summary><div class="a">建ぺい率や駐車台数、庭の取り方で<span class="nb">変わるため</span>、一律には言えません。同じ延床面積なら、2階建てより広い敷地が必要です。候補地が平屋に向くかどうかは、土地探しの段階で<span class="nb">一緒に確かめられます</span>。</div></details>
     <details><summary>平屋と2階建て、どちらが安いですか？</summary><div class="a">同じ延床面積なら、基礎と屋根が広くなるぶん、平屋のほうが坪単価は上がりがちです。ただし平屋には<span class="nb">階段も2階の廊下</span>もないため、床面積そのものを<span class="nb">小さくできる場合</span>があります。坪単価ではなく、<span class="nb">総額で比べること</span>が大切です。</div></details>
