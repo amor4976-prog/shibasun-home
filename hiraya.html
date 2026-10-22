@@ -139,6 +139,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .plist li::before{content:"";position:absolute;left:2px;top:17px;width:6px;height:6px;border-radius:50%;background:var(--ink)}
 .plist b{font-weight:500}
 @media(min-width:760px){.four{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.stdg{grid-template-columns:repeat(4,minmax(0,1fr))}.stdg>div{padding:22px 18px 20px}}
+
 </style>
 
 <style>
@@ -189,10 +190,20 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .people h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:16px;font-weight:500;letter-spacing:.14em;margin:4px 0 0}
 .people-more{max-width:760px;margin:16px auto 0;font-size:12px;letter-spacing:.08em}
 .people-more a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:2px}
+/* 検討を始めた方が、来店前に価格・仕様を受け取れる入口 */
+.catalog-entry{padding:26px 22px;background:#f6f3ed;text-align:center;border-bottom:1px solid #e3ded4}
+.catalog-entry h2{font-size:clamp(18px,4.8vw,23px);font-weight:500;line-height:1.7;margin:0 0 10px;letter-spacing:.03em}
+.catalog-entry p{font-size:13px;line-height:1.9;margin:0;color:#555;letter-spacing:.02em}
+.catalog-entry .catalog-entry-button{display:inline-flex;min-height:48px;align-items:center;justify-content:center;margin:16px 0 10px;padding:12px 24px;background:#292b26;color:#fff;font-size:14px;font-weight:500;letter-spacing:.04em}
+.catalog-entry small{display:block;font-size:12px;line-height:1.9;color:#555;letter-spacing:0}
+.catalog-entry .nb{display:inline-block;white-space:nowrap}
+.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;letter-spacing:.03em;margin-top:12px}
+.hero-doc-note span{display:inline-block}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://www.shibasun.jp/"}, {"@type": "ListItem", "position": 2, "name": "奈良で平屋を建てる", "item": "https://www.shibasun.jp/hiraya"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "平屋を建てるには、どれくらいの広さの土地が必要ですか？", "acceptedAnswer": {"@type": "Answer", "text": "建ぺい率や駐車台数、庭の取り方で変わるため、一律には言えません。同じ延床面積なら、2階建てより広い敷地が必要です。候補地が平屋に向くかどうかは、土地探しの段階で一緒に確かめられます。"}}, {"@type": "Question", "name": "平屋と2階建て、どちらが安いですか？", "acceptedAnswer": {"@type": "Answer", "text": "同じ延床面積なら、基礎と屋根が広くなるぶん、平屋のほうが坪単価は上がりがちです。ただし平屋には階段も2階の廊下もないため、床面積そのものを小さくできる場合があります。坪単価ではなく、総額で比べることが大切です。"}}, {"@type": "Question", "name": "住宅の性能はどのくらいですか？", "acceptedAnswer": {"@type": "Answer", "text": "耐震等級3（全棟・許容応力度計算）、断熱等級6（HEAT20 G2相当）、UA値0.4〜0.46、C値0.5以下を標準としています。大手ハウスメーカー水準の性能を、すべての住まいで標準装備しています（NEST・ARCHの場合）。"}}, {"@type": "Question", "name": "土地を持っていなくても相談できますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。地元ネットワークを活かし、土地探しからお手伝いします。建物とのトータル予算で土地を選べるのが工務店の強みです。"}}]}]}</script>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
+<script src="/inquiry-cta.js?v=20261022" defer></script>
 </head>
 <body>
 <header>
@@ -212,6 +223,14 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <p><span class="nb">18.0坪から28.3坪まで。</span><br>実際に建てた平屋をご紹介します。<br>写真と坪数を見ながら、<span class="nb">ご希望の広さ</span>をお考えください。</p>
   <nav class="hiraya-nav" aria-label="平屋ページの案内"><a href="#hiraya-works">建築実例</a><a href="#hiraya-price">価格の目安</a><a href="#hiraya-faq">よくある質問</a></nav>
 </div>
+
+
+<section class="catalog-entry" data-inquiry-location="early_catalog" aria-label="無料の資料請求">
+  <h2>平屋の検討も、<span class="nb">まずは資料で。</span></h2>
+  <p>商品ラインアップ・価格表・施工事例。</p>
+  <a class="catalog-entry-button" href="/catalog">無料で資料を受け取る</a>
+  <small>メール受け取りは、<span class="nb">お名前とメールアドレスだけ。</span></small>
+</section>
 
 <section class="sec" id="hiraya-works">
   <div class="works">

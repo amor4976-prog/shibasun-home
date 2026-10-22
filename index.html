@@ -38,6 +38,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@300;400;500&display=swap"></noscript>
 <noscript><style>.photoband .pbs{background-image:var(--bg)}.people-more{max-width:760px;margin:18px auto 0;padding:0 20px;font-size:12px;letter-spacing:.08em}.people-more a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:2px}.rsv-selection{margin-top:24px;padding:12px 14px;border:1px solid var(--linec);background:#faf9f6;font-size:13px;line-height:1.9;letter-spacing:.02em}.tchip{min-height:44px}.rsv-field input,.rsv-field textarea{scroll-margin-top:100px}
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
+
 </style></noscript>
 <style>
 :root{
@@ -864,6 +865,15 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   .hero-slide.on{animation:none}
   .fade{opacity:1;transform:none}
 }
+/* 検討を始めた方が、来店前に価格・仕様を受け取れる入口 */
+.catalog-entry{padding:26px 22px;background:#f6f3ed;text-align:center;border-bottom:1px solid #e3ded4}
+.catalog-entry h2{font-size:clamp(18px,4.8vw,23px);font-weight:500;line-height:1.7;margin:0 0 10px;letter-spacing:.03em}
+.catalog-entry p{font-size:13px;line-height:1.9;margin:0;color:#555;letter-spacing:.02em}
+.catalog-entry .catalog-entry-button{display:inline-flex;min-height:48px;align-items:center;justify-content:center;margin:16px 0 10px;padding:12px 24px;background:#292b26;color:#fff;font-size:14px;font-weight:500;letter-spacing:.04em}
+.catalog-entry small{display:block;font-size:12px;line-height:1.9;color:#555;letter-spacing:0}
+.catalog-entry .nb{display:inline-block;white-space:nowrap}
+.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;letter-spacing:.03em;margin-top:12px}
+.hero-doc-note span{display:inline-block}
 </style>
 
 <!-- ===== 構造化データ（Google・AI検索対策） ===== -->
@@ -1107,6 +1117,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 }
 </script>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
+<script src="/inquiry-cta.js?v=20261022" defer></script>
 </head>
 <body>
 
@@ -1130,15 +1141,24 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   <div class="hero-copy">
     <h1 class="mincho">いい家で、<br>いい毎日を。</h1>
     <p>確かな品質を、正直な価格で。</p>
-    <div class="hero-cta">
-      <a class="hbtn hbtn-fill js-reserve" href="#reserve">来店予約</a>
-      <a class="hbtn hbtn-line" href="/catalog">資料請求（無料）</a>
+    <div class="hero-cta" data-inquiry-location="hero">
+      <a class="hbtn hbtn-fill" href="/catalog">無料で資料を受け取る</a>
+      <a class="hbtn hbtn-line js-reserve" href="#reserve">来店予約</a>
     </div>
+    <p class="hero-doc-note"><span>価格表・施工事例をメールで。</span><br><span>お名前とメールアドレスだけで請求できます。</span></p>
     <div class="hero-area">奈良・大阪・京都の一部に対応　｜　総額の目安をご案内</div>
     <a class="hero-first" href="/hajimete">はじめての方はこちら →</a>
   </div>
   <div class="hero-scroll en">Scroll</div>
 </div>
+
+
+<section class="catalog-entry" data-inquiry-location="early_catalog" aria-label="無料の資料請求">
+  <h2>価格・仕様を、<span class="nb">まずは資料で。</span></h2>
+  <p>商品ラインアップ・価格表・施工事例。</p>
+  <a class="catalog-entry-button" href="/catalog">無料で資料を受け取る</a>
+  <small>メール受け取りは、<span class="nb">お名前とメールアドレスだけ。</span></small>
+</section>
 
 <!-- 特長（写真の直後＝性能・価格・つくる人への入口） -->
 <section class="feat" id="feat">
