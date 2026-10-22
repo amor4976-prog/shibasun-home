@@ -1905,6 +1905,11 @@ function rsvRender(){
       if(selected)selected.closest('details').open=true;
     }
 
+    const referenceCase=query.get('case');
+    if(/^(0[1-9]|1[0-4])$/.test(referenceCase||'')){
+      document.getElementById('rsv-message').value='参考にした施工事例：https://www.shibasun.jp/jisseki-case'+referenceCase;
+      document.getElementById('rsv-message').closest('details').open=true;
+    }
     if(query.get('visit')==='ob'||query.has('pref')){
       const pref=(query.get('pref')||'').slice(0,500);
       document.getElementById('rsv-message').value='OB様邸の見学希望'+(pref?'。見たいポイント：'+pref:'');

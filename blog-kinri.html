@@ -53,6 +53,7 @@
   .budget-total{flex-direction:column;align-items:flex-start;gap:2px}
   .ktbl th,.ktbl td{padding:9px 3px;font-size:12px}
 }
+.article .table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.article .table-scroll table{min-width:340px}.article .table-hint{font-size:11px;color:var(--gray);margin:8px 0 4px}
 </style>
 <script type="application/ld+json">
 {
@@ -118,7 +119,7 @@
 
   <div class="fig">
     <div class="fh">Monthly ／ 先月と今月で、月々いくら変わったか</div>
-    <table class="ktbl">
+    <p class="table-hint">表は横にスクロールできます。</p><div class="table-scroll" role="region" aria-label="比較表" tabindex="0"><table class="ktbl">
       <thead><tr><th>借入額</th><th>3.290％<br>（8月）</th><th>3.460％<br>（9月）</th><th>35年の差</th></tr></thead>
       <tbody>
         <tr><td>2,500万円</td><td>100,304円</td><td>102,744円</td><td class="em">+102万円</td></tr>
@@ -126,7 +127,7 @@
         <tr><td>3,500万円</td><td>140,426円</td><td>143,842円</td><td class="em">+143万円</td></tr>
         <tr><td>4,000万円</td><td>160,486円</td><td>164,391円</td><td class="em">+164万円</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="budget-total"><span>35年・元利均等・ボーナス払いなしで計算</span></div>
   </div>
 
@@ -161,14 +162,14 @@
 
   <div class="fig">
     <div class="fh">Monthly ／ 性能でここまで変わる（<span style="white-space:nowrap"><span style="white-space:nowrap">当初5年）</span></span></div>
-    <table class="ktbl">
+    <p class="table-hint">表は横にスクロールできます。</p><div class="table-scroll" role="region" aria-label="比較表" tabindex="0"><table class="ktbl">
       <thead><tr><th>家の性能</th><th>当初金利</th><th>月々<br>（<span style="white-space:nowrap"><span style="white-space:nowrap">当初5年）</span></span></th><th>5年の差</th></tr></thead>
       <tbody>
         <tr><td>引き下げなし</td><td>3.460％</td><td>123,293円</td><td>—</td></tr>
         <tr><td>ZEH水準</td><td>2.710％</td><td class="em">110,655円</td><td class="em">−76万円</td></tr>
         <tr><td>子育て＋ZEH＋長期優良</td><td>2.460％</td><td class="em">106,606円</td><td class="em">−100万円</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="budget-total"><span>35年・元利均等・ボーナス払いなしで計算</span></div>
   </div>
 
@@ -352,6 +353,7 @@
     <h3 class="gothic"><span style="white-space:nowrap">総額、</span><span style="white-space:nowrap">いっしょに出しませんか。</span></h3>
     <p>いまの金利で、月々いくらになるか。<br class="sp">土地や外構まで入れて、その場でお出しします。</p>
     <div class="row">
+      <a class="b2" href="/reserve?topic=budget">住宅ローンと予算を相談する</a>
       <a class="b1" href="/catalog">資料請求（無料でお届け）</a>
       <a class="b2" href="https://lin.ee/ueeBddk">LINEで聞く</a>
     </div>
