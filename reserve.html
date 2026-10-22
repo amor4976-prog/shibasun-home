@@ -324,6 +324,15 @@ function rsvRender(){
       document.getElementById('rsv-message').value='参考にした施工事例：https://www.shibasun.jp/jisseki-case'+referenceCase;
       document.getElementById('rsv-message').closest('details').open=true;
     }
+    const simSeries={__proto__:null,nest:'NEST',arch:'ARCH'}[query.get('series')];
+    const simType={__proto__:null,'2f':'2階建て',flat:'平屋'}[query.get('house')];
+    const simTsubo=query.get('tsubo')||'';
+    if(query.get('topic')==='budget'&&simSeries&&simType&&/^\d{2}$/.test(simTsubo)&&Number(simTsubo)>=20&&Number(simTsubo)<=45){
+      const message=document.getElementById('rsv-message');
+      const reference=['価格シミュレーターの参考条件','シリーズ：'+simSeries,'タイプ：'+simType,'延床面積：'+simTsubo+'坪','本体価格のみの試算です。','土地代・外構・諸費用は別途です。'].join('\n');
+      message.value=[message.value,reference].filter(Boolean).join('\n');
+      message.closest('details').open=true;
+    }
     if(query.get('visit')==='ob'||query.has('pref')){
       const pref=(query.get('pref')||'').slice(0,500);
       document.getElementById('rsv-message').value='OB様邸の見学希望'+(pref?'。見たいポイント：'+pref:'');

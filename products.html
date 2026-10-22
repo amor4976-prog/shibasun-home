@@ -195,6 +195,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <p class="lnote">※ 表示は税別・本体価格の目安です（かっこ内は税込。諸費用・外構費は別途）。延床面積や仕様により変動します。詳しい仕様書とお見積りは、ご来店の際にご案内します。</p>
   <p class="lnote">平屋をお考えの方は、<a href="/hiraya" style="color:inherit;text-decoration:underline">奈良で平屋を建てる価格と<span class="nb">間取りの解説</span></a>もご覧ください。</p>
 </section>
+<!-- 資料請求（2026-10-22：実例写真より前、価格表の直後へ） -->
+<div data-cta="doc"></div>
+
 <section class="sec" style="background:var(--pale);max-width:none">
   <div class="works">
     <div class="label"><span class="en">Works</span><small>この価格帯で建った家</small></div>
@@ -247,8 +250,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .nextnav .s{font-size:11.5px;color:var(--gray);font-weight:300;line-height:1.7}
 .nextnav .ar{margin-left:auto;font-size:12px;color:var(--gray)}
 </style>
-<!-- 資料請求（2026-09-24：49%の位置から、価格表の直後へ上げた） -->
-<div data-cta="doc"></div>
+
 
 <section class="sec" id="sim">
   <div class="label"><span class="en">Simulator</span><small>かんたん価格シミュレーター</small></div>
@@ -278,7 +280,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
       <div class="sim-monthly">住宅ローンなら、月々 <b>約 <span id="simMonthly">5.9</span></b> 万円〜の目安</div>
     </div>
     <p class="sim-note">※ あくまで<b>本体価格</b>の目安です（税別・内装・設備・照明込み）。<b>諸費用・外構費・土地代は別途</b>。延床面積や仕様により変動し、GLAMPは要相談です。<br>※ 月々はこの本体価格を<b>住宅ローン<span class="nb">（35年・年1.0%</span>・元利均等・ボーナス払いなし）</b>で<span class="nb">借りた場合の試算例</span>です。金利・借入額・頭金・諸費用・土地代により変わります。<br>土地・外構・諸費用を含めた総額は、LINEでもご相談いただけます。</p>
-    <a class="sim-cta" href="/reserve?topic=budget">土地・諸費用を含めた総額を相談する →</a>
+    <a class="sim-cta" data-inquiry-location="sim_result" href="/reserve?topic=budget">この条件で総額を相談する →</a>
+    <p class="sim-handoff-note" style="font-size:12px;line-height:1.9;margin-top:10px;text-align:center">選んだシリーズ・タイプ・坪数を、<br><span class="nb">予約フォームの任意欄に引き継ぎます。</span></p>
     <div style="margin:24px auto 0;max-width:480px;text-align:center"><h3 style="font-size:18px;margin-bottom:12px">自分たちの予算で建てられる？</h3><p style="font-size:14px;margin-bottom:16px">希望の広さと、建てたい市町村をLINEでお知らせください。土地が未定でも、<span class="nb">総額の目安</span>をご相談いただけます。</p><a class="cbtn cbtn-line" href="https://lin.ee/ueeBddk" target="_blank" rel="noopener" onclick="if(window.gtag)window.gtag('event','line_click',{where:'budget_cta',page:'/products'})">LINEで総額の目安を聞く</a></div>
   </div>
 </section>
@@ -302,6 +305,9 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     document.getElementById('simPrice').textContent=fmt(SHOW[sS][sT]*sN);
     document.getElementById('simTax').textContent=fmt(total);
     document.getElementById('simMonthly').textContent=(total*FACTOR).toFixed(1);
+    var link=document.querySelector('.sim-cta');
+    var context=new URLSearchParams({topic:'budget',series:sS,house:sT,tsubo:String(sN)});
+    link.href='/reserve?'+context.toString();
   }
   function group(id,key,set){
     document.querySelectorAll('#'+id+' button').forEach(function(b){
