@@ -1896,6 +1896,15 @@ function rsvRender(){
   }
   if(!savedForm){
     const query=new URLSearchParams(location.search);
+    // Link context is allowlisted; never overwrite fields after the visitor starts typing.
+    const preset={budget:['資金計画・予算'],hiraya:['資金計画・予算','間取り・プラン'],land:['土地探し'],plan:['間取り・プラン']}[query.get('topic')];
+    if(preset){
+      const form=document.getElementById('rsv-form');
+      form.querySelectorAll('.tchip[data-t]').forEach(el=>el.classList.toggle('on',preset.includes(el.dataset.t)));
+      const selected=form.querySelector('.tchip.on[data-t]');
+      if(selected)selected.closest('details').open=true;
+    }
+
     if(query.get('visit')==='ob'||query.has('pref')){
       const pref=(query.get('pref')||'').slice(0,500);
       document.getElementById('rsv-message').value='OB様邸の見学希望'+(pref?'。見たいポイント：'+pref:'');
