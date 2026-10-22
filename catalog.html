@@ -91,6 +91,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .fixed-cta.done{display:none}
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
 .nb{white-space:nowrap}.cat-field input,.cat-field textarea{scroll-margin-top:100px}#cat-go:disabled{opacity:.6}
+.cat-extra{margin:18px 0;border-top:1px solid var(--linec);padding-top:8px}.cat-extra summary{padding:10px 0;min-height:44px;cursor:pointer;font-size:13px;letter-spacing:.04em}
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 </style>
 <script type="application/ld+json">
@@ -148,7 +149,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <div class="whead">
   <div class="en">Catalog</div>
   <h1>カタログ資料請求</h1>
-  <p>坪単価・商品ラインアップ・施工事例をまとめた資料を<b>無料</b>でお届けします。<br>家づくりの検討を始めた方は、まずこちらから。</p>
+  <p>坪単価・商品ラインアップ・施工事例をまとめた<span class="nb">資料</span>を<b>無料</b>でお届けします。<br>家づくりの検討を始めた方は、まずこちらから。</p>
 </div>
 
 <div class="kit">
@@ -174,9 +175,11 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
           </div>
         </div>
         <div class="cat-field"><label for="cat-name">お名前<em>必須</em></label><input id="cat-name" name="name" required autocomplete="name" placeholder="柴 太郎"></div>
-        <div class="cat-field"><label for="cat-kana">フリガナ</label><input id="cat-kana" name="kana" autocomplete="off" placeholder="シバ タロウ（任意）"></div>
-        <div class="cat-field"><label for="cat-phone">お電話番号<em class="req">任意</em></label><input id="cat-phone" name="phone" type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
         <div class="cat-field" id="f-mail"><label for="cat-email">メールアドレス<em class="req">必須</em></label><input id="cat-email" name="email" type="email" required autocomplete="email" placeholder="shiba@example.com" inputmode="email"></div>
+        <details class="cat-extra" id="cat-contact-extra"><summary>電話番号・フリガナ（任意）</summary>
+        <div class="cat-field"><label for="cat-phone">お電話番号<em class="req">任意</em></label><input id="cat-phone" name="phone" type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
+        <div class="cat-field"><label for="cat-kana">フリガナ</label><input id="cat-kana" name="kana" autocomplete="off" placeholder="シバ タロウ（任意）"></div>
+        </details>
         <div class="cat-field" id="f-addr">
           <label for="cat-address">ご住所<em class="req">任意</em><span class="addr-hint" style="color:var(--gray);font-size:10px;margin-left:6px">郵送をお選びの場合のお届け先です</span></label>
           <div class="cat-row2">
@@ -184,6 +187,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
             <input id="cat-address" name="address" autocomplete="street-address" placeholder="奈良市北之庄町41-1">
           </div>
         </div>
+        <details class="cat-extra" id="cat-question-extra"><summary>ご質問・ご要望など（任意）</summary>
         <div class="cat-field"><label for="cat-message">ご質問・ご要望</label><textarea id="cat-message" name="message" rows="3" placeholder="例：平屋に興味があります／土地から探しています（任意）"></textarea></div>
         <div class="cat-field">
           <label for="cat-known">当社を知ったきっかけ<span class="opt">任意</span></label>
@@ -201,9 +205,10 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
             <option>その他</option>
           </select>
         </div>
+        </details>
         <p class="form-error" id="cat-error" role="alert" hidden><span class="error-detail">送信できませんでした。入力内容は残っています。</span><br>もう一度お試しいただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEでご相談ください</a>。</p>
       <button class="cat-submit" type="submit">無料で資料を請求する</button>
-        <p class="cat-note">いただいた情報は資料送付・ご連絡に使用します。広告効果の確認のため、流入経路も記録します。</p>
+        <p class="cat-note">いただいた情報は資料送付・ご連絡に使用します。<span class="nb">広告効果</span>の確認のため、流入経路も記録します。</p>
       </form>
     </div>
   </div>
@@ -228,6 +233,8 @@ const catApp=document.getElementById('cat-app');
 // 受け取り方で必須を入れ替える。
 // 郵送しか選べないと、住所（番地まで）が資料請求の壁になっていた。
 // 2026-09-03に「SUUMOは郵送せずメールで資料を渡す」と決めたので、HPも同じ扱いにする。
+function catTrack(step){if(window.gtag)window.gtag('event','catalog_'+step,{page_path:'/catalog'});}
+let catStarted=false;
 function recvNow(){
   var r=document.querySelector('input[name="recv"]:checked');
   return r?r.value:'メール';
@@ -238,6 +245,9 @@ function applyRecv(){
   var email=document.querySelector('[name="email"]');
   var postal=document.querySelector('[name="postal"]'), addr=document.querySelector('[name="address"]');
   email.required=mail;
+  const extra=document.getElementById('cat-contact-extra');
+  extra.querySelector('summary').textContent=mail?'電話番号・フリガナ（任意）':'電話番号・フリガナ';
+  if(!mail)extra.open=true;
   postal.required=addr.required=!mail;
   // メールで受け取る人に住所は要らない。出したままだと欄が2つ多くなって長くなる
   document.getElementById('f-addr').hidden=mail;
@@ -275,6 +285,9 @@ Array.prototype.forEach.call(document.querySelectorAll('input[name="recv"]'),fun
   el.addEventListener('change',applyRecv);
 });
 applyRecv();
+const catForm=document.getElementById('cat-form');
+catForm.addEventListener('input',()=>{if(!catStarted){catStarted=true;catTrack('form_started');}});
+catForm.addEventListener('invalid',e=>{const extra=e.target.closest('details');if(extra)extra.open=true;catTrack('validation_error');},true);
 document.getElementById('cat-form').addEventListener('submit',async e=>{
   e.preventDefault();const f=e.target;const btn=f.querySelector('.cat-submit');if(btn.disabled)return;
   // 電話番号を任意にしたので、連絡先がひとつも無いまま送れないようにする
@@ -285,25 +298,29 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
     return;
   }
   const previousError=f.querySelector('.form-error');if(previousError)previousError.hidden=true;
+  catTrack('submit_attempt');
+  const submittedRecv=recvNow();
+  const recvControls=[...f.querySelectorAll('input[name=recv]')];recvControls.forEach(el=>el.disabled=true);
   btn.disabled=true;btn.textContent='送信中…';
   const sticky=document.getElementById('cat-go');if(sticky){sticky.disabled=true;sticky.textContent='送信中…';}
   const known=f.known&&f.known.value?{value:f.known.value}:null;
-  const payload={customerName:f.name.value.trim(),customerKana:f.kana.value.trim()||undefined,customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,postalCode:f.postal.value.trim()||undefined,address:f.address.value.trim()||undefined,knownChannel:known?known.value:undefined,message:(function(){var m=f.message.value.trim();return '【受け取り方】'+recvNow()+(m?'\n'+m:'')})()};
+  const payload={customerName:f.name.value.trim(),customerKana:f.kana.value.trim()||undefined,customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,postalCode:f.postal.value.trim()||undefined,address:f.address.value.trim()||undefined,knownChannel:known?known.value:undefined,message:(function(){var m=f.message.value.trim();return '【受け取り方】'+submittedRecv+(m?'\n'+m:'')})()};
   payload.attribution=window.SHIBASUN_ATTRIBUTION?window.SHIBASUN_ATTRIBUTION.get():null;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/catalog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'送信に失敗しました');
     if(window.gtag)window.gtag('event','generate_lead',{method:'catalog'});
-    catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求ありがとうございます</h3><p>担当の柴部より、${recvNow()==='メール'?'ご記入のメールアドレスへ資料をお送りします':'ご記入のご住所へ資料をお送りします'}。<br>少々お待ちくださいませ。</p>`
-      + `<div class="done-next"><p class="done-lead">詳しく相談したい方は、<br>来店・オンライン相談をご予約いただけます。</p>`
+    catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求ありがとうございます</h3><p>${submittedRecv==='メール'?'メールで資料のご案内をお送りします。<br>迷惑メールフォルダもご確認ください。':'ご記入のご住所へ資料をお送りします。'}</p>`
+      + `<div class="done-next"><p class="done-lead">詳しく相談したい方は、<br>来店・オンラインでの相談を<br>ご予約いただけます。</p>`
       + `<a class="done-cta" href="/reserve" data-go="reserve">日時を選んで予約する（無料）</a>`
-      + `<p class="done-note">所要は約60分です。</p></div></div>`;
+      + `<p class="done-note">終了時刻は予約枠に表示しています。</p></div></div>`;
     // 完了画面からの来店予約はGA4で追える（フォームの手前には出さない＝出口を作らない）
     var bar=document.getElementById('cat-bar'); if(bar)bar.classList.add('done');
     var dc=catApp.querySelector('.done-cta');
     if(dc)dc.addEventListener('click',function(){if(window.gtag)window.gtag('event','catalog_done_reserve')});
   }catch(err){
+    catTrack('submit_error');recvControls.forEach(el=>el.disabled=false);
     btn.disabled=false;btn.textContent='無料で資料を請求する';
     if(sticky){sticky.disabled=false;sticky.textContent='無料で資料を請求する';}
     const notice=f.querySelector('.form-error');notice.hidden=false;
