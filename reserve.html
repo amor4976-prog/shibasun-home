@@ -51,6 +51,7 @@ header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify
 #rsv-app{min-height:1400px}
 @media(min-width:480px){#rsv-app{min-height:1290px}}
 #rsv-app.short{min-height:0}
+.rsv-extra{margin-top:22px;border-top:1px solid var(--linec);padding-top:14px}.rsv-extra summary{cursor:pointer;font-size:13px;min-height:44px;padding:10px 0}.rsv-steps{font-size:12px;color:var(--gray);margin-top:12px}.rsv-help{font-size:12px;line-height:1.9;color:var(--gray);margin-top:10px}.rsv-method-note{margin:8px 0;font-size:12px;line-height:1.9;color:var(--gray)}
 .rsv-step-label{font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.3em;color:var(--gold);margin-bottom:14px;text-transform:uppercase}
 /* 日付は2段。横に見える日が倍になる（専務 2026-09-15）。段の数は行数で決める */
 .date-scroll{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);gap:8px 10px;overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch;grid-auto-columns:max-content;align-items:stretch}
@@ -160,6 +161,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
   <div class="en">Reserve</div>
   <h1>来店予約・無料相談</h1>
   <p>資金計画・土地探し・間取りのご相談は<br>すべて無料です。</p>
+  <p class="rsv-steps">日時を選ぶ → 連絡先を入力 → 送信</p>
   <div class="rsv-live">空き状況はリアルタイムで更新されています</div>
 </div>
 
@@ -170,7 +172,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
     <!-- 合う日時がないとき。rsvRender で時間の枠の下へ動かす。
          作り直すと入力が消えるので、ここに1回だけ置いて node ごと移す -->
     <div class="alt-box" id="kouho" hidden>
-      <p><b>合う日時がないとき</b>は、ご希望の日をお送りください。<br>折り返しご連絡し、日時を調整いたします。</p>
+      <p><b>合う日時がないとき</b>は、<br>ご希望の日をお送りください。<br>ご連絡して日時を調整いたします。</p>
       <button type="button" class="alt-go" id="kouho-open">希望日を入力する</button>
       <div class="sendin" id="kouho-in">
         <div class="rsv-field"><label>第1希望<em>必須</em></label>
@@ -183,22 +185,22 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
         <div class="rsv-field"><label for="k-tel">お電話番号<em>どちらか必須</em></label><input id="k-tel" type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
         <div class="rsv-field"><label for="k-mail">メールアドレス<em>どちらか必須</em></label><input id="k-mail" type="email" autocomplete="email" placeholder="taro@example.com" inputmode="email"></div>
         <button type="button" class="alt-go alt-send" id="kouho-send">この候補日で送る</button>
-        <p class="sendnote">この場では予約は確定しません。担当の柴部から折り返しご連絡いたします。</p>
+        <p class="sendnote">この場では予約は確定しません。<br>担当アドバイザーからご連絡いたします。</p>
       </div>
     </div>
-    <div class="rsv-note">所要時間は約60分・お子様連れ歓迎</div>
+    <div class="rsv-note">終了時刻は選択した予約枠に表示します。<br>お子様連れも歓迎です。</div>
   </div>
 </div>
 
 
 <div class="altbox">
   <div class="div"></div>
-  <p>お電話でのご予約・ご相談もお気軽にどうぞ（9:00-18:00／水曜定休）</p>
+  <p>お電話でもご予約いただけます。<br>9:00〜18:00／水曜定休</p>
   <div class="altbtns">
     <a class="abtn abtn-tel" href="tel:0120154483">電話で相談する（0120-154-483）</a>
     <a class="abtn abtn-cat" href="/catalog">まずは資料請求する</a>
   </div>
-  <p class="altnote">資料は、価格表・施工事例・標準仕様・<span class="nb">進め方の4点</span>をお届けします。</p>
+  <p class="altnote">価格表・施工事例・標準仕様・<br>家づくりの進め方をお届けします。</p>
   <p class="oblink"><a href="/reserve-after">建築後のオーナー様の点検申込</a></p>
 </div>
 
@@ -217,13 +219,18 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 <script>
 const SHIBAGRAM_API='https://shibagram.onrender.com';
 let rsvSubmitting=false;
+const rsvTracked=new Set();
+function rsvTrack(step){if(window.gtag)window.gtag('event','reserve_'+step,{page_path:'/reserve'});}
+function rsvTrackOnce(step){if(!rsvTracked.has(step)){rsvTracked.add(step);rsvTrack(step);}}
+function showCandidate(){const box=document.getElementById('kouho');if(box){box.hidden=false;rsvApp.after(box);}}
+
 const rsvApp=document.getElementById('rsv-app');
 let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false,rsvMethod='visit';
 // 夕方の枠は置いても埋まっていない（17時台は67枠に対して予約1件・10時は6件）。
 // 空いているここだけ「オンラインでも」と出す。10時・13時・15時には出さない＝
 // 来店できる方をオンラインへ寄せないため（専務 2026-09-15）。
 const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
-function rsvFallback(){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">予約枠を読み込めませんでした。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話いただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">公式LINEでご相談ください</a>。<br>（電話受付 9:00-18:00／水曜定休）</div>';}
+function rsvFallback(){showCandidate();rsvTrackOnce('slots_error');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">予約枠を読み込めませんでした。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話いただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">公式LINEでご相談ください</a>。<br>（電話受付 9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
 function rsvRender(){
   const candidateBox=document.getElementById('kouho');
@@ -232,13 +239,14 @@ function rsvRender(){
   const savedForm=previousForm?{
     fields:[...previousForm.querySelectorAll('input,textarea,select')].map(el=>({key:el.name||el.id,value:el.value})),
     topics:[...previousForm.querySelectorAll('.tchip.on[data-t]')].map(el=>el.dataset.t),
+    expanded:[...previousForm.querySelectorAll('details')].map(el=>el.open),
     method:previousForm.querySelector('.mchip.on')?.dataset.m
   }:null;
 
   // 満席だけの日は日付の帯に出さない（専務 2026-09-13「予約できる日が並んでる方がいい」）。
   // 2026-08-06に「満席も出す」と決めた形からの変更。時間ごとの「× 満席」は残す
   const dates=[...new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date))];
-  if(!dates.length){rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
+  if(!dates.length){showCandidate();rsvTrackOnce('no_slots');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>下からご希望の日をお送りいただけます。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
   // 空きのある日を最初に出す。満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる
   // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
   if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates[0];
@@ -250,6 +258,7 @@ function rsvRender(){
   if(rsvSlot&&!openSlots.some(s=>s.id===rsvSlot))rsvSlot=null;
   rsvApp.innerHTML=`
     <div class="rsv-step-label">1. 日付を選ぶ</div>
+    <p class="rsv-help">表示されている日が予約可能日です。<br>ほかの日をご希望の場合は「希望日を入力する」へ。</p>
     <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);
       const free=rsvSlots.filter(x=>x.date===d&&x.status!=='full').length;
       const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
@@ -263,11 +272,15 @@ function rsvRender(){
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label for="rsv-name">お名前<em>必須</em></label><input id="rsv-name" name="name" required autocomplete="name" placeholder="柴 太郎"></div>
       <div class="rsv-field"><label for="rsv-phone">お電話番号<em>必須</em></label><input id="rsv-phone" name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
+      <details class="rsv-extra"><summary>ご住所・メールアドレス（任意）</summary>
       <div class="rsv-field"><label for="rsv-address">ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input id="rsv-address" name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label for="rsv-email">メールアドレス</label><input id="rsv-email" name="email" type="email" autocomplete="email" placeholder="任意" inputmode="email"></div>
+      </details>
       <div class="rsv-field"><label>ご相談方法</label>
         <div class="topic-chips method-chips">${[['visit','来店で相談'],['online','オンラインで相談']].map(([v,t])=>`<button type="button" class="tchip mchip${v===rsvMethod?' on':''}" data-m="${v}">${t}</button>`).join('')}</div>
       </div>
+      <p class="rsv-method-note">ご自宅からのオンライン相談も選べます。</p>
+      <details class="rsv-extra"><summary>相談内容・その他のご質問（任意）</summary>
       <div class="rsv-field"><label>ご相談したいこと<span style="color:var(--gray);font-size:10px;margin-left:6px">複数選べます</span></label>
         <div class="topic-chips">${['土地探し','資金計画・予算','住宅ローン','間取り・プラン','価格・見積り','性能・仕様'].map(t=>`<button type="button" class="tchip" data-t="${t}">${t}</button>`).join('')}</div>
       </div>
@@ -275,20 +288,22 @@ function rsvRender(){
         <select class="rsv-sel" id="rsv-known"><option value="">お選びください</option>${['Google検索','AI検索（ChatGPTなど）','インスタグラム','YouTube','知人の紹介','通りがかり（看板・現場）','スーモ','ポスティングチラシ','雑誌','その他'].map(t=>`<option>${t}</option>`).join('')}</select>
       </div>
       <div class="rsv-field"><label for="rsv-message">その他ご質問（任意）</label><textarea id="rsv-message" name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
+      </details>
       <p class="form-error" id="rsv-error" role="alert" hidden><span class="error-detail">送信できませんでした。入力内容は残っています。</span><br>もう一度お試しいただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEでご相談ください</a>。</p>
       <button class="rsv-submit" type="submit">この日時で予約する</button>
-      <p class="rsv-after">送信後、担当者から当日〜翌営業日にご連絡し、日時を確定します。予定が合わなくなったときは、キャンセル・変更も気軽にどうぞ。</p>
+      <p class="rsv-after">担当アドバイザーからご連絡し、<br>日時を確定します。<br>変更・キャンセルもご相談ください。</p>
     </form>`;
   // 「合う日時がないとき」を時間の枠の下へ移す。作り直さず node ごと動かすので入力は消えない
   const kouho=candidateBox, grid=rsvApp.querySelector('.slot-grid');
   if(kouho&&grid&&grid.parentNode){ kouho.hidden=false; grid.parentNode.insertBefore(kouho, grid.nextSibling); }
-  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
-  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvSlot=b.dataset.slot;rsvRender()}));
+  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvTrack('time_selected');rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
   rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
 
   if(savedForm){
     const form=document.getElementById('rsv-form');
+    form.querySelectorAll('details').forEach((el,i)=>el.open=!!savedForm.expanded[i]);
     savedForm.fields.forEach(item=>{const el=[...form.querySelectorAll('input,textarea,select')].find(el=>(el.name||el.id)===item.key);if(el)el.value=item.value;});
     form.querySelectorAll('.tchip[data-t]').forEach(el=>el.classList.toggle('on',savedForm.topics.includes(el.dataset.t)));
     if(savedForm.method)form.querySelectorAll('.mchip').forEach(el=>el.classList.toggle('on',el.dataset.m===savedForm.method));
@@ -301,12 +316,15 @@ function rsvRender(){
     }
   }
   document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
+  document.getElementById('rsv-form').addEventListener('input',()=>rsvTrackOnce('form_started'));
+  document.getElementById('rsv-form').addEventListener('invalid',e=>{const details=e.target.closest('details');if(details)details.open=true;rsvTrack('validation_error');},true);
+  rsvTrackOnce('slots_loaded');
 }
 async function rsvSubmit(e){
   e.preventDefault();const f=e.target;
   if(rsvSubmitting)return;
-  if(!rsvSlot){alert('ご希望の時間を選択してください');return}
-  rsvSubmitting=true;
+  if(!rsvSlot){rsvTrack('time_missing');const notice=f.querySelector('.form-error');notice.hidden=false;notice.querySelector('.error-detail').textContent='上の時間を選んでから送信してください。';rsvApp.querySelector('.slot-grid')?.scrollIntoView({behavior:'smooth',block:'center'});return}
+  rsvTrack('submit_attempt');rsvSubmitting=true;
   const submittedSlot=rsvSlot;
   const slotControls=[...rsvApp.querySelectorAll('.date-chip,.slot-btn')].map(el=>[el,el.disabled]);
   slotControls.forEach(([el])=>el.disabled=true);
@@ -324,9 +342,9 @@ async function rsvSubmit(e){
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'予約に失敗しました');
     rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===submittedSlot);const fd=fmtDate(sel.date);
-    rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} のご予約を受け付けました。<br>担当の柴部より確認のご連絡を差し上げます。</p></div>`;
+    rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} のご予約を受け付けました。<br>担当アドバイザーより確認のご連絡を差し上げます。</p></div>`;
   }catch(err){
-    rsvSubmitting=false;slotControls.forEach(([el,disabled])=>el.disabled=disabled);btn.disabled=false;btn.textContent='この日時で予約する';const notice=f.querySelector('.form-error');notice.hidden=false;
+    rsvTrack('submit_error');rsvSubmitting=false;slotControls.forEach(([el,disabled])=>el.disabled=disabled);btn.disabled=false;btn.textContent='この日時で予約する';const notice=f.querySelector('.form-error');notice.hidden=false;
     notice.querySelector('.error-detail').textContent=(/[\u3040-\u30ff\u3400-\u9fff]/.test(err.message)?err.message:'送信できませんでした。')+' 入力内容は残っています。';rsvLoad();}
 }
 function rsvFormDirty(){
@@ -341,7 +359,7 @@ function rsvFormDirty(){
    枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
 let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
 async function rsvLoad(){
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1');if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',(typeof AbortSignal.timeout==='function'?{signal:AbortSignal.timeout(15000)}:{} ));if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];
     if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
       if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
     if(!rsvDone&&!rsvFormDirty())rsvRender();}
@@ -358,7 +376,7 @@ async function rsvLoad(){
   g('k-d1').min=[min.getFullYear(),String(min.getMonth()+1).padStart(2,'0'),String(min.getDate()).padStart(2,'0')].join('-');
   g('k-d2').min=[min.getFullYear(),String(min.getMonth()+1).padStart(2,'0'),String(min.getDate()).padStart(2,'0')].join('-');
   open.addEventListener('click',()=>{
-    inn.classList.toggle('open');
+    rsvTrackOnce('date_request_open');inn.classList.toggle('open');
     open.textContent=inn.classList.contains('open')?'閉じる':'希望日を入力する';
   });
   send.addEventListener('click',async()=>{
