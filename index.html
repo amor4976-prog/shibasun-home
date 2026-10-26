@@ -39,7 +39,7 @@
 <noscript><style>.photoband .pbs{background-image:var(--bg)}.people-more{max-width:760px;margin:18px auto 0;padding:0 20px;font-size:12px;letter-spacing:.08em}.people-more a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:2px}.rsv-selection{margin-top:24px;padding:12px 14px;border:1px solid var(--linec);background:#faf9f6;font-size:13px;line-height:1.9;letter-spacing:.02em}.tchip{min-height:44px}.rsv-field input,.rsv-field textarea{scroll-margin-top:100px}
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 
-.rsv-time-guide{margin:24px 0 -14px;text-align:center;font-size:12px;line-height:1.9}</style></noscript>
+</style></noscript>
 <style>
 :root{
   --ink:#1a1a1a;
@@ -1896,8 +1896,7 @@ function rsvRender(){
       <div class="rsv-field"><label for="rsv-message">その他ご質問（任意）</label><textarea id="rsv-message" name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       </details>
       <p class="form-error" id="rsv-error" role="alert" hidden><span class="error-detail">送信できませんでした。入力内容は残っています。</span><br>もう一度お試しいただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEでご相談ください</a>。</p>
-      ${rsvSlot?'':'<p class="rsv-time-guide" id="rsv-time-guide">ご希望の時間を選んでください。</p>'}
-      <button class="rsv-submit" type="${rsvSlot?'submit':'button'}"${rsvSlot?'':' data-select-time aria-controls="rsv-times" aria-describedby="rsv-time-guide"'}>予約する</button>
+      <button class="rsv-submit" type="${rsvSlot?'submit':'button'}"${rsvSlot?'':' data-select-time aria-controls="rsv-times"'}>${rsvSlot?'予約する':'希望日時を選ぶ'}</button>
       <p class="rsv-after">担当アドバイザーからご連絡し、<br>日時を確定します。<br>変更・キャンセルもご相談ください。</p>
       <div class="after-doc"><a href="/catalog">まずは資料請求する（無料）</a></div>
     </form>`;
