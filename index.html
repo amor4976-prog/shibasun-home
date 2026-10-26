@@ -1870,7 +1870,7 @@ function rsvRender(){
       const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
       return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w${wc}">${f.w}</div><div class="n">空き${free}</div></button>`}).join('')}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
-    <div class="slot-grid">${openSlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
+    <div class="slot-grid" id="rsv-times">${openSlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
     ${fullCount?`<p class="slot-full-note">ほかの時間は満席です。</p>`:''}
     ${(()=>{const sel=daySlots.find(x=>x.id===rsvSlot);return sel&&rsvOnlineOk(sel)?`<p class="online-note">この時間は、ご自宅からオンラインでもご相談いただけます。<br>下の「ご相談方法」でお選びください。</p>`:''})()}
     <form id="rsv-form">
@@ -1896,7 +1896,7 @@ function rsvRender(){
       <div class="rsv-field"><label for="rsv-message">その他ご質問（任意）</label><textarea id="rsv-message" name="message" rows="2" placeholder="例：共働きで家事ラクな間取りにしたい"></textarea></div>
       </details>
       <p class="form-error" id="rsv-error" role="alert" hidden><span class="error-detail">送信できませんでした。入力内容は残っています。</span><br>もう一度お試しいただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEでご相談ください</a>。</p>
-      <button class="rsv-submit" type="submit">この日時で予約する</button>
+      <button class="rsv-submit" type="${rsvSlot?'submit':'button'}"${rsvSlot?'':' data-select-time aria-controls="rsv-times"'}>${rsvSlot?'この日時で予約する':'先に予約時間を選ぶ'}</button>
       <p class="rsv-after">担当アドバイザーからご連絡し、<br>日時を確定します。<br>変更・キャンセルもご相談ください。</p>
       <div class="after-doc"><a href="/catalog">まずは資料請求する（無料）</a></div>
     </form>`;
@@ -1945,6 +1945,15 @@ function rsvRender(){
       document.getElementById('rsv-message').value='OB様邸の見学希望'+(pref?'。見たいポイント：'+pref:'');
     }
   }
+  // Do not offer submission until a visitor has explicitly selected a time.
+  const timePrompt=rsvApp.querySelector('[data-select-time]');
+  if(timePrompt)timePrompt.addEventListener('click',()=>{
+    rsvTrack('time_prompt_click');
+    const times=rsvApp.querySelector('#rsv-times');
+    const first=times&&times.querySelector('.slot-btn:not([disabled])');
+    if(first)first.focus({preventScroll:true});
+    if(times)times.scrollIntoView({behavior:'smooth',block:'center'});
+  });
   document.getElementById('rsv-form').addEventListener('submit',rsvSubmit);
   document.getElementById('rsv-form').addEventListener('input',()=>rsvTrackOnce('form_started'));
   document.getElementById('rsv-form').addEventListener('invalid',e=>{const details=e.target.closest('details');if(details)details.open=true;rsvTrack('validation_error');},true);
