@@ -147,7 +147,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 @media(min-width:900px){.fixed-cta{display:none}body{padding-bottom:0}}
 .rsv-selection{margin-top:24px;padding:12px 14px;border:1px solid var(--linec);background:#faf9f6;font-size:13px;line-height:1.9;letter-spacing:.02em}.tchip{min-height:44px}.rsv-field input,.rsv-field textarea{scroll-margin-top:100px}
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
-</style>
+.rsv-weeks{display:grid;gap:18px}.rsv-week{min-width:0;border-bottom:1px solid var(--linec);padding-bottom:14px}.rsv-week summary{cursor:pointer;padding:9px 0;min-height:44px}.rsv-week[open] summary{margin-bottom:8px}.rsv-week-title{font-size:14px;font-weight:500;line-height:1.8;margin:0 0 9px;letter-spacing:.04em}.rsv-week .date-scroll{display:grid;grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;overflow:visible;padding:0}.rsv-week .date-chip{min-width:0;width:100%;min-height:78px;padding:10px 6px}.date-chip span{display:block}.date-chip:focus-visible{outline:3px solid #555;outline-offset:3px}.rsv-week .date-chip .n{font-size:11px}.rsv-week .date-chip.on{outline:2px solid var(--ink);outline-offset:2px}@media(max-width:560px){.rsv-week .date-scroll{grid-template-columns:repeat(3,minmax(0,1fr))}.rsv-week .date-chip .d{font-size:18px}}</style>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
 </head>
 <body>
@@ -232,6 +232,23 @@ let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false,rsvMethod='visit';
 const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
 function rsvFallback(){showCandidate();rsvTrackOnce('slots_error');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">予約枠を読み込めませんでした。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話いただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">公式LINEでご相談ください</a>。<br>（電話受付 9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
+function rsvLastVisibleDate(now=new Date()){
+  const ymd=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+  const end=new Date(ymd+'T00:00:00Z');end.setUTCDate(end.getUTCDate()+28);
+  return end.toISOString().slice(0,10);
+}
+function rsvDatePicker(dates){
+  const weeks=new Map();
+  dates.forEach(d=>{const dt=new Date(d+'T00:00:00Z');dt.setUTCDate(dt.getUTCDate()-(dt.getUTCDay()+6)%7);const key=dt.toISOString().slice(0,10);if(!weeks.has(key))weeks.set(key,[]);weeks.get(key).push(d);});
+  return [...weeks.values()].map(days=>{
+    const first=fmtDate(days[0]),last=fmtDate(days[days.length-1]);
+    return '<details class="rsv-week"'+(days.includes(rsvDate)?' open':'')+'><summary class="rsv-week-title">'+first.md+(days.length>1?'〜'+last.md:'')+' の空き日（'+days.length+'日）</summary><div class="date-scroll">'+days.map(d=>{
+      const f=fmtDate(d),free=rsvSlots.filter(x=>x.date===d&&x.status!=='full').length;
+      const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
+      return `<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}" aria-pressed="${d===rsvDate?'true':'false'}" aria-label="${f.md} ${f.w}曜日 空き${free}枠"><span class="d">${f.md}</span><span class="w${wc}">${f.w}</span><span class="n">空き${free}枠</span></button>`;
+    }).join('')+'</div></details>';
+  }).join('');
+}
 function rsvRender(){
   const candidateBox=document.getElementById('kouho');
   // 日時を選び直しても、入力済みの連絡先・相談内容は残す。
@@ -245,7 +262,7 @@ function rsvRender(){
 
   // 満席だけの日は日付の帯に出さない（専務 2026-09-13「予約できる日が並んでる方がいい」）。
   // 2026-08-06に「満席も出す」と決めた形からの変更。時間ごとの「× 満席」は残す
-  const dates=[...new Set(rsvSlots.filter(s=>s.status!=='full').map(s=>s.date))];
+  const dates=[...new Set(rsvSlots.filter(s=>s.status!=='full'&&s.date<=rsvLastVisibleDate()).map(s=>s.date))].sort();
   if(!dates.length){showCandidate();rsvTrackOnce('no_slots');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>下からご希望の日をお送りいただけます。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
   // 空きのある日を最初に出す。満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる
   // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
@@ -258,11 +275,8 @@ function rsvRender(){
   if(rsvSlot&&!openSlots.some(s=>s.id===rsvSlot))rsvSlot=null;
   rsvApp.innerHTML=`
     <div class="rsv-step-label">1. 日付を選ぶ</div>
-    <p class="rsv-help">表示されている日が予約可能日です。<br>ほかの日をご希望の場合は「希望日を入力する」へ。</p>
-    <div class="date-scroll">${dates.map(d=>{const f=fmtDate(d);
-      const free=rsvSlots.filter(x=>x.date===d&&x.status!=='full').length;
-      const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
-      return`<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}"><div class="d">${f.md}</div><div class="w${wc}">${f.w}</div><div class="n">空き${free}</div></button>`}).join('')}</div>
+    <p class="rsv-help">4週間先までの空き日を、週ごとに表示しています。<br>週の見出しを開くと、日付を選べます。<br>合う日がないときは「希望日を入力する」へ。</p>
+    <div class="rsv-weeks">${rsvDatePicker(dates)}</div>
     <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
     <div class="slot-grid" id="rsv-times">${openSlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
     ${fullCount?`<p class="slot-full-note">ほかの時間は満席です。</p>`:''}
