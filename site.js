@@ -109,6 +109,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   .nav-tel small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:10px;letter-spacing:.16em;color:#9b978f;margin-top:4px}
   .logo-img{height:30px;width:auto;display:block}
   .fixed-cta.three{grid-template-columns:repeat(3,1fr)!important}
+  .fixed-cta.reserve-first{grid-template-columns:.8fr 1.2fr 2fr!important}.fixed-cta.reserve-first a{font-size:12px!important;letter-spacing:.03em!important;padding:0 3px}.fixed-cta.reserve-first .fc-reserve{background:#20211e!important;color:#fff!important;font-weight:500}
   /* 資料請求を下の固定バーに入れる。いちばん軽い申し込みなのに月29回しか
      ページに届いていなかった（2026-08-30） */
   .fixed-cta.four{grid-template-columns:.8fr .9fr 1.1fr 1.7fr!important}.fixed-cta.four .fc-reserve{background:#20211e!important;color:#fff!important;font-weight:500}
@@ -359,21 +360,25 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
       if (!bar.querySelector('.fc-line')) {
         const tel = bar.querySelector('.fc-tel');
         const line = mkLine('fc-line');
-        if (tel && tel.nextSibling) bar.insertBefore(line, tel.nextSibling);
-        else bar.appendChild(line);
+        const reserveFirst = !!bar.querySelector('.fc-reserve') && NO_DOC.indexOf(here) < 0;
+        if (!reserveFirst) {
+          if (tel && tel.nextSibling) bar.insertBefore(line, tel.nextSibling);
+          else bar.appendChild(line);
+        }
 
         // 資料請求は、いちばん気軽な申し込みなのに入口が細かった。
         // 資料請求ページ自身と、予約・アフターの各ページには足さない。
         const rsv = bar.querySelector('.fc-reserve');
         const noDoc = NO_DOC;
+        if (reserveFirst && rsv) rsv.textContent = '無料相談を予約';
         if (rsv && noDoc.indexOf(here) < 0 && !bar.querySelector('.fc-doc')) {
           const doc = document.createElement('a');
           doc.className = 'fc-doc'; doc.href = '/catalog';
           doc.textContent = '資料請求';
           bar.insertBefore(doc, rsv);
-          bar.classList.add('four');
+          bar.classList.add('reserve-first');
         } else {
-          bar.classList.add('three');
+          bar.classList.add(reserveFirst ? 'reserve-first' : 'three');
         }
       }
     } else {
