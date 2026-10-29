@@ -39,6 +39,7 @@
 <noscript><style>.photoband .pbs{background-image:var(--bg)}.people-more{max-width:760px;margin:18px auto 0;padding:0 20px;font-size:12px;letter-spacing:.08em}.people-more a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:2px}.rsv-selection{margin-top:24px;padding:12px 14px;border:1px solid var(--linec);background:#faf9f6;font-size:13px;line-height:1.9;letter-spacing:.02em}.tchip{min-height:44px}.rsv-field input,.rsv-field textarea{scroll-margin-top:100px}
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 
+
 </style></noscript>
 <style>
 :root{
@@ -1118,7 +1119,11 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </script>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
 <script src="/inquiry-cta.js?v=20261022" defer></script>
-</head>
+<style>
+/* 予約を第一導線に。スマホの最初の画面と固定バーで同じ優先順位にする */
+.hero-cta{align-items:flex-start;flex-direction:column;gap:14px}.hero-cta .hero-reserve{min-height:56px;padding:16px 24px;font-size:16px;letter-spacing:.06em;font-weight:500}.hero-cta .hero-catalog{display:inline-block;color:#fff;font-size:12px;line-height:1.9;text-decoration:underline;text-underline-offset:4px;padding:5px 0}.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;margin-top:12px;letter-spacing:.03em}.consult-entry{text-align:center;padding:30px 22px;border-bottom:1px solid #e3e3e0;background:#f6f6f4}.consult-entry h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.6vw,27px);font-weight:500;line-height:1.65;margin-bottom:14px;text-wrap:balance}.consult-entry p{font-size:14px;line-height:1.9;margin:0}.consult-entry-button{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 22px;margin:20px 0 12px;background:#20211e;color:#fff;font-size:15px}.consult-entry small{display:block;font-size:12px;line-height:1.9;color:#555}.consult-entry-doc{display:inline-block;font-size:12px;line-height:1.9;margin-top:20px;padding:8px 0;border-bottom:1px solid #999}.fixed-cta[data-reserve-priority]{grid-template-columns:.8fr 1.2fr 2fr!important}.fixed-cta[data-reserve-priority] a{font-size:12px!important;letter-spacing:.03em!important;min-height:60px}.fixed-cta[data-reserve-priority] .fc-reserve{background:#20211e!important;color:white!important;font-weight:500}.fixed-cta[data-reserve-priority] .fc-doc{background:#fff;color:#333;border-right:1px solid #ddd}@media(max-width:560px){.hero-copy{bottom:75px}.hero-cta .hero-reserve{width:100%;max-width:330px}.hero-area{margin-top:12px}.hero-first{margin-top:10px}.consult-entry-button{width:100%;max-width:330px}}@media(max-width:359px){.hero-cta .hero-reserve{font-size:15px}.fixed-cta[data-reserve-priority] a{font-size:11px!important}}
+
+</style></head>
 <body>
 
 <header id="header">
@@ -1142,10 +1147,10 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <h1 class="mincho">いい家で、<br>いい毎日を。</h1>
     <p>確かな品質を、正直な価格で。</p>
     <div class="hero-cta" data-inquiry-location="hero">
-      <a class="hbtn hbtn-fill" href="/catalog">無料で資料を受け取る</a>
-      <a class="hbtn hbtn-line js-reserve" href="#reserve">来店予約</a>
+      <a class="hbtn hbtn-fill hero-reserve" href="/reserve">無料相談を予約する</a>
+      <a class="hero-catalog" href="/catalog">まずは資料を見たい方はこちら</a>
     </div>
-    <p class="hero-doc-note"><span>価格表・施工事例をメールで。</span><br><span>お名前とメールアドレスだけで請求できます。</span></p>
+    <p class="hero-doc-note"><span>土地が決まる前でも大丈夫。</span><br><span>来店・オンラインでご相談いただけます。</span></p>
     <div class="hero-area">奈良・大阪・京都の一部に対応　｜　総額の目安をご案内</div>
     <a class="hero-first" href="/hajimete">はじめての方はこちら →</a>
   </div>
@@ -1153,11 +1158,12 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 </div>
 
 
-<section class="catalog-entry" data-inquiry-location="early_catalog" aria-label="無料の資料請求">
-  <h2>価格・仕様を、<span class="nb">まずは資料で。</span></h2>
-  <p>商品ラインアップ・価格表・施工事例。</p>
-  <a class="catalog-entry-button" href="/catalog">無料で資料を受け取る</a>
-  <small>メール受け取りは、<span class="nb">お名前とメールアドレスだけ。</span></small>
+<section class="consult-entry" data-inquiry-location="early_consult" aria-label="無料の家づくり相談">
+  <h2><span class="nb">土地と建物の総額</span>から、<br>一緒に整理しませんか。</h2>
+  <p>土地探し・予算・間取り。<br>ご家族の状況に合わせてお話しします。</p>
+  <a class="consult-entry-button" href="/reserve">空き日時を見て予約する</a>
+  <small>相談は無料。<span class="nb">オンラインも選べます。</span></small>
+  <a class="consult-entry-doc" href="/catalog">まずは価格表・施工事例を受け取る</a>
 </section>
 
 <!-- 特長（写真の直後＝性能・価格・つくる人への入口） -->
@@ -1815,9 +1821,10 @@ else setupLifeBand();
   </div>
 </footer>
 
-<nav class="fixed-cta">
-  <a class="fc-tel" href="tel:0120154483">電話で聞く</a>
-  <a class="fc-reserve js-reserve" href="#contact">来店を予約</a>
+<nav class="fixed-cta" data-reserve-priority="true" aria-label="ご相談・資料請求">
+  <a class="fc-tel" href="tel:0120154483">電話</a>
+  <a class="fc-doc" href="/catalog">資料請求</a>
+  <a class="fc-reserve" href="/reserve">無料相談を予約</a>
 </nav>
 
 <script>
@@ -2155,7 +2162,7 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   },{once:true});
 });
 </script>
-<script src="site.js?v=20260915a" defer></script>
+<script src="site.js?v=20261029reserve" defer></script>
 <script>
 // 坪数スライダー（shiryo.html・products.html と同じ単価・同じ計算）
 (function(){

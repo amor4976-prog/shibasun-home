@@ -111,7 +111,7 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
   .fixed-cta.three{grid-template-columns:repeat(3,1fr)!important}
   /* 資料請求を下の固定バーに入れる。いちばん軽い申し込みなのに月29回しか
      ページに届いていなかった（2026-08-30） */
-  .fixed-cta.four{grid-template-columns:repeat(4,1fr)!important}
+  .fixed-cta.four{grid-template-columns:.8fr .9fr 1.1fr 1.7fr!important}.fixed-cta.four .fc-reserve{background:#20211e!important;color:#fff!important;font-weight:500}
   .fixed-cta.four a{font-size:11.5px!important;letter-spacing:.04em!important;padding:0 2px}
   .fixed-cta.four .fc-line{gap:3px}
   .fixed-cta .fc-doc{display:flex;align-items:center;justify-content:center;background:#fff;color:var(--ink,#1a1a1a);
@@ -352,7 +352,9 @@ const NO_DOC = ['catalog.html', 'reserve.html', 'reserve-after.html', 'after.htm
       a.addEventListener('click', () => { if (window.gtag) window.gtag('event', 'line_click'); });
       return a;
     };
-    if (bar) {
+    if (bar && bar.dataset.reservePriority === 'true') {
+      // トップは予約を主役にした3ボタンをHTML側で定義。資料請求・LINEを重ねない。
+    } else if (bar) {
       // 下の固定バーを「電話｜LINE｜資料請求｜来店予約」にする（写真の上に浮かせない）
       if (!bar.querySelector('.fc-line')) {
         const tel = bar.querySelector('.fc-tel');
