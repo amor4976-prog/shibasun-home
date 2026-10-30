@@ -1123,7 +1123,8 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 /* 予約を第一導線に。スマホの最初の画面と固定バーで同じ優先順位にする */
 .hero-cta{align-items:flex-start;flex-direction:column;gap:14px}.hero-cta .hero-reserve{min-height:50px;padding:12px 22px;font-size:14px;line-height:1.65;letter-spacing:.05em;font-weight:500;background:rgba(0,0,0,.12);color:#fff;border:1px solid rgba(255,255,255,.85);text-shadow:0 1px 5px rgba(0,0,0,.4)}.hero-cta .hero-catalog{display:inline-block;color:#fff;font-size:12px;line-height:1.9;text-decoration:underline;text-underline-offset:4px;padding:5px 0}.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;margin-top:12px;letter-spacing:.03em}.consult-entry{text-align:center;padding:30px 22px;border-bottom:1px solid #e3e3e0;background:#f6f6f4}.consult-entry h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.6vw,27px);font-weight:500;line-height:1.65;margin-bottom:14px;text-wrap:balance}.consult-entry p{font-size:14px;line-height:1.9;margin:0}.consult-entry-button{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 22px;margin:20px 0 12px;background:#20211e;color:#fff;font-size:15px}.consult-entry small{display:block;font-size:12px;line-height:1.9;color:#555}.consult-entry-doc{display:inline-block;font-size:12px;line-height:1.9;margin-top:20px;padding:8px 0;border-bottom:1px solid #999}.fixed-cta[data-reserve-priority]{grid-template-columns:.8fr 1.2fr 2fr!important}.fixed-cta[data-reserve-priority] a{font-size:12px!important;letter-spacing:.03em!important;min-height:60px}.fixed-cta[data-reserve-priority] .fc-reserve{background:#20211e!important;color:white!important;font-weight:500}.fixed-cta[data-reserve-priority] .fc-doc{background:#fff;color:#333;border-right:1px solid #ddd}@media(max-width:560px){.hero-copy{bottom:75px}.hero-cta .hero-reserve{width:240px;max-width:100%}.hero-area{margin-top:12px}.hero-first{margin-top:10px}.consult-entry-button{width:100%;max-width:330px}}@media(max-width:359px){.hero-cta .hero-reserve{font-size:14px}.fixed-cta[data-reserve-priority] a{font-size:11px!important}}
 
-</style></head>
+</style><link rel="stylesheet" href="catalog-preview.css?v=20261030">
+</head>
 <body>
 
 <header id="header">
@@ -1233,6 +1234,22 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
   </div>
 </section>
 
+<section class="catalog-preview" id="catalog-guide" data-inquiry-location="works_catalog" aria-label="無料の資料請求">
+  <div class="catalog-preview__inner">
+    <div class="catalog-preview__pages"><figure><a class="catalog-preview__page" href="/catalog#catalog-preview" aria-label="商品・価格と施工写真を資料請求ページで見る"><img src="img/catalog/sample-price-works.webp" width="990" height="1400" alt="カタログの実ページ：NESTの価格の目安と外観・室内の施工写真" loading="lazy" decoding="async"></a><figcaption>商品・価格と施工写真</figcaption></figure>
+<figure><a class="catalog-preview__page" href="/catalog#catalog-preview" aria-label="耐震性能の考え方を資料請求ページで見る"><img src="img/catalog/sample-structure.webp" width="849" height="1200" alt="カタログの実ページ：耐震等級3と構造計算の説明" loading="lazy" decoding="async"></a><figcaption>耐震性能の考え方</figcaption></figure>
+</div>
+    <div class="catalog-preview__copy">
+      <p class="catalog-preview__eyebrow">無料の資料請求</p>
+      <h2>価格と実例を、資料で確認。</h2>
+      <p class="catalog-preview__intro">施工写真で<span class="nb">好みのデザイン</span>を探し、価格や性能を確認できます。</p>
+      <ul class="catalog-preview__list"><li>商品ごとの価格の目安</li><li>外観・LDK・キッチンの施工写真</li><li>耐震・断熱性能の考え方</li></ul>
+      <a class="catalog-preview__button" href="/catalog#cat-form">無料で資料を請求する</a>
+      <p class="catalog-preview__note">メールでの受け取りは、<span class="nb">お名前とメールアドレスだけ。</span></p>
+    </div>
+  </div>
+</section>
+
 <!-- コンセプト（ひかり型：情緒の導入→選ばれる理由。文章はNotion原文どおり） -->
 
 <!-- 個別相談会（トップの推し） -->
@@ -1260,10 +1277,6 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
     <div class="sd-tel">お電話でもご予約いただけます<b><a href="tel:0120154483">0120-154-483</a></b>受付 9:00-18:00／水曜定休</div>
   </div>
 </section>
-
-<!-- 資料請求（2026-09-24：42%の位置では届いていなかった。トップを見た268人のうち
-     資料請求ページまで来たのは22人。個別相談会のすぐ下＝約20%の位置へ上げた） -->
-<div data-cta="doc"></div>
 
 <section class="concept" id="concept">
   <div class="cbg" aria-hidden="true"></div>

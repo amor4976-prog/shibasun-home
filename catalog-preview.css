@@ -1,0 +1,25 @@
+/* Verified catalog pages; scoped to catalog preview blocks only. */
+.catalog-preview{background:#f6f6f5;color:#1a1a1a;padding:42px 24px;border-block:1px solid #e8e8e6}
+.catalog-preview__inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}
+.catalog-preview__pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start;max-width:420px;width:100%;margin:0 auto}
+.catalog-preview figure{margin:0;min-width:0}
+.catalog-preview__page{display:block;background:#fff;border:1px solid #ddd;box-shadow:0 4px 14px #0000000b;transition:opacity .2s}
+.catalog-preview__page:hover{opacity:.82}
+.catalog-preview__page img{display:block;width:100%;height:auto;aspect-ratio:990/1400;object-fit:contain}
+.catalog-preview figcaption{font-size:12px;line-height:1.7;letter-spacing:.02em;margin-top:10px;color:#555;text-align:center}
+.catalog-preview__copy{text-align:left;min-width:0}
+.catalog-preview__eyebrow{font-size:12px;letter-spacing:.1em;margin:0 0 10px;color:#555}
+.catalog-preview h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,3vw,28px);font-weight:500;letter-spacing:.04em;line-height:1.6;margin:0 0 14px}
+.catalog-preview__intro{font-size:14px;line-height:1.9;margin:0 0 16px;color:#555;letter-spacing:.02em}
+.catalog-preview__list{margin:0 0 20px;padding:0;list-style:none}
+.catalog-preview__list li{font-size:14px;line-height:1.8;border-bottom:1px solid #e0e0de;padding:7px 0;letter-spacing:.02em}
+.catalog-preview__button{display:flex;align-items:center;justify-content:center;min-height:52px;padding:13px 18px;background:#1a1a1a;color:#fff!important;font-size:14px;line-height:1.7;letter-spacing:.04em;text-decoration:none!important;max-width:380px}
+.catalog-preview__button:hover{background:#383838}
+.catalog-preview__button:focus-visible,.catalog-preview__page:focus-visible{outline:2px solid #1a1a1a;outline-offset:4px}
+.catalog-preview__note{font-size:12px;line-height:1.9;margin:12px 0 0;color:#555;letter-spacing:.01em}
+.catalog-preview .nb{display:inline!important;white-space:nowrap}
+.catalog-preview--form{margin:24px auto 0;max-width:1000px;border:0;background:transparent;padding-block:12px}
+#cat-form{scroll-margin-top:100px}
+@media(max-width:700px){.catalog-preview{padding:30px 20px}.catalog-preview__inner{grid-template-columns:minmax(0,1fr);gap:24px}.catalog-preview__pages{max-width:340px;gap:14px}.catalog-preview__button{max-width:none}.catalog-preview--form{padding-top:10px}}
+
+#catalog-guide,#catalog-preview{scroll-margin-top:84px}
