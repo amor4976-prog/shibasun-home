@@ -93,6 +93,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .nb{white-space:nowrap}.cat-field input,.cat-field textarea{scroll-margin-top:100px}#cat-go:disabled{opacity:.6}
 .cat-extra{margin:18px 0;border-top:1px solid var(--linec);padding-top:8px}.cat-extra summary{padding:10px 0;min-height:44px;cursor:pointer;font-size:13px;letter-spacing:.04em}
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
+.done-cta{letter-spacing:.04em;font-size:14px;max-width:100%}
 </style>
 <script type="application/ld+json">
 {
@@ -318,10 +319,10 @@ document.getElementById('cat-form').addEventListener('submit',async e=>{
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'送信に失敗しました');
     if(window.gtag)window.gtag('event','generate_lead',{method:'catalog'});
-    catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求ありがとうございます</h3><p>${submittedRecv==='メール'?'メールで資料のご案内をお送りします。<br>迷惑メールフォルダもご確認ください。':'ご記入のご住所へ資料をお送りします。'}</p>`
-      + `<div class="done-next"><p class="done-lead">詳しく相談したい方は、<br>来店・オンラインでの相談を<br>ご予約いただけます。</p>`
-      + `<a class="done-cta" href="/reserve" data-go="reserve">日時を選んで予約する（無料）</a>`
-      + `<p class="done-note">終了時刻は予約枠に表示しています。</p></div></div>`;
+    catApp.innerHTML=`<div class="cat-done"><div class="mark">Thank you</div><h3>資料請求<span class="nb">ありがとうございます</span></h3><p>${submittedRecv==='メール'?'メールで資料のご案内をお送りします。<br>迷惑メールフォルダもご確認ください。':'ご記入のご住所へ資料をお送りします。'}</p>`
+      + `<div class="done-next"><p class="done-lead">資料を見て、気になったことを一緒に整理しませんか。</p><p class="done-note">土地と建物を合わせた予算、候補地に合う間取りなど、<span class="nb">ご家族の状況</span>に合わせてお話しします。土地が決まる前でもご相談いただけます。</p>`
+      + `<a class="done-cta" href="/reserve" data-go="reserve"><span class="nb">無料相談の希望日時を選ぶ</span></a>`
+      + `<p class="done-note">相談は無料。来店・オンラインをお選びいただけます。</p></div></div>`;
     // 完了画面からの来店予約はGA4で追える（フォームの手前には出さない＝出口を作らない）
     var bar=document.getElementById('cat-bar'); if(bar)bar.classList.add('done');
     var dc=catApp.querySelector('.done-cta');
