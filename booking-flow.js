@@ -72,6 +72,7 @@ function refresh(){
  app.dataset.bookingStage=String(stage);
  const one=app.querySelector('.booking-stage-one'),two=app.querySelector('.booking-stage-two');one.hidden=stage!==1;two.hidden=stage!==2;
  app.querySelectorAll('[data-step]').forEach(el=>el.setAttribute('aria-current',Number(el.dataset.step)===stage?'step':'false'));
+ const attendees=form.querySelector('.booking-attendees');if(attendees)attendees.hidden=rsvMethod!=='visit';
  const busy=!!form.querySelector('.rsv-submit:disabled');
  text(status,chosen?(form.querySelector('.rsv-selection')?.textContent||'日時を選択済み'):'時間を選んでください。');
  text(next,busy?'送信中…':stage===1?'連絡先の入力へ':'この日時で予約を申し込む');

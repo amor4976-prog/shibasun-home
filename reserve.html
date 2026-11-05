@@ -149,7 +149,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 .rsv-weeks{display:grid;gap:18px}.rsv-week{min-width:0;border-bottom:1px solid var(--linec);padding-bottom:14px}.rsv-week summary{cursor:pointer;padding:9px 0;min-height:44px}.rsv-week[open] summary{margin-bottom:8px}.rsv-week-title{font-size:14px;font-weight:500;line-height:1.8;margin:0 0 9px;letter-spacing:.04em}.rsv-week .date-scroll{display:grid;grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;overflow:visible;padding:0}.rsv-week .date-chip{min-width:0;width:100%;min-height:78px;padding:10px 6px}.date-chip span{display:block}.date-chip:focus-visible{outline:3px solid #555;outline-offset:3px}.rsv-week .date-chip .n{font-size:11px}.rsv-week .date-chip.on{outline:2px solid var(--ink);outline-offset:2px}@media(max-width:560px){.rsv-week .date-scroll{grid-template-columns:repeat(3,minmax(0,1fr))}.rsv-week .date-chip .d{font-size:18px}}</style>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
-<link rel="stylesheet" href="booking-flow.css?v=20261106a">
+<link rel="stylesheet" href="booking-flow.css?v=20261106b">
 </head>
 <body>
 
@@ -286,6 +286,10 @@ function rsvRender(){
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label for="rsv-name">お名前<em>必須</em></label><input id="rsv-name" name="name" required autocomplete="name" placeholder="柴 太郎"></div>
       <div class="rsv-field"><label for="rsv-phone">お電話番号<em>必須</em></label><input id="rsv-phone" name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
+      <fieldset class="rsv-field booking-attendees"><legend>ご来店人数<span>（任意）</span></legend><div class="booking-attendee-fields">
+        <div><label for="rsv-adults">大人</label><select id="rsv-adults" name="partyAdults"><option value="">未選択</option>${[1,2,3,4,5].map(n=>`<option value="${n}">${n}名</option>`).join('')}<option value="6plus">6名以上</option></select></div>
+        <div><label for="rsv-children">お子さま</label><select id="rsv-children" name="partyChildren"><option value="">未選択</option>${[0,1,2,3,4,5].map(n=>`<option value="${n}">${n}名</option>`).join('')}<option value="6plus">6名以上</option></select></div>
+      </div></fieldset>
       <details class="rsv-extra"><summary>ご住所・メールアドレス（任意）</summary>
       <div class="rsv-field"><label for="rsv-address">ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input id="rsv-address" name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label for="rsv-email">メールアドレス</label><input id="rsv-email" name="email" type="email" autocomplete="email" placeholder="任意" inputmode="email"></div>
@@ -383,7 +387,8 @@ async function rsvSubmit(e){
   // 相談方法をシバグラムへ文字で渡す。メモ欄に埋めるだけだと、自動返信が「奈良市北之庄町までお越しください」になる（2026-09-15）
   const meetingMethod=rsvMethod==='online'?'online':'visit';
   const addr=f.address.value.trim();
-  const msg=[new URLSearchParams(location.search).get('from')==='shiryo'?'【入口】資料ページ':'',`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  const party=rsvMethod==='visit'?[['大人',f.partyAdults.value],['お子さま',f.partyChildren.value]].filter(([,v])=>/^(?:[0-5]|6plus)$/.test(v)).map(([label,v])=>label+(v==='6plus'?'6名以上':v+'名')).join('・'):'';
+  const msg=[new URLSearchParams(location.search).get('from')==='shiryo'?'【入口】資料ページ':'',`【相談方法】${methodLabel}`,party?`【ご来店人数】${party}`:'',addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:submittedSlot,reservationType:'visit',meetingMethod,customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
     const data=await r.json().catch(()=>({}));
@@ -500,6 +505,6 @@ rsvLoad();setInterval(rsvLoad,60000);
   },true);
 })();
 </script>
-<script src="booking-flow.js?v=20261106a" defer></script>
+<script src="booking-flow.js?v=20261106b" defer></script>
 </body>
 </html>

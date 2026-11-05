@@ -1124,7 +1124,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .hero-cta{align-items:flex-start;flex-direction:column;gap:14px}.hero-cta .hero-reserve{min-height:50px;padding:12px 22px;font-size:14px;line-height:1.65;letter-spacing:.05em;font-weight:500;background:rgba(0,0,0,.12);color:#fff;border:1px solid rgba(255,255,255,.85);text-shadow:0 1px 5px rgba(0,0,0,.4)}.hero-cta .hero-catalog{display:inline-block;color:#fff;font-size:12px;line-height:1.9;text-decoration:underline;text-underline-offset:4px;padding:5px 0}.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;margin-top:12px;letter-spacing:.03em}.consult-entry{text-align:center;padding:30px 22px;border-bottom:1px solid #e3e3e0;background:#f6f6f4}.consult-entry h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.6vw,27px);font-weight:500;line-height:1.65;margin-bottom:14px;text-wrap:balance}.consult-entry p{font-size:14px;line-height:1.9;margin:0}.consult-entry-button{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 22px;margin:20px 0 12px;background:#20211e;color:#fff;font-size:15px}.consult-entry small{display:block;font-size:12px;line-height:1.9;color:#555}.consult-entry-doc{display:inline-block;font-size:12px;line-height:1.9;margin-top:20px;padding:8px 0;border-bottom:1px solid #999}.fixed-cta[data-reserve-priority]{grid-template-columns:.8fr 1.2fr 2fr!important}.fixed-cta[data-reserve-priority] a{font-size:12px!important;letter-spacing:.03em!important;min-height:60px}.fixed-cta[data-reserve-priority] .fc-reserve{background:#20211e!important;color:white!important;font-weight:500}.fixed-cta[data-reserve-priority] .fc-doc{background:#fff;color:#333;border-right:1px solid #ddd}@media(max-width:560px){.hero-copy{bottom:75px}.hero-cta .hero-reserve{width:240px;max-width:100%}.hero-area{margin-top:12px}.hero-first{margin-top:10px}.consult-entry-button{width:100%;max-width:330px}}@media(max-width:359px){.hero-cta .hero-reserve{font-size:14px}.fixed-cta[data-reserve-priority] a{font-size:11px!important}}
 
 </style><link rel="stylesheet" href="catalog-preview.css?v=20261030">
-<link rel="stylesheet" href="booking-flow.css?v=20261106a">
+<link rel="stylesheet" href="booking-flow.css?v=20261106b">
 </head>
 <body>
 
@@ -1903,6 +1903,10 @@ function rsvRender(){
       <div class="rsv-step-label" style="margin-top:30px">3. ご連絡先</div>
       <div class="rsv-field"><label for="rsv-name">お名前<em>必須</em></label><input id="rsv-name" name="name" required autocomplete="name" placeholder="柴 太郎"></div>
       <div class="rsv-field"><label for="rsv-phone">お電話番号<em>必須</em></label><input id="rsv-phone" name="phone" required type="tel" autocomplete="tel" placeholder="090-0000-0000" inputmode="tel"></div>
+      <fieldset class="rsv-field booking-attendees"><legend>ご来店人数<span>（任意）</span></legend><div class="booking-attendee-fields">
+        <div><label for="rsv-adults">大人</label><select id="rsv-adults" name="partyAdults"><option value="">未選択</option>${[1,2,3,4,5].map(n=>`<option value="${n}">${n}名</option>`).join('')}<option value="6plus">6名以上</option></select></div>
+        <div><label for="rsv-children">お子さま</label><select id="rsv-children" name="partyChildren"><option value="">未選択</option>${[0,1,2,3,4,5].map(n=>`<option value="${n}">${n}名</option>`).join('')}<option value="6plus">6名以上</option></select></div>
+      </div></fieldset>
       <details class="rsv-extra"><summary>ご住所・メールアドレス（任意）</summary>
       <div class="rsv-field"><label for="rsv-address">ご住所<span style="color:var(--gray);font-size:10px;margin-left:6px">任意</span></label><input id="rsv-address" name="address" autocomplete="street-address" placeholder="例：奈良市北之庄町41-1"></div>
       <div class="rsv-field"><label for="rsv-email">メールアドレス</label><input id="rsv-email" name="email" type="email" autocomplete="email" placeholder="任意" inputmode="email"></div>
@@ -2001,7 +2005,8 @@ async function rsvSubmit(e){
   // 相談方法をシバグラムへ文字で渡す。メモ欄に埋めるだけだと、自動返信が「奈良市北之庄町までお越しください」になる（2026-09-15）
   const meetingMethod=rsvMethod==='online'?'online':'visit';
   const addr=f.address.value.trim();
-  const msg=[new URLSearchParams(location.search).get('from')==='shiryo'?'【入口】資料ページ':'',`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  const party=rsvMethod==='visit'?[['大人',f.partyAdults.value],['お子さま',f.partyChildren.value]].filter(([,v])=>/^(?:[0-5]|6plus)$/.test(v)).map(([label,v])=>label+(v==='6plus'?'6名以上':v+'名')).join('・'):'';
+  const msg=[new URLSearchParams(location.search).get('from')==='shiryo'?'【入口】資料ページ':'',`【相談方法】${methodLabel}`,party?`【ご来店人数】${party}`:'',addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:submittedSlot,reservationType:'visit',meetingMethod,customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
     const data=await r.json().catch(()=>({}));
@@ -2260,6 +2265,6 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   },true);
 })();
 </script>
-<script src="booking-flow.js?v=20261106a" defer></script>
+<script src="booking-flow.js?v=20261106b" defer></script>
 </body>
 </html>
