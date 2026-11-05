@@ -149,6 +149,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 .rsv-weeks{display:grid;gap:18px}.rsv-week{min-width:0;border-bottom:1px solid var(--linec);padding-bottom:14px}.rsv-week summary{cursor:pointer;padding:9px 0;min-height:44px}.rsv-week[open] summary{margin-bottom:8px}.rsv-week-title{font-size:14px;font-weight:500;line-height:1.8;margin:0 0 9px;letter-spacing:.04em}.rsv-week .date-scroll{display:grid;grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;overflow:visible;padding:0}.rsv-week .date-chip{min-width:0;width:100%;min-height:78px;padding:10px 6px}.date-chip span{display:block}.date-chip:focus-visible{outline:3px solid #555;outline-offset:3px}.rsv-week .date-chip .n{font-size:11px}.rsv-week .date-chip.on{outline:2px solid var(--ink);outline-offset:2px}@media(max-width:560px){.rsv-week .date-scroll{grid-template-columns:repeat(3,minmax(0,1fr))}.rsv-week .date-chip .d{font-size:18px}}</style>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
+<link rel="stylesheet" href="booking-flow.css?v=20261105b">
 </head>
 <body>
 
@@ -158,11 +159,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 </header>
 
 <div class="whead">
-  <div class="en">Reserve</div>
-  <h1>来店予約・無料相談</h1>
-  <p>資金計画・土地探し・間取りのご相談は<br>すべて無料です。</p>
-  <p class="rsv-steps">日時を選ぶ → 連絡先を入力 → 送信</p>
-  <div class="rsv-live">空き状況はリアルタイムで更新されています</div>
+  <h1>無料相談のご予約</h1>
+  <p><span class="nb">土地・予算・間取りを、</span><span class="nb">来店・オンラインで。</span></p>
 </div>
 
 <div class="wrap">
@@ -237,17 +235,22 @@ function rsvLastVisibleDate(now=new Date()){
   const end=new Date(ymd+'T00:00:00Z');end.setUTCDate(end.getUTCDate()+28);
   return end.toISOString().slice(0,10);
 }
-function rsvDatePicker(dates){
-  const weeks=new Map();
-  dates.forEach(d=>{const dt=new Date(d+'T00:00:00Z');dt.setUTCDate(dt.getUTCDate()-(dt.getUTCDay()+6)%7);const key=dt.toISOString().slice(0,10);if(!weeks.has(key))weeks.set(key,[]);weeks.get(key).push(d);});
-  return [...weeks.values()].map(days=>{
-    const first=fmtDate(days[0]),last=fmtDate(days[days.length-1]);
-    return '<details class="rsv-week"'+(days.includes(rsvDate)?' open':'')+'><summary class="rsv-week-title">'+first.md+(days.length>1?'〜'+last.md:'')+' の空き日（'+days.length+'日）</summary><div class="date-scroll">'+days.map(d=>{
-      const f=fmtDate(d),free=rsvSlots.filter(x=>x.date===d&&x.status!=='full').length;
-      const wc=f.w==='土'?' sat':(f.w==='日'?' sun':'');
-      return `<button type="button" class="date-chip${d===rsvDate?' on':''}" data-date="${d}" aria-pressed="${d===rsvDate?'true':'false'}" aria-label="${f.md} ${f.w}曜日 空き${free}枠"><span class="d">${f.md}</span><span class="w${wc}">${f.w}</span><span class="n">空き${free}枠</span></button>`;
-    }).join('')+'</div></details>';
+function rsvFirstVisibleDate(){const d=new Date(rsvLastVisibleDate()+'T00:00:00Z');d.setUTCDate(d.getUTCDate()-28);return d.toISOString().slice(0,10);}
+function rsvMonday(date){const d=new Date(date+'T00:00:00Z');d.setUTCDate(d.getUTCDate()-(d.getUTCDay()+6)%7);return d.toISOString().slice(0,10);}
+let rsvWeekStart=null;
+function rsvDatePicker(){
+  const min=rsvFirstVisibleDate(),max=rsvLastVisibleDate();
+  if(!rsvWeekStart)rsvWeekStart=rsvMonday(rsvDate||min);
+  const start=new Date(rsvWeekStart+'T00:00:00Z'),days=[];
+  for(let i=0;i<7;i++){const d=new Date(start);d.setUTCDate(d.getUTCDate()+i);days.push(d.toISOString().slice(0,10));}
+  const buttons=days.map(date=>{
+    const slots=rsvSlots.filter(s=>s.date===date),valid=date>=min&&date<=max;
+    const available=valid&&slots.some(s=>s.status!=='full');
+    const full=valid&&slots.length>0&&!available;
+    const f=fmtDate(date),label=available?'○ 空きあり':full?'満席':'—';
+    return `<button type="button" class="date-chip${available&&date===rsvDate?' on':''}${full?' is-full':''}" data-date="${date}" aria-pressed="${available&&date===rsvDate}" aria-label="${f.md} ${f.w}曜日 ${available?'空きあり':full?'満席':'予約枠なし'}" ${available?'':'disabled'}><span class="d">${Number(date.slice(-2))}</span><span class="w">${f.w}</span><span class="n">${label}</span></button>`;
   }).join('');
+  return `<div class="booking-week-nav"><button type="button" data-week="-1" aria-label="前の週" ${rsvWeekStart<=rsvMonday(min)?'disabled':''}>‹</button><span>${fmtDate(days[0]).md}〜${fmtDate(days[6]).md}</span><button type="button" data-week="1" aria-label="次の週" ${days[6]>=max?'disabled':''}>›</button></div><div class="booking-days">${buttons}</div>`;
 }
 function rsvRender(){
   const candidateBox=document.getElementById('kouho');
@@ -260,13 +263,11 @@ function rsvRender(){
     method:previousForm.querySelector('.mchip.on')?.dataset.m
   }:null;
 
-  // 満席だけの日は日付の帯に出さない（専務 2026-09-13「予約できる日が並んでる方がいい」）。
-  // 2026-08-06に「満席も出す」と決めた形からの変更。時間ごとの「× 満席」は残す
-  const dates=[...new Set(rsvSlots.filter(s=>s.status!=='full'&&s.date<=rsvLastVisibleDate()).map(s=>s.date))].sort();
-  if(!dates.length){showCandidate();rsvTrackOnce('no_slots');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg">ただいま予約枠を調整中です。<br>下からご希望の日をお送りいただけます。<br>お電話（<a href="tel:0120154483" style="color:var(--ink)">0120-154-483</a>）でご相談ください。</div>';return;}
-  // 空きのある日を最初に出す。満席の日が先頭だと、開いた瞬間「× 満席」が見えて帰られる
-  // （2026-08-30：/reserve が 平均滞在4秒・直帰81% だった原因）
-  if(!rsvDate||!dates.includes(rsvDate))rsvDate=dates[0];
+  // 空きのある日を初期選択。満席の日もカレンダー上で区別して表示する。
+  const dates=[...new Set(rsvSlots.filter(s=>s.date>=rsvFirstVisibleDate()&&s.date<=rsvLastVisibleDate()).map(s=>s.date))].sort();
+  const availableDates=dates.filter(d=>rsvSlots.some(s=>s.date===d&&s.status!=='full'));
+  if(!availableDates.length)rsvTrackOnce('no_slots');
+  if(!rsvDate||rsvDate<rsvFirstVisibleDate()||rsvDate>rsvLastVisibleDate())rsvDate=availableDates[0]||dates[0]||rsvFirstVisibleDate();
   const daySlots=rsvSlots.filter(s=>s.date===rsvDate);
   // 満席の時間は出さない（2026-09-24）。9/27は5枠のうち4枠が満席で、
   // スマホで開くと「× 満席」が画面いっぱいに並び、平均27秒で帰られていた（74人）
@@ -274,11 +275,10 @@ function rsvRender(){
   const fullCount=daySlots.length-openSlots.length;
   if(rsvSlot&&!openSlots.some(s=>s.id===rsvSlot))rsvSlot=null;
   rsvApp.innerHTML=`
-    <div class="rsv-step-label">1. 日付を選ぶ</div>
-    <p class="rsv-help">4週間先までの空き日を、週ごとに表示しています。<br>週の見出しを開くと、日付を選べます。<br>合う日がないときは「希望日を入力する」へ。</p>
-    <div class="rsv-weeks">${rsvDatePicker(dates)}</div>
-    <div class="rsv-step-label" style="margin-top:26px">2. 時間を選ぶ</div>
-    <div class="slot-grid" id="rsv-times">${openSlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}<small>${s.status==='full'?'× 満席':'◎ ご予約いただけます'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')}</div>
+    <h2 class="booking-label">日付を選ぶ</h2>
+    <div class="rsv-weeks">${rsvDatePicker()}</div>
+    <h2 class="booking-label booking-time-label">${fmtDate(rsvDate).md}（${fmtDate(rsvDate).w}）の時間を選ぶ</h2>
+    <div class="slot-grid" id="rsv-times">${openSlots.map(s=>`<button type="button" class="slot-btn${s.status==='full'?' full':''}${s.id===rsvSlot?' on':''}" data-slot="${s.id}" ${s.status==='full'?'disabled':''}>${s.startTime}–${s.endTime}<small>${s.status==='full'?'満席':'空きあり'}</small>${rsvOnlineOk(s)?'<span class="onl">オンライン可</span>':''}</button>`).join('')||'<p class="booking-empty">この日に選べる時間はありません。<br>ほかの日付をお選びください。</p>'}</div>
     ${fullCount?`<p class="slot-full-note">ほかの時間は満席です。</p>`:''}
     ${(()=>{const sel=daySlots.find(x=>x.id===rsvSlot);return sel&&rsvOnlineOk(sel)?`<p class="online-note">この時間は、ご自宅からオンラインでもご相談いただけます。<br>下の「ご相談方法」でお選びください。</p>`:''})()}
     <form id="rsv-form">
@@ -310,10 +310,11 @@ function rsvRender(){
   // 「合う日時がないとき」を時間の枠の下へ移す。作り直さず node ごと動かすので入力は消えない
   const kouho=candidateBox, grid=rsvApp.querySelector('.slot-grid');
   if(kouho&&grid&&grid.parentNode){ kouho.hidden=false; grid.parentNode.insertBefore(kouho, grid.nextSibling); }
-  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
-  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{rsvTrack('time_selected');rsvSlot=b.dataset.slot;rsvRender()}));
+  rsvApp.querySelectorAll('[data-week]').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;const d=new Date(rsvWeekStart+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+Number(b.dataset.week)*7);rsvWeekStart=d.toISOString().slice(0,10);const end=new Date(d);end.setUTCDate(end.getUTCDate()+6);const last=end.toISOString().slice(0,10);rsvDate=rsvSlots.filter(s=>s.date>=rsvWeekStart&&s.date<=last&&s.date>=rsvFirstVisibleDate()&&s.date<=rsvLastVisibleDate()&&s.status!=='full').map(s=>s.date).sort()[0]||[rsvWeekStart,rsvFirstVisibleDate()].sort()[1];rsvSlot=null;rsvRender();}));
+  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('time_selected');rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
-  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+  rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true')}));
 
   if(savedForm){
     const form=document.getElementById('rsv-form');
@@ -382,12 +383,12 @@ async function rsvSubmit(e){
   // 相談方法をシバグラムへ文字で渡す。メモ欄に埋めるだけだと、自動返信が「奈良市北之庄町までお越しください」になる（2026-09-15）
   const meetingMethod=rsvMethod==='online'?'online':'visit';
   const addr=f.address.value.trim();
-  const msg=[`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
+  const msg=[new URLSearchParams(location.search).get('from')==='shiryo'?'【入口】資料ページ':'',`【相談方法】${methodLabel}`,addr?`【ご住所】${addr}`:'',topics.length?`【相談したいこと】${topics.join('・')}`:'',known?`【きっかけ】${known}`:'',f.message.value.trim()].filter(Boolean).join('\n')||undefined;
   try{
     const r=await fetch(SHIBAGRAM_API+'/api/public/reserve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slotId:submittedSlot,reservationType:'visit',meetingMethod,customerName:f.name.value.trim(),customerPhone:f.phone.value.trim(),customerEmail:f.email.value.trim()||undefined,knownChannel:known,message:msg})});
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||'予約に失敗しました');
-    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve'});const sel=rsvSlots.find(s=>s.id===submittedSlot);const fd=fmtDate(sel.date);
+    rsvDone=true;if(window.gtag)window.gtag('event','generate_lead',{method:'visit_reserve',...(new URLSearchParams(location.search).get('from')==='shiryo'?{source:'shiryo'}:{})});const sel=rsvSlots.find(s=>s.id===submittedSlot);const fd=fmtDate(sel.date);
     rsvApp.classList.add('short');rsvApp.innerHTML=`<div class="rsv-done"><div class="mark">Reserved</div><h3>ご予約ありがとうございます</h3><p>${fd.md}（${fd.w}）${sel.startTime}〜${sel.endTime} のご予約を受け付けました。<br>担当アドバイザーより確認のご連絡を差し上げます。</p></div>`;
   }catch(err){
     rsvTrack('submit_error');rsvSubmitting=false;slotControls.forEach(([el,disabled])=>el.disabled=disabled);btn.disabled=false;btn.textContent='予約する';const notice=f.querySelector('.form-error');notice.hidden=false;
@@ -405,10 +406,11 @@ function rsvFormDirty(){
    枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
 let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
 async function rsvLoad(){
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',(typeof AbortSignal.timeout==='function'?{signal:AbortSignal.timeout(15000)}:{} ));if(!r.ok)throw 0;const data=await r.json();rsvSlots=data.slots||[];
+  if(rsvSubmitting||rsvDone)return;
+  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',(typeof AbortSignal.timeout==='function'?{signal:AbortSignal.timeout(15000)}:{} ));if(!r.ok)throw 0;const data=await r.json();if(rsvSubmitting||rsvDone)return;rsvSlots=data.slots||[];
     if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
       if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
-    if(!rsvDone&&!rsvFormDirty())rsvRender();}
+    if(!rsvDone){if(rsvSlot&&!rsvSlots.some(s=>s.id===rsvSlot&&s.status!=='full')){rsvSlot=null;rsvRender();}else if(!document.getElementById('rsv-form')||!rsvFormDirty())rsvRender();}}
   catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
 }
 // ── 合う日時がないとき：希望の日を送る ──
@@ -497,5 +499,6 @@ rsvLoad();setInterval(rsvLoad,60000);
   },true);
 })();
 </script>
+<script src="booking-flow.js?v=20261105b" defer></script>
 </body>
 </html>

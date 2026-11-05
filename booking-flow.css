@@ -1,0 +1,54 @@
+/* Large date targets, explicit two-stage booking, shared by home and /reserve. */
+.nb{display:inline!important;white-space:nowrap}
+.whead{padding:28px 20px 12px}.whead h1{font-size:28px;line-height:1.5;letter-spacing:.06em;margin:0 0 8px}.whead p{font-size:14px;line-height:1.8}
+#rsv-app.booking-ready{min-height:0;padding:26px!important}
+#rsv-app .rsv-help{display:none}
+.booking-steps{display:flex;gap:28px;margin:0 0 24px;font-size:14px;line-height:1.5;scroll-margin-top:85px}
+.booking-steps span{white-space:nowrap;color:#666;padding:0 0 8px;border-bottom:2px solid transparent}
+.booking-steps [aria-current=step]{color:#222;border-color:#222;font-weight:500}
+#rsv-app .booking-label{font-family:inherit;font-size:17px;font-weight:500;letter-spacing:.02em;margin:0 0 14px;line-height:1.6}
+#rsv-app .booking-time-label{margin-top:26px}
+.booking-week-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;font-size:16px;font-weight:500}
+.booking-week-nav button{width:48px;height:48px;border:1px solid #bbb;border-radius:3px;background:#fff;color:#222;font:inherit;font-size:24px;cursor:pointer}
+.booking-week-nav button:disabled{color:#aaa;background:#f5f5f5;cursor:default}
+#rsv-app .rsv-weeks{display:block;margin:0;padding:0;overflow:visible}
+.booking-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+#rsv-app .date-chip{display:grid;grid-template-columns:auto auto;justify-content:center;align-content:center;gap:4px 6px;width:100%;min-width:0;min-height:90px;margin:0;padding:10px 2px;border:1px solid #bbb;border-radius:3px;background:#fff;color:#222;cursor:pointer;font-family:inherit;line-height:1.4}
+#rsv-app .date-chip .d{font-family:inherit;font-size:24px;font-weight:500;line-height:1.2}
+#rsv-app .date-chip .w{font-size:12px;align-self:center;color:inherit}
+#rsv-app .date-chip .n{grid-column:1/-1;font-size:11px;letter-spacing:0;white-space:nowrap}
+#rsv-app .date-chip:disabled{color:#777;background:#f7f7f7;border-color:#e2e2e2;cursor:default}
+#rsv-app .date-chip.is-full{color:#555;background:#eee}
+#rsv-app .date-chip.on,#rsv-app .slot-btn.on{color:#fff;background:#222;border-color:#222}
+#rsv-app .slot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px}
+#rsv-app .slot-btn{min-width:0;min-height:64px;padding:12px 6px;font-family:inherit;font-size:18px;line-height:1.5;letter-spacing:0;border:1px solid #aaa;border-radius:3px;background:#fff;color:#222}
+#rsv-app .slot-btn small,#rsv-app .slot-btn .onl,#rsv-app .slot-full-note{display:none}
+#rsv-app .booking-empty{grid-column:1/-1;font-size:14px;line-height:1.8}
+#rsv-app .online-note{font-size:13px;line-height:1.8}
+#rsv-app .booking-stage-one[hidden],#rsv-app .booking-stage-two[hidden],#rsv-app [hidden]{display:none!important}
+#rsv-app .booking-back{display:block;font:inherit;font-size:13px;border:0;background:none;color:#333;min-height:44px;margin:0 0 8px;padding:0;text-decoration:underline;cursor:pointer}
+#rsv-app .booking-contact-heading{font-size:23px;font-family:inherit;font-weight:500;line-height:1.5;letter-spacing:.02em;margin:0 0 16px;scroll-margin-top:85px}
+#rsv-app .rsv-selection{margin:0;padding:16px;border:1px solid #ccc;background:#fafafa;font-size:17px;font-weight:500;line-height:1.8;color:#222;letter-spacing:0}
+#rsv-app .booking-edit{font:inherit;font-size:13px;color:#222;background:#fff;border:1px solid #aaa;border-radius:3px;padding:9px 14px;min-height:44px;margin:10px 0 8px;cursor:pointer}
+#rsv-app .rsv-field{margin-top:24px}#rsv-app .rsv-field label{font-size:15px;line-height:1.6}
+#rsv-app .rsv-field input,#rsv-app .rsv-field select,#rsv-app .rsv-field textarea{font-size:16px;min-height:48px;border-color:#aaa}
+#rsv-app .mchip{min-height:48px;flex:1;font-size:14px;margin:0;padding:10px 6px;letter-spacing:0}
+#rsv-app .method-chips{display:flex;gap:10px}
+#rsv-app .rsv-extra>summary{min-height:48px;display:flex;align-items:center;font-size:13px;letter-spacing:0}
+#rsv-app .booking-email-note,#rsv-app .rsv-method-note{font-size:12px;line-height:1.8;margin-top:8px}
+#rsv-app.booking-ready .rsv-submit{display:none}
+#rsv-app .rsv-after{font-size:13px;line-height:1.8;margin:22px 0 8px}
+#rsv-app .form-error{font-size:14px;line-height:1.8}
+#rsv-app .alt-box{margin-top:24px;padding:18px 16px}#rsv-app .alt-box>p{font-size:13px;line-height:1.8}
+#rsv-app button:focus-visible,.booking-bar button:focus-visible{outline:3px solid #3476b5;outline-offset:3px}
+.booking-bar{position:fixed;bottom:0;left:0;right:0;z-index:999;background:#fff;border-top:1px solid #ddd;padding:12px 20px max(12px,env(safe-area-inset-bottom));box-shadow:0 -3px 12px #00000008;display:flex;align-items:center;gap:20px}
+.booking-bar[hidden]{display:none!important}.booking-bar span{flex:1;font-size:13px;line-height:1.6;letter-spacing:0;color:#444}.booking-bar button{min-height:52px;padding:12px 24px;border:0;border-radius:3px;background:#222;color:#fff;font:inherit;font-size:15px;letter-spacing:0;white-space:nowrap;cursor:pointer}.booking-bar button:disabled{background:#ddd;color:#666;cursor:default}
+body.booking-active{padding-bottom:116px}body.booking-active>.fixed-cta{visibility:hidden}
+@media(min-width:901px){.booking-bar{left:50%;transform:translateX(-50%);max-width:760px;width:calc(100% - 40px);bottom:14px;border:1px solid #ddd;border-radius:4px}.wrap{max-width:808px}}
+@media(max-width:700px){.whead{padding:22px 16px 8px}.whead h1{font-size:24px;letter-spacing:.03em}.whead p{font-size:12px}#rsv-app.booking-ready{padding:20px 16px!important}.booking-steps{font-size:12px;gap:22px;margin-bottom:20px}.booking-days{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}#rsv-app .date-chip{min-height:76px}#rsv-app .date-chip .d{font-size:22px}#rsv-app .date-chip .n{font-size:10px}#rsv-app .booking-label{font-size:16px;margin-bottom:12px}#rsv-app .booking-time-label{margin-top:22px}.booking-week-nav{margin-bottom:12px;font-size:15px}#rsv-app .slot-btn{font-size:16px;min-height:60px}#rsv-app .rsv-selection{font-size:15px;padding:13px 10px}.booking-bar{display:block;padding-inline:16px}.booking-bar span{display:block;font-size:11px;margin-bottom:7px}.booking-bar button{width:100%;font-size:15px}.reserve-lead{font-size:13px!important;line-height:1.8!important}#rsv-app .booking-contact-heading{font-size:22px}.wrap{padding-inline:12px}}
+@media(max-width:359px){#rsv-app.booking-ready{padding:16px 10px!important}.booking-days{gap:6px}.booking-steps{gap:18px;font-size:12px}.booking-bar{padding-inline:12px}#rsv-app .rsv-selection{font-size:14px}#rsv-app .mchip{font-size:12px}}
+.reserve-box:has(>#rsv-app){padding:0!important}
+
+body.booking-candidate>.fixed-cta{visibility:hidden}
+
+.whead p,.reserve-lead{color:#555;font-weight:400}#rsv-app .rsv-field label{letter-spacing:.03em}
