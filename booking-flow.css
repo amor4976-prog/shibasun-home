@@ -52,3 +52,7 @@ body.booking-active{padding-bottom:116px}body.booking-active>.fixed-cta{visibili
 body.booking-candidate>.fixed-cta{visibility:hidden}
 
 .whead p,.reserve-lead{color:#555;font-weight:400}#rsv-app .rsv-field label{letter-spacing:.03em}
+
+.booking-date-control{min-width:0}.booking-date-toggle{width:100%;min-height:48px;border:1px solid #aaa;border-radius:3px;padding:10px 8px;background:#fff;color:#222;font:inherit;font-size:15px;letter-spacing:0;cursor:pointer;text-align:left}.booking-date-toggle::after{content:' ▾';float:right}.booking-candidate-calendar{margin:12px 0 20px;padding:12px 0;border:0;border-top:1px solid #ccc;background:#fff}.booking-candidate-calendar[hidden]{display:none!important}#rsv-app .booking-candidate-calendar .booking-days{grid-template-columns:repeat(4,minmax(0,1fr))}#rsv-app .booking-candidate-calendar .date-chip{min-height:76px}.booking-candidate-calendar .booking-week-nav{font-size:13px;letter-spacing:0}.booking-candidate-calendar .booking-week-nav button{width:44px;height:44px;flex-shrink:0}.booking-candidate-calendar .booking-week-nav span{text-align:center;line-height:1.6}
+
+.sendin:not(.open) .booking-date-control,.sendin:not(.open) .booking-candidate-calendar{visibility:hidden}

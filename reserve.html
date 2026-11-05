@@ -149,7 +149,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 .rsv-weeks{display:grid;gap:18px}.rsv-week{min-width:0;border-bottom:1px solid var(--linec);padding-bottom:14px}.rsv-week summary{cursor:pointer;padding:9px 0;min-height:44px}.rsv-week[open] summary{margin-bottom:8px}.rsv-week-title{font-size:14px;font-weight:500;line-height:1.8;margin:0 0 9px;letter-spacing:.04em}.rsv-week .date-scroll{display:grid;grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;overflow:visible;padding:0}.rsv-week .date-chip{min-width:0;width:100%;min-height:78px;padding:10px 6px}.date-chip span{display:block}.date-chip:focus-visible{outline:3px solid #555;outline-offset:3px}.rsv-week .date-chip .n{font-size:11px}.rsv-week .date-chip.on{outline:2px solid var(--ink);outline-offset:2px}@media(max-width:560px){.rsv-week .date-scroll{grid-template-columns:repeat(3,minmax(0,1fr))}.rsv-week .date-chip .d{font-size:18px}}</style>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
-<link rel="stylesheet" href="booking-flow.css?v=20261105b">
+<link rel="stylesheet" href="booking-flow.css?v=20261106a">
 </head>
 <body>
 
@@ -311,7 +311,7 @@ function rsvRender(){
   const kouho=candidateBox, grid=rsvApp.querySelector('.slot-grid');
   if(kouho&&grid&&grid.parentNode){ kouho.hidden=false; grid.parentNode.insertBefore(kouho, grid.nextSibling); }
   rsvApp.querySelectorAll('[data-week]').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;const d=new Date(rsvWeekStart+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+Number(b.dataset.week)*7);rsvWeekStart=d.toISOString().slice(0,10);const end=new Date(d);end.setUTCDate(end.getUTCDate()+6);const last=end.toISOString().slice(0,10);rsvDate=rsvSlots.filter(s=>s.date>=rsvWeekStart&&s.date<=last&&s.date>=rsvFirstVisibleDate()&&s.date<=rsvLastVisibleDate()&&s.status!=='full').map(s=>s.date).sort()[0]||[rsvWeekStart,rsvFirstVisibleDate()].sort()[1];rsvSlot=null;rsvRender();}));
-  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.rsv-weeks .date-chip').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('time_selected');rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
   rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true')}));
@@ -373,7 +373,7 @@ async function rsvSubmit(e){
   if(!rsvSlot){rsvTrack('time_missing');const notice=f.querySelector('.form-error');notice.hidden=false;notice.querySelector('.error-detail').textContent='上の時間を選んでから送信してください。';rsvApp.querySelector('.slot-grid')?.scrollIntoView({behavior:'smooth',block:'center'});return}
   rsvTrack('submit_attempt');rsvSubmitting=true;
   const submittedSlot=rsvSlot;
-  const slotControls=[...rsvApp.querySelectorAll('.date-chip,.slot-btn')].map(el=>[el,el.disabled]);
+  const slotControls=[...rsvApp.querySelectorAll('.rsv-weeks .date-chip,.slot-btn')].map(el=>[el,el.disabled]);
   slotControls.forEach(([el])=>el.disabled=true);
   const btn=f.querySelector('.rsv-submit');const previousError=f.querySelector('.form-error');if(previousError)previousError.hidden=true;
   btn.disabled=true;btn.textContent='送信中…';
@@ -429,6 +429,7 @@ async function rsvLoad(){
   });
   send.addEventListener('click',async()=>{
     const name=g('k-name').value.trim(), tel=g('k-tel').value.trim(), mail=g('k-mail').value.trim();
+    for(const id of ['k-d1','k-d2']){const el=g(id);if(el.value&&(!/^\d{4}-\d{2}-\d{2}$/.test(el.value)||el.value<el.min)){alert('ご希望の日付を選び直してください');return;}}
     if(!g('k-d1').value){alert('第1希望の日を選んでください');return}
     if(!name){alert('お名前を入れてください');return}
     if(!tel&&!mail){alert('お電話番号かメールアドレスのどちらかを入れてください');return}
@@ -499,6 +500,6 @@ rsvLoad();setInterval(rsvLoad,60000);
   },true);
 })();
 </script>
-<script src="booking-flow.js?v=20261105b" defer></script>
+<script src="booking-flow.js?v=20261106a" defer></script>
 </body>
 </html>

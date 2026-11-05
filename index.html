@@ -1124,7 +1124,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .hero-cta{align-items:flex-start;flex-direction:column;gap:14px}.hero-cta .hero-reserve{min-height:50px;padding:12px 22px;font-size:14px;line-height:1.65;letter-spacing:.05em;font-weight:500;background:rgba(0,0,0,.12);color:#fff;border:1px solid rgba(255,255,255,.85);text-shadow:0 1px 5px rgba(0,0,0,.4)}.hero-cta .hero-catalog{display:inline-block;color:#fff;font-size:12px;line-height:1.9;text-decoration:underline;text-underline-offset:4px;padding:5px 0}.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;margin-top:12px;letter-spacing:.03em}.consult-entry{text-align:center;padding:30px 22px;border-bottom:1px solid #e3e3e0;background:#f6f6f4}.consult-entry h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.6vw,27px);font-weight:500;line-height:1.65;margin-bottom:14px;text-wrap:balance}.consult-entry p{font-size:14px;line-height:1.9;margin:0}.consult-entry-button{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 22px;margin:20px 0 12px;background:#20211e;color:#fff;font-size:15px}.consult-entry small{display:block;font-size:12px;line-height:1.9;color:#555}.consult-entry-doc{display:inline-block;font-size:12px;line-height:1.9;margin-top:20px;padding:8px 0;border-bottom:1px solid #999}.fixed-cta[data-reserve-priority]{grid-template-columns:.8fr 1.2fr 2fr!important}.fixed-cta[data-reserve-priority] a{font-size:12px!important;letter-spacing:.03em!important;min-height:60px}.fixed-cta[data-reserve-priority] .fc-reserve{background:#20211e!important;color:white!important;font-weight:500}.fixed-cta[data-reserve-priority] .fc-doc{background:#fff;color:#333;border-right:1px solid #ddd}@media(max-width:560px){.hero-copy{bottom:75px}.hero-cta .hero-reserve{width:240px;max-width:100%}.hero-area{margin-top:12px}.hero-first{margin-top:10px}.consult-entry-button{width:100%;max-width:330px}}@media(max-width:359px){.hero-cta .hero-reserve{font-size:14px}.fixed-cta[data-reserve-priority] a{font-size:11px!important}}
 
 </style><link rel="stylesheet" href="catalog-preview.css?v=20261030">
-<link rel="stylesheet" href="booking-flow.css?v=20261105b">
+<link rel="stylesheet" href="booking-flow.css?v=20261106a">
 </head>
 <body>
 
@@ -1929,7 +1929,7 @@ function rsvRender(){
   const kouho=candidateBox, grid=rsvApp.querySelector('.slot-grid');
   if(kouho&&grid&&grid.parentNode){ kouho.hidden=false; grid.parentNode.insertBefore(kouho, grid.nextSibling); }
   rsvApp.querySelectorAll('[data-week]').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;const d=new Date(rsvWeekStart+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+Number(b.dataset.week)*7);rsvWeekStart=d.toISOString().slice(0,10);const end=new Date(d);end.setUTCDate(end.getUTCDate()+6);const last=end.toISOString().slice(0,10);rsvDate=rsvSlots.filter(s=>s.date>=rsvWeekStart&&s.date<=last&&s.date>=rsvFirstVisibleDate()&&s.date<=rsvLastVisibleDate()&&s.status!=='full').map(s=>s.date).sort()[0]||[rsvWeekStart,rsvFirstVisibleDate()].sort()[1];rsvSlot=null;rsvRender();}));
-  rsvApp.querySelectorAll('.date-chip').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
+  rsvApp.querySelectorAll('.rsv-weeks .date-chip').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('date_selected');rsvDate=b.dataset.date;rsvSlot=null;rsvRender()}));
   rsvApp.querySelectorAll('.slot-btn').forEach(b=>b.addEventListener('click',()=>{if(rsvSubmitting)return;rsvTrack('time_selected');rsvSlot=b.dataset.slot;rsvRender()}));
   rsvApp.querySelectorAll('.tchip:not(.mchip):not(.kchip)').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
   rsvApp.querySelectorAll('.mchip').forEach(b=>b.addEventListener('click',()=>{rsvMethod=b.dataset.m;rsvApp.querySelectorAll('.mchip').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true')}));
@@ -1991,7 +1991,7 @@ async function rsvSubmit(e){
   if(!rsvSlot){rsvTrack('time_missing');const notice=f.querySelector('.form-error');notice.hidden=false;notice.querySelector('.error-detail').textContent='上の時間を選んでから送信してください。';rsvApp.querySelector('.slot-grid')?.scrollIntoView({behavior:'smooth',block:'center'});return}
   rsvTrack('submit_attempt');rsvSubmitting=true;
   const submittedSlot=rsvSlot;
-  const slotControls=[...rsvApp.querySelectorAll('.date-chip,.slot-btn')].map(el=>[el,el.disabled]);
+  const slotControls=[...rsvApp.querySelectorAll('.rsv-weeks .date-chip,.slot-btn')].map(el=>[el,el.disabled]);
   slotControls.forEach(([el])=>el.disabled=true);
   const btn=f.querySelector('.rsv-submit');const previousError=f.querySelector('.form-error');if(previousError)previousError.hidden=true;
   btn.disabled=true;btn.textContent='送信中…';
@@ -2047,6 +2047,7 @@ async function rsvLoad(){
   });
   send.addEventListener('click',async()=>{
     const name=g('k-name').value.trim(), tel=g('k-tel').value.trim(), mail=g('k-mail').value.trim();
+    for(const id of ['k-d1','k-d2']){const el=g(id);if(el.value&&(!/^\d{4}-\d{2}-\d{2}$/.test(el.value)||el.value<el.min)){alert('ご希望の日付を選び直してください');return;}}
     if(!g('k-d1').value){alert('第1希望の日を選んでください');return}
     if(!name){alert('お名前を入れてください');return}
     if(!tel&&!mail){alert('お電話番号かメールアドレスのどちらかを入れてください');return}
@@ -2259,6 +2260,6 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   },true);
 })();
 </script>
-<script src="booking-flow.js?v=20261105b" defer></script>
+<script src="booking-flow.js?v=20261106a" defer></script>
 </body>
 </html>

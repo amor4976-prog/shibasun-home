@@ -9,7 +9,43 @@ const status=document.createElement('span'),next=document.createElement('button'
 function text(el,value){if(el&&el.textContent!==value)el.textContent=value;}
 function focusStage(){const heading=app.querySelector(stage===2?'.booking-contact-heading':'.booking-steps');app.querySelector('.booking-steps')?.scrollIntoView({behavior:'smooth',block:'start'});heading?.focus({preventScroll:true});}
 function back(){if(rsvSubmitting)return;if(history.state?.shibasunBookingStep===2)history.back();else{stage=1;refresh();focusStage();}}
+function enhanceCandidateDates(){
+ for(const id of ['k-d1','k-d2']){
+  const input=document.getElementById(id);if(!input||input.dataset.monthDayPicker)return;
+  input.dataset.monthDayPicker='true';input.type='hidden';
+  const control=document.createElement('div');control.className='booking-date-control';input.before(control);control.append(input);
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='booking-date-toggle';toggle.setAttribute('aria-label',id==='k-d1'?'第1希望の日付を選ぶ':'第2希望の日付を選ぶ');control.append(toggle);
+  const panel=document.createElement('div');panel.className='booking-candidate-calendar';panel.id=id+'-calendar';panel.hidden=true;
+  input.closest('.two').after(panel);toggle.setAttribute('aria-controls',panel.id);toggle.setAttribute('aria-expanded','false');
+  let start=input.value||input.min;
+  const label=()=>{text(toggle,input.value?`${fmtDate(input.value).md}（${fmtDate(input.value).w}）`:'日付を選ぶ');};
+  const close=()=>{panel.hidden=true;toggle.setAttribute('aria-expanded','false');};
+  function draw(){
+   panel.replaceChildren();const nav=document.createElement('div');nav.className='booking-week-nav';
+   const prev=document.createElement('button'),range=document.createElement('span'),after=document.createElement('button');prev.type=after.type='button';prev.textContent='‹';after.textContent='›';prev.setAttribute('aria-label','希望日の前の週');after.setAttribute('aria-label','希望日の次の週');prev.disabled=start<=input.min;
+   const end=new Date(start+'T00:00:00Z');end.setUTCDate(end.getUTCDate()+6);const last=end.toISOString().slice(0,10);
+   // The full ISO date stays in the existing payload; there is no year-selection control.
+   range.textContent=fmtDate(start).md+'〜'+fmtDate(last).md;
+   nav.append(prev,range,after);panel.append(nav);
+   const days=document.createElement('div');days.className='booking-days';
+   for(let i=0;i<7;i++){
+    const d=new Date(start+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+i);const date=d.toISOString().slice(0,10),f=fmtDate(date);
+    const b=document.createElement('button');b.type='button';b.className='date-chip'+(input.value===date?' on':'');b.disabled=date<input.min;b.setAttribute('aria-label',`${id==='k-d1'?'第1希望':'第2希望'} ${f.md} ${f.w}曜日`);b.setAttribute('aria-pressed',String(input.value===date));
+    const number=document.createElement('span'),weekday=document.createElement('span');number.className='d';number.textContent=d.getUTCDate();weekday.className='w';weekday.textContent=f.w;b.append(number,weekday);
+    b.addEventListener('click',()=>{input.value=date;label();close();input.dispatchEvent(new Event('input',{bubbles:true}));toggle.focus({preventScroll:true});});days.append(b);
+   }
+   panel.append(days);
+   function move(n){const d=new Date(start+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+n*7);start=[d.toISOString().slice(0,10),input.min].sort()[1];draw();panel.querySelector(n<0?'button[aria-label="希望日の前の週"]':'button[aria-label="希望日の次の週"]')?.focus({preventScroll:true});}
+   prev.addEventListener('click',()=>move(-1));after.addEventListener('click',()=>move(1));
+   const clear=document.createElement('button');clear.type='button';clear.className='booking-edit';clear.textContent=id==='k-d2'?'第2希望を取り消す':'閉じる';clear.addEventListener('click',()=>{if(id==='k-d2'){input.value='';label();input.dispatchEvent(new Event('input',{bubbles:true}));}close();toggle.focus({preventScroll:true});});panel.append(clear);
+  }
+  toggle.addEventListener('click',()=>{if(!panel.hidden){close();return;}document.querySelectorAll('.booking-candidate-calendar').forEach(el=>el.hidden=true);document.querySelectorAll('.booking-date-toggle').forEach(el=>el.setAttribute('aria-expanded','false'));start=input.value||input.min;panel.hidden=false;toggle.setAttribute('aria-expanded','true');draw();});
+  panel.addEventListener('keydown',e=>{if(e.key==='Escape'){close();toggle.focus({preventScroll:true});}});label();
+ }
+}
+
 function refresh(){
+ enhanceCandidateDates();
  const form=app.querySelector('#rsv-form'),chosen=app.querySelector('.slot-btn.on'),done=!!app.querySelector('.rsv-done');
  const candidateOpen=stage===1&&!!document.getElementById('kouho-in')?.classList.contains('open');document.body.classList.toggle('booking-candidate',inView&&candidateOpen);
  bar.hidden=!inView||done||!form||candidateOpen;document.body.classList.toggle('booking-active',!bar.hidden);
