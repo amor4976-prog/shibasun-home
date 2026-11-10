@@ -254,6 +254,19 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
 .reserve-box{border:1px solid var(--line);background:#fff;padding:22px 18px}
 .alt{margin-top:22px}
 @media (min-width:760px){body{background:#eceae7}.deck{box-shadow:0 1px 40px rgba(0,0,0,.07)}}
+
+.shiryo-budget{margin-top:26px;padding:22px 18px;border:1px solid #c8c8c5;background:#f2f2ef}
+.shiryo-budget .nb{display:inline!important;white-space:nowrap}
+.shiryo-budget h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:22px;line-height:1.6;letter-spacing:.025em;margin:0 0 14px;font-weight:500}
+.shiryo-budget p{font-size:14px;line-height:1.9;letter-spacing:.02em;margin:0 0 12px;color:#333}
+.shiryo-budget .budget-cta{display:flex;justify-content:center;align-items:center;min-height:56px;width:100%;padding:13px 10px;margin:18px 0 12px;background:#1a1a1a;color:#fff;font-size:15px;letter-spacing:0;white-space:nowrap}
+.shiryo-budget h3{scroll-margin-top:85px}
+.shiryo-budget .budget-line{display:flex;align-items:center;justify-content:center;min-height:52px;margin:0 0 12px;padding:12px 8px;border:1px solid #555;background:#fff;color:#222;font-size:14px;letter-spacing:0;white-space:nowrap}
+.shiryo-budget .budget-line-help{font-size:11px;line-height:1.8;color:#555}
+.shiryo-budget .budget-cta:focus-visible{outline:3px solid #3476b5;outline-offset:3px}
+.shiryo-budget .budget-note{font-size:12px;line-height:1.9;color:#555;margin-bottom:0}
+@media(max-width:440px){.shiryo-budget{padding:20px 16px}.shiryo-budget h3{font-size:20px}.shiryo-budget .budget-cta{font-size:14px}}
+@media(max-width:359px){.shiryo-budget .budget-cta{font-size:13px}}
 </style>
 <meta name="description" content="奈良の工務店シバサンホームのご案内。坪単価・商品ラインアップ・施工事例・性能をまとめたページです。">
 <link rel="canonical" href="https://www.shibasun.jp/shiryo">
@@ -397,6 +410,15 @@ td small{font-size:9.5px;color:var(--gray);display:block;font-weight:300;letter-
       </div>
     </div>
     <p class="note">※ 本体価格の目安です（税込・内装・設備・照明込み）。家づくりは家の本体価格だけではなく、さまざまな諸経費が<span class="nb">必要になります</span>。後で予算が圧迫されないように、家づくりにかかる全てのお金をお伝えします。<br>※ 月々は35年・年1.0%・元利均等・ボーナス払いなしで借りた場合の試算です。金利・借入額・頭金・土地代により変わります。<br>※ 坪数・仕様により変わります。</p>
+
+    <aside class="shiryo-budget" aria-labelledby="budget-consult-title">
+      <h3 id="budget-consult-title"><span class="nb">この価格、</span><br><span class="nb">わが家の場合はいくら？</span></h3>
+      <p><span class="nb">資料の本体価格をもとに、</span><span class="nb">土地・外構・諸費用を含めた</span><span class="nb">総額の目安を、</span><span class="nb">ご家族の条件に合わせて</span><span class="nb">一緒に整理します。</span></p>
+      <a class="budget-cta" data-shiryo-consult="price" href="/reserve?from=shiryo&amp;topic=budget">わが家の総額を相談する（無料）</a>
+      <a class="budget-line" data-shiryo-line="price" href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">LINEで相談</a>
+      <p class="budget-line-help" data-line-help>LINEからご質問いただけます。</p>
+      <p class="budget-note"><span class="nb">土地が決まる前でも</span><span class="nb">ご相談いただけます。</span><br><span class="nb">来店・オンラインをお選びいただけます。</span></p>
+    </aside>
   </section>
 
   <!-- 10 施工事例 -->
@@ -587,6 +609,16 @@ if(/(^|\.)shibasun\.jp$/i.test(location.hostname)){
     [].forEach.call(f.querySelectorAll('input[type=tel]'),check);
   },true);
 })();
+</script>
+<script>
+const lineButton=document.querySelector('[data-shiryo-line="price"]');
+const mobileLine=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+lineButton.href=mobileLine?'https://line.me/R/oaMessage/%40ijo6324j/?%E8%B3%87%E6%96%99%E3%82%92%E8%A6%8B%E3%81%BE%E3%81%97%E3%81%9F%E3%80%82%E3%82%8F%E3%81%8C%E5%AE%B6%E3%81%AE%E7%B7%8F%E9%A1%8D%E3%81%AE%E7%9B%AE%E5%AE%89%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82':'https://lin.ee/ueeBddk';
+document.querySelector('[data-line-help]').textContent=mobileLine?'質問文は書き換えてから送信できます。':'PCでは、表示されるQRコードをスマホで読み取れます。';
+lineButton.addEventListener('click',function(){if(window.gtag)gtag('event','shiryo_line_click',{placement:'price'});});
+document.querySelector('[data-shiryo-consult="price"]').addEventListener('click',function(){
+ if(window.gtag)gtag('event','shiryo_consult_click',{placement:'price',topic:'budget'});
+});
 </script>
 </body>
 </html>
