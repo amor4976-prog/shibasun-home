@@ -11,7 +11,7 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 concurrency:
@@ -31,3 +31,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           NOTIFICATION_TEST: ${{ inputs.notification_test || false }}
         run: python3 .github/monitor/booking_health.py
+      - name: Keep scheduled monitoring active during long periods without site edits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/monitor/keep_active.py
