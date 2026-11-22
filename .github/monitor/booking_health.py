@@ -1,12 +1,9 @@
 """Independent, read-only booking monitor; no booking POSTs, analytics or customer data."""
 import concurrent.futures
 import datetime
-import email.message
 import hashlib
 import json
 import os
-import smtplib
-import ssl
 import time
 import urllib.error
 import urllib.request
@@ -15,8 +12,8 @@ BASE = 'https://www.shibasun.jp'
 TARGETS = [BASE + '/', BASE + '/reserve', BASE + '/booking-flow.js',
            BASE + '/booking-flow.css',
            'https://shibagram.onrender.com/api/public/slots?type=visit&includeFull=1']
-STATE_TITLE = '[booking-health] Current incident'
-RECIPIENT = 'yasuhiro@shibasun.jp'
+STATE_TITLE = '【要確認】予約画面・空き枠の読み込みに異常 [booking-health]'
+OWNER = 'amor4976-prog'
 
 
 def probe(url):
@@ -69,19 +66,6 @@ def github(path, method='GET', payload=None):
         return json.load(response)
 
 
-def mail(subject, text):
-    # Existing company SMTP account, encrypted repository secrets; never print credentials.
-    message = email.message.EmailMessage()
-    message['From'] = 'シバサンホーム 予約サイト監視 <yasuhiro@shibasun.jp>'
-    message['To'] = RECIPIENT
-    message['Subject'] = subject
-    message.set_content(text)
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=25,
-                          context=ssl.create_default_context()) as smtp:
-        smtp.login(os.environ['MONITOR_SMTP_USER'], os.environ['MONITOR_SMTP_PASSWORD'])
-        smtp.send_message(message)
-
-
 def transition(previous, signature):
     if signature:
         return 'failed' if previous is None else ('changed' if previous != signature else 'unchanged')
@@ -99,14 +83,15 @@ def main():
     with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as file:
         file.write('## 予約サイト監視\n\n```json\n' + summary + '\n```\n')
 
-    # A test sends one labelled email and does not alter real incident state.
+    # Native GitHub assignment notifications need no company mailbox credentials.
     if os.environ.get('NOTIFICATION_TEST') == 'true':
-        mail('【監視テスト】予約サイトの通知を確認しています',
-             'これは通知の到着確認用です。異常発生のお知らせではありません。\n\n'
-             'CodexやMacを閉じていても、外部から30分ごとに予約画面と空き枠を確認します。\n'
-             '異常を検出したときと復旧したときに、このメールでお知らせします。\n'
-             '広告予算は変更していません。\n\n確認日時: ' + now + '\n確認記録: ' + run_url)
-        print('Notification test accepted by SMTP server')
+        test = github('/issues', 'POST', {
+            'title': '【監視テスト】予約サイトの通知を確認しています',
+            'body': 'これは通知テストです。予約サイトの異常通知ではありません。\n\n'
+                    'CodexやMacを閉じていても30分ごとに外部から確認します。\n'
+                    '広告予算は変更していません。\n\n確認日時: ' + now + '\n' + run_url,
+            'assignees': [OWNER]})
+        print('Notification test issue:', test['html_url'])
 
     issues = github('/issues?state=open&per_page=100')
     incidents = [issue for issue in issues if issue['title'] == STATE_TITLE and issue['user']['login'] == 'github-actions[bot]' and 'pull_request' not in issue]
@@ -125,15 +110,15 @@ def main():
         text = ('予約画面または空き枠の読み込みに異常を検出しました。\n'
                 '自動で再確認しても正常な応答を得られていません。\n'
                 '予約操作の最終送信までは検査していません。\n\n' + summary + '\n\n確認記録: ' + run_url)
-        mail('【要確認】シバサンホームの予約画面・空き枠に異常', text)
         body = json.dumps({'signature': signature, 'checked_at': now, 'failed': failed}, ensure_ascii=False)
         if incident:
+            github('/issues/' + str(incident['number']) + '/comments', 'POST', {'body': text})
             github('/issues/' + str(incident['number']), 'PATCH', {'body': body})
         else:
-            github('/issues', 'POST', {'title': STATE_TITLE, 'body': body})
+            github('/issues', 'POST', {'title': STATE_TITLE, 'body': body, 'assignees': [OWNER]})
     else:
-        mail('【復旧】シバサンホームの予約画面・空き枠',
-             '予約画面と空き枠の読み込みが正常に戻ったことを確認しました。\n\n' + summary + '\n\n確認記録: ' + run_url)
+        github('/issues/' + str(incident['number']) + '/comments', 'POST', {
+            'body': '【復旧】予約画面と空き枠の読み込みが正常に戻りました。\n\n' + summary + '\n' + run_url})
         github('/issues/' + str(incident['number']), 'PATCH', {'state': 'closed', 'state_reason': 'completed'})
 
 

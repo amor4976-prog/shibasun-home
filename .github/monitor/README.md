@@ -10,16 +10,17 @@ Zero available slots is not itself a failure. No customer details are stored, no
 analytics events are sent and no booking is submitted. This cannot prove final
 booking submission or detect every browser-specific rendering problem.
 
-An email is sent to the owner on failure, changed failure, and recovery. Matching
-repeated failures remain silent. An open issue authored by github-actions[bot]
-stores only the public endpoint failure signature; it is closed on recovery.
-SMTP credentials live only in encrypted repository secrets; never put them in files.
-The workflow runs only from the default branch or an authorized manual dispatch,
-not from pull requests. Keep repository write access restricted to trusted users.
+GitHub assignment/issue notifications alert the owner on a new incident; subscribed
+issue comments notify changes and recovery. Matching repeated failures remain silent.
+An open issue authored by github-actions[bot] stores only public endpoint failures;
+it closes on recovery. No mailbox credentials or repository secrets are required.
+The workflow runs from the default branch or authorized manual dispatch, never PRs.
 
-Manual dispatch with notification_test=true sends one explicitly labelled test
-email without fabricating a website failure or altering the real incident state.
-Monitor infrastructure failures trigger a separate warning email.
+Manual dispatch with notification_test=true creates one explicitly labelled test
+issue assigned to the owner, without fabricating website failure. Close this test
+issue after verifying delivery. Infrastructure failures use native workflow failure
+notifications, already enabled for the owner. The owner must keep GitHub email
+notifications enabled for assignments, participating issues, and workflow failures.
 
 GitHub schedules can be delayed or dropped during service load/outages; 30 minutes
 is a target interval, not a guaranteed detection SLA. Public-repository schedules
