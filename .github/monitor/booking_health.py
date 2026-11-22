@@ -88,7 +88,7 @@ def main():
         test = github('/issues', 'POST', {
             'title': '【監視テスト】予約サイトの通知を確認しています',
             'body': 'これは通知テストです。予約サイトの異常通知ではありません。\n\n'
-                    'CodexやMacを閉じていても30分ごとに外部から確認します。\n'
+                    'CodexやMacを閉じていても3時間ごとに外部から確認します。\n'
                     '広告予算は変更していません。\n\n確認日時: ' + now + '\n' + run_url,
             'assignees': [OWNER]})
         print('Notification test issue:', test['html_url'])

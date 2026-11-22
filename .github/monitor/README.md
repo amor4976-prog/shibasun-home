@@ -1,7 +1,7 @@
 # Booking monitor
 
-Runs outside the booking backend and outside the owner's computer, every 30 minutes
-at UTC minutes 7 and 37. Uses the free standard Linux runner in this public repository;
+Runs outside the booking backend and outside the owner's computer, every 3 hours
+at UTC hours 0, 3, 6, 9, 12, 15, 18, 21, minute 7. Uses the free standard Linux runner in this public repository;
 no paid API, artifacts, caches, or advertising changes.
 
 Read-only HTTP probes check the homepage, booking page, calendar script/styles and
@@ -22,7 +22,7 @@ issue after verifying delivery. Infrastructure failures use native workflow fail
 notifications, already enabled for the owner. The owner must keep GitHub email
 notifications enabled for assignments, participating issues, and workflow failures.
 
-GitHub schedules can be delayed or dropped during service load/outages; 30 minutes
+GitHub schedules can be delayed or dropped during service load/outages; 3 hours
 is a target interval, not a guaranteed detection SLA. Public-repository schedules
 are disabled after 60 days without repository activity. keep_active.py updates only
 .github/monitor/active.json once per 28 days to maintain activity, even if the owner
