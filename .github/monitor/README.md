@@ -24,6 +24,10 @@ notifications enabled for assignments, participating issues, and workflow failur
 
 GitHub schedules can be delayed or dropped during service load/outages; 30 minutes
 is a target interval, not a guaranteed detection SLA. Public-repository schedules
-are disabled after 60 days without repository activity. Keep this schedule's enabled
+are disabled after 60 days without repository activity. keep_active.py updates only
+.github/monitor/active.json once per 28 days to maintain activity, even if the owner
+does not edit the site. This requires contents:write for the job token; checkout
+never persists this credential and no pull-request event runs this workflow.
+Keep this schedule's enabled
 state and last successful run in the existing weekly website review. If homepage
 calendar implementation changes, update the three expected markers in probe().
