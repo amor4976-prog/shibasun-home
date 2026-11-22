@@ -1,0 +1,50 @@
+name: Booking availability monitor
+
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+    inputs:
+      notification_test:
+        description: 'Send a clearly labelled notification test (no site failure)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: booking-health
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Check public booking endpoints and notify on state changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MONITOR_SMTP_USER: ${{ secrets.BOOKING_MONITOR_SMTP_USER }}
+          MONITOR_SMTP_PASSWORD: ${{ secrets.BOOKING_MONITOR_SMTP_PASSWORD }}
+          NOTIFICATION_TEST: ${{ inputs.notification_test || false }}
+        run: python3 .github/monitor/booking_health.py
+      - name: Notify if the monitor itself failed
+        if: failure()
+        env:
+          MONITOR_SMTP_USER: ${{ secrets.BOOKING_MONITOR_SMTP_USER }}
+          MONITOR_SMTP_PASSWORD: ${{ secrets.BOOKING_MONITOR_SMTP_PASSWORD }}
+        run: |
+          python3 - <<'PY'
+          import importlib.util, os
+          spec = importlib.util.spec_from_file_location('monitor', '.github/monitor/booking_health.py')
+          monitor = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(monitor)
+          monitor.mail('【要確認】予約サイトの外部監視を完了できませんでした',
+              '監視処理自体が完了しませんでした。サイト障害と断定した通知ではありません。\n'
+              + 'https://github.com/' + os.environ['GITHUB_REPOSITORY'] + '/actions/runs/' + os.environ['GITHUB_RUN_ID'])
+          PY
