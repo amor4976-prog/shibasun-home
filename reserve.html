@@ -149,7 +149,7 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 .form-error{margin-top:20px;padding:14px;border:1px solid #9b4034;color:#743228;background:#fff8f6;font-size:13px;line-height:1.9}.form-error a{text-decoration:underline;color:inherit}
 .rsv-weeks{display:grid;gap:18px}.rsv-week{min-width:0;border-bottom:1px solid var(--linec);padding-bottom:14px}.rsv-week summary{cursor:pointer;padding:9px 0;min-height:44px}.rsv-week[open] summary{margin-bottom:8px}.rsv-week-title{font-size:14px;font-weight:500;line-height:1.8;margin:0 0 9px;letter-spacing:.04em}.rsv-week .date-scroll{display:grid;grid-auto-flow:row;grid-template-rows:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;overflow:visible;padding:0}.rsv-week .date-chip{min-width:0;width:100%;min-height:78px;padding:10px 6px}.date-chip span{display:block}.date-chip:focus-visible{outline:3px solid #555;outline-offset:3px}.rsv-week .date-chip .n{font-size:11px}.rsv-week .date-chip.on{outline:2px solid var(--ink);outline-offset:2px}@media(max-width:560px){.rsv-week .date-scroll{grid-template-columns:repeat(3,minmax(0,1fr))}.rsv-week .date-chip .d{font-size:18px}}</style>
 <script src="/inquiry-attribution.js?v=20261017" defer></script>
-<link rel="stylesheet" href="booking-flow.css?v=20261106b">
+<link rel="stylesheet" href="booking-flow.css?v=20261122recovery">
 </head>
 <body>
 
@@ -218,8 +218,8 @@ footer .copy{opacity:.5;margin-top:12px;font-family:'Jost',sans-serif;letter-spa
 const SHIBAGRAM_API='https://shibagram.onrender.com';
 let rsvSubmitting=false;
 const rsvTracked=new Set();
-function rsvTrack(step){if(window.gtag)window.gtag('event','reserve_'+step,{page_path:'/reserve'});}
-function rsvTrackOnce(step){if(!rsvTracked.has(step)){rsvTracked.add(step);rsvTrack(step);}}
+function rsvTrack(step,detail={}){if(window.gtag)window.gtag('event','reserve_'+step,{page_path:location.pathname,...detail});}
+function rsvTrackOnce(step,detail={}){if(!rsvTracked.has(step)){rsvTracked.add(step);rsvTrack(step,detail);}}
 function showCandidate(){const box=document.getElementById('kouho');if(box){box.hidden=false;rsvApp.after(box);}}
 
 const rsvApp=document.getElementById('rsv-app');
@@ -228,7 +228,6 @@ let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false,rsvMethod='visit';
 // 空いているここだけ「オンラインでも」と出す。10時・13時・15時には出さない＝
 // 来店できる方をオンラインへ寄せないため（専務 2026-09-15）。
 const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
-function rsvFallback(){showCandidate();rsvTrackOnce('slots_error');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">予約枠を読み込めませんでした。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話いただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">公式LINEでご相談ください</a>。<br>（電話受付 9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
 function rsvLastVisibleDate(now=new Date()){
   const ymd=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
@@ -410,14 +409,67 @@ function rsvFormDirty(){
 /* 相談会ページ（event.html）から ?slot=◯◯ で来た時、その枠を選んだ状態で開く。
    枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
 let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
-async function rsvLoad(){
-  if(rsvSubmitting||rsvDone)return;
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',(typeof AbortSignal.timeout==='function'?{signal:AbortSignal.timeout(15000)}:{} ));if(!r.ok)throw 0;const data=await r.json();if(rsvSubmitting||rsvDone)return;rsvSlots=data.slots||[];
-    if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
-      if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
-    if(!rsvDone){if(rsvSlot&&!rsvSlots.some(s=>s.id===rsvSlot&&s.status!=='full')){rsvSlot=null;rsvRender();}else if(!document.getElementById('rsv-form')||!rsvFormDirty())rsvRender();}}
-  catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
+// Shared verbatim by the home and reservation page. Read-only requests retry once;
+// reservation/contact POSTs are never retried automatically.
+let rsvLoading=false,rsvHasSnapshot=false;
+function rsvLoadNotice(kind,message){
+  let box=document.getElementById('rsv-load-status');
+  if(!box){box=document.createElement('div');box.id='rsv-load-status';box.className='booking-load-status';box.setAttribute('role','status');box.setAttribute('aria-live','polite');rsvApp.before(box);}
+  box.replaceChildren();const p=document.createElement('p');p.textContent=message;box.append(p);
+  const actions=document.createElement('div');actions.className='booking-load-actions';
+  function button(label,fn){const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',fn);actions.append(b);return b;}
+  if(kind!=='ready'){
+    button('希望日を送る',()=>{showCandidate();const inn=document.getElementById('kouho-in');if(inn&&!inn.classList.contains('open'))document.getElementById('kouho-open')?.click();document.getElementById('kouho')?.scrollIntoView({behavior:'smooth',block:'start'});});
+    const retry=button(rsvLoading?'空きを確認中…':'空きを再読み込み',()=>{rsvTrack('slots_manual_retry');rsvLoad();});retry.disabled=rsvLoading;
+    const phone=document.createElement('a');phone.href='tel:0120154483';phone.textContent='電話で相談';actions.append(phone);
+    const line=document.createElement('a');line.href='https://lin.ee/ueeBddk';line.target='_blank';line.rel='noopener';line.textContent='LINEで相談';actions.append(line);
+  }else button('空き日時を見る',()=>{rsvApp.classList.remove('short');rsvRender();box.remove();rsvApp.scrollIntoView({behavior:'smooth',block:'start'});});
+  box.append(actions);
 }
+function rsvFallback(){
+  showCandidate();
+  if(!rsvHasSnapshot&&!document.getElementById('rsv-form')){rsvApp.classList.add('short');rsvApp.replaceChildren();}
+  rsvLoadNotice('error','空き状況を表示できませんでした。希望日時を送っていただければ、こちらからご連絡します。');
+}
+async function rsvFetchSlots(){
+  const controller=typeof AbortController==='function'?new AbortController():null;
+  let timer;
+  try{
+    const request=(async()=>{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',{cache:'no-store',...(controller?{signal:controller.signal}:{})});
+      if(!r.ok){const e=new Error('slots_http');e.kind='http';e.status=r.status;throw e;}
+      let data;try{data=await r.json();}catch{const e=new Error('slots_json');e.kind='invalid_json';throw e;}
+      if(!data||!Array.isArray(data.slots)||data.slots.some(s=>!s||typeof s.id!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s.date)||!/^\d{2}:\d{2}$/.test(s.startTime)||!/^\d{2}:\d{2}$/.test(s.endTime)||!['open','full'].includes(s.status))){const e=new Error('slots_invalid');e.kind='invalid_data';throw e;}return data.slots;
+    })();
+    // Also bound the wait when AbortController is absent or a browser ignores abort.
+    const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{const e=new Error('slots_timeout');e.kind='timeout';reject(e);controller?.abort();},15000);});
+    return await Promise.race([request,deadline]);
+  }finally{clearTimeout(timer);}
+}
+async function rsvLoad(){
+  if(rsvSubmitting||rsvDone||rsvLoading||document.hidden)return;
+  rsvLoading=true;
+  const started=Date.now();let attempts=0,lastError;
+  const existingNotice=document.getElementById('rsv-load-status');if(existingNotice)rsvLoadNotice('loading','空き状況を確認しています。希望日の入力もご利用いただけます。');
+  const slow=setTimeout(()=>{if(!rsvHasSnapshot&&!rsvDone){showCandidate();rsvLoadNotice('slow','空き状況の確認に時間がかかっています。先に希望日を送ることもできます。');rsvTrackOnce('slots_slow');}},6000);
+  try{
+    let slots;
+    for(attempts=1;attempts<=2;attempts++){
+      try{slots=await rsvFetchSlots();break;}
+      catch(e){lastError=e;rsvTrackOnce('slots_error',{load_reason:e.kind||'network',http_status:e.status||0,attempt:attempts});if(attempts===2)throw e;if(rsvSubmitting||rsvDone)return;rsvTrack('slots_retry');await new Promise(resolve=>setTimeout(resolve,500));}
+    }
+    if(rsvSubmitting||rsvDone)return;
+    rsvSlots=slots;rsvHasSnapshot=true;rsvApp.classList.remove('short');
+    rsvTrackOnce('slots_loaded');if(lastError)rsvTrack('slots_recovered',{load_reason:lastError.kind||'network',attempt:attempts,elapsed_ms:Date.now()-started});
+    if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
+    if(rsvSlot&&!rsvSlots.some(s=>s.id===rsvSlot&&s.status!=='full')){rsvSlot=null;rsvRender();}
+    else if(!rsvFormDirty())rsvRender();
+    const manualOpen=document.getElementById('kouho-in')?.classList.contains('open');
+    if(manualOpen&&!document.getElementById('rsv-form')){rsvApp.replaceChildren();rsvApp.classList.add('short');rsvLoadNotice('ready','空き状況を確認できました。入力中の希望日も、そのまま送れます。');}
+    else document.getElementById('rsv-load-status')?.remove();
+  }catch(e){if(!rsvDone){rsvTrackOnce('slots_unavailable',{load_reason:e.kind||'network',http_status:e.status||0,elapsed_ms:Date.now()-started});if(!rsvHasSnapshot)rsvFallback();else rsvLoadNotice('error','空き状況を再確認できませんでした。選択した日時と入力内容は残っています。');}}
+  finally{clearTimeout(slow);rsvLoading=false;document.querySelectorAll('#rsv-load-status button').forEach(b=>{if(b.textContent==='空きを確認中…'){b.disabled=false;b.textContent='空きを再読み込み';}});}
+}
+
 // ── 合う日時がないとき：希望の日を送る ──
 // 枠は押さえない。シバグラム側でタスクに起こして、専務へLINEとメールの両方で知らせる
 (function(){
@@ -459,7 +511,7 @@ async function rsvLoad(){
   });
 })();
 
-rsvLoad();setInterval(rsvLoad,60000);
+rsvLoad();setInterval(rsvLoad,60000);window.addEventListener('online',()=>{if(!rsvDone&&!rsvHasSnapshot){rsvTrack('slots_online_retry');rsvLoad();}});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!rsvHasSnapshot)rsvLoad();});
 </script>
 <script src="site.js?v=20260915a" defer></script>
 <script>
@@ -505,6 +557,6 @@ rsvLoad();setInterval(rsvLoad,60000);
   },true);
 })();
 </script>
-<script src="booking-flow.js?v=20261106b" defer></script>
+<script src="booking-flow.js?v=20261122recovery" defer></script>
 </body>
 </html>

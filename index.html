@@ -1124,7 +1124,7 @@ footer .copy{opacity:.5;margin-top:18px;font-family:'Jost',sans-serif;letter-spa
 .hero-cta{align-items:flex-start;flex-direction:column;gap:14px}.hero-cta .hero-reserve{min-height:50px;padding:12px 22px;font-size:14px;line-height:1.65;letter-spacing:.05em;font-weight:500;background:rgba(0,0,0,.12);color:#fff;border:1px solid rgba(255,255,255,.85);text-shadow:0 1px 5px rgba(0,0,0,.4)}.hero-cta .hero-catalog{display:inline-block;color:#fff;font-size:12px;line-height:1.9;text-decoration:underline;text-underline-offset:4px;padding:5px 0}.hero-copy .hero-doc-note{font-size:12px;line-height:1.9;margin-top:12px;letter-spacing:.03em}.consult-entry{text-align:center;padding:30px 22px;border-bottom:1px solid #e3e3e0;background:#f6f6f4}.consult-entry h2{font-family:'Zen Kaku Gothic New',sans-serif;font-size:clamp(21px,5.6vw,27px);font-weight:500;line-height:1.65;margin-bottom:14px;text-wrap:balance}.consult-entry p{font-size:14px;line-height:1.9;margin:0}.consult-entry-button{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 22px;margin:20px 0 12px;background:#20211e;color:#fff;font-size:15px}.consult-entry small{display:block;font-size:12px;line-height:1.9;color:#555}.consult-entry-doc{display:inline-block;font-size:12px;line-height:1.9;margin-top:20px;padding:8px 0;border-bottom:1px solid #999}.fixed-cta[data-reserve-priority]{grid-template-columns:.8fr 1.2fr 2fr!important}.fixed-cta[data-reserve-priority] a{font-size:12px!important;letter-spacing:.03em!important;min-height:60px}.fixed-cta[data-reserve-priority] .fc-reserve{background:#20211e!important;color:white!important;font-weight:500}.fixed-cta[data-reserve-priority] .fc-doc{background:#fff;color:#333;border-right:1px solid #ddd}@media(max-width:560px){.hero-copy{bottom:75px}.hero-cta .hero-reserve{width:240px;max-width:100%}.hero-area{margin-top:12px}.hero-first{margin-top:10px}.consult-entry-button{width:100%;max-width:330px}}@media(max-width:359px){.hero-cta .hero-reserve{font-size:14px}.fixed-cta[data-reserve-priority] a{font-size:11px!important}}
 
 </style><link rel="stylesheet" href="catalog-preview.css?v=20261030">
-<link rel="stylesheet" href="booking-flow.css?v=20261106b">
+<link rel="stylesheet" href="booking-flow.css?v=20261122recovery">
 </head>
 <body>
 
@@ -1830,8 +1830,8 @@ document.querySelectorAll('.js-reserve').forEach(a=>{a.href='#reserve'});
 const SHIBAGRAM_API='https://shibagram.onrender.com';
 let rsvSubmitting=false;
 const rsvTracked=new Set();
-function rsvTrack(step){if(window.gtag)window.gtag('event','reserve_'+step,{page_path:'/',form_location:'top_reserve'});}
-function rsvTrackOnce(step){if(!rsvTracked.has(step)){rsvTracked.add(step);rsvTrack(step);}}
+function rsvTrack(step,detail={}){if(window.gtag)window.gtag('event','reserve_'+step,{page_path:location.pathname,...detail});}
+function rsvTrackOnce(step,detail={}){if(!rsvTracked.has(step)){rsvTracked.add(step);rsvTrack(step,detail);}}
 function showCandidate(){const box=document.getElementById('kouho');if(box){box.hidden=false;rsvApp.after(box);}}
 
 const rsvApp=document.getElementById('rsv-app');
@@ -1840,7 +1840,6 @@ let rsvSlots=[],rsvDate=null,rsvSlot=null,rsvDone=false,rsvMethod='visit';
 // 空いているここだけ「オンラインでも」と出す。10時・13時・15時には出さない＝
 // 来店できる方をオンラインへ寄せないため（専務 2026-09-15）。
 const rsvOnlineOk=s=>s.status!=='full'&&/^17[:：]/.test(s.startTime);
-function rsvFallback(){showCandidate();rsvTrackOnce('slots_error');rsvApp.classList.add('short');rsvApp.innerHTML='<div class="rsv-msg error">予約枠を読み込めませんでした。<br>お手数ですが <a href="tel:0120154483">0120-154-483</a> までお電話いただくか、<a href="https://lin.ee/ueeBddk" target="_blank" rel="noopener">公式LINEでご相談ください</a>。<br>（電話受付 9:00-18:00／水曜定休）</div>';}
 function fmtDate(s){const[y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return{md:`${m}/${d}`,w:['日','月','火','水','木','金','土'][dt.getDay()]};}
 function rsvLastVisibleDate(now=new Date()){
   const ymd=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
@@ -2023,14 +2022,67 @@ function rsvFormDirty(){
 /* 相談会ページ（event.html）から ?slot=◯◯ で来た時、その枠を選んだ状態で開く。
    枠を押さえるのはこの下の送信処理1本だけなので、二重取りにはならない（2026-08-28）*/
 let slotFromUrl=(new URLSearchParams(location.search)).get('slot');
-async function rsvLoad(){
-  if(rsvSubmitting||rsvDone)return;
-  try{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',(typeof AbortSignal.timeout==='function'?{signal:AbortSignal.timeout(15000)}:{} ));if(!r.ok)throw 0;const data=await r.json();if(rsvSubmitting||rsvDone)return;rsvSlots=data.slots||[];
-    if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');
-      if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
-    if(!rsvDone){if(rsvSlot&&!rsvSlots.some(s=>s.id===rsvSlot&&s.status!=='full')){rsvSlot=null;rsvRender();}else if(!document.getElementById('rsv-form')||!rsvFormDirty())rsvRender();}}
-  catch{if(!rsvDone&&!rsvFormDirty()&&rsvSlots.length===0)rsvFallback();}
+// Shared verbatim by the home and reservation page. Read-only requests retry once;
+// reservation/contact POSTs are never retried automatically.
+let rsvLoading=false,rsvHasSnapshot=false;
+function rsvLoadNotice(kind,message){
+  let box=document.getElementById('rsv-load-status');
+  if(!box){box=document.createElement('div');box.id='rsv-load-status';box.className='booking-load-status';box.setAttribute('role','status');box.setAttribute('aria-live','polite');rsvApp.before(box);}
+  box.replaceChildren();const p=document.createElement('p');p.textContent=message;box.append(p);
+  const actions=document.createElement('div');actions.className='booking-load-actions';
+  function button(label,fn){const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',fn);actions.append(b);return b;}
+  if(kind!=='ready'){
+    button('希望日を送る',()=>{showCandidate();const inn=document.getElementById('kouho-in');if(inn&&!inn.classList.contains('open'))document.getElementById('kouho-open')?.click();document.getElementById('kouho')?.scrollIntoView({behavior:'smooth',block:'start'});});
+    const retry=button(rsvLoading?'空きを確認中…':'空きを再読み込み',()=>{rsvTrack('slots_manual_retry');rsvLoad();});retry.disabled=rsvLoading;
+    const phone=document.createElement('a');phone.href='tel:0120154483';phone.textContent='電話で相談';actions.append(phone);
+    const line=document.createElement('a');line.href='https://lin.ee/ueeBddk';line.target='_blank';line.rel='noopener';line.textContent='LINEで相談';actions.append(line);
+  }else button('空き日時を見る',()=>{rsvApp.classList.remove('short');rsvRender();box.remove();rsvApp.scrollIntoView({behavior:'smooth',block:'start'});});
+  box.append(actions);
 }
+function rsvFallback(){
+  showCandidate();
+  if(!rsvHasSnapshot&&!document.getElementById('rsv-form')){rsvApp.classList.add('short');rsvApp.replaceChildren();}
+  rsvLoadNotice('error','空き状況を表示できませんでした。希望日時を送っていただければ、こちらからご連絡します。');
+}
+async function rsvFetchSlots(){
+  const controller=typeof AbortController==='function'?new AbortController():null;
+  let timer;
+  try{
+    const request=(async()=>{const r=await fetch(SHIBAGRAM_API+'/api/public/slots?type=visit&includeFull=1',{cache:'no-store',...(controller?{signal:controller.signal}:{})});
+      if(!r.ok){const e=new Error('slots_http');e.kind='http';e.status=r.status;throw e;}
+      let data;try{data=await r.json();}catch{const e=new Error('slots_json');e.kind='invalid_json';throw e;}
+      if(!data||!Array.isArray(data.slots)||data.slots.some(s=>!s||typeof s.id!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s.date)||!/^\d{2}:\d{2}$/.test(s.startTime)||!/^\d{2}:\d{2}$/.test(s.endTime)||!['open','full'].includes(s.status))){const e=new Error('slots_invalid');e.kind='invalid_data';throw e;}return data.slots;
+    })();
+    // Also bound the wait when AbortController is absent or a browser ignores abort.
+    const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{const e=new Error('slots_timeout');e.kind='timeout';reject(e);controller?.abort();},15000);});
+    return await Promise.race([request,deadline]);
+  }finally{clearTimeout(timer);}
+}
+async function rsvLoad(){
+  if(rsvSubmitting||rsvDone||rsvLoading||document.hidden)return;
+  rsvLoading=true;
+  const started=Date.now();let attempts=0,lastError;
+  const existingNotice=document.getElementById('rsv-load-status');if(existingNotice)rsvLoadNotice('loading','空き状況を確認しています。希望日の入力もご利用いただけます。');
+  const slow=setTimeout(()=>{if(!rsvHasSnapshot&&!rsvDone){showCandidate();rsvLoadNotice('slow','空き状況の確認に時間がかかっています。先に希望日を送ることもできます。');rsvTrackOnce('slots_slow');}},6000);
+  try{
+    let slots;
+    for(attempts=1;attempts<=2;attempts++){
+      try{slots=await rsvFetchSlots();break;}
+      catch(e){lastError=e;rsvTrackOnce('slots_error',{load_reason:e.kind||'network',http_status:e.status||0,attempt:attempts});if(attempts===2)throw e;if(rsvSubmitting||rsvDone)return;rsvTrack('slots_retry');await new Promise(resolve=>setTimeout(resolve,500));}
+    }
+    if(rsvSubmitting||rsvDone)return;
+    rsvSlots=slots;rsvHasSnapshot=true;rsvApp.classList.remove('short');
+    rsvTrackOnce('slots_loaded');if(lastError)rsvTrack('slots_recovered',{load_reason:lastError.kind||'network',attempt:attempts,elapsed_ms:Date.now()-started});
+    if(slotFromUrl){const t=rsvSlots.find(s=>s.id===slotFromUrl&&s.status!=='full');if(t){rsvDate=t.date;rsvSlot=t.id;}slotFromUrl=null;}
+    if(rsvSlot&&!rsvSlots.some(s=>s.id===rsvSlot&&s.status!=='full')){rsvSlot=null;rsvRender();}
+    else if(!rsvFormDirty())rsvRender();
+    const manualOpen=document.getElementById('kouho-in')?.classList.contains('open');
+    if(manualOpen&&!document.getElementById('rsv-form')){rsvApp.replaceChildren();rsvApp.classList.add('short');rsvLoadNotice('ready','空き状況を確認できました。入力中の希望日も、そのまま送れます。');}
+    else document.getElementById('rsv-load-status')?.remove();
+  }catch(e){if(!rsvDone){rsvTrackOnce('slots_unavailable',{load_reason:e.kind||'network',http_status:e.status||0,elapsed_ms:Date.now()-started});if(!rsvHasSnapshot)rsvFallback();else rsvLoadNotice('error','空き状況を再確認できませんでした。選択した日時と入力内容は残っています。');}}
+  finally{clearTimeout(slow);rsvLoading=false;document.querySelectorAll('#rsv-load-status button').forEach(b=>{if(b.textContent==='空きを確認中…'){b.disabled=false;b.textContent='空きを再読み込み';}});}
+}
+
 // ── 合う日時がないとき：希望の日を送る ──
 // 枠は押さえない。シバグラム側でタスクに起こして、専務へLINEとメールの両方で知らせる
 (function(){
@@ -2072,7 +2124,7 @@ async function rsvLoad(){
   });
 })();
 
-rsvLoad();setInterval(rsvLoad,60000);
+rsvLoad();setInterval(rsvLoad,60000);window.addEventListener('online',()=>{if(!rsvDone&&!rsvHasSnapshot){rsvTrack('slots_online_retry');rsvLoad();}});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!rsvHasSnapshot)rsvLoad();});
 
 const header=document.getElementById('header');
 addEventListener('scroll',()=>{header.classList.toggle('scrolled',scrollY>40)},{passive:true});
@@ -2260,6 +2312,6 @@ document.querySelectorAll('.yt-thumb').forEach(function(btn){
   },true);
 })();
 </script>
-<script src="booking-flow.js?v=20261106b" defer></script>
+<script src="booking-flow.js?v=20261122recovery" defer></script>
 </body>
 </html>

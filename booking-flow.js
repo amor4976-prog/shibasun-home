@@ -87,6 +87,8 @@ next.addEventListener('click',()=>{
 });
 window.addEventListener('popstate',()=>{if(rsvSubmitting)return;stage=history.state?.shibasunBookingStep===2?2:1;refresh();focusStage();});
 app.addEventListener('click',()=>requestAnimationFrame(refresh));
+// The fallback sits outside app: keep the fixed booking bar off the preferred-date form.
+document.getElementById('kouho-open')?.addEventListener('click',()=>{if(!rsvSubmitting){stage=1;refresh();}});
 new MutationObserver(refresh).observe(app,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});
 if(!standalone)new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;refresh();},{threshold:0}).observe(app);
 refresh();
